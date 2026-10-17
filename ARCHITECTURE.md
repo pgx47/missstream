@@ -5,7 +5,7 @@ Site de niche affilié Amazon, 100 % statique, contenu généré automatiquement
 - **Domaine** : missstream.xyz
 - **Stack** : Astro 7 + @astrojs/mdx + Tailwind CSS v4 + @astrojs/sitemap
 - **Hébergement** : Cloudflare Pages (projet `missstream`, déploiement via Wrangler en CI)
-- **Tag Amazon** : `duckurbate-21` (configuré dans `src/site.config.ts`)
+- **Tag Amazon** : `missstrm-21` (configuré dans `src/site.config.ts`)
 - **LLM** : DeepSeek (`api.deepseek.com`, modèle `deepseek-chat` par défaut, compatible OpenRouter via variables)
 
 ## Secrets GitHub à créer (Settings → Secrets and variables → Actions)

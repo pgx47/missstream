@@ -5,7 +5,7 @@ export const SITE = {
   tagline: 'Setups streaming cozy & pastel',
   description:
     "Guides d'achat, comparatifs et bons plans pour un setup de streaming esthétique : micros, casques, chaises, LED pastel et accessoires cozy pour créatrices de contenu.",
-  amazonTag: 'duckurbate-21',
+  amazonTag: 'missstrm-21',
   locale: 'fr_FR',
   lang: 'fr',
   email: 'contact@missstream.xyz',
