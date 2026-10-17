@@ -1,0 +1,67 @@
+---
+import { amazonUrl } from '../site.config';
+
+interface Props {
+  asin?: string;
+  nom: string;
+  pointsForts: string[];
+  pointsFaibles: string[];
+  couleur?: string;
+  badge?: string;
+}
+
+const {
+  asin,
+  nom,
+  pointsForts,
+  pointsFaibles,
+  couleur = 'Rose / Blanc',
+  badge = 'Coup de cœur setup',
+} = Astro.props;
+
+const url = amazonUrl({ asin, query: nom });
+---
+
+<div
+  class="my-8 rounded-2xl bg-white border border-pink-100 p-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden"
+>
+  {
+    badge && (
+      <span class="absolute top-4 right-4 bg-pink-100 text-pink-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+        {badge}
+      </span>
+    )
+  }
+
+  <h3 class="text-xl font-bold text-gray-900 pr-32">{nom}</h3>
+  <p class="text-sm text-pink-500 font-medium mt-1">Finition recommandée : {couleur}</p>
+
+  <div class="grid md:grid-cols-2 gap-4 my-5 text-sm">
+    <div class="bg-rose-50/50 p-4 rounded-xl border border-rose-100">
+      <p class="font-bold text-gray-800 mb-2">Pourquoi on l'adore :</p>
+      <ul class="space-y-1 text-gray-600">
+        {pointsForts.map((pt) => <li>• {pt}</li>)}
+      </ul>
+    </div>
+    <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+      <p class="font-bold text-gray-700 mb-2">À garder en tête :</p>
+      <ul class="space-y-1 text-gray-500">
+        {pointsFaibles.map((pt) => <li>• {pt}</li>)}
+      </ul>
+    </div>
+  </div>
+
+  <div
+    class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-gray-100"
+  >
+    <span class="text-xs text-gray-400">Vérifié sur Amazon.fr</span>
+    <a
+      href={url}
+      target="_blank"
+      rel="nofollow sponsored noopener"
+      class="w-full sm:w-auto text-center px-6 py-3 rounded-xl bg-gradient-to-r from-pink-500 to-rose-400 hover:from-pink-600 hover:to-rose-500 text-white font-semibold shadow-md shadow-pink-200 transition-all hover:scale-[1.02]"
+    >
+      Voir le prix & les coloris disponibles
+    </a>
+  </div>
+</div>

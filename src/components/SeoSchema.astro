@@ -1,0 +1,82 @@
+---
+import { SITE } from '../site.config';
+
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  type: 'Article' | 'FAQ' | 'Breadcrumb' | 'WebSite';
+  title?: string;
+  description?: string;
+  image?: string;
+  publishDate?: Date;
+  updatedDate?: Date;
+  url?: string;
+  faq?: FaqItem[];
+  breadcrumbs?: { name: string; url: string }[];
+}
+
+const {
+  type,
+  title,
+  description,
+  image,
+  publishDate,
+  updatedDate,
+  url,
+  faq = [],
+  breadcrumbs = [],
+} = Astro.props;
+
+let schema: Record<string, unknown> = {};
+
+if (type === 'WebSite') {
+  schema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE.name,
+    url: SITE.url,
+    description: SITE.description,
+    inLanguage: 'fr-FR',
+  };
+} else if (type === 'Article') {
+  schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description,
+    image: image ? [new URL(image, SITE.url).href] : undefined,
+    datePublished: publishDate?.toISOString(),
+    dateModified: (updatedDate ?? publishDate)?.toISOString(),
+    mainEntityOfPage: url,
+    author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+    publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+    inLanguage: 'fr-FR',
+  };
+} else if (type === 'FAQ' && faq.length > 0) {
+  schema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  };
+} else if (type === 'Breadcrumb' && breadcrumbs.length > 0) {
+  schema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((b, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: b.name,
+      item: new URL(b.url, SITE.url).href,
+    })),
+  };
+}
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

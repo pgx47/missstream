@@ -1,0 +1,38 @@
+---
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+
+export async function getStaticPaths() {
+  const news = await getCollection('news', ({ data }) => !data.draft);
+  return news.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+---
+
+<ArticleLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  image={entry.data.image}
+  publishDate={entry.data.publishDate}
+  section="Actualités"
+  sectionHref="/actualites/"
+  headings={headings}
+>
+  {
+    entry.data.sourceUrl && (
+      <p class="mb-6 text-sm">
+        <a
+          href={entry.data.sourceUrl}
+          target="_blank"
+          rel="nofollow noopener"
+          class="inline-flex items-center gap-1 text-purple-600 font-semibold hover:underline"
+        >
+          Source de l'information ↗
+        </a>
+      </p>
+    )
+  }
+  <Content />
+</ArticleLayout>

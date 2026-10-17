@@ -1,0 +1,156 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SeoSchema from '../components/SeoSchema.astro';
+import DealCard from '../components/DealCard.astro';
+import { SITE } from '../site.config';
+import deals from '../data/deals.json';
+
+const guides = (await getCollection('guides', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
+);
+const news = (await getCollection('news', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
+);
+
+const featured = guides[0];
+const rest = guides.slice(1, 7);
+const dateFmt = (d: Date) =>
+  d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<BaseLayout title={SITE.name} description={SITE.description}>
+  <SeoSchema slot="head" type="WebSite" />
+
+  <section
+    class="bg-gradient-to-b from-pink-50 via-purple-50/50 to-transparent border-b border-pink-100"
+  >
+    <div class="max-w-6xl mx-auto px-4 py-16 md:py-24 text-center">
+      <span
+        class="inline-block bg-white border border-pink-200 text-pink-600 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest"
+        >Guides & bons plans setup</span
+      >
+      <h1 class="mt-6 text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight">
+        Un setup de stream <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">aussi beau que performant</span>
+      </h1>
+      <p class="mt-5 max-w-2xl mx-auto text-lg text-gray-500 leading-relaxed">
+        Micros, casques, chaises, LED pastel : on teste, on compare et on déniche les meilleurs
+        rapports qualité-esthétique-prix pour créatrices de contenu.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a
+          href="/articles/"
+          class="px-6 py-3 rounded-xl bg-gradient-to-r from-pink-500 to-rose-400 text-white font-semibold shadow-md shadow-pink-200 hover:scale-[1.02] transition-transform"
+          >Voir les guides</a
+        >
+        <a
+          href="/bons-plans/"
+          class="px-6 py-3 rounded-xl bg-white border border-pink-200 text-pink-600 font-semibold hover:bg-pink-50 transition-colors"
+          >Bons plans du jour</a
+        >
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-4 py-12">
+    <div class="flex items-end justify-between mb-6">
+      <h2 class="text-2xl font-extrabold text-gray-900">Guides récents</h2>
+      <a href="/articles/" class="text-sm font-semibold text-pink-600 hover:underline">Tout voir →</a>
+    </div>
+
+    {
+      featured && (
+        <a
+          href={`/articles/${featured.id}/`}
+          class="group block md:grid md:grid-cols-2 gap-0 rounded-2xl bg-white border border-pink-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow mb-8"
+        >
+          <img
+            src={featured.data.image}
+            alt={featured.data.title}
+            class="w-full h-56 md:h-full object-cover"
+            loading="eager"
+          />
+          <div class="p-6 md:p-8 flex flex-col justify-center">
+            <span class="text-xs font-bold text-pink-500 uppercase tracking-widest">
+              À la une · {dateFmt(featured.data.publishDate)}
+            </span>
+            <h3 class="mt-3 text-2xl font-extrabold text-gray-900 group-hover:text-pink-600 transition-colors leading-snug">
+              {featured.data.title}
+            </h3>
+            <p class="mt-3 text-gray-500 leading-relaxed">{featured.data.description}</p>
+          </div>
+        </a>
+      )
+    }
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {
+        rest.map((g) => (
+          <a
+            href={`/articles/${g.id}/`}
+            class="group rounded-2xl bg-white border border-pink-100 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
+          >
+            <img src={g.data.image} alt={g.data.title} class="w-full h-40 object-cover" loading="lazy" />
+            <div class="p-5">
+              <span class="text-xs font-bold text-pink-500 uppercase tracking-widest">
+                {dateFmt(g.data.publishDate)}
+              </span>
+              <h3 class="mt-2 font-bold text-gray-900 leading-snug group-hover:text-pink-600 transition-colors">
+                {g.data.title}
+              </h3>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  {
+    news.length > 0 && (
+      <section class="max-w-6xl mx-auto px-4 py-12">
+        <div class="flex items-end justify-between mb-6">
+          <h2 class="text-2xl font-extrabold text-gray-900">Dernières actus</h2>
+          <a href="/actualites/" class="text-sm font-semibold text-pink-600 hover:underline">
+            Tout voir →
+          </a>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {news.slice(0, 3).map((n) => (
+            <a
+              href={`/actualites/${n.id}/`}
+              class="group rounded-2xl bg-white border border-purple-100 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
+            >
+              <img src={n.data.image} alt={n.data.title} class="w-full h-36 object-cover" loading="lazy" />
+              <div class="p-5">
+                <span class="text-xs font-bold text-purple-500 uppercase tracking-widest">
+                  {dateFmt(n.data.publishDate)}
+                </span>
+                <h3 class="mt-2 font-bold text-gray-900 leading-snug group-hover:text-purple-600 transition-colors">
+                  {n.data.title}
+                </h3>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  {
+    deals.length > 0 && (
+      <section class="max-w-6xl mx-auto px-4 py-12">
+        <div class="flex items-end justify-between mb-6">
+          <h2 class="text-2xl font-extrabold text-gray-900">Bons plans repérés</h2>
+          <a href="/bons-plans/" class="text-sm font-semibold text-pink-600 hover:underline">
+            Tout voir →
+          </a>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {deals.slice(0, 4).map((d) => (
+            <DealCard nom={d.nom} asin={d.asin} categorie={d.categorie} badge={d.badge} note={d.note} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>

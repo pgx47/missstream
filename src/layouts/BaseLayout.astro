@@ -1,0 +1,132 @@
+---
+import { SITE } from '../site.config';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonical?: string;
+  type?: 'website' | 'article';
+}
+
+const {
+  title,
+  description,
+  image = '/images/og-default.webp',
+  canonical = Astro.url.pathname,
+  type = 'website',
+} = Astro.props;
+
+const fullTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;
+const canonicalUrl = new URL(canonical, SITE.url).href;
+const imageUrl = new URL(image, SITE.url).href;
+
+const nav = [
+  { label: 'Articles', href: '/articles/' },
+  { label: 'Actualités', href: '/actualites/' },
+  { label: 'Bons plans', href: '/bons-plans/' },
+  { label: 'À propos', href: '/a-propos/' },
+];
+---
+
+<!doctype html>
+<html lang={SITE.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content={SITE.locale} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <slot name="head" />
+  </head>
+
+  <body class="min-h-screen flex flex-col antialiased">
+    <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-pink-100">
+      <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-2 group">
+          <span
+            class="w-9 h-9 rounded-xl bg-gradient-to-br from-pink-400 to-purple-400 flex items-center justify-center text-white font-extrabold text-lg shadow-sm shadow-pink-200 group-hover:scale-105 transition-transform"
+            >M</span
+          >
+          <span class="font-extrabold text-xl text-gray-900 tracking-tight">
+            Miss<span class="text-pink-500">Stream</span>
+          </span>
+        </a>
+        <nav class="hidden md:flex items-center gap-1">
+          {
+            nav.map((item) => (
+              <a
+                href={item.href}
+                class="px-3 py-2 rounded-lg text-sm font-semibold text-gray-600 hover:text-pink-600 hover:bg-pink-50 transition-colors"
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+        <details class="md:hidden relative">
+          <summary
+            class="list-none cursor-pointer w-10 h-10 flex items-center justify-center rounded-lg text-gray-600 hover:bg-pink-50"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </summary>
+          <nav
+            class="absolute right-0 mt-2 w-48 bg-white rounded-xl border border-pink-100 shadow-lg p-2 flex flex-col"
+          >
+            {
+              nav.map((item) => (
+                <a
+                  href={item.href}
+                  class="px-3 py-2 rounded-lg text-sm font-semibold text-gray-600 hover:text-pink-600 hover:bg-pink-50"
+                >
+                  {item.label}
+                </a>
+              ))
+            }
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <footer class="mt-16 border-t border-pink-100 bg-white">
+      <div class="max-w-6xl mx-auto px-4 py-10 grid gap-8 md:grid-cols-3">
+        <div>
+          <p class="font-extrabold text-lg text-gray-900">
+            Miss<span class="text-pink-500">Stream</span>
+          </p>
+          <p class="text-sm text-gray-500 mt-2 leading-relaxed">{SITE.tagline}</p>
+        </div>
+        <nav class="text-sm flex flex-col gap-2">
+          <p class="font-bold text-gray-800 mb-1">Navigation</p>
+          {nav.map((item) => <a href={item.href} class="text-gray-500 hover:text-pink-600">{item.label}</a>)}
+        </nav>
+        <div class="text-sm flex flex-col gap-2">
+          <p class="font-bold text-gray-800 mb-1">Légal</p>
+          <a href="/mentions-legales/" class="text-gray-500 hover:text-pink-600">Mentions légales</a>
+          <a href="/a-propos/" class="text-gray-500 hover:text-pink-600">À propos</a>
+        </div>
+      </div>
+      <div class="border-t border-gray-100">
+        <p class="max-w-6xl mx-auto px-4 py-4 text-xs text-gray-400 leading-relaxed">
+          {SITE.affiliationDisclosure}
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

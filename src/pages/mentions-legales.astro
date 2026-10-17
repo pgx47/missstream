@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../site.config';
+---
+
+<BaseLayout
+  title="Mentions légales"
+  description="Mentions légales, politique d'affiliation et de confidentialité du site Miss Stream."
+>
+  <div class="max-w-3xl mx-auto px-4 py-12 prose-cozy">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6">Mentions légales</h1>
+
+    <h2>Éditeur du site</h2>
+    <p>
+      {SITE.name} — {SITE.url}<br />
+      Contact : <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+    </p>
+
+    <h2>Hébergement</h2>
+    <p>
+      Site statique hébergé par Cloudflare Pages — Cloudflare, Inc., 101 Townsend St, San Francisco,
+      CA 94107, États-Unis.
+    </p>
+
+    <h2>Liens d'affiliation</h2>
+    <p>
+      {SITE.affiliationDisclosure} Les liens vers Amazon.fr présents sur ce site sont des liens
+      affiliés identifiés comme tels (attribut <code>sponsored</code>). Les prix affichés chez le
+      marchand prévalent sur toute indication donnée ici.
+    </p>
+
+    <h2>Données personnelles & cookies</h2>
+    <p>
+      Ce site ne collecte aucune donnée personnelle via formulaire et ne dépose aucun cookie de
+      suivi propriétaire. La mesure d'audience, le cas échéant, est réalisée via Cloudflare Web
+      Analytics, solution sans cookie conforme au RGPD.
+    </p>
+
+    <h2>Propriété intellectuelle</h2>
+    <p>
+      Les contenus rédactionnels sont la propriété de {SITE.name}. Les visuels de produits et noms
+      de marques cités appartiennent à leurs détenteurs respectifs et sont utilisés à des fins
+      d'information et de comparaison.
+    </p>
+  </div>
+</BaseLayout>

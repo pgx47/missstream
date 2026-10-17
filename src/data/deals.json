@@ -1,0 +1,30 @@
+[
+  {
+    "asin": null,
+    "nom": "Fifine AM8 — micro USB/XLR blanc",
+    "categorie": "Micros",
+    "badge": "Coup de cœur setup",
+    "note": "Le micro blanc le plus cité dans les setups pastel budget."
+  },
+  {
+    "asin": null,
+    "nom": "Razer Kraken Kitty V2 — édition Quartz",
+    "categorie": "Casques",
+    "badge": "Icône cozy",
+    "note": "Oreilles de chat RGB Chroma, le classique des streams esthétiques."
+  },
+  {
+    "asin": null,
+    "nom": "Logitech G715 — clavier sans fil blanc nuage",
+    "categorie": "Claviers",
+    "badge": "Repose-poignet cloud",
+    "note": "Repose-poignet nuage inclus, parfait sur bureau blanc."
+  },
+  {
+    "asin": null,
+    "nom": "Govee Glide — barres LED murales RGBIC",
+    "categorie": "Éclairage",
+    "badge": "Ambiance pastel",
+    "note": "L'accessoire qui transforme un mur de stream en 10 minutes."
+  }
+]

@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SeoSchema from '../../components/SeoSchema.astro';
+
+const guides = (await getCollection('guides', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
+);
+const dateFmt = (d: Date) =>
+  d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<BaseLayout
+  title="Articles & guides setup"
+  description="Guides d'achat et comparatifs pour un setup de streaming esthétique : micros, casques, chaises, LED et accessoires pastel."
+>
+  <SeoSchema
+    slot="head"
+    type="Breadcrumb"
+    breadcrumbs={[
+      { name: 'Accueil', url: '/' },
+      { name: 'Articles', url: '/articles/' },
+    ]}
+  />
+
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Articles & guides</h1>
+    <p class="mt-3 text-gray-500 max-w-2xl">
+      Comparatifs rédigés à la main et retours d'expérience pour choisir le bon matériel, du micro
+      USB blanc au bureau assis-debout.
+    </p>
+
+    <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {
+        guides.map((g) => (
+          <a
+            href={`/articles/${g.id}/`}
+            class="group rounded-2xl bg-white border border-pink-100 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
+          >
+            <img src={g.data.image} alt={g.data.title} class="w-full h-44 object-cover" loading="lazy" />
+            <div class="p-5">
+              <span class="text-xs font-bold text-pink-500 uppercase tracking-widest">
+                {dateFmt(g.data.publishDate)}
+              </span>
+              <h2 class="mt-2 font-bold text-gray-900 leading-snug group-hover:text-pink-600 transition-colors">
+                {g.data.title}
+              </h2>
+              <p class="mt-2 text-sm text-gray-500 line-clamp-2">{g.data.description}</p>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>

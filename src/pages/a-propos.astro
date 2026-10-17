@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../site.config';
+---
+
+<BaseLayout
+  title="À propos"
+  description="Qui est derrière Miss Stream, comment nous testons le matériel et pourquoi nous parlons de setups esthétiques."
+>
+  <div class="max-w-3xl mx-auto px-4 py-12 prose-cozy">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6">À propos de Miss Stream</h1>
+
+    <p>
+      Miss Stream est né d'un constat simple : trouver du matériel de streaming performant <strong>et</strong>
+      esthétique est un parcours du combattant. Les guides tech classiques parlent specs et benchmarks,
+      rarement de la façon dont un micro, une chaise ou un clavier s'intègre dans une pièce de vie.
+    </p>
+
+    <h2>Notre approche</h2>
+    <p>
+      Chaque guide part d'un usage réel : streamer sur Twitch, tourner des TikTok, podcast, visio.
+      Nous comparons le matériel sur trois critères qui comptent vraiment pour une créatrice de
+      contenu : la qualité technique (son, image, confort), l'esthétique (coloris, finitions,
+      cohérence dans un setup cozy/pastel) et le rapport qualité-prix.
+    </p>
+
+    <h2>Comment nous choisissons les produits</h2>
+    <p>
+      Les produits cités sont sélectionnés parmi les références les mieux notées par les utilisatrices
+      et les créatrices, en croisant les retours terrain, les avis vérifiés et notre propre veille
+      matériel. Quand un modèle existe en rose, blanc ou lavande, on vous le dit.
+    </p>
+
+    <h2>Transparence</h2>
+    <p>
+      {SITE.affiliationDisclosure} Cela ne change ni nos sélections ni nos critiques : un produit
+      décevant est signalé comme tel dans la section « À garder en tête » de chaque fiche.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      Une question, une suggestion de matériel à tester ? Écrivez-nous à
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+    </p>
+  </div>
+</BaseLayout>

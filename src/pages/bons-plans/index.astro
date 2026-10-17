@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DealCard from '../../components/DealCard.astro';
+import SeoSchema from '../../components/SeoSchema.astro';
+import { SITE } from '../../site.config';
+import deals from '../../data/deals.json';
+
+const updated = new Date().toLocaleDateString('fr-FR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<BaseLayout
+  title="Bons plans setup streaming"
+  description="Promotions repérées chaque jour sur le matériel de streaming esthétique : micros, casques, chaises et LED pastel."
+>
+  <SeoSchema
+    slot="head"
+    type="Breadcrumb"
+    breadcrumbs={[
+      { name: 'Accueil', url: '/' },
+      { name: 'Bons plans', url: '/bons-plans/' },
+    ]}
+  />
+
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Bons plans du moment</h1>
+    <p class="mt-3 text-gray-500 max-w-2xl">
+      Sélection actualisée quotidiennement. Les prix évoluant en permanence, cliquez pour vérifier
+      la disponibilité et le tarif en temps réel.
+    </p>
+    <p class="mt-2 text-xs text-gray-400">Dernière vérification : {updated}</p>
+
+    {
+      deals.length > 0 ? (
+        <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          {deals.map((d) => (
+            <DealCard nom={d.nom} asin={d.asin} categorie={d.categorie} badge={d.badge} note={d.note} />
+          ))}
+        </div>
+      ) : (
+        <p class="mt-8 text-gray-500">Aucune promotion repérée aujourd'hui. Revenez demain !</p>
+      )
+    }
+
+    <p class="mt-10 text-xs text-gray-400 border-t border-gray-100 pt-4">
+      {SITE.affiliationDisclosure}
+    </p>
+  </div>
+</BaseLayout>

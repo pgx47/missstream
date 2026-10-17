@@ -1,0 +1,43 @@
+name: Fetch news
+
+on:
+  schedule:
+    - cron: "0 10 * * 2,5" # mardi & vendredi 10:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  news:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -r scripts/requirements.txt
+
+      - name: Fetch news
+        run: python scripts/fetch_news.py
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          LLM_BASE_URL: ${{ vars.LLM_BASE_URL }}
+          LLM_MODEL: ${{ vars.LLM_MODEL }}
+          SCRAPER_API_KEY: ${{ secrets.SCRAPER_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+
+      - name: Commit news
+        run: |
+          git config user.name "missstream-bot"
+          git config user.email "bot@missstream.xyz"
+          git add src/content/news
+          if git diff --cached --quiet; then
+            echo "Pas de nouvelle brève"
+          else
+            git commit -m "news: brève automatique [skip ci]"
+            git push
+          fi
