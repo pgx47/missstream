@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-"""Actualise src/data/deals.json en scrapant Amazon via ScraperAPI (TOS-safe).
+"""Actualise src/data/deals.json via l'endpoint structuré ScraperAPI/Amazon.
 
-- Aucun prix figé n'est stocké : seulement nom, ASIN, catégorie, badge promo.
-- Sans SCRAPER_API_KEY, le fichier existant est conservé (exit 0).
+- Vrais ASINs + vraies images produits (téléchargées en local, WebP).
+- Aucun prix figé stocké : badge "Promo en cours" seulement si Amazon le signale.
+- Sans SCRAPER_API_KEY : fichier conservé tel quel (exit 0).
 """
 
+import io
 import json
 import os
 import re
@@ -13,12 +15,11 @@ import urllib.parse
 from pathlib import Path
 
 import requests
-from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parent.parent
 DEALS_FILE = ROOT / "src/data/deals.json"
+IMG_DIR = ROOT / "public/images/deals/products"
 SCRAPER_API_KEY = os.environ.get("SCRAPER_API_KEY")
-AMAZON_TAG = os.environ.get("AMAZON_TAG", "duckurbate-21")
 
 SEARCHES = [
     ("micro streaming rose blanc USB", "Micros"),
@@ -29,6 +30,8 @@ SEARCHES = [
     ("webcam 4k streaming", "Webcams"),
     ("bras micro blanc", "Accessoires"),
     ("tapis souris XXL pastel", "Accessoires"),
+    ("stream deck blanc", "Stream Deck"),
+    ("carte acquisition hdmi stream", "Capture"),
 ]
 
 MAX_DEALS = 20
@@ -47,44 +50,58 @@ CATEGORY_IMAGES = {
 }
 
 
-def scrape_search(query: str, categorie: str) -> list[dict]:
-    url = f"https://www.amazon.fr/s?k={urllib.parse.quote(query)}"
-    api = (
-        "https://api.scraperapi.com?api_key="
-        f"{SCRAPER_API_KEY}&url={urllib.parse.quote(url)}&country_code=fr"
+def amazon_search(query: str) -> list[dict]:
+    """Recherche Amazon via l'API structurée ScraperAPI."""
+    url = (
+        "https://api.scraperapi.com/structured/amazon/search"
+        f"?api_key={SCRAPER_API_KEY}&query={urllib.parse.quote(query)}&country=fr"
     )
-    r = requests.get(api, timeout=60)
+    r = requests.get(url, timeout=60)
     if r.status_code != 200:
         print(f"  HTTP {r.status_code} pour '{query}'")
         return []
+    return r.json().get("results", [])
 
-    soup = BeautifulSoup(r.text, "html.parser")
-    deals = []
-    for item in soup.select("div[data-asin][data-component-type='s-search-result']"):
-        asin = item.get("data-asin", "").strip()
-        title_el = item.select_one("h2 span") or item.select_one("h2")
-        if not asin or not title_el:
-            continue
-        nom = re.sub(r"\s+", " ", title_el.get_text()).strip()
-        if len(nom) < 8:
-            continue
 
-        has_coupon = bool(item.select_one(".s-coupon-highlight-color")) or (
-            "coupon" in item.get_text().lower()
-        )
-        deals.append(
-            {
-                "asin": asin,
-                "nom": nom[:110],
-                "categorie": categorie,
-                "badge": "Promo en cours" if has_coupon else "Bien noté",
-                "note": None,
-                "image": CATEGORY_IMAGES.get(categorie),
-            }
-        )
-        if len(deals) >= 3:
-            break
-    return deals
+def download_image(url: str, asin: str) -> str | None:
+    """Image produit Amazon -> public/images/deals/products/{asin}.webp"""
+    IMG_DIR.mkdir(parents=True, exist_ok=True)
+    out = IMG_DIR / f"{asin}.webp"
+    if out.exists():
+        return f"/images/deals/products/{asin}.webp"
+    try:
+        raw = requests.get(url, timeout=30).content
+        from PIL import Image
+
+        img = Image.open(io.BytesIO(raw)).convert("RGB")
+        img.thumbnail((800, 800))
+        img.save(out, "WEBP", quality=80)
+        return f"/images/deals/products/{asin}.webp"
+    except Exception as e:
+        print(f"  image KO {asin} : {e}")
+        return None
+
+
+def result_to_deal(p: dict, categorie: str) -> dict | None:
+    asin = (p.get("asin") or "").strip()
+    nom = re.sub(r"\s+", " ", p.get("name") or "").strip()
+    if not asin or len(nom) < 8:
+        return None
+    if p.get("is_limited_deal"):
+        badge = "Promo en cours"
+    elif p.get("is_best_seller"):
+        badge = "Best-seller"
+    else:
+        badge = "Bien noté"
+    image = download_image(p["image"], asin) if p.get("image") else None
+    return {
+        "asin": asin,
+        "nom": nom[:110],
+        "categorie": categorie,
+        "badge": badge,
+        "note": None,
+        "image": image or CATEGORY_IMAGES.get(categorie),
+    }
 
 
 def main() -> int:
@@ -96,8 +113,9 @@ def main() -> int:
     for query, categorie in SEARCHES:
         print(f"Recherche : {query}")
         try:
-            for d in scrape_search(query, categorie):
-                if d["asin"] not in seen:
+            for p in amazon_search(query):
+                d = result_to_deal(p, categorie)
+                if d and d["asin"] not in seen:
                     seen.add(d["asin"])
                     all_deals.append(d)
         except Exception as e:
@@ -109,12 +127,12 @@ def main() -> int:
         print("Aucun deal récupéré : deals.json inchangé.")
         return 0
 
-    deals = [d for d in all_deals if d["badge"] == "Promo en cours"] or all_deals
+    promos = [d for d in all_deals if d["badge"] == "Promo en cours"]
+    deals = (promos + [d for d in all_deals if d["badge"] != "Promo en cours"])[:MAX_DEALS]
     DEALS_FILE.write_text(
-        json.dumps(deals[:MAX_DEALS], ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
+        json.dumps(deals, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    print(f"{len(deals[:MAX_DEALS])} deals écrits dans {DEALS_FILE}")
+    print(f"{len(deals)} deals écrits dans {DEALS_FILE}")
     return 0
 
 
