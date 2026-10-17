@@ -189,23 +189,58 @@ Appelle la fonction publish_guide avec le guide complet."""
     return json.loads(call.function.arguments)
 
 
+def upload_r2(data: bytes, slug: str) -> str | None:
+    """Upload vers R2 si configuré (R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY,
+    CLOUDFLARE_ACCOUNT_ID, R2_BUCKET, R2_PUBLIC_URL). Sinon None."""
+    ak, sk, acct, bucket, pub = (
+        os.environ.get(k)
+        for k in ("R2_ACCESS_KEY_ID", "R2_SECRET_ACCESS_KEY", "CLOUDFLARE_ACCOUNT_ID",
+                  "R2_BUCKET", "R2_PUBLIC_URL")
+    )
+    if not all((ak, sk, acct, bucket, pub)):
+        return None
+    try:
+        import boto3
+        from io import BytesIO
+
+        boto3.client(
+            "s3",
+            endpoint_url=f"https://{acct}.r2.cloudflarestorage.com",
+            aws_access_key_id=ak,
+            aws_secret_access_key=sk,
+            region_name="auto",
+        ).upload_fileobj(
+            BytesIO(data), bucket, f"{slug}.webp",
+            ExtraArgs={"ContentType": "image/webp"},
+        )
+        print(f"Image uploadée sur R2 ({bucket})")
+        return f"{pub.rstrip('/')}/{slug}.webp"
+    except Exception as e:
+        print(f"Upload R2 impossible, fallback local : {e}")
+        return None
+
+
 def save_image(raw: bytes, slug: str) -> str:
-    """Convertit en WebP via Pillow, sinon sauvegarde brut en .jpg."""
-    IMG_DIR.mkdir(parents=True, exist_ok=True)
+    """Convertit en WebP, upload R2 si configuré, sinon public/images/guides/."""
     try:
         from PIL import Image
         import io
 
         img = Image.open(io.BytesIO(raw)).convert("RGB")
         img.thumbnail((1600, 1600))
-        out = IMG_DIR / f"{slug}.webp"
-        img.save(out, "WEBP", quality=82)
-        return f"/images/guides/{slug}.webp"
+        buf = io.BytesIO()
+        img.save(buf, "WEBP", quality=82)
+        raw = buf.getvalue()
     except Exception as e:
-        print(f"Pillow indisponible ({e}), sauvegarde JPG")
-        out = IMG_DIR / f"{slug}.jpg"
-        out.write_bytes(raw)
-        return f"/images/guides/{slug}.jpg"
+        print(f"Pillow indisponible ({e}), image brute conservée")
+
+    if r2_url := upload_r2(raw, slug):
+        return r2_url
+
+    IMG_DIR.mkdir(parents=True, exist_ok=True)
+    out = IMG_DIR / f"{slug}.webp"
+    out.write_bytes(raw)
+    return f"/images/guides/{slug}.webp"
 
 
 def get_image(image_prompt: str, slug: str) -> str:
