@@ -31,7 +31,8 @@
       "Secretlab Titan Evo",
       "chaise gaming rose ergonomique"
     ],
-    "status": "pending"
+    "status": "done",
+    "slug": "chaise-bureau-gaming-pastel-confortable-pour-streamer"
   },
   {
     "keyword": "ring light et barres LED pour streamer sans s'éblouir",
@@ -42,7 +43,8 @@
       "Govee Glide barres LED",
       "Logitech Litra Glow"
     ],
-    "status": "pending"
+    "status": "done",
+    "slug": "ring-light-led-setup-streaming"
   },
   {
     "keyword": "clavier mécanique custom blanc pastel compact",
@@ -53,7 +55,8 @@
       "Akko 5075B Plus",
       "Razer BlackWidow V4 Quartz"
     ],
-    "status": "pending"
+    "status": "done",
+    "slug": "clavier-mecanique-pastel-blanc-compact"
   },
   {
     "keyword": "bureau assis-debout blanc pour setup créateur",
@@ -63,7 +66,8 @@
       "IKEA Trotten",
       "Flexispot EG8"
     ],
-    "status": "pending"
+    "status": "done",
+    "slug": "bureau-assis-debout-blanc-setup-createur"
   },
   {
     "keyword": "quelle webcam 4K pour un rendu net et lumineux en stream",
@@ -74,7 +78,8 @@
       "Insta360 Link 2",
       "Obsbot Tiny 2"
     ],
-    "status": "pending"
+    "status": "done",
+    "slug": "webcam-4k-stream-rendu-net-et-lumineux"
   },
   {
     "keyword": "tapis de souris XXL pastel et bras de micro blanc",
@@ -84,7 +89,8 @@
       "tapis de souris XXL pastel",
       "Blue Compass blanc"
     ],
-    "status": "pending"
+    "status": "done",
+    "slug": "tapis-souris-xxl-pastel-bras-micro-blanc"
   },
   {
     "keyword": "meilleur stream deck pour débuter sur Twitch",
@@ -94,7 +100,8 @@
       "Elgato Stream Deck MK.2 blanc",
       "Loupedeck Live S"
     ],
-    "status": "pending"
+    "status": "done",
+    "slug": "meilleur-stream-deck-pour-debuter-sur-twitch"
   },
   {
     "keyword": "capturer sa Switch ou PS5 en stream : carte d'acquisition",
@@ -103,6 +110,156 @@
       "Elgato HD60 X",
       "Elgato 4K X",
       "AverMedia Live Gamer Mini"
+    ],
+    "status": "pending"
+  },
+  {
+    "keyword": "meilleure enceinte de monitoring blanche pour streamer sur Twitch",
+    "categorie": "Audio",
+    "produits": [
+      "PreSonus Eris 3.5 White",
+      "Mackie CR3-X White",
+      "Edifier R1280DB White"
+    ],
+    "status": "pending"
+  },
+  {
+    "keyword": "support casque blanc pour bureau de créatrice stream",
+    "categorie": "Accessoire bureau",
+    "produits": [
+      "Razer Base Station V2 Chroma Mercury White",
+      "Corsair ST100 RGB White",
+      "New Bee Support Casque Blanc"
+    ],
+    "status": "pending"
+  },
+  {
+    "keyword": "panneau LED blanc pour éclairage doux de stream",
+    "categorie": "Éclairage",
+    "produits": [
+      "Elgato Key Light Air",
+      "Elgato Key Light Mini",
+      "Elgato Key Light Neo"
+    ],
+    "status": "pending"
+  },
+  {
+    "keyword": "interface audio blanche pour micro de streaming",
+    "categorie": "Audio",
+    "produits": [
+      "Arturia MiniFuse 1 White",
+      "Arturia MiniFuse 2 White",
+      "Steinberg UR22C White"
+    ],
+    "status": "pending"
+  },
+  {
+    "keyword": "lampe de bureau pastel pour ambiance de stream",
+    "categorie": "Déco & éclairage",
+    "produits": [
+      "Xiaomi Mi LED Desk Lamp 1S",
+      "Lepro LED Desk Lamp White",
+      "Philips Hue Go White"
+    ],
+    "status": "pending"
+  },
+  {
+    "keyword": "moniteur blanc 27 pouces pour setup streaming esthétique",
+    "categorie": "Écran",
+    "produits": [
+      "LG 27UP650-W",
+      "LG 27UL550-W",
+      "LG 27UK650-W"
+    ],
+    "status": "pending"
+  },
+  {
+    "keyword": "micro-cravate sans fil blanc pour créatrice de contenu",
+    "categorie": "Audio",
+    "produits": [
+      "DJI Mic 2 White",
+      "Rode Wireless ME White",
+      "Hollyland Lark M2 White"
+    ],
+    "status": "pending"
+  },
+  {
+    "keyword": "support double écran blanc pour bureau de streamer",
+    "categorie": "Accessoire bureau",
+    "produits": [
+      "BONTEC Support Double Moniteur Blanc",
+      "VIVO Dual Monitor Stand White",
+      "Ergotron LX Dual Monitor Arm White"
+    ],
+    "status": "pending"
+  },
+  {
+    "keyword": "souris blanche légère pour jouer et streamer",
+    "categorie": "Périphérique",
+    "produits": [
+      "Logitech G705 Wireless White",
+      "Razer DeathAdder V3 Pro White",
+      "Glorious Model O Wireless White"
+    ],
+    "status": "pending"
+  },
+  {
+    "keyword": "softbox blanc pour éclairage de visage en stream",
+    "categorie": "Éclairage",
+    "produits": [
+      "Neewer 2 Packs 700W Softbox Lighting Kit",
+      "Godox SL60W White",
+      "Aputure Amaran 100d"
+    ],
+    "status": "pending"
+  },
+  {
+    "keyword": "étagère blanche pour ranger son setup stream",
+    "categorie": "Mobilier",
+    "produits": [
+      "VASAGLE Étagère Blanche 4 Niveaux",
+      "SONGMICS Étagère Blanche",
+      "Homfa Étagère Blanche"
+    ],
+    "status": "pending"
+  },
+  {
+    "keyword": "fond de studio pastel pour streamer",
+    "categorie": "Déco",
+    "produits": [
+      "Neewer Kit Support Fond Blanc",
+      "Kate Backdrop Pastel",
+      "Laeacco Fond Pastel"
+    ],
+    "status": "pending"
+  },
+  {
+    "keyword": "ventilateur silencieux blanc pour setup streaming",
+    "categorie": "Confort",
+    "produits": [
+      "Dreo Ventilateur Tour Blanc",
+      "Xiaomi Mi Smart Standing Fan 2",
+      "Pro Breeze Ventilateur Blanc"
+    ],
+    "status": "pending"
+  },
+  {
+    "keyword": "repose-poignet blanc pour clavier de stream",
+    "categorie": "Accessoire",
+    "produits": [
+      "Razer Ergonomic Wrist Rest Pro White",
+      "Glorious Wrist Rest White",
+      "Corsair Wrist Rest White"
+    ],
+    "status": "pending"
+  },
+  {
+    "keyword": "multiprise blanche avec USB pour bureau de stream",
+    "categorie": "Accessoire bureau",
+    "produits": [
+      "Anker Power Strip 6 Prises USB Blanc",
+      "Brennenstuhl Multiprise Premium-Line USB Blanc",
+      "Belkin Multiprise USB Blanche"
     ],
     "status": "pending"
   }

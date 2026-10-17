@@ -49,9 +49,17 @@ Angle : retour d'expérience, utilité réelle, intégration dans une pièce de 
 
 EDITORIAL_RULES = """Style : ton informatif, direct, bienveillant, orienté retour d'expérience.
 INTERDIT : "Plongeons dans l'univers", "Il est important de noter", "En conclusion", "Dans le monde
-de", jargon tech-bro, emojis dans le texte, prix en euros figés (dis "moins de 150 EUR en promo"
-ou mieux : pas de prix du tout), rendus clipart.
-Toujours : paragraphes courts, concret, comparatifs honnêtes (chaque produit a des défauts)."""
+de", jargon tech-bro, emojis dans le texte, prix en euros figés, promesses mensongères, rendus clipart.
+
+Conversion (sans jamais mentir) :
+- TITRE : structure magnétique et factuelle ("Pourquoi tout le monde s'arrache X", "L'erreur que
+  font 90% des streameuses avec Y", "Le secret des setups qui rendent bien en caméra"). Curiosité
+  forte, zéro clickbait mensonger.
+- INTRO : technique PAS (Problem-Agitation-Solution) — nomme une frustration réelle du lecteur,
+  agite-la en une phrase, puis annonce que le guide la résout.
+- Tout en haut du body : tableau Markdown "Le choix de la rédaction" de 3 lignes (Meilleur global /
+  Meilleur budget / Coup de cœur design) : produit + conclusion en 5 mots max.
+- Toujours : paragraphes courts, concret, comparatifs honnêtes (chaque produit a des défauts)."""
 
 
 def load_topics() -> list[dict]:
