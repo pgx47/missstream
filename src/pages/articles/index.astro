@@ -35,7 +35,7 @@ const dateFmt = (d: Date) =>
         guides.map((g) => (
           <a
             href={`/articles/${g.id}/`}
-            class="group rounded-2xl bg-white border border-pink-100 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
+            class="group card-aesthetic overflow-hidden"
           >
             <img src={g.data.image} alt={g.data.title} class="w-full h-44 object-cover" loading="lazy" />
             <div class="p-5">

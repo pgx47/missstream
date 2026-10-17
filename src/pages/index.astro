@@ -62,7 +62,7 @@ const dateFmt = (d: Date) =>
       featured && (
         <a
           href={`/articles/${featured.id}/`}
-          class="group block md:grid md:grid-cols-2 gap-0 rounded-2xl bg-white border border-pink-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow mb-8"
+          class="group block md:grid md:grid-cols-2 gap-0 card-aesthetic overflow-hidden mb-8"
         >
           <img
             src={featured.data.image}
@@ -88,7 +88,7 @@ const dateFmt = (d: Date) =>
         rest.map((g) => (
           <a
             href={`/articles/${g.id}/`}
-            class="group rounded-2xl bg-white border border-pink-100 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
+            class="group card-aesthetic overflow-hidden"
           >
             <img src={g.data.image} alt={g.data.title} class="w-full h-40 object-cover" loading="lazy" />
             <div class="p-5">
@@ -118,7 +118,7 @@ const dateFmt = (d: Date) =>
           {news.slice(0, 3).map((n) => (
             <a
               href={`/actualites/${n.id}/`}
-              class="group rounded-2xl bg-white border border-purple-100 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
+              class="group card-aesthetic overflow-hidden"
             >
               <img src={n.data.image} alt={n.data.title} class="w-full h-36 object-cover" loading="lazy" />
               <div class="p-5">

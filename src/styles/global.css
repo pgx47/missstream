@@ -16,14 +16,32 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  background-color: var(--color-surface-bg);
-  color: var(--color-text-main);
-  font-family: var(--font-sans);
+@layer base {
+  body {
+    @apply bg-surface-bg text-text-main font-sans antialiased selection:bg-brand-primary/30;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-extrabold tracking-tight;
+  }
 }
 
-::selection {
-  background-color: #fbcfe8;
+@layer components {
+  .card-aesthetic {
+    @apply rounded-2xl bg-surface-card border border-pink-100 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-0.5;
+  }
+
+  .badge-guide {
+    @apply rounded-full bg-pink-100 text-pink-700 text-xs font-bold uppercase tracking-widest px-3 py-1;
+  }
+
+  .badge-news {
+    @apply rounded-full bg-purple-100 text-purple-700 text-xs font-bold uppercase tracking-widest px-3 py-1;
+  }
+
+  .btn-cta {
+    @apply rounded-xl bg-gradient-to-r from-pink-500 to-rose-400 hover:from-pink-600 hover:to-rose-500 text-white font-semibold shadow-md shadow-pink-200 transition-all hover:scale-[1.02];
+  }
 }
 
 .prose-cozy h2 {

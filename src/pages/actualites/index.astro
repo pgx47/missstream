@@ -35,7 +35,7 @@ const dateFmt = (d: Date) =>
         news.map((n) => (
           <a
             href={`/actualites/${n.id}/`}
-            class="group rounded-2xl bg-white border border-purple-100 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
+            class="group card-aesthetic overflow-hidden"
           >
             <img src={n.data.image} alt={n.data.title} class="w-full h-44 object-cover" loading="lazy" />
             <div class="p-5">
