@@ -7,7 +7,10 @@ interface FaqItem {
 }
 
 interface Props {
-  type: 'Article' | 'FAQ' | 'Breadcrumb' | 'WebSite';
+  type: 'Article' | 'FAQ' | 'Breadcrumb' | 'WebSite' | 'Product';
+  productName?: string;
+  stars?: number;
+  avis?: number;
   title?: string;
   description?: string;
   image?: string;
@@ -28,6 +31,9 @@ const {
   url,
   faq = [],
   breadcrumbs = [],
+  productName,
+  stars,
+  avis,
 } = Astro.props;
 
 let schema: Record<string, unknown> = {};
@@ -54,6 +60,30 @@ if (type === 'WebSite') {
     author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
     publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
     inLanguage: 'fr-FR',
+  };
+} else if (type === 'Product' && productName) {
+  schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: productName,
+    review: {
+      '@type': 'Review',
+      author: { '@type': 'Organization', name: SITE.name },
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: stars ?? 4.5,
+        bestRating: 5,
+      },
+      positiveNotes: { '@type': 'ItemList', itemListElement: [] },
+    },
+    ...(stars && {
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: stars,
+        reviewCount: avis ?? 1,
+        bestRating: 5,
+      },
+    }),
   };
 } else if (type === 'FAQ' && faq.length > 0) {
   schema = {

@@ -33,6 +33,15 @@ const guides = defineCollection({
     category: z.string().default('guides'),
     faq: z.array(faqItem).default([]),
     products: z.array(product).default([]),
+    shopTheLook: z
+      .array(
+        z.object({
+          nom: z.string(),
+          asin: z.string().optional(),
+          image: z.string().optional(),
+        })
+      )
+      .optional(),
     draft: z.boolean().default(false),
   }),
 });

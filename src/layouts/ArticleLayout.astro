@@ -2,7 +2,8 @@
 import BaseLayout from './BaseLayout.astro';
 import SeoSchema from '../components/SeoSchema.astro';
 import AffiliateBox from '../components/AffiliateBox.astro';
-import { SITE } from '../site.config';
+import ShopTheLook from '../components/ShopTheLook.astro';
+import { SITE, amazonUrl } from '../site.config';
 
 interface FaqItem {
   question: string;
@@ -16,6 +17,10 @@ interface Product {
   badge?: string;
   pointsForts: string[];
   pointsFaibles: string[];
+  image?: string;
+  stars?: number;
+  avis?: number;
+  avisClient?: string;
 }
 
 interface Props {
@@ -28,6 +33,7 @@ interface Props {
   sectionHref: string;
   faq?: FaqItem[];
   products?: Product[];
+  shopTheLook?: { nom: string; asin?: string; image?: string }[];
   headings?: { depth: number; slug: string; text: string }[];
 }
 
@@ -41,8 +47,12 @@ const {
   sectionHref,
   faq = [],
   products = [],
+  shopTheLook = [],
   headings = [],
 } = Astro.props;
+
+const topProduct = products[0];
+const topProductUrl = topProduct ? amazonUrl({ asin: topProduct.asin, query: topProduct.nom }) : '';
 
 const toc = headings.filter((h) => h.depth === 2);
 const dateFmt = (d: Date) =>
@@ -68,6 +78,11 @@ const breadcrumbs = [
   />
   <SeoSchema slot="head" type="Breadcrumb" breadcrumbs={breadcrumbs} />
   {faq.length > 0 && <SeoSchema slot="head" type="FAQ" faq={faq} />}
+  {
+    products.map((p) => (
+      <SeoSchema slot="head" type="Product" productName={p.nom} stars={p.stars} avis={p.avis} />
+    ))
+  }
 
   <article class="max-w-3xl mx-auto px-4 py-10">
     <nav class="text-xs text-gray-400 mb-6 flex items-center gap-1.5 flex-wrap">
@@ -114,6 +129,8 @@ const breadcrumbs = [
       <slot />
     </div>
 
+    {shopTheLook.length > 0 && <ShopTheLook items={shopTheLook} image={image} />}
+
     {
       products.length > 0 && (
         <section class="mt-10">
@@ -157,6 +174,25 @@ const breadcrumbs = [
       )
     }
 
-    <p class="mt-10 text-xs text-gray-400 border-t border-gray-100 pt-4">{SITE.affiliationDisclosure}</p>
+    <p class="mt-10 text-xs text-gray-400 border-t border-gray-100 pt-4 pb-16 md:pb-0">{SITE.affiliationDisclosure}</p>
   </article>
+
+  {
+    topProduct && (
+      <div class="fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-pink-100 p-3 flex items-center justify-between shadow-lg md:hidden">
+        <div class="truncate pr-2">
+          <p class="text-xs text-gray-500 font-bold uppercase">Recommandé</p>
+          <p class="text-sm font-extrabold text-gray-900 truncate">{topProduct.nom}</p>
+        </div>
+        <a
+          href={topProductUrl}
+          target="_blank"
+          rel="nofollow sponsored noopener"
+          class="shrink-0 px-4 py-2 btn-cta text-xs"
+        >
+          Voir l'offre
+        </a>
+      </div>
+    )
+  }
 </BaseLayout>

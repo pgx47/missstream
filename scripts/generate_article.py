@@ -178,12 +178,14 @@ def generate_article(topic: dict, internal_links: list[tuple[str, str]]) -> dict
 {EDITORIAL_RULES}
 
 Rédige un guide complet pour le mot-clé : "{topic['keyword']}"
-Catégorie : {topic.get('categorie', 'setup')}
+Catégorie : {topic.get('categorie', 'setup')} / silo : {topic.get('silo', 'setup')}
 Produits suggérés (adapte si pertinent) : {json.dumps(topic.get('produits', []), ensure_ascii=False)}
 
-Maillage interne OBLIGATOIRE : intègre naturellement au moins 2 de ces liens Markdown dans le corps :
+Maillage interne OBLIGATOIRE : intègre naturellement au moins 2 de ces liens Markdown dans le corps
+(privilégie les liens de la même catégorie/silo) :
 {links_md}
 
+{topic.get('vs_extra', '')}
 Appelle la fonction publish_guide avec le guide complet."""
 
     resp = client.chat.completions.create(
@@ -389,6 +391,11 @@ def main() -> int:
         return 0
 
     topic = pending[0]
+    topic["vs_extra"] = (
+        "FORMAT DUEL OBLIGATOIRE : tableau comparatif point par point dès l'intro, sections "
+        "'X gagne si...' / 'Y gagne si...', verdict sans compromis final ('lequel acheter selon "
+        "votre budget')." if topic.get("type") == "vs" else ""
+    )
     slug_guess = re.sub(r"[^a-z0-9]+", "-", topic["keyword"].lower()).strip("-")
     if (GUIDES_DIR / f"{slug_guess}.mdx").exists():
         topic["status"] = "done"
@@ -407,6 +414,16 @@ def main() -> int:
     topic["slug"] = article["slug"]
     save_topics(topics)
     print(f"Guide publié : {path}")
+
+    # Épingle Pinterest 1000x1500 (image + titre) pour publication manuelle
+    try:
+        import subprocess
+        subprocess.run(
+            [sys.executable, str(Path(__file__).parent / "make_pin.py"), article["slug"]],
+            timeout=60,
+        )
+    except Exception as e:
+        print(f"Pin Pinterest non générée : {e}")
     return 0
 
 

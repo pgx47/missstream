@@ -262,5 +262,38 @@
       "Belkin Multiprise USB Blanche"
     ],
     "status": "pending"
+  },
+  {
+    "keyword": "Fifine AM8 vs Shure MV7 : lequel pour un setup blanc",
+    "type": "vs",
+    "silo": "audio",
+    "categorie": "micros",
+    "produits": [
+      "Fifine AM8 blanc",
+      "Shure MV7"
+    ],
+    "status": "pending"
+  },
+  {
+    "keyword": "Stream Deck Neo vs MK.2 : lequel choisir pour débuter",
+    "type": "vs",
+    "silo": "accessoires",
+    "categorie": "stream deck",
+    "produits": [
+      "Elgato Stream Deck Neo",
+      "Elgato Stream Deck MK.2"
+    ],
+    "status": "pending"
+  },
+  {
+    "keyword": "Logitech Litra Glow vs Elgato Key Light Mini",
+    "type": "vs",
+    "silo": "video",
+    "categorie": "eclairage",
+    "produits": [
+      "Logitech Litra Glow",
+      "Elgato Key Light Mini"
+    ],
+    "status": "pending"
   }
 ]
