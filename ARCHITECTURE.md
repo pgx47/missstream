@@ -10,16 +10,22 @@ Site de niche affilié Amazon, 100 % statique, contenu généré automatiquement
 
 ## Secrets GitHub à créer (Settings → Secrets and variables → Actions)
 
-| Secret | Rôle | Requis |
+| Secret | Rôle | Statut |
 |---|---|---|
-| `CLOUDFLARE_API_TOKEN` | Déploiement Pages (token avec droits "Cloudflare Pages: Edit") | oui |
-| `CLOUDFLARE_ACCOUNT_ID` | Compte Cloudflare | oui |
-| `DEEPSEEK_API_KEY` | Génération articles + news | oui |
-| `SCRAPER_API_KEY` | Scraping Amazon (deals) + og:image des news | optionnel |
-| `UNSPLASH_ACCESS_KEY` | Fallback images niveau 2 | optionnel |
-| `OPENROUTER_API_KEY` | LLM de secours si DeepSeek absent | optionnel |
+| `CLOUDFLARE_API_TOKEN` | Déploiement Pages | ✅ configuré |
+| `CLOUDFLARE_ACCOUNT_ID` | Compte Cloudflare | ✅ configuré |
+| `R2_ACCESS_KEY_ID` / `R2_SECRET_ACCESS_KEY` | Stockage images R2 | ✅ configuré |
+| `SCRAPER_API_KEY` | Scraping Amazon (deals) + og:image news | ✅ configuré |
+| `INDEXNOW_KEY` | Ping IndexNow (fichier clé dans `public/`) | ✅ configuré |
+| `DEEPSEEK_API_KEY` | Génération articles + news | ❌ à renseigner |
+| `OPENROUTER_API_KEY` / `ANTHROPIC_API_KEY` | LLM de secours | ❌ optionnel |
+| `UNSPLASH_ACCESS_KEY` | Fallback images niveau 2 | ❌ optionnel |
 
-Variables (onglet *Variables*) : `LLM_BASE_URL`, `LLM_MODEL`, `AMAZON_TAG` — toutes optionnelles, des valeurs par défaut existent dans les scripts.
+Variables (onglet *Variables*) : `AMAZON_TAG` ✅, `R2_BUCKET` ✅ (`images-missstream`),
+`R2_PUBLIC_URL` ❌ (URL publique du bucket à activer), `LLM_BASE_URL`, `LLM_MODEL`.
+
+Le LLM suit la chaîne DeepSeek → OpenRouter → Anthropic : un seul des trois
+suffit pour faire tourner la génération.
 
 ## Workflows
 
