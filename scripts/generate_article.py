@@ -37,10 +37,10 @@ else:
     _base = _key = _model = None
 
 client = OpenAI(
-    base_url=os.environ.get("LLM_BASE_URL", _base),
+    base_url=os.environ.get("LLM_BASE_URL") or _base,
     api_key=_key,
 )
-MODEL = os.environ.get("LLM_MODEL", _model or "deepseek-flash")
+MODEL = os.environ.get("LLM_MODEL") or _model or "deepseek-flash"
 
 SITE_CONTEXT = """Tu es la rédactrice en chef de "Miss Stream" (missstream.xyz), blog dédié aux setups
 de streaming esthétiques, cozy et pastel pour créatrices de contenu (Twitch, YouTube, TikTok).
