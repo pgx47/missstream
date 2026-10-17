@@ -28,9 +28,9 @@ FALLBACK_DIR = ROOT / "public/images/fallbacks"
 
 # Chaîne de fallback LLM : DeepSeek -> OpenRouter -> Anthropic (endpoint compatible OpenAI)
 if os.environ.get("DEEPSEEK_API_KEY"):
-    _base, _key, _model = "https://api.deepseek.com", os.environ["DEEPSEEK_API_KEY"], "deepseek-chat"
+    _base, _key, _model = "https://api.deepseek.com", os.environ["DEEPSEEK_API_KEY"], "deepseek-flash"
 elif os.environ.get("OPENROUTER_API_KEY"):
-    _base, _key, _model = "https://openrouter.ai/api/v1", os.environ["OPENROUTER_API_KEY"], "deepseek/deepseek-chat"
+    _base, _key, _model = "https://openrouter.ai/api/v1", os.environ["OPENROUTER_API_KEY"], "deepseek/deepseek-v4.1-flash"
 elif os.environ.get("ANTHROPIC_API_KEY"):
     _base, _key, _model = "https://api.anthropic.com/v1/", os.environ["ANTHROPIC_API_KEY"], "claude-sonnet-4-5"
 else:
@@ -40,7 +40,7 @@ client = OpenAI(
     base_url=os.environ.get("LLM_BASE_URL", _base),
     api_key=_key,
 )
-MODEL = os.environ.get("LLM_MODEL", _model or "deepseek-chat")
+MODEL = os.environ.get("LLM_MODEL", _model or "deepseek-flash")
 
 SITE_CONTEXT = """Tu es la rédactrice en chef de "Miss Stream" (missstream.xyz), blog dédié aux setups
 de streaming esthétiques, cozy et pastel pour créatrices de contenu (Twitch, YouTube, TikTok).
@@ -182,11 +182,13 @@ Appelle la fonction publish_guide avec le guide complet."""
         model=MODEL,
         messages=[{"role": "user", "content": prompt}],
         tools=[ARTICLE_TOOL],
-        tool_choice={"type": "function", "function": {"name": "publish_guide"}},
         temperature=0.5,
     )
-    call = resp.choices[0].message.tool_calls[0]
-    return json.loads(call.function.arguments)
+    msg = resp.choices[0].message
+    if msg.tool_calls:
+        return json.loads(msg.tool_calls[0].function.arguments)
+    content = re.sub(r"^```(json|markdown|mdx)?\n|```$", "", msg.content.strip())
+    return json.loads(content)
 
 
 def upload_r2(data: bytes, slug: str) -> str | None:

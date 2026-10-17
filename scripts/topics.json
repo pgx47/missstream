@@ -2,61 +2,107 @@
   {
     "keyword": "meilleur micro USB blanc ou rose pour streamer",
     "categorie": "micros",
-    "produits": ["Fifine AM8 blanc", "HyperX QuadCast S blanc", "Shure MV7", "Razer Seiren Mini Quartz"],
-    "status": "pending"
+    "produits": [
+      "Fifine AM8 blanc",
+      "HyperX QuadCast S blanc",
+      "Shure MV7",
+      "Razer Seiren Mini Quartz"
+    ],
+    "status": "done",
+    "slug": "meilleur-micro-usb-blanc-rose-pour-streamer"
   },
   {
     "keyword": "casque gamer oreilles de chat : comparatif qualité audio",
     "categorie": "casques",
-    "produits": ["Razer Kraken Kitty V2 Quartz", "Razer Kitty Ears", "HyperX Cloud Stinger 2", "Logitech G335"],
+    "produits": [
+      "Razer Kraken Kitty V2 Quartz",
+      "Razer Kitty Ears",
+      "HyperX Cloud Stinger 2",
+      "Logitech G335"
+    ],
     "status": "pending"
   },
   {
     "keyword": "chaise de bureau gaming pastel confortable pour streamer",
     "categorie": "chaises",
-    "produits": ["Corsair TC100 Relaxed", "Secretlab Titan Evo", "chaise gaming rose ergonomique"],
+    "produits": [
+      "Corsair TC100 Relaxed",
+      "Secretlab Titan Evo",
+      "chaise gaming rose ergonomique"
+    ],
     "status": "pending"
   },
   {
     "keyword": "ring light et barres LED pour streamer sans s'éblouir",
     "categorie": "eclairage",
-    "produits": ["Elgato Ring Light", "Elgato Key Light Mini", "Govee Glide barres LED", "Logitech Litra Glow"],
+    "produits": [
+      "Elgato Ring Light",
+      "Elgato Key Light Mini",
+      "Govee Glide barres LED",
+      "Logitech Litra Glow"
+    ],
     "status": "pending"
   },
   {
     "keyword": "clavier mécanique custom blanc pastel compact",
     "categorie": "claviers",
-    "produits": ["Logitech G715", "Keychron Q1 Pro", "Akko 5075B Plus", "Razer BlackWidow V4 Quartz"],
+    "produits": [
+      "Logitech G715",
+      "Keychron Q1 Pro",
+      "Akko 5075B Plus",
+      "Razer BlackWidow V4 Quartz"
+    ],
     "status": "pending"
   },
   {
     "keyword": "bureau assis-debout blanc pour setup créateur",
     "categorie": "bureaux",
-    "produits": ["Flexispot E7 blanc", "IKEA Trotten", "Flexispot EG8"],
+    "produits": [
+      "Flexispot E7 blanc",
+      "IKEA Trotten",
+      "Flexispot EG8"
+    ],
     "status": "pending"
   },
   {
     "keyword": "quelle webcam 4K pour un rendu net et lumineux en stream",
     "categorie": "webcams",
-    "produits": ["Elgato Facecam Pro", "Logitech Brio 500", "Insta360 Link 2", "Obsbot Tiny 2"],
+    "produits": [
+      "Elgato Facecam Pro",
+      "Logitech Brio 500",
+      "Insta360 Link 2",
+      "Obsbot Tiny 2"
+    ],
     "status": "pending"
   },
   {
     "keyword": "tapis de souris XXL pastel et bras de micro blanc",
     "categorie": "accessoires",
-    "produits": ["Elgato Wave Mic Arm LP blanc", "tapis de souris XXL pastel", "Blue Compass blanc"],
+    "produits": [
+      "Elgato Wave Mic Arm LP blanc",
+      "tapis de souris XXL pastel",
+      "Blue Compass blanc"
+    ],
     "status": "pending"
   },
   {
     "keyword": "meilleur stream deck pour débuter sur Twitch",
     "categorie": "stream deck",
-    "produits": ["Elgato Stream Deck Mini", "Elgato Stream Deck MK.2 blanc", "Loupedeck Live S"],
+    "produits": [
+      "Elgato Stream Deck Mini",
+      "Elgato Stream Deck MK.2 blanc",
+      "Loupedeck Live S"
+    ],
     "status": "pending"
   },
   {
     "keyword": "capturer sa Switch ou PS5 en stream : carte d'acquisition",
     "categorie": "capture",
-    "produits": ["Elgato HD60 X", "Elgato 4K X", "AverMedia Live Gamer Mini"],
+    "produits": [
+      "Elgato HD60 X",
+      "Elgato 4K X",
+      "AverMedia Live Gamer Mini"
+    ],
     "status": "pending"
   }
 ]

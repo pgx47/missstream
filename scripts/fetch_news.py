@@ -36,9 +36,9 @@ SCRAPER_API_KEY = os.environ.get("SCRAPER_API_KEY")
 UNSPLASH_ACCESS_KEY = os.environ.get("UNSPLASH_ACCESS_KEY")
 
 if os.environ.get("DEEPSEEK_API_KEY"):
-    _base, _key, _model = "https://api.deepseek.com", os.environ["DEEPSEEK_API_KEY"], "deepseek-chat"
+    _base, _key, _model = "https://api.deepseek.com", os.environ["DEEPSEEK_API_KEY"], "deepseek-flash"
 elif os.environ.get("OPENROUTER_API_KEY"):
-    _base, _key, _model = "https://openrouter.ai/api/v1", os.environ["OPENROUTER_API_KEY"], "deepseek/deepseek-chat"
+    _base, _key, _model = "https://openrouter.ai/api/v1", os.environ["OPENROUTER_API_KEY"], "deepseek/deepseek-v4.1-flash"
 elif os.environ.get("ANTHROPIC_API_KEY"):
     _base, _key, _model = "https://api.anthropic.com/v1/", os.environ["ANTHROPIC_API_KEY"], "claude-sonnet-4-5"
 else:
@@ -48,7 +48,7 @@ client = OpenAI(
     base_url=os.environ.get("LLM_BASE_URL", _base),
     api_key=_key,
 )
-MODEL = os.environ.get("LLM_MODEL", _model or "deepseek-chat")
+MODEL = os.environ.get("LLM_MODEL", _model or "deepseek-flash")
 
 
 def get_news_image(article_url: str, slug: str) -> str:
