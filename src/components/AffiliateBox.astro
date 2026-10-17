@@ -9,6 +9,7 @@ interface Props {
   couleur?: string;
   badge?: string;
   tendance?: boolean;
+  image?: string;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   couleur = 'Rose / Blanc',
   badge = 'Coup de cœur setup',
   tendance = true,
+  image,
 } = Astro.props;
 
 const url = amazonUrl({ asin, query: nom });
@@ -36,8 +38,24 @@ const urlAvis = asin ? `${url}#customerReviews` : url;
     )
   }
 
-  <h3 class="text-xl font-bold text-gray-900 pr-32">{nom}</h3>
-  <p class="text-sm text-pink-500 font-medium mt-1">Finition recommandée : {couleur}</p>
+  <div class="flex gap-4 items-start">
+    {
+      image && (
+        <img
+          src={image}
+          alt={nom}
+          width="112"
+          height="112"
+          class="w-24 h-24 md:w-28 md:h-28 rounded-xl object-contain bg-white border border-gray-100 shrink-0"
+          loading="lazy"
+        />
+      )
+    }
+    <div class="min-w-0">
+      <h3 class="text-xl font-bold text-gray-900 pr-0 sm:pr-28">{nom}</h3>
+      <p class="text-sm text-pink-500 font-medium mt-1">Finition recommandée : {couleur}</p>
+    </div>
+  </div>
 
   <div class="grid md:grid-cols-2 gap-4 my-5 text-sm">
     <div class="bg-rose-50/50 p-4 rounded-xl border border-rose-100">

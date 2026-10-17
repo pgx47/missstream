@@ -301,6 +301,46 @@ def get_image(image_prompt: str, slug: str) -> str:
     return "/images/fallbacks/news-fallback-1.webp"
 
 
+PRODUCTS_IMG_DIR = ROOT / "public/images/products"
+SCRAPER_API_KEY = os.environ.get("SCRAPER_API_KEY")
+
+
+def enrich_products(products: list[dict]) -> None:
+    """Complète chaque produit via ScraperAPI/Amazon : vrai ASIN + vraie image."""
+    if not SCRAPER_API_KEY:
+        return
+    PRODUCTS_IMG_DIR.mkdir(parents=True, exist_ok=True)
+    for p in products:
+        if p.get("asin") and p.get("image"):
+            continue
+        try:
+            q = urllib.parse.quote(p["nom"])
+            r = requests.get(
+                f"https://api.scraperapi.com/structured/amazon/search?api_key={SCRAPER_API_KEY}&query={q}&country=fr",
+                timeout=60,
+            )
+            res = r.json().get("results", [])
+            if not res:
+                continue
+            hit = res[0]
+            asin = (hit.get("asin") or "").strip()
+            if asin and not p.get("asin"):
+                p["asin"] = asin
+            if asin and hit.get("image") and not p.get("image"):
+                out = PRODUCTS_IMG_DIR / f"{asin}.webp"
+                if not out.exists():
+                    raw = requests.get(hit["image"], timeout=30).content
+                    from PIL import Image
+                    import io
+
+                    img = Image.open(io.BytesIO(raw)).convert("RGB")
+                    img.thumbnail((600, 600))
+                    img.save(out, "WEBP", quality=80)
+                p["image"] = f"/images/products/{asin}.webp"
+        except Exception as e:
+            print(f"  enrich KO '{p.get('nom')}' : {e}")
+
+
 def write_mdx(article: dict, image: str) -> Path:
     GUIDES_DIR.mkdir(parents=True, exist_ok=True)
     for p in article.get("products", []):
@@ -344,6 +384,7 @@ def main() -> int:
     print(f"Génération du guide : {topic['keyword']}")
     internal = published_guides()
     article = generate_article(topic, internal)
+    enrich_products(article.get("products", []))
     image = get_image(article["imagePrompt"], article["slug"])
     path = write_mdx(article, image)
 
