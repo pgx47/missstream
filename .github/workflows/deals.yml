@@ -34,6 +34,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "Deals inchangés"
           else
-            git commit -m "deals: actualisation quotidienne [skip ci]"
+            git commit -m "deals: actualisation quotidienne"
             git push
           fi

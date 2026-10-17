@@ -41,6 +41,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "Rien à committer"
           else
-            git commit -m "guide: génération automatique [skip ci]"
+            git commit -m "guide: génération automatique"
             git push
           fi

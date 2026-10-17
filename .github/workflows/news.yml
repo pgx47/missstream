@@ -38,6 +38,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "Pas de nouvelle brève"
           else
-            git commit -m "news: brève automatique [skip ci]"
+            git commit -m "news: brève automatique"
             git push
           fi
