@@ -26,11 +26,21 @@ GUIDES_DIR = ROOT / "src/content/guides"
 IMG_DIR = ROOT / "public/images/guides"
 FALLBACK_DIR = ROOT / "public/images/fallbacks"
 
+# Chaîne de fallback LLM : DeepSeek -> OpenRouter -> Anthropic (endpoint compatible OpenAI)
+if os.environ.get("DEEPSEEK_API_KEY"):
+    _base, _key, _model = "https://api.deepseek.com", os.environ["DEEPSEEK_API_KEY"], "deepseek-chat"
+elif os.environ.get("OPENROUTER_API_KEY"):
+    _base, _key, _model = "https://openrouter.ai/api/v1", os.environ["OPENROUTER_API_KEY"], "deepseek/deepseek-chat"
+elif os.environ.get("ANTHROPIC_API_KEY"):
+    _base, _key, _model = "https://api.anthropic.com/v1/", os.environ["ANTHROPIC_API_KEY"], "claude-sonnet-4-5"
+else:
+    _base = _key = _model = None
+
 client = OpenAI(
-    base_url=os.environ.get("LLM_BASE_URL", "https://api.deepseek.com"),
-    api_key=os.environ.get("DEEPSEEK_API_KEY") or os.environ.get("OPENROUTER_API_KEY"),
+    base_url=os.environ.get("LLM_BASE_URL", _base),
+    api_key=_key,
 )
-MODEL = os.environ.get("LLM_MODEL", "deepseek-chat")
+MODEL = os.environ.get("LLM_MODEL", _model or "deepseek-chat")
 
 SITE_CONTEXT = """Tu es la rédactrice en chef de "Miss Stream" (missstream.xyz), blog dédié aux setups
 de streaming esthétiques, cozy et pastel pour créatrices de contenu (Twitch, YouTube, TikTok).
