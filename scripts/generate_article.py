@@ -253,21 +253,12 @@ def get_image(image_prompt: str, slug: str) -> str:
         "no cartoon, no clipart, no vector, no emoji, hyperrealistic."
     )
 
-    # Niveau 1 : Pollinations (FLUX, gratuit)
-    try:
-        url = f"https://image.pollinations.ai/prompt/{urllib.parse.quote(full_prompt)}?width=1200&height=630&nologo=true"
-        r = requests.get(url, timeout=90)
-        if r.status_code == 200 and len(r.content) > 10000:
-            print("Image générée (Pollinations)")
-            return save_image(r.content, slug)
-    except Exception as e:
-        print(f"Échec Pollinations : {e}")
-
-    # Niveau 2 : Unsplash
+    # Niveau 1 : Unsplash (vraies photos), requête calée sur le sujet
     key = os.environ.get("UNSPLASH_ACCESS_KEY")
     if key:
         try:
-            q = urllib.parse.quote("aesthetic streaming desk setup pastel")
+            words = re.sub(r"[^a-zA-Z ]", "", image_prompt).split()[:6]
+            q = urllib.parse.quote(" ".join(words) + " setup")
             r = requests.get(
                 f"https://api.unsplash.com/search/photos?query={q}&orientation=landscape&per_page=10",
                 headers={"Authorization": f"Client-ID {key}"},
@@ -280,6 +271,16 @@ def get_image(image_prompt: str, slug: str) -> str:
                 return save_image(img, slug)
         except Exception as e:
             print(f"Échec Unsplash : {e}")
+
+    # Niveau 2 : Pollinations/FLUX (FLUX, gratuit)
+    try:
+        url = f"https://image.pollinations.ai/prompt/{urllib.parse.quote(full_prompt)}?width=1200&height=630&nologo=true"
+        r = requests.get(url, timeout=90)
+        if r.status_code == 200 and len(r.content) > 10000:
+            print("Image Pollinations")
+            return save_image(r.content, slug)
+    except Exception as e:
+        print(f"Échec Pollinations : {e}")
 
     # Niveau 3 : pool local WebP
     pool = sorted(FALLBACK_DIR.glob("*.webp"))
