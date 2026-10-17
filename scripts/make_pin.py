@@ -41,5 +41,28 @@ for ln in lines[:3]:
     d.text((60, y), ln, font=fb, fill="#1f2937"); y += 58
 d.text((60, H - 80), "missstream.xyz", font=fs, fill="#f472b6")
 out = ROOT / "public/images/pins"; out.mkdir(parents=True, exist_ok=True)
-base.convert("RGB").save(out / f"{slug}.png", "PNG")
+pin_path = out / f"{slug}.png"
+base.convert("RGB").save(pin_path, "PNG")
 print(f"pin: public/images/pins/{slug}.png")
+
+# Publication automatique si le token Pinterest est configuré
+import os, base64, requests
+token = os.environ.get("PINTEREST_ACCESS_TOKEN")
+board = os.environ.get("PINTEREST_BOARD_ID")
+if token and board:
+    try:
+        url = f"https://api.pinterest.com/v5/pins"
+        r = requests.post(url, headers={"Authorization": f"Bearer {token}"}, json={
+            "board_id": board,
+            "title": fm["title"][:100],
+            "description": (fm.get("description") or "")[:500],
+            "link": f"https://missstream.xyz/articles/{slug}/",
+            "media_source": {
+                "source_type": "image_base64",
+                "content_type": "image/png",
+                "data": base64.b64encode(pin_path.read_bytes()).decode(),
+            },
+        }, timeout=30)
+        print("pin publiée" if r.status_code in (200, 201) else f"pinterest {r.status_code}: {r.text[:200]}")
+    except Exception as e:
+        print(f"pinterest KO : {e}")

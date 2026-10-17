@@ -5,41 +5,50 @@ import { SITE } from '../site.config';
 
 <BaseLayout
   title="À propos"
-  description="Qui est derrière Miss Stream, comment nous testons le matériel et pourquoi nous parlons de setups esthétiques."
+  description="Qui est derrière Miss Stream : notre équipe, nos critères de test et notre politique éditoriale."
 >
   <div class="max-w-3xl mx-auto px-4 py-12 prose-cozy">
     <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6">À propos de Miss Stream</h1>
 
+    <div class="not-prose flex items-center gap-4 mb-8 rounded-2xl bg-white border border-pink-100 p-5">
+      <div class="w-16 h-16 rounded-full bg-gradient-to-br from-pink-400 to-purple-400 flex items-center justify-center text-white text-2xl font-extrabold shrink-0">L</div>
+      <div>
+        <p class="font-extrabold text-gray-900">Léa & l'équipe Miss Stream</p>
+        <p class="text-sm text-gray-500">Passionnées de design de setup et de streaming indépendant</p>
+      </div>
+    </div>
+
     <p>
-      Miss Stream est né d'un constat simple : trouver du matériel de streaming performant <strong>et</strong>
-      esthétique est un parcours du combattant. Les guides tech classiques parlent specs et benchmarks,
-      rarement de la façon dont un micro, une chaise ou un clavier s'intègre dans une pièce de vie.
+      Miss Stream est né d'un vrai problème vécu : monter un setup de stream performant <strong>et</strong>
+      joli quand la quasi-totalité du matériel gamer est noir, massif et couvert de néons agressifs.
+      Nos guides parlent de ce qu'on aurait aimé lire avant d'acheter.
     </p>
 
-    <h2>Notre approche</h2>
-    <p>
-      Chaque guide part d'un usage réel : streamer sur Twitch, tourner des TikTok, podcast, visio.
-      Nous comparons le matériel sur trois critères qui comptent vraiment pour une créatrice de
-      contenu : la qualité technique (son, image, confort), l'esthétique (coloris, finitions,
-      cohérence dans un setup cozy/pastel) et le rapport qualité-prix.
-    </p>
+    <h2>Nos critères de sélection</h2>
+    <p>Chaque produit cité passe le même filtre, dans cet ordre :</p>
+    <ul>
+      <li><strong>Usage réel</strong> — qualité audio, image ou confort vérifiée en conditions de stream, pas en fiche technique.</li>
+      <li><strong>Esthétique</strong> — le produit existe-t-il en blanc, rose ou pastel ? S'intègre-t-il dans une pièce de vie ?</li>
+      <li><strong>Retours terrain</strong> — avis vérifiés Amazon, retours de créatrices, durabilité constatée.</li>
+      <li><strong>Prix juste</strong> — un produit cher doit le justifier par des heures d'usage, pas par un logo.</li>
+    </ul>
 
-    <h2>Comment nous choisissons les produits</h2>
+    <h2>Notre politique éditoriale</h2>
     <p>
-      Les produits cités sont sélectionnés parmi les références les mieux notées par les utilisatrices
-      et les créatrices, en croisant les retours terrain, les avis vérifiés et notre propre veille
-      matériel. Quand un modèle existe en rose, blanc ou lavande, on vous le dit.
+      Les avis sont rédigés par notre équipe ou générés puis relus selon ces critères. Un produit
+      décevant est toujours signalé dans la section « À garder en tête » de sa fiche — pas de
+      complaisance, même sur les produits les plus vendus.
     </p>
 
     <h2>Transparence</h2>
     <p>
-      {SITE.affiliationDisclosure} Cela ne change ni nos sélections ni nos critiques : un produit
-      décevant est signalé comme tel dans la section « À garder en tête » de chaque fiche.
+      {SITE.affiliationDisclosure} Cela ne change ni nos sélections ni nos verdicts.
     </p>
 
     <h2>Contact</h2>
     <p>
-      Une question, une suggestion de matériel à tester ? Écrivez-nous à
+      Une question, un produit à tester, une correction ?
+      <a href="/contact/">Écrivez-nous</a> ou directement à
       <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
   </div>
