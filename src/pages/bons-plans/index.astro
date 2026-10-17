@@ -37,7 +37,7 @@ const updated = new Date().toLocaleDateString('fr-FR', {
       deals.length > 0 ? (
         <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {deals.map((d) => (
-            <DealCard nom={d.nom} asin={d.asin} categorie={d.categorie} badge={d.badge} note={d.note} />
+            <DealCard nom={d.nom} asin={d.asin} categorie={d.categorie} badge={d.badge} note={d.note} image={d.image} />
           ))}
         </div>
       ) : (

@@ -1,0 +1,39 @@
+---
+interface Props {
+  size?: "sm" | "md" | "lg";
+}
+
+const { size = "md" } = Astro.props;
+
+const sizes = {
+  sm: "h-7 text-xl",
+  md: "h-9 text-2xl",
+  lg: "h-12 text-3xl",
+};
+---
+
+<a href="/" class="group inline-flex items-center gap-2.5 transition-transform duration-200 hover:scale-[1.02]">
+  <svg
+    viewBox="0 0 36 36"
+    class={`aspect-square ${sizes[size].split(" ")[0]}`}
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F472B6" />
+        <stop offset="100%" stop-color="#C084FC" />
+      </linearGradient>
+    </defs>
+
+    <rect width="36" height="36" rx="10" fill="url(#logo-gradient)" />
+    <rect x="9" y="12" width="13" height="12" rx="3.5" fill="#FFFFFF" />
+    <path d="M23 15.5L27.2 13.4C27.8 13.1 28.5 13.5 28.5 14.2V21.8C28.5 22.5 27.8 22.9 27.2 22.6L23 20.5V15.5Z" fill="#FFFFFF" />
+    <circle cx="15.5" cy="18" r="2.2" fill="#F472B6" />
+    <path d="M12 9C12 7.5 12.5 7 14 7C12.5 7 12 6.5 12 5C12 6.5 11.5 7 10 7C11.5 7 12 7.5 12 9Z" fill="#FFFFFF" opacity="0.9" />
+  </svg>
+
+  <span class={`font-extrabold tracking-tight ${sizes[size].split(" ")[1]}`}>
+    <span class="text-gray-900">Miss</span><span class="bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">Stream</span>
+  </span>
+</a>

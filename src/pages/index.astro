@@ -147,7 +147,7 @@ const dateFmt = (d: Date) =>
         </div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {deals.slice(0, 4).map((d) => (
-            <DealCard nom={d.nom} asin={d.asin} categorie={d.categorie} badge={d.badge} note={d.note} />
+            <DealCard nom={d.nom} asin={d.asin} categorie={d.categorie} badge={d.badge} note={d.note} image={d.image} />
           ))}
         </div>
       </section>

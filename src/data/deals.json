@@ -4,27 +4,175 @@
     "nom": "Fifine AM8 — micro USB/XLR blanc",
     "categorie": "Micros",
     "badge": "Coup de cœur setup",
-    "note": "Le micro blanc le plus cité dans les setups pastel budget."
+    "note": "Le micro blanc le plus cité dans les setups pastel budget.",
+    "image": "/images/deals/micros.webp"
   },
   {
     "asin": null,
-    "nom": "Razer Kraken Kitty V2 — édition Quartz",
+    "nom": "HyperX QuadCast S — micro USB blanc",
+    "categorie": "Micros",
+    "badge": "Icône setup",
+    "note": "Le design blanc signature avec mute tactile lumineux.",
+    "image": "/images/deals/micros.webp"
+  },
+  {
+    "asin": null,
+    "nom": "Shure MV7 — micro dynamique blanc",
+    "categorie": "Micros",
+    "badge": "Qualité studio",
+    "note": "USB + XLR, le choix long terme.",
+    "image": "/images/deals/micros.webp"
+  },
+  {
+    "asin": null,
+    "nom": "Razer Seiren Mini — édition Quartz",
+    "categorie": "Micros",
+    "badge": "Petit prix",
+    "note": "Le micro rose le plus compact du marché.",
+    "image": "/images/deals/micros.webp"
+  },
+  {
+    "asin": null,
+    "nom": "Razer Kraken Kitty V2 — Quartz",
     "categorie": "Casques",
     "badge": "Icône cozy",
-    "note": "Oreilles de chat RGB Chroma, le classique des streams esthétiques."
+    "note": "Oreilles de chat RGB Chroma, classique des streams.",
+    "image": "/images/deals/casques.webp"
   },
   {
     "asin": null,
-    "nom": "Logitech G715 — clavier sans fil blanc nuage",
+    "nom": "Logitech G335 — casque blanc léger",
+    "categorie": "Casques",
+    "badge": "Confort longue session",
+    "note": "Très léger, existe en blanc et coloris pastels.",
+    "image": "/images/deals/casques.webp"
+  },
+  {
+    "asin": null,
+    "nom": "HyperX Cloud Stinger 2 — blanc",
+    "categorie": "Casques",
+    "badge": "Budget malin",
+    "note": "Bon son DTS pour un prix mini.",
+    "image": "/images/deals/casques.webp"
+  },
+  {
+    "asin": null,
+    "nom": "Chaise gaming ergonomique rose",
+    "categorie": "Chaises",
+    "badge": "Confort + déco",
+    "note": "Dossier haut, coussins, finition rose poudré.",
+    "image": "/images/deals/chaises.webp"
+  },
+  {
+    "asin": null,
+    "nom": "Secretlab Titan Evo — édition claire",
+    "categorie": "Chaises",
+    "badge": "Haut de gamme",
+    "note": "La référence confort, plusieurs finitions claires.",
+    "image": "/images/deals/chaises.webp"
+  },
+  {
+    "asin": null,
+    "nom": "Logitech G715 — clavier sans fil blanc",
     "categorie": "Claviers",
-    "badge": "Repose-poignet cloud",
-    "note": "Repose-poignet nuage inclus, parfait sur bureau blanc."
+    "badge": "Repose-poignet nuage",
+    "note": "Design cloud unique, parfait sur bureau blanc.",
+    "image": "/images/deals/claviers.webp"
   },
   {
     "asin": null,
-    "nom": "Govee Glide — barres LED murales RGBIC",
+    "nom": "Akko 5075B Plus — thème pastel",
+    "categorie": "Claviers",
+    "badge": "Pastel d'origine",
+    "note": "Thèmes pastel prêts à l'emploi, hot-swap.",
+    "image": "/images/deals/claviers.webp"
+  },
+  {
+    "asin": null,
+    "nom": "Keychron K-series — coque blanche",
+    "categorie": "Claviers",
+    "badge": "Custom évolutif",
+    "note": "Base blanche idéale pour keycaps pastel.",
+    "image": "/images/deals/claviers.webp"
+  },
+  {
+    "asin": null,
+    "nom": "Elgato Key Light Mini",
+    "categorie": "Éclairage",
+    "badge": "Lumière pro",
+    "note": "Panneau compact piloté par app, 2900-7000 K.",
+    "image": "/images/deals/eclairage.webp"
+  },
+  {
+    "asin": null,
+    "nom": "Logitech Litra Glow",
+    "categorie": "Éclairage",
+    "badge": "Plug & play",
+    "note": "Se clipse sur l'écran, diffuseur intégré.",
+    "image": "/images/deals/eclairage.webp"
+  },
+  {
+    "asin": null,
+    "nom": "Govee Glide — barres LED RGBIC",
     "categorie": "Éclairage",
     "badge": "Ambiance pastel",
-    "note": "L'accessoire qui transforme un mur de stream en 10 minutes."
+    "note": "Transforme le mur de fond en 10 minutes.",
+    "image": "/images/deals/eclairage.webp"
+  },
+  {
+    "asin": null,
+    "nom": "Logitech Brio 500 — webcam blanche",
+    "categorie": "Webcams",
+    "badge": "Design épuré",
+    "note": "1080p net, finition blanche, cache intégré.",
+    "image": "/images/deals/webcams.webp"
+  },
+  {
+    "asin": null,
+    "nom": "Insta360 Link 2 — webcam PTZ",
+    "categorie": "Webcams",
+    "badge": "Suivi auto",
+    "note": "4K + tracking, excellente en lumière douce.",
+    "image": "/images/deals/webcams.webp"
+  },
+  {
+    "asin": null,
+    "nom": "Elgato Stream Deck Mini — blanc",
+    "categorie": "Stream Deck",
+    "badge": "Premier stream deck",
+    "note": "6 touches, la porte d'entrée du contrôle live.",
+    "image": "/images/deals/stream-deck.webp"
+  },
+  {
+    "asin": null,
+    "nom": "Elgato Wave Mic Arm LP — blanc",
+    "categorie": "Accessoires",
+    "badge": "Profil bas",
+    "note": "Le bras qui disparaît sous la ligne caméra.",
+    "image": "/images/deals/accessoires.webp"
+  },
+  {
+    "asin": null,
+    "nom": "Tapis de souris XXL pastel",
+    "categorie": "Accessoires",
+    "badge": "Effet immédiat",
+    "note": "Unifie tout le bureau pour quelques euros.",
+    "image": "/images/deals/accessoires.webp"
+  },
+  {
+    "asin": null,
+    "nom": "Bureau assis-debout blanc électrique",
+    "categorie": "Bureaux",
+    "badge": "Confort dos",
+    "note": "Plateau clair + moteur silencieux.",
+    "image": "/images/deals/bureaux.webp"
+  },
+  {
+    "asin": null,
+    "nom": "Elgato HD60 X — capture externe",
+    "categorie": "Capture",
+    "badge": "Pour consoles",
+    "note": "Streamer sa Switch/PS5 en 4K60 HDR passthrough.",
+    "image": "/images/deals/capture.webp"
   }
 ]

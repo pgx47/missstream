@@ -31,7 +31,20 @@ SEARCHES = [
     ("tapis souris XXL pastel", "Accessoires"),
 ]
 
-MAX_DEALS = 12
+MAX_DEALS = 20
+
+CATEGORY_IMAGES = {
+    "Micros": "/images/deals/micros.webp",
+    "Casques": "/images/deals/casques.webp",
+    "Chaises": "/images/deals/chaises.webp",
+    "Claviers": "/images/deals/claviers.webp",
+    "Éclairage": "/images/deals/eclairage.webp",
+    "Webcams": "/images/deals/webcams.webp",
+    "Accessoires": "/images/deals/accessoires.webp",
+    "Bureaux": "/images/deals/bureaux.webp",
+    "Stream Deck": "/images/deals/stream-deck.webp",
+    "Capture": "/images/deals/capture.webp",
+}
 
 
 def scrape_search(query: str, categorie: str) -> list[dict]:
@@ -66,6 +79,7 @@ def scrape_search(query: str, categorie: str) -> list[dict]:
                 "categorie": categorie,
                 "badge": "Promo en cours" if has_coupon else "Bien noté",
                 "note": None,
+                "image": CATEGORY_IMAGES.get(categorie),
             }
         )
         if len(deals) >= 3:

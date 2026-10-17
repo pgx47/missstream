@@ -1,5 +1,6 @@
 ---
 import { SITE } from '../site.config';
+import Logo from '../components/Logo.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -55,15 +56,7 @@ const nav = [
   <body class="min-h-screen flex flex-col antialiased">
     <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-pink-100">
       <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-2 group">
-          <span
-            class="w-9 h-9 rounded-xl bg-gradient-to-br from-pink-400 to-purple-400 flex items-center justify-center text-white font-extrabold text-lg shadow-sm shadow-pink-200 group-hover:scale-105 transition-transform"
-            >M</span
-          >
-          <span class="font-extrabold text-xl text-gray-900 tracking-tight">
-            Miss<span class="text-pink-500">Stream</span>
-          </span>
-        </a>
+        <Logo size="md" />
         <nav class="hidden md:flex items-center gap-1">
           {
             nav.map((item) => (
@@ -107,10 +100,8 @@ const nav = [
     <footer class="mt-16 border-t border-pink-100 bg-white">
       <div class="max-w-6xl mx-auto px-4 py-10 grid gap-8 md:grid-cols-3">
         <div>
-          <p class="font-extrabold text-lg text-gray-900">
-            Miss<span class="text-pink-500">Stream</span>
-          </p>
-          <p class="text-sm text-gray-500 mt-2 leading-relaxed">{SITE.tagline}</p>
+          <Logo size="sm" />
+          <p class="text-sm text-gray-500 mt-3 leading-relaxed">{SITE.tagline}</p>
         </div>
         <nav class="text-sm flex flex-col gap-2">
           <p class="font-bold text-gray-800 mb-1">Navigation</p>

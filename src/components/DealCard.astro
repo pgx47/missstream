@@ -7,15 +7,20 @@ interface Props {
   categorie?: string;
   badge?: string;
   note?: string;
+  image?: string;
 }
 
-const { asin, nom, categorie = 'Setup', badge = 'Promo en cours', note } = Astro.props;
+const { asin, nom, categorie = 'Setup', badge = 'Promo en cours', note, image } = Astro.props;
 const url = amazonUrl({ asin, query: nom });
 ---
 
-<div
-  class="rounded-2xl bg-white border border-purple-100 p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex flex-col"
->
+<div class="card-aesthetic overflow-hidden flex flex-col">
+  {
+    image && (
+      <img src={image} alt={nom} class="w-full h-32 object-cover" loading="lazy" />
+    )
+  }
+  <div class="p-5 flex flex-col flex-1">
   <div class="flex items-start justify-between gap-3 mb-3">
     <span
       class="bg-gradient-to-r from-pink-500 to-purple-400 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide"
@@ -36,4 +41,5 @@ const url = amazonUrl({ asin, query: nom });
   >
     Vérifier le prix sur Amazon
   </a>
+  </div>
 </div>
