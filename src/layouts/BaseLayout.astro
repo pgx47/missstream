@@ -93,7 +93,8 @@ const nav = [
       </div>
     </header>
 
-    <main class="flex-1">
+    <main class="flex-1 relative">
+      <div class="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-pink-50/60 to-transparent pointer-events-none -z-10"></div>
       <slot />
     </main>
 

@@ -256,22 +256,24 @@ def save_image(raw: bytes, slug: str) -> str:
 def get_image(image_prompt: str, slug: str) -> str:
     """Pollinations -> Unsplash -> pool local. Jamais d'échec."""
     full_prompt = (
-        f"{image_prompt}. Real photograph, shot on 35mm lens, natural shallow depth of field, "
-        "cozy bedroom corner, soft pastel pink and purple ambient LED lighting, no 3D render, "
-        "no cartoon, no clipart, no vector, no emoji, hyperrealistic."
+        f"{image_prompt}. A bright, airy, modern desk setup for a female streamer. "
+        "Predominantly white, light cream and soft pastel pink palette. Soft natural "
+        "daylight from a window, no harsh shadows. Clean white desk, cozy details like a "
+        "potted succulent or pastel mug, soft lavender ambient backlight. Professional "
+        "editorial photography, 35mm lens, high resolution, photorealistic, Pinterest "
+        "'cozy desk setup' aesthetic. NO dark rooms, NO red/blue/green neon gamer lights, "
+        "NO black leather furniture, no 3D render, no cartoon, no clipart, no text."
     )
 
-    # Niveau 1 : Unsplash (vraies photos), requête calée sur le sujet
+    # Niveau 1 : Unsplash (vraies photos), requêtes biaisées pastel/clair
     key = os.environ.get("UNSPLASH_ACCESS_KEY")
     if key:
         try:
-            words = re.sub(r"[^a-zA-Z ]", "", image_prompt).split()[:6]
-            q = urllib.parse.quote(" ".join(words) + " setup")
-            r = requests.get(
-                f"https://api.unsplash.com/search/photos?query={q}&orientation=landscape&per_page=10",
-                headers={"Authorization": f"Client-ID {key}"},
-                timeout=15,
-            )
+            words = re.sub(r"[^a-zA-Z ]", "", image_prompt).split()[:4]
+            topical = " ".join(words)
+            q = urllib.parse.quote(random.choice(
+                [f"{topical} pastel", f"{topical} white desk", f"{topical} aesthetic"]
+            ))
             results = r.json().get("results", [])
             if results:
                 img = requests.get(random.choice(results)["urls"]["regular"], timeout=30).content

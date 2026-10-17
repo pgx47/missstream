@@ -28,7 +28,12 @@ html {
 
 @layer components {
   .card-aesthetic {
-    @apply rounded-2xl bg-surface-card border border-pink-100 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-0.5;
+    @apply rounded-2xl bg-surface-card border border-pink-100 shadow-sm transition-all duration-300;
+  }
+
+  .card-aesthetic:hover {
+    @apply -translate-y-0.5;
+    box-shadow: 0 8px 24px 0 rgba(244, 114, 182, 0.16);
   }
 
   .badge-guide {

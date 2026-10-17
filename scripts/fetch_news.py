@@ -71,8 +71,8 @@ def get_news_image(article_url: str, slug: str) -> str:
     if UNSPLASH_ACCESS_KEY:
         try:
             q = random.choice(
-                ["aesthetic desk setup", "streaming setup", "neon room", "pastel keyboard",
-                 "podcast microphone"]
+                ["pastel desk setup", "aesthetic workspace pink", "cozy desk pastel",
+                 "white desk minimalist", "kawaii desk setup", "pink keyboard desk"]
             )
             r = requests.get(
                 f"https://api.unsplash.com/search/photos?query={urllib.parse.quote(q)}"
