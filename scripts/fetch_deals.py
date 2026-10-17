@@ -101,6 +101,8 @@ def result_to_deal(p: dict, categorie: str) -> dict | None:
         "badge": badge,
         "note": None,
         "image": image or CATEGORY_IMAGES.get(categorie),
+        "stars": p.get("stars"),
+        "avis": p.get("total_reviews"),
     }
 
 

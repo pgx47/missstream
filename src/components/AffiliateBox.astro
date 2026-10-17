@@ -10,6 +10,9 @@ interface Props {
   badge?: string;
   tendance?: boolean;
   image?: string;
+  stars?: number;
+  avis?: number;
+  avisClient?: string;
 }
 
 const {
@@ -21,7 +24,13 @@ const {
   badge = 'Coup de cœur setup',
   tendance = true,
   image,
+  stars,
+  avis,
+  avisClient,
 } = Astro.props;
+
+const fullStars = stars ? Math.round(stars) : 0;
+const fmtAvis = (n: number) => n.toLocaleString('fr-FR');
 
 const url = amazonUrl({ asin, query: nom });
 const urlAvis = asin ? `${url}#customerReviews` : url;
@@ -54,6 +63,26 @@ const urlAvis = asin ? `${url}#customerReviews` : url;
     <div class="min-w-0">
       <h3 class="text-xl font-bold text-gray-900 pr-0 sm:pr-28">{nom}</h3>
       <p class="text-sm text-pink-500 font-medium mt-1">Finition recommandée : {couleur}</p>
+      {
+        stars && (
+          <a
+            href={urlAvis}
+            target="_blank"
+            rel="nofollow sponsored noopener"
+            class="mt-1.5 inline-flex items-center gap-1.5 text-sm group"
+          >
+            <span class="text-amber-400 tracking-tight" aria-hidden="true">
+              {'★'.repeat(fullStars)}{'☆'.repeat(5 - fullStars)}
+            </span>
+            <span class="font-bold text-gray-700">{stars.toFixed(1).replace('.', ',')}</span>
+            {avis && (
+              <span class="text-gray-400 group-hover:text-pink-500 transition-colors">
+                · {fmtAvis(avis)} avis
+              </span>
+            )}
+          </a>
+        )
+      }
     </div>
   </div>
 
@@ -71,6 +100,19 @@ const urlAvis = asin ? `${url}#customerReviews` : url;
       </ul>
     </div>
   </div>
+
+  {
+    avisClient && (
+      <figure class="mt-2 mb-4 rounded-xl bg-pink-50/50 border border-pink-100 p-4">
+        <blockquote class="text-sm text-gray-600 italic leading-relaxed">
+          « {avisClient} »
+        </blockquote>
+        <figcaption class="mt-2 text-xs text-gray-400 font-medium">
+          Avis client vérifié · Amazon.fr
+        </figcaption>
+      </figure>
+    )
+  }
 
   {
     tendance && (

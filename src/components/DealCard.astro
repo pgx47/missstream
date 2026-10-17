@@ -8,9 +8,12 @@ interface Props {
   badge?: string;
   note?: string;
   image?: string;
+  stars?: number;
+  avis?: number;
 }
 
-const { asin, nom, categorie = 'Setup', badge = 'Promo en cours', note, image } = Astro.props;
+const { asin, nom, categorie = 'Setup', badge = 'Promo en cours', note, image, stars, avis } = Astro.props;
+const fullStars = stars ? Math.round(stars) : 0;
 const url = amazonUrl({ asin, query: nom });
 ---
 
@@ -31,6 +34,17 @@ const url = amazonUrl({ asin, query: nom });
   </div>
 
   <h3 class="text-lg font-bold text-gray-900 leading-snug flex-1">{nom}</h3>
+  {
+    stars && (
+      <p class="mt-1.5 text-sm">
+        <span class="text-amber-400 tracking-tight" aria-hidden="true">
+          {'★'.repeat(fullStars)}{'☆'.repeat(5 - fullStars)}
+        </span>
+        <span class="font-bold text-gray-700 ml-1">{stars.toFixed(1).replace('.', ',')}</span>
+        {avis && <span class="text-gray-400"> · {avis.toLocaleString('fr-FR')}</span>}
+      </p>
+    )
+  }
   {note && <p class="text-sm text-gray-500 mt-2">{note}</p>}
 
   <a

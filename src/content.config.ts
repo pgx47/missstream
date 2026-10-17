@@ -13,6 +13,9 @@ const product = z.object({
     .regex(/^[A-Z0-9]{10}$/i, 'ASIN Amazon invalide')
     .optional(),
   image: z.string().optional(),
+  stars: z.number().optional(),
+  avis: z.number().optional(),
+  avisClient: z.string().optional(),
   couleur: z.string().optional(),
   badge: z.string().optional(),
   pointsForts: z.array(z.string()).min(1),

@@ -5,7 +5,9 @@
     "categorie": "Micros",
     "badge": "Coup de cœur setup",
     "note": "Le micro blanc le plus cité dans les setups pastel budget.",
-    "image": "/images/deals/products/B0BMFQP2ZZ.webp"
+    "image": "/images/deals/products/B0BMFQP2ZZ.webp",
+    "stars": 4.4,
+    "avis": 1287
   },
   {
     "asin": "B0DG9X4WHW",
@@ -13,7 +15,9 @@
     "categorie": "Micros",
     "badge": "Icône setup",
     "note": "Le design blanc signature avec mute tactile lumineux.",
-    "image": "/images/deals/products/B0DG9X4WHW.webp"
+    "image": "/images/deals/products/B0DG9X4WHW.webp",
+    "stars": 4.6,
+    "avis": 824
   },
   {
     "asin": "B0CTJ7PVN1",
@@ -29,7 +33,9 @@
     "categorie": "Micros",
     "badge": "Petit prix",
     "note": "Le micro rose le plus compact du marché.",
-    "image": "/images/deals/products/B0CMTQPWQ8.webp"
+    "image": "/images/deals/products/B0CMTQPWQ8.webp",
+    "stars": 4.6,
+    "avis": 1622
   },
   {
     "asin": "B0DWVDYL61",
@@ -37,7 +43,9 @@
     "categorie": "Casques",
     "badge": "Icône cozy",
     "note": "Oreilles de chat RGB Chroma, classique des streams.",
-    "image": "/images/deals/products/B0DWVDYL61.webp"
+    "image": "/images/deals/products/B0DWVDYL61.webp",
+    "stars": 4.2,
+    "avis": 992
   },
   {
     "asin": "B08KKBSDTY",
@@ -45,7 +53,9 @@
     "categorie": "Casques",
     "badge": "Confort longue session",
     "note": "Très léger, existe en blanc et coloris pastels.",
-    "image": "/images/deals/products/B08KKBSDTY.webp"
+    "image": "/images/deals/products/B08KKBSDTY.webp",
+    "stars": 4.3,
+    "avis": 7430
   },
   {
     "asin": "B0BCFKG49M",
@@ -53,7 +63,9 @@
     "categorie": "Casques",
     "badge": "Budget malin",
     "note": "Bon son DTS pour un prix mini.",
-    "image": "/images/deals/products/B0BCFKG49M.webp"
+    "image": "/images/deals/products/B0BCFKG49M.webp",
+    "stars": 4.3,
+    "avis": 7726
   },
   {
     "asin": "B0HJGXQ9K9",
@@ -61,7 +73,9 @@
     "categorie": "Chaises",
     "badge": "Confort + déco",
     "note": "Dossier haut, coussins, finition rose poudré.",
-    "image": "/images/deals/products/B0HJGXQ9K9.webp"
+    "image": "/images/deals/products/B0HJGXQ9K9.webp",
+    "stars": 4.8,
+    "avis": 38
   },
   {
     "asin": "B0FX3MV89W",
@@ -69,7 +83,9 @@
     "categorie": "Chaises",
     "badge": "Haut de gamme",
     "note": "La référence confort, plusieurs finitions claires.",
-    "image": "/images/deals/products/B0FX3MV89W.webp"
+    "image": "/images/deals/products/B0FX3MV89W.webp",
+    "stars": 4.8,
+    "avis": 6
   },
   {
     "asin": "B092LHVB4N",
@@ -77,7 +93,9 @@
     "categorie": "Claviers",
     "badge": "Repose-poignet nuage",
     "note": "Design cloud unique, parfait sur bureau blanc.",
-    "image": "/images/deals/products/B092LHVB4N.webp"
+    "image": "/images/deals/products/B092LHVB4N.webp",
+    "stars": 4.6,
+    "avis": 424
   },
   {
     "asin": "B0G5YNF75Q",
@@ -85,7 +103,9 @@
     "categorie": "Claviers",
     "badge": "Pastel d'origine",
     "note": "Thèmes pastel prêts à l'emploi, hot-swap.",
-    "image": "/images/deals/products/B0G5YNF75Q.webp"
+    "image": "/images/deals/products/B0G5YNF75Q.webp",
+    "stars": 5,
+    "avis": 8
   },
   {
     "asin": "B08LSJ4RHH",
@@ -93,7 +113,9 @@
     "categorie": "Claviers",
     "badge": "Custom évolutif",
     "note": "Base blanche idéale pour keycaps pastel.",
-    "image": "/images/deals/products/B08LSJ4RHH.webp"
+    "image": "/images/deals/products/B08LSJ4RHH.webp",
+    "stars": 4.3,
+    "avis": 819
   },
   {
     "asin": "B07L755X9G",
@@ -101,7 +123,9 @@
     "categorie": "Éclairage",
     "badge": "Lumière pro",
     "note": "Panneau compact piloté par app, 2900-7000 K.",
-    "image": "/images/deals/products/B07L755X9G.webp"
+    "image": "/images/deals/products/B07L755X9G.webp",
+    "stars": 4.5,
+    "avis": 4307
   },
   {
     "asin": "B097QZGRCQ",
@@ -109,7 +133,9 @@
     "categorie": "Éclairage",
     "badge": "Plug & play",
     "note": "Se clipse sur l'écran, diffuseur intégré.",
-    "image": "/images/deals/products/B097QZGRCQ.webp"
+    "image": "/images/deals/products/B097QZGRCQ.webp",
+    "stars": 4.5,
+    "avis": 3411
   },
   {
     "asin": "B09H5VSKTZ",
@@ -117,7 +143,9 @@
     "categorie": "Éclairage",
     "badge": "Ambiance pastel",
     "note": "Transforme le mur de fond en 10 minutes.",
-    "image": "/images/deals/products/B09H5VSKTZ.webp"
+    "image": "/images/deals/products/B09H5VSKTZ.webp",
+    "stars": 4.5,
+    "avis": 3451
   },
   {
     "asin": "B07W5JKKFJ",
@@ -125,7 +153,9 @@
     "categorie": "Webcams",
     "badge": "Design épuré",
     "note": "1080p net, finition blanche, cache intégré.",
-    "image": "/images/deals/products/B07W5JKKFJ.webp"
+    "image": "/images/deals/products/B07W5JKKFJ.webp",
+    "stars": 4.4,
+    "avis": 1253
   },
   {
     "asin": "B0DDTH3HX8",
@@ -133,7 +163,9 @@
     "categorie": "Webcams",
     "badge": "Suivi auto",
     "note": "4K + tracking, excellente en lumière douce.",
-    "image": "/images/deals/products/B0DDTH3HX8.webp"
+    "image": "/images/deals/products/B0DDTH3HX8.webp",
+    "stars": 4.6,
+    "avis": 1563
   },
   {
     "asin": "B07DYRS1WH",
@@ -141,7 +173,9 @@
     "categorie": "Stream Deck",
     "badge": "Premier stream deck",
     "note": "6 touches, la porte d'entrée du contrôle live.",
-    "image": "/images/deals/products/B07DYRS1WH.webp"
+    "image": "/images/deals/products/B07DYRS1WH.webp",
+    "stars": 4.7,
+    "avis": 7944
   },
   {
     "asin": "B097376LKF",
@@ -149,7 +183,9 @@
     "categorie": "Accessoires",
     "badge": "Profil bas",
     "note": "Le bras qui disparaît sous la ligne caméra.",
-    "image": "/images/deals/products/B097376LKF.webp"
+    "image": "/images/deals/products/B097376LKF.webp",
+    "stars": 4.6,
+    "avis": 5048
   },
   {
     "asin": "B0H6M26Z8C",
@@ -173,6 +209,8 @@
     "categorie": "Capture",
     "badge": "Pour consoles",
     "note": "Streamer sa Switch/PS5 en 4K60 HDR passthrough.",
-    "image": "/images/deals/products/B09V1KJ3J4.webp"
+    "image": "/images/deals/products/B09V1KJ3J4.webp",
+    "stars": 4.6,
+    "avis": 5354
   }
 ]
