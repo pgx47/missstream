@@ -2,15 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { amazonUrl } from '../../site.config';
 
-const palettes = [
-  { id: 'pink', label: 'Pink Cozy', bg: '#FDF2F8', fg: '#DB2777' },
-  { id: 'lav', label: 'Lavande Lilas', bg: '#FAF5FF', fg: '#9333EA' },
-  { id: 'mint', label: 'Menthe Douce', bg: '#F0FDF4', fg: '#16A34A' },
-  { id: 'minimal', label: 'Soft Minimal', bg: '#FFFFFF', fg: '#374151' },
-];
-
-const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 'Réseaux', 'Commandes'];
-
 const bioProducts = [
   { cat: 'Micro', items: [
     { nom: 'Fifine AM8 blanc', url: amazonUrl({ asin: 'B0C74G9RLH' }) },
@@ -24,13 +15,13 @@ const bioProducts = [
   { cat: 'Accessoires', items: [
     { nom: 'Elgato Stream Deck Neo', url: amazonUrl({ asin: 'B0CVY4566H' }) },
     { nom: 'Tapis XXL pastel', url: amazonUrl({ asin: 'B0H6M26Z8C' }) },
-    { nom: 'Bras Elgato Wave Mic Arm LP', url: amazonUrl({ asin: 'B097376LKF' }) },
   ]},
   { cat: 'Lumière', items: [
     { nom: 'Logitech Litra Glow', url: amazonUrl({ asin: 'B0D2XMLRL3' }) },
     { nom: 'Elgato Key Light Mini', url: amazonUrl({ asin: 'B07L755X9G' }) },
   ]},
 ];
+const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 'Réseaux', 'Commandes'];
 ---
 
 <BaseLayout
@@ -40,27 +31,51 @@ const bioProducts = [
   <div class="max-w-6xl mx-auto px-4 py-12">
     <div class="text-center max-w-2xl mx-auto mb-10">
       <span class="badge-guide mb-2 inline-block">Outil gratuit</span>
-      <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Générateur de panneaux Twitch</h1>
-      <p class="mt-3 text-gray-500">Des panels pastel prêts à l'emploi (320×100 px) + ta bio setup en Markdown. 100% dans ton navigateur.</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Studio de panneaux Twitch</h1>
+      <p class="mt-3 text-gray-500">Des panels dignes d'Etsy, générés dans ton navigateur. Aperçu Twitch en direct, export PNG 320×100.</p>
     </div>
 
     <div class="grid lg:grid-cols-2 gap-10 items-start">
-      <!-- Éditeur -->
-      <div class="space-y-8">
+      <div class="space-y-6">
         <div class="card-aesthetic p-6">
-          <p class="font-extrabold text-gray-900 mb-4">1. Palette</p>
-          <div class="grid grid-cols-2 gap-2.5" id="palettes">
-            {palettes.map((p, i) => (
-              <label class="cursor-pointer">
-                <input type="radio" name="palette" value={p.id} checked={i === 0} class="peer sr-only" />
-                <span class="block text-center text-xs font-bold px-3 py-2.5 rounded-xl border border-gray-200 peer-checked:border-pink-400 peer-checked:ring-2 peer-checked:ring-pink-200 transition-all" style={`background:${p.bg};color:${p.fg}`}>{p.label}</span>
-              </label>
-            ))}
+          <p class="font-extrabold text-gray-900 mb-4">1. Ambiance</p>
+          <div class="grid grid-cols-2 gap-2.5" id="presets">
+            <button data-preset="strawberry" class="preset px-3 py-3 rounded-xl border border-pink-200 text-xs font-extrabold bg-gradient-to-br from-pink-100 to-rose-50 text-pink-700">🍓 Strawberry Milk</button>
+            <button data-preset="lavender" class="preset px-3 py-3 rounded-xl border border-purple-200 text-xs font-extrabold bg-gradient-to-br from-purple-100 to-indigo-50 text-purple-700">🌙 Lavender Lofi</button>
+            <button data-preset="matcha" class="preset px-3 py-3 rounded-xl border border-green-200 text-xs font-extrabold bg-gradient-to-br from-green-50 to-emerald-50 text-emerald-700">🍵 Matcha Latte</button>
+            <button data-preset="studio" class="preset px-3 py-3 rounded-xl border border-gray-200 text-xs font-extrabold bg-white text-gray-700">🤍 Clean Studio</button>
           </div>
         </div>
 
         <div class="card-aesthetic p-6">
-          <p class="font-extrabold text-gray-900 mb-4">2. Panneaux</p>
+          <p class="font-extrabold text-gray-900 mb-4">2. Style du panneau</p>
+          <div class="grid grid-cols-2 gap-2.5 mb-4">
+            <select id="style" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
+              <option value="mesh">Mesh gradient pastel</option>
+              <option value="glass">Glassmorphism</option>
+              <option value="washi">Washi tape</option>
+              <option value="flat">Couleur unie</option>
+            </select>
+            <select id="shape" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
+              <option value="14">Coins arrondis</option>
+              <option value="50">Pilule</option>
+              <option value="4">Carrés subtils</option>
+            </select>
+          </div>
+          <div class="grid grid-cols-2 gap-2.5">
+            <select id="font" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
+              <option value="Nunito">Nunito (ronde)</option>
+              <option value="Fredoka">Fredoka (bulle)</option>
+              <option value="Jakarta">Plus Jakarta Sans (moderne)</option>
+            </select>
+            <label class="flex items-center gap-2 text-sm font-semibold text-gray-700 px-2">
+              <input id="sparkles" type="checkbox" class="w-4 h-4 accent-pink-500" checked /> Étincelles
+            </label>
+          </div>
+        </div>
+
+        <div class="card-aesthetic p-6">
+          <p class="font-extrabold text-gray-900 mb-4">3. Panneaux</p>
           <div class="grid grid-cols-2 gap-2" id="panels">
             {panels.map((p) => (
               <label class="flex items-center gap-2 text-sm font-semibold text-gray-700">
@@ -72,14 +87,11 @@ const bioProducts = [
             <input id="custom-txt" type="text" placeholder="Nom personnalisé…" class="flex-1 text-sm border border-pink-100 rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-pink-300" />
             <button id="custom-add" class="px-4 py-2.5 rounded-xl bg-pink-500 text-white text-sm font-bold hover:bg-pink-600">+ Ajouter</button>
           </div>
-          <label class="mt-4 flex items-center gap-2 text-sm font-semibold text-gray-700">
-            <input id="icons" type="checkbox" class="w-4 h-4 accent-pink-500" checked /> Afficher une icône sur les panneaux
-          </label>
         </div>
 
         <div class="card-aesthetic p-6">
-          <p class="font-extrabold text-gray-900 mb-4">3. Ta bio setup (copier-coller)</p>
-          <div id="bio-list" class="space-y-2 max-h-64 overflow-y-auto">
+          <p class="font-extrabold text-gray-900 mb-4">4. Ta bio setup</p>
+          <div id="bio-list" class="space-y-2 max-h-52 overflow-y-auto">
             {bioProducts.map((g) => (
               <div>
                 <p class="text-xs font-extrabold uppercase tracking-widest text-pink-500 mb-1">{g.cat}</p>
@@ -91,106 +103,133 @@ const bioProducts = [
               </div>
             ))}
           </div>
-          <textarea id="bio-out" readonly rows="6" class="mt-4 w-full text-xs font-mono bg-gray-50 border border-pink-100 rounded-xl p-3" placeholder="Coche les produits ci-dessus…"></textarea>
+          <textarea id="bio-out" readonly rows="5" class="mt-4 w-full text-xs font-mono bg-gray-50 border border-pink-100 rounded-xl p-3" placeholder="Coche les produits…"></textarea>
           <button id="bio-copy" class="btn-cta mt-3 px-5 py-2.5 text-sm">Copier le code</button>
         </div>
       </div>
 
-      <!-- Preview -->
       <div class="lg:sticky lg:top-28">
-        <div class="card-aesthetic p-6">
-          <p class="font-extrabold text-gray-900 mb-4">Aperçu live</p>
-          <div id="preview" class="space-y-3"></div>
-          <button id="dl" class="btn-cta mt-6 w-full px-6 py-4 text-base font-extrabold">Télécharger mon pack (.zip)</button>
-          <p class="mt-3 text-xs text-gray-400 text-center">PNG 320×100 prêts pour les panneaux Twitch.</p>
+        <div class="card-aesthetic p-0 overflow-hidden">
+          <div class="bg-[#18181b] px-4 py-3 flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-pink-400 to-purple-400"></div>
+            <div>
+              <p class="text-white text-xs font-bold">ta_chaine</p>
+              <p class="text-purple-300 text-[10px]">EN DIRECT · Aperçu panels</p>
+            </div>
+          </div>
+          <div class="bg-[#0e0e10] px-4 py-1 text-[10px] font-bold text-gray-400 flex gap-4 border-b border-white/5">
+            <span class="text-pink-400 border-b-2 border-pink-400 py-2">Accueil</span>
+            <span class="py-2">À propos</span>
+            <span class="py-2">Calendrier</span>
+            <span class="py-2">Vidéos</span>
+          </div>
+          <div id="preview" class="bg-[#18181b] p-5 grid grid-cols-3 gap-3"></div>
         </div>
+        <button id="dl" class="btn-cta mt-5 w-full px-6 py-4 text-base font-extrabold">Télécharger mon pack (.zip)</button>
+        <p class="mt-3 text-xs text-gray-400 text-center">PNG 320×100 · Clique un panneau pour le copier directement.</p>
       </div>
     </div>
   </div>
 
   <script is:inline src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
   <script is:inline>
-    const PAL = {
-      pink:   { bg:'#FDF2F8', fg:'#DB2777' },
-      lav:    { bg:'#FAF5FF', fg:'#9333EA' },
-      mint:   { bg:'#F0FDF4', fg:'#16A34A' },
-      minimal:{ bg:'#FFFFFF', fg:'#374151', border:'#F3F4F6' },
+    const PRESETS = {
+      strawberry:{ c1:'#fecdd3', c2:'#fbcfe8', c3:'#fde2e4', fg:'#9d174d', border:'#f9a8d4' },
+      lavender: { c1:'#ddd6fe', c2:'#c4b5fd', c3:'#a5b4fc', fg:'#6d28d9', border:'#c4b5fd' },
+      matcha:   { c1:'#d9f99d', c2:'#bbf7d0', c3:'#fde68a', fg:'#3f6212', border:'#a3e635' },
+      studio:   { c1:'#ffffff', c2:'#fdf2f8', c3:'#fff1f2', fg:'#374151', border:'#f9a8d4' },
     };
-    const ICONS = {
-      heart: (c,x,y) => { c.beginPath(); c.moveTo(x,y+6); c.bezierCurveTo(x-10,y-4,x-5,y-12,x,y-6); c.bezierCurveTo(x+5,y-12,x+10,y-4,x,y+6); c.fill(); },
-      pad:   (c,x,y) => { c.fillRect(x-10,y-4,20,8); c.beginPath(); c.arc(x-8,y-6,5,0,7); c.arc(x+8,y-6,5,0,7); c.fill(); },
-      chat:  (c,x,y) => { c.beginPath(); c.ellipse(x,y-2,10,7,0,0,7); c.fill(); c.beginPath(); c.moveTo(x-3,y+3); c.lineTo(x-8,y+9); c.lineTo(x+1,y+4); c.fill(); },
-      mic:   (c,x,y) => { c.beginPath(); c.ellipse(x,y-4,4,7,0,0,7); c.fill(); c.fillRect(x-1.5,y+2,3,7); },
-    };
-    const iconFor = (t) => /règle|commande/.test(t.toLowerCase()) ? 'chat' : /don/.test(t.toLowerCase()) ? 'heart' : /setup|planning/.test(t.toLowerCase()) ? 'pad' : 'mic';
-
+    const FONTS = { Nunito:"800 24px 'Nunito Variable', sans-serif", Fredoka:"600 25px 'Fredoka', sans-serif", Jakarta:"700 24px 'Plus Jakarta Sans', sans-serif" };
+    let PRE = 'strawberry';
     const $ = (s) => document.querySelector(s);
     const list = () => [...document.querySelectorAll('.pnl:checked')].map(i => i.value);
+    const opt = (id) => document.getElementById(id).value;
 
-    function draw(name) {
-      const pal = PAL[document.querySelector('input[name=palette]:checked').value];
-      const c = document.createElement('canvas');
-      const dpr = window.devicePixelRatio || 1;
-      c.width = 320 * dpr; c.height = 100 * dpr;
-      c.style.width = '100%';
-      const ctx = c.getContext('2d');
-      ctx.scale(dpr, dpr);
-      ctx.fillStyle = pal.bg;
-      if (ctx.roundRect) { ctx.beginPath(); ctx.roundRect(0,0,320,100,14); ctx.fill(); } else ctx.fillRect(0,0,320,100);
-      if (pal.border) { ctx.strokeStyle = pal.border; ctx.lineWidth = 2; ctx.strokeRect(1,1,318,98); }
-      ctx.fillStyle = pal.fg;
-      if (document.getElementById('icons').checked) { ICONS[iconFor(name)] ? ICONS[iconFor(name)](ctx, 28, 50) : 0; }
-      ctx.font = "800 26px 'Nunito Variable', sans-serif";
-      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.fillText(name, document.getElementById('icons').checked ? 178 : 160, 50);
+    function sparkle(ctx,x,y,r){ctx.beginPath();for(let i=0;i<8;i++){const a=i*Math.PI/4,l=i%2?r*0.35:r;ctx.lineTo(x+Math.cos(a)*l,y+Math.sin(a)*l);}ctx.closePath();ctx.fill();}
+
+    function draw(name){
+      const P = PRESETS[PRE], dpr = window.devicePixelRatio||1;
+      const c = document.createElement('canvas'); c.width=320*dpr; c.height=100*dpr; c.style.width='100%';
+      const ctx = c.getContext('2d'); ctx.scale(dpr,dpr);
+      const rad = +opt('shape'), style = opt('style');
+      ctx.beginPath();
+      if (ctx.roundRect) ctx.roundRect(0,0,320,100,rad); else ctx.rect(0,0,320,100);
+      if (style==='mesh'||style==='flat'){
+        if(style==='flat'){ctx.fillStyle=P.c1;ctx.fill();}
+        else{ctx.fillStyle=P.c1;ctx.fill();
+          const g=ctx.createRadialGradient(70,20,10,70,20,140);g.addColorStop(0,P.c2);g.addColorStop(1,'transparent');
+          ctx.fillStyle=g;ctx.fill();
+          const g2=ctx.createRadialGradient(260,90,10,260,90,140);g2.addColorStop(0,P.c3);g2.addColorStop(1,'transparent');
+          ctx.fillStyle=g2;ctx.fill();}
+      } else if (style==='glass'){
+        ctx.fillStyle='rgba(255,255,255,0.55)';ctx.fill();
+        const g=ctx.createLinearGradient(0,0,320,100);g.addColorStop(0,P.c1);g.addColorStop(1,P.c2);
+        ctx.globalAlpha=0.35;ctx.fillStyle=g;ctx.fill();ctx.globalAlpha=1;
+        ctx.strokeStyle='rgba(255,255,255,0.9)';ctx.lineWidth=3;ctx.stroke();
+      } else if (style==='washi'){
+        const g=ctx.createLinearGradient(0,0,0,100);g.addColorStop(0,P.c1);g.addColorStop(1,P.c2);
+        ctx.fillStyle=g;ctx.fill();
+      }
+      ctx.strokeStyle=P.border;ctx.lineWidth=1.5;ctx.stroke();
+      if(style==='washi'){ctx.save();ctx.globalAlpha=0.45;ctx.fillStyle='#fff';ctx.translate(160,4);ctx.rotate(-0.06);ctx.fillRect(-38,0,76,16);ctx.restore();}
+      if(document.getElementById('sparkles').checked){ctx.fillStyle='rgba(255,255,255,0.95)';sparkle(ctx,290,22,7);sparkle(ctx,28,78,6);ctx.fillStyle=P.fg;ctx.globalAlpha=0.25;sparkle(ctx,50,20,5);ctx.globalAlpha=1;}
+      ctx.fillStyle=P.fg;
+      ctx.shadowColor='rgba(0,0,0,0.12)';ctx.shadowBlur=4;ctx.shadowOffsetY=1;
+      ctx.font=FONTS[opt('font')];ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.fillText(name,160,52);
+      ctx.shadowColor='transparent';
       return c;
     }
 
-    function render() {
-      const prev = document.getElementById('preview');
-      prev.innerHTML = '';
-      list().forEach(n => {
-        const w = document.createElement('div');
-        w.appendChild(draw(n));
-        prev.appendChild(w);
+    async function copyCanvas(name,btn){
+      const c=draw(name);
+      c.toBlob(async(b)=>{try{
+        await navigator.clipboard.write([new ClipboardItem({'image/png':b})]);
+        btn.textContent='Copié !';setTimeout(()=>btn.textContent='Copier',1200);
+      }catch{btn.textContent='…';}});
+    }
+
+    function render(){
+      const prev=document.getElementById('preview');prev.innerHTML='';
+      list().forEach(n=>{
+        const w=document.createElement('div');w.className='relative group';
+        const cv=draw(n);cv.className='rounded-lg w-full cursor-pointer shadow';
+        cv.addEventListener('click',()=>copyCanvas(n,w.querySelector('.cp')));
+        const b=document.createElement('button');b.textContent='Copier';
+        b.className='cp absolute inset-x-0 bottom-1 mx-auto w-max text-[9px] font-bold bg-white/90 text-gray-700 rounded px-1.5 py-0.5 opacity-0 group-hover:opacity-100 transition-opacity';
+        b.addEventListener('click',(e)=>{e.stopPropagation();copyCanvas(n,b);});
+        w.appendChild(cv);w.appendChild(b);prev.appendChild(w);
       });
     }
 
-    document.getElementById('panels').addEventListener('change', render);
-    document.getElementById('palettes').addEventListener('change', render);
-    document.getElementById('icons').addEventListener('change', render);
-    document.getElementById('custom-add').addEventListener('click', () => {
-      const t = document.getElementById('custom-txt').value.trim();
-      if (!t) return;
-      const l = document.createElement('label');
-      l.className = 'flex items-center gap-2 text-sm font-semibold text-gray-700';
-      l.innerHTML = `<input type="checkbox" class="pnl w-4 h-4 accent-pink-500" value="${t.replace(/"/g,'')}" checked /> ${t}`;
-      document.getElementById('panels').appendChild(l);
-      document.getElementById('custom-txt').value = '';
-      render();
+    document.getElementById('presets').addEventListener('click',(e)=>{
+      const b=e.target.closest('.preset');if(!b)return;
+      PRE=b.dataset.preset;render();
     });
-
-    document.getElementById('dl').addEventListener('click', async () => {
-      const zip = new JSZip();
-      list().forEach((n,i) => zip.file(`${String(i+1).padStart(2,'0')}-${n.toLowerCase().replace(/[^a-z0-9]+/g,'-')}.png`, draw(n).toDataURL('image/png').split(',')[1], {base64:true}));
-      const blob = await zip.generateAsync({type:'blob'});
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob); a.download = 'panneaux-twitch-missstream.zip'; a.click();
+    ['style','shape','font'].forEach(id=>document.getElementById(id).addEventListener('change',render));
+    document.getElementById('sparkles').addEventListener('change',render);
+    document.getElementById('panels').addEventListener('change',render);
+    document.getElementById('custom-add').addEventListener('click',()=>{
+      const t=document.getElementById('custom-txt').value.trim();if(!t)return;
+      const l=document.createElement('label');l.className='flex items-center gap-2 text-sm font-semibold text-gray-700';
+      l.innerHTML=`<input type="checkbox" class="pnl w-4 h-4 accent-pink-500" value="${t.replace(/"/g,'')}" checked /> ${t}`;
+      document.getElementById('panels').appendChild(l);document.getElementById('custom-txt').value='';render();
     });
-
-    document.querySelectorAll('.bio-it').forEach(b => b.addEventListener('change', () => {
-      const lines = {};
-      document.querySelectorAll('.bio-it:checked').forEach(x => {
-        (lines[x.dataset.cat] ||= []).push(`[${x.dataset.nom}](${x.dataset.url})`);
-      });
-      document.getElementById('bio-out').value = Object.entries(lines).map(([c,i]) => `- **${c} :** ${i.join(' + ')}`).join('\n') + '\n\n_setup recommandé par missstream.xyz_';
+    document.getElementById('dl').addEventListener('click',async()=>{
+      const zip=new JSZip();
+      list().forEach((n,i)=>zip.file(`${String(i+1).padStart(2,'0')}-${n.toLowerCase().replace(/[^a-z0-9]+/g,'-')}.png`,draw(n).toDataURL('image/png').split(',')[1],{base64:true}));
+      const blob=await zip.generateAsync({type:'blob'});
+      const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='panneaux-twitch-missstream.zip';a.click();
+    });
+    document.querySelectorAll('.bio-it').forEach(b=>b.addEventListener('change',()=>{
+      const lines={};
+      document.querySelectorAll('.bio-it:checked').forEach(x=>{(lines[x.dataset.cat]||=[]).push(`[${x.dataset.nom}](${x.dataset.url})`);});
+      document.getElementById('bio-out').value=Object.entries(lines).map(([c,i])=>`- **${c} :** ${i.join(' + ')}`).join('\n')+'\n\n_setup recommandé par missstream.xyz_';
     }));
-    document.getElementById('bio-copy').addEventListener('click', (e) => {
+    document.getElementById('bio-copy').addEventListener('click',(e)=>{
       navigator.clipboard.writeText(document.getElementById('bio-out').value);
-      e.target.textContent = 'Copié !';
-      setTimeout(() => e.target.textContent = 'Copier le code', 1500);
+      e.target.textContent='Copié !';setTimeout(()=>e.target.textContent='Copier le code',1500);
     });
-
     render();
   </script>
 </BaseLayout>
