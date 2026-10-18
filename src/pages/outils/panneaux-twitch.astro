@@ -21,7 +21,6 @@ const bioProducts = [
     { nom: 'Elgato Key Light Mini', url: amazonUrl({ asin: 'B07L755X9G' }) },
   ]},
 ];
-const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 'Réseaux', 'Commandes'];
 ---
 
 <BaseLayout
@@ -29,111 +28,136 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
   description="Créez vos panneaux Twitch (panels) personnalisés en 1 clic. Style pastel, cozy et minimaliste. Générez aussi votre bio setup avec nos recommandations de matériel."
 >
   <div class="max-w-6xl mx-auto px-4 py-12">
-    <div class="text-center max-w-2xl mx-auto mb-10">
+    <div class="text-center max-w-2xl mx-auto mb-8">
       <span class="badge-guide mb-2 inline-block">Outil gratuit</span>
       <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Studio de panneaux Twitch</h1>
-      <p class="mt-3 text-gray-500">Des panels dignes d'Etsy, générés dans ton navigateur. Aperçu Twitch en direct, export PNG net.</p>
+      <p class="mt-3 text-gray-500">Des panels dignes d'Etsy, générés dans ton navigateur.</p>
     </div>
 
-    <div class="grid lg:grid-cols-2 gap-10 items-start">
-      <div class="space-y-5">
-        <details open class="card-aesthetic p-5 group">
-          <summary class="font-extrabold text-gray-900 cursor-pointer list-none flex justify-between">0. Identité (preview) <span class="text-pink-400 group-open:rotate-180 transition-transform">▾</span></summary>
-          <div class="mt-4 flex gap-2">
-            <input id="channel-name" type="text" value="ta_chaine" placeholder="Ton pseudo" class="flex-1 text-sm border border-pink-100 rounded-xl px-3 py-2.5" />
-            <label class="px-3 py-2.5 rounded-xl bg-purple-50 text-purple-600 text-xs font-bold cursor-pointer flex items-center gap-1.5">
-              <input type="file" id="avatar-file" accept="image/*" class="sr-only" /> Avatar
+    <div class="flex justify-center gap-2 p-1.5 bg-pink-50 rounded-2xl w-max mx-auto mb-10">
+      <button data-main="panels" class="maintab px-5 py-2.5 rounded-xl text-sm font-extrabold bg-white text-pink-600 shadow-sm">🎨 Créateur de Panneaux</button>
+      <button data-main="bio" class="maintab px-5 py-2.5 rounded-xl text-sm font-extrabold text-gray-500 hover:text-pink-500">📝 Bio Setup</button>
+    </div>
+
+    <div id="tab-panels">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-7">
+          <div class="flex gap-2 p-1.5 bg-gray-100 rounded-xl mb-6">
+            <button data-sub="fond" class="subtab flex-1 px-3 py-2 rounded-lg text-xs font-extrabold bg-white text-pink-600 shadow-sm">🎨 Fond</button>
+            <button data-sub="typo" class="subtab flex-1 px-3 py-2 rounded-lg text-xs font-extrabold text-gray-500">✍️ Typo</button>
+            <button data-sub="btns" class="subtab flex-1 px-3 py-2 rounded-lg text-xs font-extrabold text-gray-500">🏷️ Panneaux</button>
+          </div>
+
+          <div id="sub-fond" class="card-aesthetic p-5 space-y-5">
+            <div class="grid grid-cols-2 gap-2.5" id="presets">
+              <button data-preset="strawberry" class="preset px-3 py-3 rounded-xl border border-pink-200 text-xs font-extrabold bg-gradient-to-br from-pink-100 to-rose-50 text-pink-700">🍓 Strawberry Milk</button>
+              <button data-preset="lavender" class="preset px-3 py-3 rounded-xl border border-purple-200 text-xs font-extrabold bg-gradient-to-br from-purple-100 to-indigo-50 text-purple-700">🌙 Lavender Lofi</button>
+              <button data-preset="matcha" class="preset px-3 py-3 rounded-xl border border-green-200 text-xs font-extrabold bg-gradient-to-br from-green-50 to-emerald-50 text-emerald-700">🍵 Matcha Latte</button>
+              <button data-preset="studio" class="preset px-3 py-3 rounded-xl border border-gray-200 text-xs font-extrabold bg-white text-gray-700">🤍 Clean Studio</button>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <select id="style" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
+                <option value="mesh">Mesh gradient</option><option value="flat">Couleur unie</option>
+                <option value="glass">Glassmorphism</option><option value="washi">Washi tape</option>
+              </select>
+              <select id="pattern" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
+                <option value="none">Sans texture</option><option value="grid">Grid lofi</option><option value="dots">Polka dots</option>
+              </select>
+              <select id="shape" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
+                <option value="14">Coins arrondis</option><option value="50">Pilule</option><option value="4">Carrés subtils</option>
+              </select>
+              <label class="flex items-center gap-2 text-xs font-bold text-gray-500 px-1">
+                <input id="sparkles" type="checkbox" class="w-4 h-4 accent-pink-500" checked /> Étincelles
+              </label>
+            </div>
+            <div class="flex flex-wrap gap-4 items-end text-[10px] font-extrabold uppercase text-gray-400">
+              <label class="flex flex-col items-center gap-1.5">Fond<input type="color" id="c1" value="#fecdd3" class="swatch" /></label>
+              <label class="flex flex-col items-center gap-1.5">Dégradé<input type="color" id="c2" value="#fbcfe8" class="swatch" /></label>
+              <label class="flex flex-col items-center gap-1.5">Texte<input type="color" id="fg" value="#9d174d" class="swatch" /></label>
+              <label class="flex flex-col items-center gap-1.5">Bordure<input type="color" id="bord" value="#f9a8d4" class="swatch" /></label>
+            </div>
+            <div class="grid grid-cols-3 gap-4 text-xs font-bold text-gray-500">
+              <label class="flex flex-col gap-1">Hauteur <b id="hv">100</b>px<input type="range" id="hgt" min="70" max="140" value="100" class="accent-pink-500" /></label>
+              <label class="flex flex-col gap-1">Bordure <b id="bwv">1.5</b>px<input type="range" id="bw" min="0" max="4" step="0.5" value="1.5" class="accent-pink-500" /></label>
+              <label class="flex flex-col gap-1">Angle <b id="angv">135</b>°<input type="range" id="ang" min="0" max="360" value="135" class="accent-pink-500" /></label>
+            </div>
+          </div>
+
+          <div id="sub-typo" class="card-aesthetic p-5 space-y-5 hidden">
+            <div class="grid grid-cols-2 gap-3">
+              <select id="font" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
+                <option value="Nunito">Nunito (ronde)</option><option value="Fredoka">Fredoka (bulle)</option>
+                <option value="Jakarta">Plus Jakarta Sans</option><option value="Playfair">Playfair (chic)</option>
+                <option value="Grotesk">Space Grotesk (tech)</option>
+              </select>
+              <select id="teffect" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
+                <option value="soft">Ombre douce</option><option value="sticker">Sticker blanc</option>
+                <option value="retro">Retro shadow</option><option value="neon">Néon glow</option><option value="none">Net</option>
+              </select>
+            </div>
+            <div class="grid grid-cols-2 gap-4 text-xs font-bold text-gray-500">
+              <label class="flex flex-col gap-1">Taille <b id="fzv">24</b>px<input type="range" id="fz" min="16" max="34" value="24" class="accent-pink-500" /></label>
+              <label class="flex flex-col gap-1">Espacement <b id="lsv">0</b>px<input type="range" id="ls" min="0" max="6" step="0.5" value="0" class="accent-pink-500" /></label>
+            </div>
+            <label class="flex items-center gap-2 text-xs font-bold text-gray-500">
+              <input id="caps" type="checkbox" class="w-4 h-4 accent-pink-500" /> MAJUSCULES
             </label>
           </div>
-        </details>
 
-        <details open class="card-aesthetic p-5 group">
-          <summary class="font-extrabold text-gray-900 cursor-pointer list-none flex justify-between">1. Ambiance <span class="text-pink-400 group-open:rotate-180 transition-transform">▾</span></summary>
-          <div class="grid grid-cols-2 gap-2.5 mt-4" id="presets">
-            <button data-preset="strawberry" class="preset px-3 py-3 rounded-xl border border-pink-200 text-xs font-extrabold bg-gradient-to-br from-pink-100 to-rose-50 text-pink-700">🍓 Strawberry Milk</button>
-            <button data-preset="lavender" class="preset px-3 py-3 rounded-xl border border-purple-200 text-xs font-extrabold bg-gradient-to-br from-purple-100 to-indigo-50 text-purple-700">🌙 Lavender Lofi</button>
-            <button data-preset="matcha" class="preset px-3 py-3 rounded-xl border border-green-200 text-xs font-extrabold bg-gradient-to-br from-green-50 to-emerald-50 text-emerald-700">🍵 Matcha Latte</button>
-            <button data-preset="studio" class="preset px-3 py-3 rounded-xl border border-gray-200 text-xs font-extrabold bg-white text-gray-700">🤍 Clean Studio</button>
-          </div>
-        </details>
-
-        <details open class="card-aesthetic p-5 group">
-          <summary class="font-extrabold text-gray-900 cursor-pointer list-none flex justify-between">2. Fond & Forme <span class="text-pink-400 group-open:rotate-180 transition-transform">▾</span></summary>
-          <div class="grid grid-cols-2 gap-2.5 mt-4">
-            <select id="style" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
-              <option value="mesh">Mesh gradient</option><option value="glass">Glassmorphism</option>
-              <option value="washi">Washi tape</option><option value="flat">Couleur unie</option>
-            </select>
-            <select id="pattern" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
-              <option value="none">Sans texture</option><option value="grid">Grid lofi</option>
-              <option value="dots">Polka dots</option>
-            </select>
-            <select id="shape" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
-              <option value="14">Coins arrondis</option><option value="50">Pilule</option><option value="4">Carrés subtils</option>
-            </select>
-            <label class="flex items-center gap-2 text-xs font-bold text-gray-500 px-2">
-              <input id="sparkles" type="checkbox" class="w-4 h-4 accent-pink-500" checked /> Étincelles
+          <div id="sub-btns" class="card-aesthetic p-5 space-y-5 hidden">
+            <div class="flex gap-2">
+              <input id="channel-name" type="text" value="ta_chaine" placeholder="Ton pseudo" class="flex-1 text-sm border border-pink-100 rounded-xl px-3 py-2.5" />
+              <label class="px-3 py-2.5 rounded-xl bg-purple-50 text-purple-600 text-xs font-bold cursor-pointer flex items-center gap-1.5">
+                <input type="file" id="avatar-file" accept="image/*" class="sr-only" /> Avatar
+              </label>
+            </div>
+            <div id="panel-tags" class="flex flex-wrap gap-2"></div>
+            <div class="flex gap-2">
+              <input id="custom-txt" type="text" placeholder="Nom personnalisé…" class="flex-1 text-sm border border-pink-100 rounded-xl px-3 py-2.5" />
+              <button id="custom-add" class="px-4 py-2.5 rounded-xl bg-pink-500 text-white text-sm font-bold">+ Ajouter</button>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="flex gap-3 text-xs font-bold text-gray-500 items-center">
+                <label class="flex items-center gap-1.5"><input type="radio" name="iconpos" value="left" checked class="w-3.5 h-3.5 accent-pink-500" /> Gauche</label>
+                <label class="flex items-center gap-1.5"><input type="radio" name="iconpos" value="right" class="w-3.5 h-3.5 accent-pink-500" /> Droite</label>
+                <label class="flex items-center gap-1.5"><input type="radio" name="iconpos" value="top" class="w-3.5 h-3.5 accent-pink-500" /> Haut</label>
+                <label class="flex items-center gap-1.5"><input type="radio" name="iconpos" value="none" class="w-3.5 h-3.5 accent-pink-500" /> Non</label>
+              </div>
+              <label class="flex flex-col gap-1 text-xs font-bold text-gray-500">Taille icône <b id="iszv">44</b>px
+                <input type="range" id="isz" min="20" max="72" value="44" class="accent-pink-500" /></label>
+            </div>
+            <label class="flex flex-col gap-1 text-xs font-bold text-gray-500">
+              Logo / émote (PNG) <input type="file" id="logo" accept="image/*" class="text-xs file:mr-3 file:rounded-lg file:border-0 file:bg-pink-50 file:text-pink-600 file:px-3 file:py-1.5 file:font-bold" />
             </label>
           </div>
-          <div class="mt-4 flex flex-wrap gap-4 items-end text-[10px] font-extrabold uppercase text-gray-400">
-            <label class="flex flex-col items-center gap-1.5">Fond<input type="color" id="c1" value="#fecdd3" class="swatch" /></label>
-            <label class="flex flex-col items-center gap-1.5">Dégradé<input type="color" id="c2" value="#fbcfe8" class="swatch" /></label>
-            <label class="flex flex-col items-center gap-1.5">Texte<input type="color" id="fg" value="#9d174d" class="swatch" /></label>
-            <label class="flex flex-col items-center gap-1.5">Bordure<input type="color" id="bord" value="#f9a8d4" class="swatch" /></label>
-          </div>
-          <div class="mt-4 grid grid-cols-2 gap-x-5 gap-y-3 text-xs font-bold text-gray-500">
-            <label class="flex flex-col gap-1">Hauteur <span><b id="hv">100</b>px</span><input type="range" id="hgt" min="70" max="140" value="100" class="accent-pink-500" /></label>
-            <label class="flex flex-col gap-1">Bordure <span><b id="bwv">1.5</b>px</span><input type="range" id="bw" min="0" max="4" step="0.5" value="1.5" class="accent-pink-500" /></label>
-            <label class="flex flex-col gap-1">Angle dégradé <span><b id="angv">135</b>°</span><input type="range" id="ang" min="0" max="360" value="135" class="accent-pink-500" /></label>
-          </div>
-        </details>
+        </div>
 
-        <details open class="card-aesthetic p-5 group">
-          <summary class="font-extrabold text-gray-900 cursor-pointer list-none flex justify-between">3. Typographie <span class="text-pink-400 group-open:rotate-180 transition-transform">▾</span></summary>
-          <div class="grid grid-cols-2 gap-2.5 mt-4">
-            <select id="font" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
-              <option value="Nunito">Nunito (ronde)</option><option value="Fredoka">Fredoka (bulle)</option>
-              <option value="Jakarta">Plus Jakarta Sans</option><option value="Playfair">Playfair (luxe)</option>
-              <option value="Grotesk">Space Grotesk (tech)</option>
-            </select>
-            <select id="teffect" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
-              <option value="soft">Ombre douce</option><option value="sticker">Sticker (contour blanc)</option>
-              <option value="retro">Retro hard shadow</option><option value="neon">Néon glow</option>
-              <option value="none">Net (aucun)</option>
-            </select>
+        <div class="lg:col-span-5 lg:sticky lg:top-24">
+          <div class="card-aesthetic p-0 overflow-hidden">
+            <div class="bg-[#18181b] px-4 py-3 flex items-center gap-2">
+              <div id="prev-avatar" class="w-8 h-8 rounded-full bg-gradient-to-br from-pink-400 to-purple-400 overflow-hidden"></div>
+              <div>
+                <p id="prev-name" class="text-white text-xs font-bold">ta_chaine</p>
+                <p class="text-purple-300 text-[10px]">EN DIRECT · Aperçu panels</p>
+              </div>
+            </div>
+            <div class="bg-[#0e0e10] px-4 py-1 text-[10px] font-bold text-gray-400 flex gap-4 border-b border-white/5">
+              <span class="text-pink-400 border-b-2 border-pink-400 py-2">Accueil</span>
+              <span class="py-2">À propos</span><span class="py-2">Calendrier</span><span class="py-2">Vidéos</span>
+            </div>
+            <div id="preview" class="bg-[#18181b] p-5 grid grid-cols-3 gap-3"></div>
           </div>
-          <div class="mt-4 grid grid-cols-2 gap-x-5 gap-y-3 text-xs font-bold text-gray-500">
-            <label class="flex flex-col gap-1">Taille <span><b id="fzv">24</b>px</span><input type="range" id="fz" min="16" max="34" value="24" class="accent-pink-500" /></label>
-            <label class="flex flex-col gap-1">Espacement <span><b id="lsv">0</b>px</span><input type="range" id="ls" min="0" max="6" step="0.5" value="0" class="accent-pink-500" /></label>
-          </div>
-          <label class="mt-3 flex items-center gap-2 text-xs font-bold text-gray-500">
-            <input id="caps" type="checkbox" class="w-4 h-4 accent-pink-500" /> MAJUSCULES
-          </label>
-        </details>
+          <button id="dl" class="btn-cta mt-5 w-full px-6 py-4 text-base font-extrabold">Télécharger mon pack (.zip)</button>
+          <p class="mt-3 text-xs text-gray-400 text-center">Astuce : clique sur un panneau pour le copier directement.</p>
+        </div>
+      </div>
+    </div>
 
-        <details open class="card-aesthetic p-5 group">
-          <summary class="font-extrabold text-gray-900 cursor-pointer list-none flex justify-between">4. Panneaux & Icône <span class="text-pink-400 group-open:rotate-180 transition-transform">▾</span></summary>
-          <div id="panel-tags" class="mt-4 flex flex-wrap gap-2"></div>
-          <div class="mt-3 flex gap-2">
-            <input id="custom-txt" type="text" placeholder="Nom personnalisé…" class="flex-1 text-sm border border-pink-100 rounded-xl px-3 py-2.5" />
-            <button id="custom-add" class="px-4 py-2.5 rounded-xl bg-pink-500 text-white text-sm font-bold">+ Ajouter un panneau</button>
-          </div>
-          <div class="mt-4 grid grid-cols-3 gap-2 text-xs font-bold text-gray-500">
-            <label class="flex items-center gap-1.5"><input type="radio" name="iconpos" value="left" checked class="w-3.5 h-3.5 accent-pink-500" /> Gauche</label>
-            <label class="flex items-center gap-1.5"><input type="radio" name="iconpos" value="right" class="w-3.5 h-3.5 accent-pink-500" /> Droite</label>
-            <label class="flex items-center gap-1.5"><input type="radio" name="iconpos" value="top" class="w-3.5 h-3.5 accent-pink-500" /> Haut</label>
-            <label class="flex items-center gap-1.5"><input type="radio" name="iconpos" value="none" class="w-3.5 h-3.5 accent-pink-500" /> Aucune</label>
-          </div>
-          <label class="mt-3 flex flex-col gap-1 text-xs font-bold text-gray-500">Taille icône <span><b id="iszv">44</b>px</span>
-            <input type="range" id="isz" min="20" max="72" value="44" class="accent-pink-500" /></label>
-          <label class="mt-3 flex flex-col gap-1 text-xs font-bold text-gray-500">
-            Logo / émote (PNG) <input type="file" id="logo" accept="image/*" class="text-xs file:mr-3 file:rounded-lg file:border-0 file:bg-pink-50 file:text-pink-600 file:px-3 file:py-1.5 file:font-bold" />
-          </label>
-        </details>
-
-        <details class="card-aesthetic p-5 group">
-          <summary class="font-extrabold text-gray-900 cursor-pointer list-none flex justify-between">5. Générateur de bio setup <span class="text-pink-400 group-open:rotate-180 transition-transform">▾</span></summary>
-          <div id="bio-list" class="space-y-2 max-h-52 overflow-y-auto mt-4">
+    <div id="tab-bio" class="hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div class="card-aesthetic p-6">
+          <p class="font-extrabold text-gray-900 mb-4">Sélection du matériel</p>
+          <div class="space-y-2 max-h-72 overflow-y-auto">
             {bioProducts.map((g) => (
               <div>
                 <p class="text-xs font-extrabold uppercase tracking-widest text-pink-500 mb-1">{g.cat}</p>
@@ -153,30 +177,12 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
             <input id="bio-custom" type="text" placeholder="Ton matériel (ex. Sony ZV-E10)" class="flex-1 text-xs border border-pink-100 rounded-xl px-3 py-2" />
             <button id="bio-add" class="px-3 py-2 rounded-xl bg-pink-500 text-white text-xs font-bold">+</button>
           </div>
-          <textarea id="bio-out" readonly rows="5" class="mt-4 w-full text-xs font-mono bg-gray-50 border border-pink-100 rounded-xl p-3" placeholder="Coche les produits…"></textarea>
-          <button id="bio-copy" class="btn-cta mt-3 px-5 py-2.5 text-sm">Copier le code</button>
-        </details>
-      </div>
-
-      <div class="lg:sticky lg:top-28">
-        <div class="card-aesthetic p-0 overflow-hidden">
-          <div class="bg-[#18181b] px-4 py-3 flex items-center gap-2">
-            <div id="prev-avatar" class="w-8 h-8 rounded-full bg-gradient-to-br from-pink-400 to-purple-400 overflow-hidden"></div>
-            <div>
-              <p id="prev-name" class="text-white text-xs font-bold">ta_chaine</p>
-              <p class="text-purple-300 text-[10px]">EN DIRECT · Aperçu panels</p>
-            </div>
-          </div>
-          <div class="bg-[#0e0e10] px-4 py-1 text-[10px] font-bold text-gray-400 flex gap-4 border-b border-white/5">
-            <span class="text-pink-400 border-b-2 border-pink-400 py-2">Accueil</span>
-            <span class="py-2">À propos</span>
-            <span class="py-2">Calendrier</span>
-            <span class="py-2">Vidéos</span>
-          </div>
-          <div id="preview" class="bg-[#18181b] p-5 grid grid-cols-3 gap-3"></div>
         </div>
-        <button id="dl" class="btn-cta mt-5 w-full px-6 py-4 text-base font-extrabold">Télécharger mon pack (.zip)</button>
-        <p class="mt-3 text-xs text-gray-400 text-center">PNG 320 px · Clique un panneau pour le copier directement.</p>
+        <div class="card-aesthetic p-6 lg:sticky lg:top-24">
+          <p class="font-extrabold text-gray-900 mb-4">Ta bio, prête à coller</p>
+          <textarea id="bio-out" readonly rows="12" class="w-full text-xs font-mono bg-gray-50 border border-pink-100 rounded-xl p-3" placeholder="Coche les produits à gauche…"></textarea>
+          <button id="bio-copy" class="btn-cta mt-3 w-full px-5 py-3 text-sm font-extrabold">Copier le code</button>
+        </div>
       </div>
     </div>
   </div>
@@ -200,11 +206,24 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
       Grotesk:"'Space Grotesk', sans-serif" };
     const FWT = { Nunito:'800', Fredoka:'600', Jakarta:'700', Playfair:'700', Grotesk:'700' };
     const TAG = 'missstrm-21';
+    const PANELS = ['À Propos','Règles','Planning','Setup','Discord'];
     let LOGO = null;
     const $ = (s) => document.querySelector(s);
-    const PANELS = ['À Propos','Règles','Planning','Setup','Discord'];
     const list = () => PANELS.slice();
     const opt = (id) => document.getElementById(id).value;
+
+    document.querySelectorAll('.maintab').forEach(b=>b.addEventListener('click',()=>{
+      document.querySelectorAll('.maintab').forEach(x=>{x.classList.remove('bg-white','text-pink-600','shadow-sm');x.classList.add('text-gray-500');});
+      b.classList.add('bg-white','text-pink-600','shadow-sm');b.classList.remove('text-gray-500');
+      document.getElementById('tab-panels').classList.toggle('hidden',b.dataset.main!=='panels');
+      document.getElementById('tab-bio').classList.toggle('hidden',b.dataset.main!=='bio');
+    }));
+    document.querySelectorAll('.subtab').forEach(b=>b.addEventListener('click',()=>{
+      document.querySelectorAll('.subtab').forEach(x=>{x.classList.remove('bg-white','text-pink-600','shadow-sm');x.classList.add('text-gray-500');});
+      b.classList.add('bg-white','text-pink-600','shadow-sm');b.classList.remove('text-gray-500');
+      ['fond','typo','btns'].forEach(k=>document.getElementById('sub-'+k).classList.toggle('hidden',b.dataset.sub!==k));
+    }));
+
     function renderTags(){
       const box=document.getElementById('panel-tags');box.innerHTML='';
       PANELS.forEach((n,i)=>{
@@ -219,7 +238,6 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
         t.appendChild(inp);t.appendChild(x);box.appendChild(t);
       });
     }
-
     function sparkle(ctx,x,y,r){ctx.beginPath();for(let i=0;i<8;i++){const a=i*Math.PI/4,l=i%2?r*0.35:r;ctx.lineTo(x+Math.cos(a)*l,y+Math.sin(a)*l);}ctx.closePath();ctx.fill();}
     function paintPattern(ctx,type,W,H){
       ctx.save();ctx.globalAlpha=0.12;ctx.strokeStyle='#fff';ctx.fillStyle='#fff';
@@ -262,22 +280,21 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
       const txt = document.getElementById('caps').checked ? name.toUpperCase() : name;
       const pos = document.querySelector('input[name=iconpos]:checked').value;
       const isz = +opt('isz');
-      const icon = LOGO;
       let tx = 160, ty = H/2+1, ix = null, iy = null;
-      if(pos==='left'&&icon){ix=14;iy=(H-isz)/2;tx=180+(isz-44)*0.6;}
-      if(pos==='right'&&icon){ix=306-isz;iy=(H-isz)/2;tx=140-(isz-44)*0.6;}
-      if(pos==='top'&&icon){ix=160-isz/2;iy=10;ty=H-14-fz/2;}
+      if(pos==='left'&&LOGO){ix=14;iy=(H-isz)/2;tx=180+(isz-44)*0.6;}
+      if(pos==='right'&&LOGO){ix=306-isz;iy=(H-isz)/2;tx=140-(isz-44)*0.6;}
+      if(pos==='top'&&LOGO){ix=160-isz/2;iy=10;ty=H-14-fz/2;}
       ctx.font=`${FWT[opt('font')]} ${fz}px ${FONTS[opt('font')]}`;
       try{ctx.letterSpacing=ls+'px';}catch(e){}
       ctx.textAlign='center';ctx.textBaseline='middle';
       if(eff==='soft'){ctx.shadowColor='rgba(0,0,0,0.12)';ctx.shadowBlur=4;ctx.shadowOffsetY=1;}
       if(eff==='retro'){ctx.shadowColor=fg;ctx.globalAlpha=0.3;ctx.shadowBlur=0;ctx.shadowOffsetX=3;ctx.shadowOffsetY=3;}
       if(eff==='neon'){ctx.shadowColor=fg;ctx.shadowBlur=14;}
-      ctx.fillStyle=eff==='retro'?fg:fg;
+      ctx.fillStyle=fg;
       ctx.fillText(txt,tx,ty);
       ctx.shadowColor='transparent';ctx.globalAlpha=1;
       if(eff==='sticker'){ctx.strokeStyle='#fff';ctx.lineWidth=Math.max(4,fz*0.22);ctx.lineJoin='round';ctx.strokeText(txt,tx,ty);ctx.fillStyle=fg;ctx.fillText(txt,tx,ty);}
-      if(icon&&pos!=='none'){ctx.drawImage(icon,ix,iy,isz,isz);}
+      if(LOGO&&pos!=='none'){ctx.drawImage(LOGO,ix,iy,isz,isz);}
       return c;
     }
 
@@ -325,6 +342,16 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
       const t=document.getElementById('custom-txt').value.trim();if(!t)return;
       PANELS.push(t);document.getElementById('custom-txt').value='';renderTags();render();
     });
+    document.getElementById('channel-name').addEventListener('input',(e)=>{
+      document.getElementById('prev-name').textContent=e.target.value||'ta_chaine';
+    });
+    document.getElementById('avatar-file').addEventListener('change',(e)=>{
+      const f=e.target.files[0];if(!f)return;
+      const i=new Image();i.onload=()=>{
+        const a=document.getElementById('prev-avatar');a.innerHTML='';
+        i.className='w-full h-full object-cover';a.appendChild(i);
+      };i.src=URL.createObjectURL(f);
+    });
     document.getElementById('bio-add').addEventListener('click',()=>{
       const cat=document.getElementById('bio-cat').value,nom=document.getElementById('bio-custom').value.trim();
       if(!nom)return;
@@ -347,16 +374,6 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
     document.getElementById('bio-copy').addEventListener('click',(e)=>{
       navigator.clipboard.writeText(document.getElementById('bio-out').value);
       e.target.textContent='Copié !';setTimeout(()=>e.target.textContent='Copier le code',1500);
-    });
-    document.getElementById('channel-name').addEventListener('input',(e)=>{
-      document.getElementById('prev-name').textContent=e.target.value||'ta_chaine';
-    });
-    document.getElementById('avatar-file').addEventListener('change',(e)=>{
-      const f=e.target.files[0];if(!f)return;
-      const i=new Image();i.onload=()=>{
-        const a=document.getElementById('prev-avatar');a.innerHTML='';
-        i.className='w-full h-full object-cover';a.appendChild(i);
-      };i.src=URL.createObjectURL(f);
     });
     ['c1','c2','fg','bord'].forEach(id=>{
       const el=document.getElementById(id);
