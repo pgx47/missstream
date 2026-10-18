@@ -2,30 +2,39 @@
 
 Page : `/outils/panneaux-twitch/` — `src/pages/outils/panneaux-twitch.astro`
 
-Outil 100 % client-side (zéro backend) : génère des panneaux de description Twitch
-et une bio "mon setup" avec liens affiliés, directement dans le navigateur.
+Outil 100 % client-side (zéro backend). Point d'entrée du hub `/outils/`.
 
-## Fonctionnement
+## Moteur Canvas (v3)
 
-### 1. Panneaux (canvas → PNG → ZIP)
-- Rendu sur `<canvas>` à la taille exacte Twitch : **320 × 100 px** (gérant `devicePixelRatio` pour la netteté Retina).
-- 4 palettes : Pink Cozy, Lavande Lilas, Menthe Douce, Soft Minimal.
-- Panneaux prédéfinis (À Propos, Règles, Planning, Discord, Setup, Dons, Réseaux, Commandes) + champs custom.
-- Icônes vectorielles dessinées en canvas (cœur, manette, bulle, micro) teintées à la couleur du texte.
-- Export : `JSZip` via CDN → `pack .zip` de PNG nommés `01-a-propos.png`, etc.
+- Largeur fixe Twitch **320 px**, hauteur **réglable 70–140 px**.
+- Netteté Retina via `devicePixelRatio`.
+- Styles de fond : mesh gradient pastel, glassmorphism, washi tape, couleur unie.
+- Formes : coins arrondis, pilule, carrés subtils.
+- Décorations : sparkles vectorielles (toggle), ombre douce sous le texte.
 
-### 2. Générateur de bio setup
-- Checkboxes de produits (micros, casques, accessoires, lumière).
-- Génère du Markdown prêt à coller dans les panneaux Twitch :
+## Personnalisation
+
+- **Couleurs libres** : 4 `<input type="color">` (fond, dégradé, texte, bordure) — les presets remplissent les pickers.
+- **Sliders** : hauteur, épaisseur de bordure (0–4 px), taille de texte (16–34 px), letter-spacing (0–6 px).
+- **Upload** : logo/émote PNG dessiné à gauche du texte.
+- **Polices** : Nunito, Fredoka, Plus Jakarta Sans, Playfair, Space Grotesk.
+- **Option** : tout en majuscules.
+- **Presets 1 clic** : Strawberry Milk, Lavender Lofi, Matcha Latte, Clean Studio.
+
+## Préview & Export
+
+- Aperçu **mode Twitch** (fond `#18181b`, header fake chaîne, grille 3 colonnes).
+- Clic sur un panneau = copie PNG directe (`navigator.clipboard.write` / ClipboardItem).
+- Export `.zip` global via JSZip CDN — PNG 320×H, nommés `01-a-propos.png`…
+
+## Générateur de bio setup
+
+- Checkboxes de produits (micros, casques, accessoires, lumière) → Markdown :
   `- **Micro :** [Fifine AM8 blanc](https://www.amazon.fr/dp/ASIN?tag=missstrm-21)`
-- Liens affiliés construits via `amazonUrl()` (tag `missstrm-21`, `rel="nofollow sponsored"`).
-- Bouton "Copier le code" via `navigator.clipboard`.
+- **Ajout libre** : catégorie + nom du produit → lien recherche Amazon tagué
+  `https://www.amazon.fr/s?k={nom}&tag=missstrm-21`
+- Copie en un clic via `navigator.clipboard`.
 
 ## Stack
-- Astro statique, Tailwind v4 (`card-aesthetic`, `badge-guide`, `btn-cta`).
-- JS vanilla + Canvas API + `navigator.clipboard`.
-- JSZip 3.10.1 chargé via CDN `jsdelivr` — aucune dépendance npm serveur.
 
-## SEO
-- Title : "Générateur de Panneaux Twitch Gratuits & Aesthetic Pastel | Miss Stream"
-- Cible les requêtes "panneaux twitch gratuits / aesthetic / pastel" — fort potentiel Pinterest/Discord.
+Astro statique, Tailwind v4, JS vanilla + Canvas API, JSZip 3.10.1 (CDN jsdelivr). Aucune dépendance serveur.
