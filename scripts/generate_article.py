@@ -341,17 +341,7 @@ def enrich_products(products: list[dict]) -> None:
                 p["stars"] = hit["stars"]
             if hit.get("total_reviews"):
                 p["avis"] = hit["total_reviews"]
-            if asin and not p.get("avisClient"):
-                rv = requests.get(
-                    f"https://api.scraperapi.com/structured/amazon/review?api_key={SCRAPER_API_KEY}&asin={asin}&country=fr",
-                    timeout=60,
-                )
-                for rev in rv.json().get("reviews", []):
-                    txt = re.sub(r"\s+", " ", rev.get("review") or "").strip()
-                    if rev.get("rating", 0) >= 4 and len(txt) > 60:
-                        cut = txt[:200].rsplit(" ", 1)[0]
-                        p["avisClient"] = cut + "…" if len(txt) > 200 else txt
-                        break
+            # reviews endpoint hors plan : désactivé
             if asin and hit.get("image") and not p.get("image"):
                 out = PRODUCTS_IMG_DIR / f"{asin}.webp"
                 if not out.exists():
