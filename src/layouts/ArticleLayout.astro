@@ -131,6 +131,18 @@ const breadcrumbs = [
 
     {shopTheLook.length > 0 && <ShopTheLook items={shopTheLook} image={image} />}
 
+    <div class="my-8 p-5 rounded-2xl bg-amber-50/60 border border-amber-200 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3.5">
+        <svg class="w-7 h-7 text-amber-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/></svg>
+        <div>
+          <p class="text-xs uppercase tracking-widest font-extrabold text-amber-700">Budget serré ?</p>
+          <p class="text-sm font-bold text-gray-900">Ce modèle dépasse ton budget ?</p>
+          <p class="text-xs text-gray-600">Consulte notre sélection d'alternatives accessibles qui font le même travail.</p>
+        </div>
+      </div>
+      <a href="/dupes/" class="shrink-0 px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-xs shadow-sm transition-colors">Voir les dupes</a>
+    </div>
+
     <div class="my-10 p-6 rounded-2xl bg-gradient-to-r from-pink-50 to-purple-50 border border-pink-100 flex flex-col sm:flex-row items-center justify-between gap-6">
       <div class="text-left">
         <p class="text-xs uppercase tracking-widest font-bold text-pink-600 mb-1">Tu débutes ?</p>

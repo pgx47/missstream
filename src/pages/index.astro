@@ -53,6 +53,10 @@ const dateFmt = (d: Date) =>
               >Bons plans du jour</a
             >
           </div>
+          <p class="mt-4 text-xs text-gray-500">
+            Tu ne sais pas quoi choisir ?
+            <a href="/quiz/" class="font-extrabold text-pink-600 hover:underline">Fais le test en 3 clics →</a>
+          </p>
         </div>
 
         <div class="relative lg:h-[500px] flex justify-center lg:justify-end z-10">
@@ -102,7 +106,7 @@ const dateFmt = (d: Date) =>
       <span class="badge-guide mb-2 inline-block">Outils gratuits</span>
       <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Tout pour créer ton espace de stream</h2>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       <a href="/configurateur/" class="card-aesthetic p-6 relative group overflow-hidden block">
         <span class="absolute top-4 right-4 bg-pink-500 text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full">Top conversion</span>
         <div class="w-12 h-12 rounded-2xl bg-pink-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
@@ -127,6 +131,15 @@ const dateFmt = (d: Date) =>
         <h3 class="text-lg font-extrabold text-gray-900 mb-2 group-hover:text-rose-500 transition-colors">Checklist Avant-Live</h3>
         <p class="text-sm text-gray-600 mb-4 leading-relaxed">Huit étapes indispensables mémorisées dans ton navigateur pour lancer ton stream sans stress.</p>
         <span class="text-sm font-bold text-rose-500 inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">Vérifier mon setup →</span>
+      </a>
+      <a href="/dupes/" class="card-aesthetic p-6 relative group overflow-hidden block">
+        <span class="absolute top-4 right-4 bg-amber-500 text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full">Bons plans</span>
+        <div class="w-12 h-12 rounded-2xl bg-amber-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z"/><path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z"/></svg>
+        </div>
+        <h3 class="text-lg font-extrabold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors">Les Meilleurs Dupes</h3>
+        <p class="text-sm text-gray-600 mb-4 leading-relaxed">Le look et les perfs du haut de gamme (Shure, Logitech, Elgato) sans le prix fort.</p>
+        <span class="text-sm font-bold text-amber-600 inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">Voir les alternatives →</span>
       </a>
     </div>
   </section>
