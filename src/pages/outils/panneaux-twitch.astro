@@ -4,21 +4,21 @@ import { amazonUrl } from '../../site.config';
 
 const bioProducts = [
   { cat: 'Micro', items: [
-    { nom: 'Fifine AM8 blanc', url: amazonUrl({ asin: 'B0C74G9RLH' }) },
-    { nom: 'Shure MV7 blanc', url: amazonUrl({ asin: 'B0CTJ6GQGZ' }) },
-    { nom: 'Razer Seiren Mini Quartz', url: amazonUrl({ asin: 'B0CT6G556J' }) },
+    { nom: 'Fifine AM8 blanc', url: amazonUrl({ asin: 'B0C74G9RLH' }), img: '/images/products/B0C74G9RLH.webp' },
+    { nom: 'Shure MV7 blanc', url: amazonUrl({ asin: 'B0CTJ6GQGZ' }), img: '/images/products/B0CTJ6GQGZ.webp' },
+    { nom: 'Razer Seiren Mini Quartz', url: amazonUrl({ asin: 'B0CT6G556J' }), img: '/images/products/B0CT6G556J.webp' },
   ]},
   { cat: 'Casque', items: [
-    { nom: 'HyperX Cloud Stinger 2 blanc', url: amazonUrl({ asin: 'B0BCFKG49M' }) },
-    { nom: 'Razer Kraken Kitty V2 Quartz', url: amazonUrl({ asin: 'B0CCF7M8SG' }) },
+    { nom: 'HyperX Cloud Stinger 2 blanc', url: amazonUrl({ asin: 'B0BCFKG49M' }), img: '/images/products/B0BCFKG49M.webp' },
+    { nom: 'Razer Kraken Kitty V2 Quartz', url: amazonUrl({ asin: 'B0CCF7M8SG' }), img: '/images/products/B0CCF7M8SG.webp' },
   ]},
   { cat: 'Accessoires', items: [
-    { nom: 'Elgato Stream Deck Neo', url: amazonUrl({ asin: 'B0CVY4566H' }) },
-    { nom: 'Tapis XXL pastel', url: amazonUrl({ asin: 'B0H6M26Z8C' }) },
+    { nom: 'Elgato Stream Deck Neo', url: amazonUrl({ asin: 'B0CVY4566H' }), img: '/images/products/B0CVY4566H.webp' },
+    { nom: 'Tapis XXL pastel', url: amazonUrl({ asin: 'B0H6M26Z8C' }), img: '/images/products/B0H6M26Z8C.webp' },
   ]},
   { cat: 'Lumière', items: [
-    { nom: 'Logitech Litra Glow', url: amazonUrl({ asin: 'B0D2XMLRL3' }) },
-    { nom: 'Elgato Key Light Mini', url: amazonUrl({ asin: 'B07L755X9G' }) },
+    { nom: 'Logitech Litra Glow', url: amazonUrl({ asin: 'B0D2XMLRL3' }), img: '/images/products/B0D2XMLRL3.webp' },
+    { nom: 'Elgato Key Light Mini', url: amazonUrl({ asin: 'B07L755X9G' }), img: '/images/products/B07L755X9G.webp' },
   ]},
 ];
 ---
@@ -186,33 +186,22 @@ const bioProducts = [
       </div>
     </div>
 
-    <details open class="card-aesthetic p-6 mt-12 max-w-3xl mx-auto">
-      <summary class="font-extrabold text-gray-900 cursor-pointer list-none flex justify-between">Comment installer tes panneaux sur Twitch ? <span class="text-pink-400">▾</span></summary>
-      <ol class="mt-4 space-y-3 text-sm text-gray-600 leading-relaxed list-decimal list-inside">
-        <li>Sur ta chaîne, ouvre l'onglet <b>Discussion</b> et active <b>« Éditer les panneaux »</b>.</li>
-        <li>Clique sur <b>+</b> → <b>« Ajouter un panneau d'image »</b> et uploade le PNG 320 px généré.</li>
-        <li>Colle ton lien (Discord, setup) dans <b>« Lien de l'image »</b>, puis désactive le mode édition.</li>
-      </ol>
-    </details>
 
     <div id="tab-bio" class="hidden">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
         <div class="card-aesthetic p-6">
           <p class="font-extrabold text-gray-900 mb-4">Sélection du matériel</p>
-          <div class="space-y-2 max-h-72 overflow-y-auto">
-            {bioProducts.map((g) => (
-              <div>
-                <p class="text-xs font-extrabold uppercase tracking-widest text-pink-500 mb-1">{g.cat}</p>
-                {g.items.map((it) => (
-                  <label class="flex items-center gap-2 text-sm text-gray-700 py-0.5">
-                    <input type="checkbox" class="bio-it w-4 h-4 accent-pink-500" data-cat={g.cat} data-nom={it.nom} data-url={it.url} /> {it.nom}
-                  </label>
-                ))}
-              </div>
-            ))}
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-80 overflow-y-auto pr-1">
+            {bioProducts.flatMap((g) => g.items.map((it) => (
+              <label class="flex items-center gap-2.5 p-2 rounded-xl border border-pink-50 bg-white hover:border-pink-200 cursor-pointer transition-colors">
+                <input type="checkbox" class="bio-it w-4 h-4 accent-pink-500 shrink-0" data-cat={g.cat} data-nom={it.nom} data-url={it.url} />
+                <img src={it.img} alt={it.nom} class="w-10 h-10 object-contain bg-[#FAF7F9] rounded-lg p-1 shrink-0" loading="lazy" />
+                <span class="text-xs font-bold text-gray-700 leading-tight"><span class="text-pink-400 font-extrabold">[{g.cat}]</span> {it.nom}</span>
+              </label>
+            )))}
           </div>
-          <div class="mt-4 flex gap-2">
-            <select id="bio-cat" class="text-xs border border-pink-100 rounded-xl px-2 py-2 w-28">
+          <div class="mt-4 flex gap-2 bg-pink-50 border border-dashed border-pink-200 rounded-xl p-3">
+            <select id="bio-cat" class="text-xs border border-pink-100 rounded-xl px-2 py-2 w-28 bg-white">
               <option>Micro</option><option>Casque</option><option>Caméra</option><option>Clavier</option>
               <option>Souris</option><option>Écran</option><option>Éclairage</option><option>Bureau</option><option>Accessoire</option>
             </select>
@@ -220,12 +209,27 @@ const bioProducts = [
             <button id="bio-add" class="px-3 py-2 rounded-xl bg-pink-500 text-white text-xs font-bold">+</button>
           </div>
         </div>
-        <div class="card-aesthetic p-6 lg:sticky lg:top-24">
+        <div class="lg:sticky lg:top-24">
           <p class="font-extrabold text-gray-900 mb-4">Ta bio, prête à coller</p>
-          <textarea id="bio-out" readonly rows="12" class="w-full text-xs font-mono bg-gray-50 border border-pink-100 rounded-xl p-3" placeholder="Coche les produits à gauche…"></textarea>
-          <button id="bio-copy" class="btn-cta mt-3 w-full px-5 py-3 text-sm font-extrabold">Copier le code</button>
+          <div class="bg-[#18181b] rounded-xl overflow-hidden shadow-lg">
+            <div class="bg-[#0e0e10] px-4 py-2.5 border-b border-[#2d2d31] text-[#bf94ff] text-xs font-bold uppercase tracking-wider">Éditeur de panneau — Description</div>
+            <textarea id="bio-out" readonly rows="12" class="w-full text-sm font-mono bg-transparent text-gray-300 p-4 h-64 focus:outline-none resize-none" placeholder="Coche les produits à gauche…"></textarea>
+            <div class="px-4 py-3 border-t border-[#2d2d31] flex justify-end">
+              <button id="bio-copy" class="px-5 py-2 rounded-lg bg-[#9146FF] hover:bg-[#a970ff] text-white text-xs font-extrabold transition-colors">Copier le code</button>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+    <div class="max-w-3xl mx-auto">
+<details open class="card-aesthetic p-6 mt-12 max-w-3xl mx-auto">
+      <summary class="font-extrabold text-gray-900 cursor-pointer list-none flex justify-between">Comment installer tes panneaux sur Twitch ? <span class="text-pink-400">▾</span></summary>
+      <ol class="mt-4 space-y-3 text-sm text-gray-600 leading-relaxed list-decimal list-inside">
+        <li>Sur ta chaîne, ouvre l'onglet <b>Discussion</b> et active <b>« Éditer les panneaux »</b>.</li>
+        <li>Clique sur <b>+</b> → <b>« Ajouter un panneau d'image »</b> et uploade le PNG 320 px généré.</li>
+        <li>Colle ton lien (Discord, setup) dans <b>« Lien de l'image »</b>, puis désactive le mode édition.</li>
+      </ol>
+    </details>
     </div>
   </div>
 
