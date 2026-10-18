@@ -114,6 +114,7 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
           </div>
           <div class="mt-4 grid grid-cols-3 gap-2 text-xs font-bold text-gray-500">
             <label class="flex items-center gap-1.5"><input type="radio" name="iconpos" value="left" checked class="w-3.5 h-3.5 accent-pink-500" /> Gauche</label>
+            <label class="flex items-center gap-1.5"><input type="radio" name="iconpos" value="right" class="w-3.5 h-3.5 accent-pink-500" /> Droite</label>
             <label class="flex items-center gap-1.5"><input type="radio" name="iconpos" value="top" class="w-3.5 h-3.5 accent-pink-500" /> Haut</label>
             <label class="flex items-center gap-1.5"><input type="radio" name="iconpos" value="none" class="w-3.5 h-3.5 accent-pink-500" /> Aucune</label>
           </div>
@@ -241,6 +242,7 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
       const icon = LOGO;
       let tx = 160, ty = H/2+1, ix = null, iy = null;
       if(pos==='left'&&icon){ix=14;iy=(H-isz)/2;tx=180+(isz-44)*0.6;}
+      if(pos==='right'&&icon){ix=306-isz;iy=(H-isz)/2;tx=140-(isz-44)*0.6;}
       if(pos==='top'&&icon){ix=160-isz/2;iy=10;ty=H-14-fz/2;}
       ctx.font=`${FWT[opt('font')]} ${fz}px ${FONTS[opt('font')]}`;
       try{ctx.letterSpacing=ls+'px';}catch(e){}
