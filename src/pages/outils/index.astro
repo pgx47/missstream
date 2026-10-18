@@ -1,34 +1,26 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const ic: Record<string, string> = {
-  palette: '<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-.53.72L12 20.25l-9.22-2.84a.75.75 0 01-.53-.72V5.31a.75.75 0 011.28-.53l4.72 4.72m7.5 0L12 6.75m3.75 3.75v6"/><circle cx="12" cy="14" r="1.2" fill="currentColor"/></svg>',
-  sparkles: '<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/></svg>',
-  wand: '<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42"/></svg>',
-  tag: '<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z"/><circle cx="6" cy="6" r="1" fill="currentColor"/></svg>',
-  bolt: '<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>',
-  clip: '<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0118 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375m-6.375 0a2.25 2.25 0 100 4.5h6.375a2.25 2.25 0 100-4.5m-6.375 0V6.375"/></svg>',
-};
 const sections = [
   {
     titre: 'Graphisme & Twitch',
     outils: [
-      { href: '/outils/panneaux-twitch/', titre: 'Générateur de panneaux Twitch', desc: 'Bannières 320×100 pastel + bio setup en 3 clics.', badge: 'POPULAIRE', icon: 'palette', bg: 'bg-gradient-to-br from-pink-100 to-rose-100 text-[#DB2777]' },
-      { href: '/lookbook/', titre: 'Lookbook d\'inspiration', desc: 'Copie les ambiances de bureau pastel en un clic.', badge: '', icon: 'sparkles', bg: 'bg-gradient-to-br from-purple-100 to-indigo-100 text-[#9333EA]' },
+      { href: '/outils/panneaux-twitch/', image: '/images/outils/panneaux-twitch.webp', titre: 'Générateur de panneaux Twitch', desc: 'Bannières 320×100 pastel, textures, effets texte + bio setup.', badge: 'POPULAIRE' },
+      { href: '/lookbook/', image: '/images/outils/lookbook.webp', titre: 'Lookbook d\'inspiration', desc: 'Copie les ambiances de bureau pastel en un clic.', badge: '' },
     ],
   },
   {
     titre: 'Matériel & Budget',
     outils: [
-      { href: '/configurateur/', titre: 'Configurateur de setup', desc: 'Pack complet adapté à ton budget (150/400/900 €).', badge: 'TOP CONVERSION', icon: 'wand', bg: 'bg-gradient-to-br from-rose-100 to-pink-100 text-[#E11D48]' },
-      { href: '/dupes/', titre: 'Dupes & alternatives', desc: 'Les versions abordables du matériel haut de gamme.', badge: '', icon: 'tag', bg: 'bg-gradient-to-br from-amber-100 to-yellow-100 text-[#D97706]' },
-      { href: '/quiz/', titre: 'Quiz setup idéal', desc: '3 questions pour trouver le matériel qu\'il te faut.', badge: '', icon: 'bolt', bg: 'bg-gradient-to-br from-violet-100 to-purple-100 text-[#7C3AED]' },
+      { href: '/configurateur/', image: '/images/outils/configurateur.webp', titre: 'Configurateur de setup', desc: 'Pack complet adapté à ton budget (150/400/900 €).', badge: 'TOP CONVERSION' },
+      { href: '/dupes/', image: '/images/outils/dupes.webp', titre: 'Dupes & alternatives', desc: 'Les versions abordables du matériel haut de gamme.', badge: '' },
+      { href: '/quiz/', image: '/images/outils/quiz.webp', titre: 'Quiz setup idéal', desc: '3 questions pour trouver le matériel qu\'il te faut.', badge: '' },
     ],
   },
   {
     titre: 'Organisation du stream',
     outils: [
-      { href: '/checklist/', titre: 'Checklist avant-live', desc: '8 étapes pour lancer ton stream sans couac.', badge: 'INDISPENSABLE', icon: 'clip', bg: 'bg-gradient-to-br from-emerald-100 to-teal-100 text-[#059669]' },
+      { href: '/checklist/', image: '/images/outils/checklist.webp', titre: 'Checklist avant-live', desc: '8 étapes pour lancer ton stream sans couac.', badge: 'INDISPENSABLE' },
     ],
   },
 ];
@@ -49,16 +41,22 @@ const sections = [
         <h2 class="text-xs font-extrabold uppercase tracking-widest text-gray-400 mb-4">{sec.titre}</h2>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {sec.outils.map((o) => (
-            <a href={o.href} class="card-aesthetic p-6 block group relative hover:-translate-y-1 hover:shadow-md transition-all duration-300">
-              {o.badge && <span class="absolute top-4 right-4 bg-pink-500 text-white text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full">{o.badge}</span>}
-              <div class={`w-14 h-14 rounded-2xl ${o.bg} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                <Fragment set:html={ic[o.icon]} />
+            <a href={o.href} class="group card-aesthetic overflow-hidden flex flex-col justify-between border border-pink-100 hover:border-pink-300 hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+              <div>
+                <div class="relative w-full aspect-[16/9] overflow-hidden bg-pink-50">
+                  <img src={o.image} alt={o.titre} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                  {o.badge && (
+                    <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-md text-pink-600 text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm">{o.badge}</span>
+                  )}
+                </div>
+                <div class="p-6">
+                  <h3 class="text-lg font-extrabold text-gray-900 group-hover:text-pink-500 transition-colors mb-2">{o.titre}</h3>
+                  <p class="text-sm text-gray-600 leading-relaxed">{o.desc}</p>
+                </div>
               </div>
-              <h3 class="font-extrabold text-gray-900 group-hover:text-pink-500 transition-colors">{o.titre}</h3>
-              <p class="text-sm text-gray-500 mt-1.5">{o.desc}</p>
-              <div class="mt-4 pt-3 border-t border-pink-50 flex items-center justify-between text-xs font-extrabold text-pink-600 group-hover:text-pink-500">
-                <span>Ouvrir l'outil</span>
-                <span class="group-hover:translate-x-1 transition-transform">→</span>
+              <div class="px-6 pb-6 pt-0 flex items-center justify-between text-xs font-extrabold text-pink-600">
+                <span>Lancer l'outil</span>
+                <span class="group-hover:translate-x-1.5 transition-transform">→</span>
               </div>
             </a>
           ))}
