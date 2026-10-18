@@ -129,8 +129,22 @@ def main() -> int:
         print("Aucun deal récupéré : deals.json inchangé.")
         return 0
 
-    promos = [d for d in all_deals if d["badge"] == "Promo en cours"]
-    deals = (promos + [d for d in all_deals if d["badge"] != "Promo en cours"])[:MAX_DEALS]
+    # Stabilité SEO : conserver les deals existants, juste maj le badge.
+    # Les nouvelles trouvailles complètent en fin de liste.
+    existing = {}
+    if DEALS_FILE.exists():
+        try:
+            existing = {d["asin"]: d for d in json.loads(DEALS_FILE.read_text()) if d.get("asin")}
+        except Exception:
+            pass
+    merged = dict(existing)
+    for d in all_deals:
+        if d["asin"] in merged:
+            merged[d["asin"]].update({"badge": d["badge"], "stars": d.get("stars"), "avis": d.get("avis")})
+        else:
+            merged[d["asin"]] = d
+    promos = [d for d in merged.values() if d["badge"] == "Promo en cours"]
+    deals = (promos + [d for d in merged.values() if d["badge"] != "Promo en cours"])[:MAX_DEALS]
     DEALS_FILE.write_text(
         json.dumps(deals, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
