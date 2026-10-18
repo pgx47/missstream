@@ -115,39 +115,48 @@ const dateFmt = (d: Date) =>
       </div>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      <a href="/configurateur/" class="card-aesthetic p-6 relative group overflow-hidden block">
+      <a href="/outils/panneaux-twitch/" class="card-aesthetic p-6 relative group overflow-hidden flex flex-col justify-between h-full">
+        <div>
+        <span class="absolute top-4 right-4 bg-pink-500 text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full">Populaire</span>
+        <div class="w-12 h-12 rounded-2xl bg-pink-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <svg class="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/></svg>
+        </div>
+        <h3 class="text-lg font-extrabold text-gray-900 mb-2 group-hover:text-pink-500 transition-colors">Générateur de panneaux Twitch</h3>
+        <p class="text-sm text-gray-600 mb-4 leading-relaxed">Crée tes panels pastel en 3 clics, directement dans ton navigateur. Pack complet ZIP.</p>
+        </div>
+        <span class="text-sm font-extrabold text-pink-600 hover:text-pink-500 inline-flex items-center gap-1">Ouvrir le studio →</span>
+      </a>
+      <a href="/lookbook/" class="card-aesthetic p-6 relative group overflow-hidden flex flex-col justify-between h-full">
+        <div>
+        <div class="w-12 h-12 rounded-2xl bg-purple-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25z"/></svg>
+        </div>
+        <h3 class="text-lg font-extrabold text-gray-900 mb-2 group-hover:text-pink-500 transition-colors">Le Lookbook Setup</h3>
+        <p class="text-sm text-gray-600 mb-4 leading-relaxed">Plein d'idées de bureaux pastel et minimalistes. Clique sur une photo pour copier le setup.</p>
+        </div>
+        <span class="text-sm font-extrabold text-pink-600 hover:text-pink-500 inline-flex items-center gap-1">Explorer les styles →</span>
+      </a>
+      <a href="/configurateur/" class="card-aesthetic p-6 relative group overflow-hidden flex flex-col justify-between h-full">
+        <div>
         <span class="absolute top-4 right-4 bg-pink-500 text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full">Recommandé</span>
         <div class="w-12 h-12 rounded-2xl bg-pink-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
           <svg class="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"/></svg>
         </div>
         <h3 class="text-lg font-extrabold text-gray-900 mb-2 group-hover:text-pink-500 transition-colors">Configurateur de budget</h3>
         <p class="text-sm text-gray-600 mb-4 leading-relaxed">Choisis ton budget (150 €, 400 € ou 900 €) et découvre le pack complet prêt à brancher.</p>
-        <span class="text-sm font-bold text-pink-500 inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">Lancer la simulation →</span>
-      </a>
-      <a href="/lookbook/" class="card-aesthetic p-6 relative group overflow-hidden block">
-        <div class="w-12 h-12 rounded-2xl bg-purple-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-          <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"/></svg>
         </div>
-        <h3 class="text-lg font-extrabold text-gray-900 mb-2 group-hover:text-purple-500 transition-colors">Le Lookbook Setup</h3>
-        <p class="text-sm text-gray-600 mb-4 leading-relaxed">Plein d'idées de bureaux pastel et minimalistes. Clique sur une photo pour copier le setup.</p>
-        <span class="text-sm font-bold text-purple-500 inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">Explorer les styles →</span>
+        <span class="text-sm font-extrabold text-pink-600 hover:text-pink-500 inline-flex items-center gap-1">Lancer la simulation →</span>
       </a>
-      <a href="/checklist/" class="card-aesthetic p-6 relative group overflow-hidden block">
-        <div class="w-12 h-12 rounded-2xl bg-rose-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-          <svg class="w-6 h-6 text-rose-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        </div>
-        <h3 class="text-lg font-extrabold text-gray-900 mb-2 group-hover:text-rose-500 transition-colors">Checklist Avant-Live</h3>
-        <p class="text-sm text-gray-600 mb-4 leading-relaxed">Huit étapes indispensables mémorisées dans ton navigateur pour lancer ton stream sans stress.</p>
-        <span class="text-sm font-bold text-rose-500 inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">Vérifier mon setup →</span>
-      </a>
-      <a href="/dupes/" class="card-aesthetic p-6 relative group overflow-hidden block">
+      <a href="/dupes/" class="card-aesthetic p-6 relative group overflow-hidden flex flex-col justify-between h-full">
+        <div>
         <span class="absolute top-4 right-4 bg-amber-500 text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full">Bons plans</span>
         <div class="w-12 h-12 rounded-2xl bg-amber-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
           <svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z"/><path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z"/></svg>
         </div>
-        <h3 class="text-lg font-extrabold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors">Les Meilleurs Dupes</h3>
+        <h3 class="text-lg font-extrabold text-gray-900 mb-2 group-hover:text-pink-500 transition-colors">Les Meilleurs Dupes</h3>
         <p class="text-sm text-gray-600 mb-4 leading-relaxed">Le look et les perfs du haut de gamme (Shure, Logitech, Elgato) sans le prix fort.</p>
-        <span class="text-sm font-bold text-amber-600 inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">Voir les alternatives →</span>
+        </div>
+        <span class="text-sm font-extrabold text-pink-600 hover:text-pink-500 inline-flex items-center gap-1">Voir les alternatives →</span>
       </a>
     </div>
   </section>
