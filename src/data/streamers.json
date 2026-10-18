@@ -82,12 +82,12 @@
       {
         "cat": "PC & Image",
         "nom": "Sony ZV-E10",
-        "query": "sony zv-e10",
         "avis": "Caméra hybride, le rendu cinéma du stream.",
         "dupe": {
           "nom": "Logitech Brio 500",
           "asin": "B07W5JKKFJ"
-        }
+        },
+        "asin": "B0FLSPG85G"
       },
       {
         "cat": "Audio",
