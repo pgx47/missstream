@@ -151,11 +151,19 @@ const bioProducts = [
         </div>
 
         <div class="lg:col-span-5 lg:sticky lg:top-24">
-          <div class="flex items-center gap-2 mb-3">
-            <button data-bgmode="dark" class="bgmode px-3 py-1.5 rounded-lg text-[11px] font-extrabold bg-gray-900 text-white">🌙 Sombre</button>
-            <button data-bgmode="light" class="bgmode px-3 py-1.5 rounded-lg text-[11px] font-extrabold bg-gray-100 text-gray-600">☀️ Clair</button>
-            <label class="flex items-center gap-1.5 text-[11px] font-extrabold text-gray-600 cursor-pointer">
-              🎨 <input type="color" id="prev-bg-color" value="#18181b" class="swatch !w-6 !h-6" />
+          <div class="inline-flex items-center gap-1 p-1 bg-gray-100/80 rounded-xl border border-gray-200/60 text-xs font-bold mb-3">
+            <button type="button" data-bgmode="dark" class="bgmode flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all bg-[#18181b] text-white shadow-sm"><span>🌙</span> Sombre</button>
+            <button type="button" data-bgmode="light" class="bgmode flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all text-gray-600 hover:text-gray-900"><span>☀️</span> Clair</button>
+            <button type="button" id="btn-preview-custom" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all text-gray-600 hover:text-gray-900"><span>🎨</span> Personnalisé</button>
+          </div>
+          <div id="custom-bg-settings" class="hidden items-center gap-3 mb-3 text-xs font-bold text-gray-500 flex-wrap">
+            <label class="flex items-center gap-1.5">C1 <input type="color" id="preview-c1" value="#18181b" class="swatch !w-6 !h-6" /></label>
+            <label class="flex items-center gap-1.5">C2 <input type="color" id="preview-c2" value="#7c3aed" class="swatch !w-6 !h-6" /></label>
+            <select id="preview-bgtype" class="text-[11px] border border-pink-100 rounded-lg px-2 py-1.5">
+              <option value="uni">Uni</option><option value="grad">Dégradé</option><option value="img">Image</option>
+            </select>
+            <label id="preview-img-wrap" class="hidden px-2.5 py-1.5 rounded-lg bg-pink-50 text-pink-600 cursor-pointer">
+              + Image <input type="file" id="preview-img" accept="image/*" class="sr-only" />
             </label>
           </div>
           <div class="card-aesthetic p-0 overflow-hidden">
@@ -402,18 +410,36 @@ const bioProducts = [
     });
     const BGMODES={dark:{bg:'#18181b',nav:'#0e0e10',txt:'#ffffff',live:'#d8b4fe',border:'rgba(255,255,255,0.05)'},
                    light:{bg:'#f7f7f8',nav:'#ffffff',txt:'#1f1f23',live:'#9333ea',border:'rgba(0,0,0,0.08)'}};
-    function setPrevBg(mode,color){
-      const m=BGMODES[mode]||{bg:color,nav:color,txt:'#1f1f23',live:'#9333ea',border:'rgba(0,0,0,0.08)'};
-      document.getElementById('prev-head').style.backgroundColor=m.bg;
-      document.getElementById('preview').style.backgroundColor=m.bg;
-      document.getElementById('prev-nav').style.backgroundColor=m.nav;
-      document.getElementById('prev-nav').style.borderColor=m.border;
+    let CBG_IMG=null;
+    function applyPreviewBg(el,bg){el.style.backgroundColor='';el.style.backgroundImage='';el.style.backgroundSize='';el.style.background=bg;}
+    function setPrevBg(mode){
+      document.getElementById('custom-bg-settings').classList.toggle('hidden',mode!=='custom');
+      document.getElementById('custom-bg-settings').classList.toggle('flex',mode==='custom');
+      let m=BGMODES[mode]||BGMODES.dark;
+      const head=document.getElementById('prev-head'),prev=document.getElementById('preview'),nav=document.getElementById('prev-nav');
+      if(mode==='custom'){
+        const c1=document.getElementById('preview-c1').value,c2=document.getElementById('preview-c2').value,t=document.getElementById('preview-bgtype').value;
+        document.getElementById('preview-img-wrap').classList.toggle('hidden',t!=='img');
+        if(t==='img'&&CBG_IMG){applyPreviewBg(prev,`url(${CBG_IMG}) center/cover`);applyPreviewBg(head,`url(${CBG_IMG}) center/cover`);}
+        else if(t==='grad'){applyPreviewBg(prev,`linear-gradient(135deg,${c1},${c2})`);applyPreviewBg(head,`linear-gradient(135deg,${c1},${c2})`);}
+        else{applyPreviewBg(prev,c1);applyPreviewBg(head,c1);}
+        nav.style.backgroundColor='rgba(0,0,0,0.25)';
+        document.getElementById('prev-name').style.color='#fff';
+        document.getElementById('prev-live').style.color='#f9a8d4';
+        return;
+      }
+      applyPreviewBg(head,m.bg);applyPreviewBg(prev,m.bg);applyPreviewBg(nav,m.nav);
+      nav.style.borderColor=m.border;
       document.getElementById('prev-name').style.color=m.txt;
       document.getElementById('prev-live').style.color=m.live;
-      document.getElementById('prev-nav').style.color='#9ca3af';
     }
     document.querySelectorAll('.bgmode').forEach(b=>b.addEventListener('click',()=>setPrevBg(b.dataset.bgmode)));
-    document.getElementById('prev-bg-color').addEventListener('input',(e)=>setPrevBg('custom',e.target.value));
+    document.getElementById('btn-preview-custom').addEventListener('click',()=>setPrevBg('custom'));
+    ['preview-c1','preview-c2','preview-bgtype'].forEach(id=>document.getElementById(id).addEventListener('input',()=>setPrevBg('custom')));
+    document.getElementById('preview-img').addEventListener('change',(e)=>{
+      const f=e.target.files[0];if(!f)return;
+      const r=new FileReader();r.onload=()=>{CBG_IMG=r.result;setPrevBg('custom');};r.readAsDataURL(f);
+    });
     document.getElementById('percolor').addEventListener('change',()=>{renderTags();render();});
     ['c1','c2','fg','bord','sparkles','caps'].forEach(id=>document.getElementById(id).addEventListener('input',render));
     document.querySelectorAll('input[name=iconpos]').forEach(r=>r.addEventListener('change',render));
