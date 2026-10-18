@@ -303,5 +303,40 @@
       "Belkin Multiprise USB Blanche"
     ],
     "status": "pending"
+  },
+  {
+    "keyword": "Elgato Stream Deck Neo vs MK.2",
+    "type": "vs",
+    "silo": "accessoires",
+    "categorie": "stream deck",
+    "status": "pending"
+  },
+  {
+    "keyword": "Razer Seiren Mini vs Fifine AM8 blanc",
+    "type": "vs",
+    "silo": "audio",
+    "categorie": "micros",
+    "status": "pending"
+  },
+  {
+    "keyword": "Insta360 Link 2 vs Obsbot Tiny 2",
+    "type": "vs",
+    "silo": "video",
+    "categorie": "webcam",
+    "status": "pending"
+  },
+  {
+    "keyword": "Logitech G715 vs Keychron Q1 Pro blanc",
+    "type": "vs",
+    "silo": "accessoires",
+    "categorie": "claviers",
+    "status": "pending"
+  },
+  {
+    "keyword": "HyperX QuadCast S vs Fifine AM8 rose",
+    "type": "vs",
+    "silo": "audio",
+    "categorie": "micros",
+    "status": "pending"
   }
 ]

@@ -22,16 +22,11 @@ IMG_DIR = ROOT / "public/images/deals/products"
 SCRAPER_API_KEY = os.environ.get("SCRAPER_API_KEY")
 
 SEARCHES = [
-    ("micro streaming rose blanc USB", "Micros"),
-    ("casque gaming oreilles chat rose", "Casques"),
-    ("chaise gaming rose pastel", "Chaises"),
-    ("clavier mécanique pastel blanc", "Claviers"),
-    ("ring light streaming", "Éclairage"),
-    ("webcam 4k streaming", "Webcams"),
-    ("bras micro blanc", "Accessoires"),
-    ("tapis souris XXL pastel", "Accessoires"),
-    ("stream deck blanc", "Stream Deck"),
-    ("carte acquisition hdmi stream", "Capture"),
+    ("micro streaming rose blanc", "Micros"),
+    ("casque gaming rose pastel", "Casques"),
+    ("setup streaming pastel blanc", "Accessoires"),
+    ("stream deck blanc elgato", "Stream Deck"),
+    ("webcam streaming 4k", "Webcams"),
 ]
 
 MAX_DEALS = 20

@@ -51,8 +51,12 @@ EDITORIAL_RULES = """Style : ton informatif, direct, bienveillant, orienté reto
 INTERDIT : "Plongeons dans l'univers", "Il est important de noter", "En conclusion", "Dans le monde
 de", jargon tech-bro, emojis dans le texte, prix en euros figés, promesses mensongères, rendus clipart.
 
+Jamais dans le texte : le tag affilié Amazon, le mot "affiliation", des liens <a href> Amazon
+bruts, des prix en euros figés. Les produits passent uniquement par le frontmatter `products`.
+
 Conversion (sans jamais mentir) :
-- TITRE : structure magnétique et factuelle ("Pourquoi tout le monde s'arrache X", "L'erreur que
+- TITRE : inclure l'année en cours ou une réassurance entre parenthèses quand naturel
+  ("(2026)", "Testés", "Verdict"). Structure magnétique et factuelle ("Pourquoi tout le monde s'arrache X", "L'erreur que
   font 90% des streameuses avec Y", "Le secret des setups qui rendent bien en caméra"). Curiosité
   forte, zéro clickbait mensonger.
 - INTRO : technique PAS (Problem-Agitation-Solution) — nomme une frustration réelle du lecteur,
