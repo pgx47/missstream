@@ -154,9 +154,10 @@ const bioProducts = [
           <div class="inline-flex items-center gap-1 p-1 bg-gray-100/80 rounded-xl border border-gray-200/60 text-xs font-bold mb-3">
             <button type="button" data-bgmode="dark" class="bgmode flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all bg-[#18181b] text-white shadow-sm"><span>🌙</span> Sombre</button>
             <button type="button" data-bgmode="light" class="bgmode flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all text-gray-600 hover:text-gray-900"><span>☀️</span> Clair</button>
-            <button type="button" id="btn-preview-custom" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all text-gray-600 hover:text-gray-900"><span>🎨</span> Personnalisé</button>
+            <button type="button" id="btn-preview-custom" class="flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all text-gray-600 hover:text-gray-900"><span id="preview-color-indicator" class="w-4 h-4 rounded-full border border-gray-300 shadow-inner" style="background-color:#FDF2F8"></span><span>Couleur</span></button>
           </div>
-          <div id="custom-bg-settings" class="hidden items-center gap-3 mb-3 text-xs font-bold text-gray-500 flex-wrap">
+          <div id="custom-bg-settings" class="hidden mt-2 mb-3 items-center gap-3 p-2.5 bg-white rounded-xl border border-pink-100 shadow-sm text-xs font-bold text-gray-500 flex-wrap">
+            <span class="text-gray-500 font-medium">Fond du profil :</span>
             <label class="flex items-center gap-1.5">C1 <input type="color" id="preview-c1" value="#18181b" class="swatch !w-6 !h-6" /></label>
             <label class="flex items-center gap-1.5">C2 <input type="color" id="preview-c2" value="#7c3aed" class="swatch !w-6 !h-6" /></label>
             <select id="preview-bgtype" class="text-[11px] border border-pink-100 rounded-lg px-2 py-1.5">
@@ -165,6 +166,7 @@ const bioProducts = [
             <label id="preview-img-wrap" class="hidden px-2.5 py-1.5 rounded-lg bg-pink-50 text-pink-600 cursor-pointer">
               + Image <input type="file" id="preview-img" accept="image/*" class="sr-only" />
             </label>
+            <span id="preview-bg-hex" class="font-mono text-gray-700 uppercase"></span>
           </div>
           <div class="card-aesthetic p-0 overflow-hidden">
             <div id="prev-head" class="bg-[#18181b] px-4 py-3 flex items-center gap-2">
@@ -424,6 +426,8 @@ const bioProducts = [
       if(mode==='custom'){
         const c1=document.getElementById('preview-c1').value,c2=document.getElementById('preview-c2').value,t=document.getElementById('preview-bgtype').value;
         document.getElementById('preview-img-wrap').classList.toggle('hidden',t!=='img');
+        document.getElementById('preview-color-indicator').style.backgroundColor=c1;
+        document.getElementById('preview-bg-hex').textContent=t==='grad'?`${c1} → ${c2}`:t==='img'?'IMAGE':c1.toUpperCase();
         if(t==='img'&&CBG_IMG){applyPreviewBg(prev,`url(${CBG_IMG}) center/cover`);applyPreviewBg(head,`url(${CBG_IMG}) center/cover`);}
         else if(t==='grad'){applyPreviewBg(prev,`linear-gradient(135deg,${c1},${c2})`);applyPreviewBg(head,`linear-gradient(135deg,${c1},${c2})`);}
         else{applyPreviewBg(prev,c1);applyPreviewBg(head,c1);}
