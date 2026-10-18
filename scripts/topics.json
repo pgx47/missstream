@@ -148,7 +148,9 @@
       "Fifine AM8 blanc",
       "Shure MV7"
     ],
-    "status": "pending"
+    "status": "done",
+    "vs_extra": "FORMAT DUEL OBLIGATOIRE : tableau comparatif point par point dès l'intro, sections 'X gagne si...' / 'Y gagne si...', verdict sans compromis final ('lequel acheter selon votre budget').",
+    "slug": "fifine-am8-vs-shure-mv7-setup-blanc"
   },
   {
     "keyword": "Stream Deck Neo vs MK.2 : lequel choisir pour débuter",

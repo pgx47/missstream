@@ -276,6 +276,11 @@ def get_image(image_prompt: str, slug: str) -> str:
             q = urllib.parse.quote(random.choice(
                 [f"{topical} pastel", f"{topical} white desk", f"{topical} aesthetic"]
             ))
+            r = requests.get(
+                f"https://api.unsplash.com/search/photos?query={q}&orientation=landscape&per_page=12&content_filter=high",
+                headers={"Authorization": f"Client-ID {key}"},
+                timeout=15,
+            )
             results = r.json().get("results", [])
             if results:
                 img = requests.get(random.choice(results)["urls"]["regular"], timeout=30).content
