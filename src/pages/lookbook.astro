@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { amazonUrl } from '../site.config';
+
+const looks = [
+  {
+    titre: 'Setup pastel blanc — le classique cozy',
+    image: '/images/guides/tapis-souris-xxl-pastel-bras-micro-blanc.webp',
+    items: [
+      { nom: 'Tapis XXL pastel', asin: 'B0H6M26Z8C' },
+      { nom: 'Bras de micro blanc', asin: 'B097376LKF' },
+      { nom: 'Clavier blanc nuage', asin: 'B099XG1QNV' },
+      { nom: 'Litra Glow', asin: 'B0D2XMLRL3' },
+    ],
+  },
+  {
+    titre: 'Coin stream lumineux — webcam & lumière',
+    image: '/images/guides/webcam-4k-stream-rendu-net-et-lumineux.webp',
+    items: [
+      { nom: 'Logitech Brio 500 blanche', asin: 'B07W5JKKFJ' },
+      { nom: 'Key Light Mini', asin: 'B07L755X9G' },
+      { nom: 'Barres LED Govee Glide', asin: 'B09H5VSKTZ' },
+      { nom: 'Bureau blanc assis-debout', query: 'bureau assis debout blanc' },
+    ],
+  },
+  {
+    titre: 'Battlestation audio — micros & casques',
+    image: '/images/guides/meilleur-micro-usb-blanc-pour-streamer.webp',
+    items: [
+      { nom: 'QuadCast S blanc', asin: 'B0DXW278KB' },
+      { nom: 'Kraken Kitty V2 Quartz', asin: 'B0CCF7M8SG' },
+      { nom: 'Stream Deck Mini blanc', asin: 'B07DYRS1WH' },
+      { nom: 'Chaise rose ergonomique', asin: 'B0CG6TN45R' },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Lookbook — recréez ces setups"
+  description="Des ambiances de stream complètes à reproduire : chaque look liste les produits exacts visibles sur la photo."
+>
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Lookbook</h1>
+    <p class="mt-3 text-gray-500 max-w-2xl">
+      Chaque ambiance = la liste exacte des produits qui la composent. Cliquez pour vérifier
+      le prix et les coloris dispo.
+    </p>
+
+    <div class="mt-8 space-y-10">
+      {
+        looks.map((l) => (
+          <div class="card-aesthetic overflow-hidden">
+            <img src={l.image} alt={l.titre} class="w-full h-56 md:h-72 object-cover" loading="lazy" />
+            <div class="p-5 md:p-6">
+              <h2 class="text-xl font-extrabold text-gray-900">{l.titre}</h2>
+              <div class="mt-4 grid grid-cols-2 lg:grid-cols-4 gap-3">
+                {l.items.map((it) => (
+                  <a
+                    href={amazonUrl({ asin: it.asin, query: it.nom })}
+                    target="_blank"
+                    rel="nofollow sponsored noopener"
+                    class="rounded-xl border border-pink-100 bg-pink-50/30 px-3 py-2.5 text-xs font-bold text-gray-800 hover:border-pink-300 hover:shadow-md transition-all"
+                  >
+                    {it.nom}
+                    <span class="block mt-1 text-pink-500">Voir le prix →</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>

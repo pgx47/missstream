@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { amazonUrl } from '../site.config';
+
+const items = [
+  'Gain du micro réglé sous OBS (ni saturation ni souffle)',
+  'Scène de pause et générique prêts',
+  'Éclairage face caméra allumé et réglé',
+  'Caméra à hauteur des yeux, cadrage vérifié',
+  'Alertes (subs, follows) testées',
+  'Bouteille d\'eau à portée de main',
+  'Notifications du téléphone coupées',
+  'Titre + catégorie du stream remplis',
+];
+---
+
+<BaseLayout
+  title="Checklist avant de passer en live"
+  description="La checklist de pré-live des créatrices : 8 points à valider avant d'appuyer sur Démarrer le stream."
+>
+  <div class="max-w-2xl mx-auto px-4 py-12">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Checklist avant-live</h1>
+    <p class="mt-3 text-gray-500">Cochez avant chaque stream — la progression est mémorisée dans votre navigateur.</p>
+
+    <ul class="mt-8 space-y-3" id="checklist">
+      {
+        items.map((it, i) => (
+          <li>
+            <label class="flex items-center gap-3 card-aesthetic p-4 cursor-pointer">
+              <input type="checkbox" data-k={i} class="w-5 h-5 accent-pink-500" />
+              <span class="text-sm font-semibold text-gray-700">{it}</span>
+            </label>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-8 card-aesthetic p-5 border-purple-100">
+      <p class="font-bold text-gray-800 text-sm mb-3">Les accessoires qui évitent les pépins :</p>
+      <div class="flex flex-wrap gap-2">
+        <a href={amazonUrl({ query: 'filtre anti pop micro' })} target="_blank" rel="nofollow sponsored noopener" class="text-xs font-bold text-pink-600 bg-pink-50 border border-pink-100 rounded-full px-3 py-1.5 hover:bg-pink-100">Filtre anti-pop →</a>
+        <a href={amazonUrl({ query: 'bras amortisseur micro anti vibration' })} target="_blank" rel="nofollow sponsored noopener" class="text-xs font-bold text-pink-600 bg-pink-50 border border-pink-100 rounded-full px-3 py-1.5 hover:bg-pink-100">Suspension antichoc →</a>
+        <a href={amazonUrl({ query: 'bouteille isotherme paille' })} target="_blank" rel="nofollow sponsored noopener" class="text-xs font-bold text-pink-600 bg-pink-50 border border-pink-100 rounded-full px-3 py-1.5 hover:bg-pink-100">Bouteille isotherme →</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const boxes = document.querySelectorAll('#checklist input[type=checkbox]');
+    boxes.forEach((b) => {
+      const k = 'ck_' + b.getAttribute('data-k');
+      b.checked = localStorage.getItem(k) === '1';
+      b.addEventListener('change', () => localStorage.setItem(k, b.checked ? '1' : '0'));
+    });
+  </script>
+</BaseLayout>

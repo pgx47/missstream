@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { amazonUrl } from '../site.config';
+
+const packs = [
+  {
+    id: 'debutante',
+    nom: 'Pack Débutante',
+    budget: '≈ 150 €',
+    accroche: 'Le minimum vital pour un premier stream propre.',
+    items: [
+      { nom: 'Fifine AM8 blanc (micro)', asin: 'B0C74G9RLH' },
+      { nom: 'Webcam 1080p blanche', asin: 'B07W5JKKFJ' },
+      { nom: 'Mini ring light', query: 'mini ring light blanche' },
+    ],
+  },
+  {
+    id: 'creator',
+    nom: 'Pack Creator',
+    budget: '≈ 400 €',
+    accroche: 'Le niveau qui change tout : son pro + contrôle du live.',
+    items: [
+      { nom: 'HyperX QuadCast S blanc', asin: 'B0DXW278KB' },
+      { nom: 'Elgato Stream Deck Neo', asin: 'B0CVY4566H' },
+      { nom: 'Elgato Wave Mic Arm LP blanc', asin: 'B097376LKF' },
+      { nom: 'Logitech Litra Glow', asin: 'B0D2XMLRL3' },
+    ],
+  },
+  {
+    id: 'studio',
+    nom: 'Pack Studio Pastel',
+    budget: '≈ 900 €',
+    accroche: 'Le setup complet magazine : confort, image et son au top.',
+    items: [
+      { nom: 'Shure MV7 blanc', asin: 'B0CTJ6GQGZ' },
+      { nom: 'Webcam 4K Insta360 Link 2', asin: 'B0DDTH3HX8' },
+      { nom: 'Elgato Key Light Mini', asin: 'B07L755X9G' },
+      { nom: 'Chaise gaming rose ergonomique', asin: 'B0CG6TN45R' },
+      { nom: 'Logitech G715 blanc', asin: 'B099XG1QNV' },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Configurateur de setup par budget"
+  description="Choisissez votre budget et repartez avec le pack complet : micro, caméra, lumière et accessoires assortis en blanc et pastel."
+>
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Ton setup selon ton budget</h1>
+    <p class="mt-3 text-gray-500 max-w-2xl">
+      Trois packs pensés par la rédaction — des produits réels qui fonctionnent ensemble,
+      sans gaspiller un euro de superflu.
+    </p>
+
+    <div class="mt-8 flex flex-wrap gap-3" id="tabs">
+      {
+        packs.map((p, i) => (
+          <button
+            data-pack={p.id}
+            class={`px-5 py-2.5 rounded-xl text-sm font-bold border transition-all ${
+              i === 0
+                ? 'bg-gradient-to-r from-pink-500 to-rose-400 text-white border-transparent shadow-md shadow-pink-200'
+                : 'bg-white text-gray-600 border-pink-100 hover:border-pink-300'
+            }`}
+          >
+            {p.nom} <span class="opacity-80 font-semibold">{p.budget}</span>
+          </button>
+        ))
+      }
+    </div>
+
+    {
+      packs.map((p, i) => (
+        <div
+          data-panel={p.id}
+          class={`mt-8 card-aesthetic p-6 md:p-8 ${i !== 0 ? 'hidden' : ''}`}
+        >
+          <p class="text-gray-500">{p.accroche}</p>
+          <ul class="mt-5 space-y-3">
+            {p.items.map((it) => (
+              <li class="flex items-center justify-between gap-3 rounded-xl bg-pink-50/40 border border-pink-100 px-4 py-3">
+                <span class="font-bold text-gray-800 text-sm">{it.nom}</span>
+                <a
+                  href={amazonUrl({ asin: it.asin, query: it.nom })}
+                  target="_blank"
+                  rel="nofollow sponsored noopener"
+                  class="shrink-0 text-xs font-bold text-pink-600 hover:underline"
+                >
+                  Voir le prix →
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a
+            href={amazonUrl({ query: p.items.map((i) => i.nom.split(' (')[0]).join(' ') })}
+            target="_blank"
+            rel="nofollow sponsored noopener"
+            class="btn-cta mt-6 inline-flex justify-center items-center px-8 py-4 text-base w-full sm:w-auto"
+          >
+            Ajouter le pack complet sur Amazon
+          </a>
+        </div>
+      ))
+    }
+
+    <p class="mt-8 text-xs text-gray-400">
+      Les prix varient en permanence : le total affiché est une estimation, vérifiez sur Amazon.
+    </p>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('#tabs button');
+    const panels = document.querySelectorAll('[data-panel]');
+    tabs.forEach((t) =>
+      t.addEventListener('click', () => {
+        const id = t.getAttribute('data-pack');
+        tabs.forEach((b) =>
+          b.setAttribute(
+            'class',
+            b === t
+              ? 'px-5 py-2.5 rounded-xl text-sm font-bold border transition-all bg-gradient-to-r from-pink-500 to-rose-400 text-white border-transparent shadow-md shadow-pink-200'
+              : 'px-5 py-2.5 rounded-xl text-sm font-bold border transition-all bg-white text-gray-600 border-pink-100 hover:border-pink-300'
+          )
+        );
+        panels.forEach((p) =>
+          p.classList.toggle('hidden', p.getAttribute('data-panel') !== id)
+        );
+      })
+    );
+  </script>
+</BaseLayout>
