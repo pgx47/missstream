@@ -32,86 +32,101 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
     <div class="text-center max-w-2xl mx-auto mb-10">
       <span class="badge-guide mb-2 inline-block">Outil gratuit</span>
       <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Studio de panneaux Twitch</h1>
-      <p class="mt-3 text-gray-500">Des panels dignes d'Etsy, générés dans ton navigateur. Aperçu Twitch en direct, export PNG 320×100.</p>
+      <p class="mt-3 text-gray-500">Des panels dignes d'Etsy, générés dans ton navigateur. Aperçu Twitch en direct, export PNG net.</p>
     </div>
 
     <div class="grid lg:grid-cols-2 gap-10 items-start">
-      <div class="space-y-6">
-        <div class="card-aesthetic p-6">
-          <p class="font-extrabold text-gray-900 mb-4">1. Ambiance</p>
-          <div class="grid grid-cols-2 gap-2.5" id="presets">
+      <div class="space-y-5">
+        <details open class="card-aesthetic p-5 group">
+          <summary class="font-extrabold text-gray-900 cursor-pointer list-none flex justify-between">1. Ambiance <span class="text-pink-400 group-open:rotate-180 transition-transform">▾</span></summary>
+          <div class="grid grid-cols-2 gap-2.5 mt-4" id="presets">
             <button data-preset="strawberry" class="preset px-3 py-3 rounded-xl border border-pink-200 text-xs font-extrabold bg-gradient-to-br from-pink-100 to-rose-50 text-pink-700">🍓 Strawberry Milk</button>
             <button data-preset="lavender" class="preset px-3 py-3 rounded-xl border border-purple-200 text-xs font-extrabold bg-gradient-to-br from-purple-100 to-indigo-50 text-purple-700">🌙 Lavender Lofi</button>
             <button data-preset="matcha" class="preset px-3 py-3 rounded-xl border border-green-200 text-xs font-extrabold bg-gradient-to-br from-green-50 to-emerald-50 text-emerald-700">🍵 Matcha Latte</button>
             <button data-preset="studio" class="preset px-3 py-3 rounded-xl border border-gray-200 text-xs font-extrabold bg-white text-gray-700">🤍 Clean Studio</button>
           </div>
-        </div>
+        </details>
 
-        <div class="card-aesthetic p-6">
-          <p class="font-extrabold text-gray-900 mb-4">2. Style du panneau</p>
-          <div class="grid grid-cols-2 gap-2.5 mb-4">
+        <details open class="card-aesthetic p-5 group">
+          <summary class="font-extrabold text-gray-900 cursor-pointer list-none flex justify-between">2. Fond & Forme <span class="text-pink-400 group-open:rotate-180 transition-transform">▾</span></summary>
+          <div class="grid grid-cols-2 gap-2.5 mt-4">
             <select id="style" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
-              <option value="mesh">Mesh gradient pastel</option>
-              <option value="glass">Glassmorphism</option>
-              <option value="washi">Washi tape</option>
-              <option value="flat">Couleur unie</option>
+              <option value="mesh">Mesh gradient</option><option value="glass">Glassmorphism</option>
+              <option value="washi">Washi tape</option><option value="flat">Couleur unie</option>
+            </select>
+            <select id="pattern" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
+              <option value="none">Sans texture</option><option value="grid">Grid lofi</option>
+              <option value="dots">Polka dots</option>
             </select>
             <select id="shape" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
-              <option value="14">Coins arrondis</option>
-              <option value="50">Pilule</option>
-              <option value="4">Carrés subtils</option>
+              <option value="14">Coins arrondis</option><option value="50">Pilule</option><option value="4">Carrés subtils</option>
             </select>
-          </div>
-          <div class="grid grid-cols-2 gap-2.5">
-            <select id="font" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
-              <option value="Nunito">Nunito (ronde)</option>
-              <option value="Fredoka">Fredoka (bulle)</option>
-              <option value="Jakarta">Plus Jakarta Sans (moderne)</option>
-              <option value="Playfair">Playfair (luxe)</option>
-              <option value="Grotesk">Space Grotesk (tech)</option>
-            </select>
-            <label class="flex items-center gap-2 text-sm font-semibold text-gray-700 px-2">
+            <label class="flex items-center gap-2 text-xs font-bold text-gray-500 px-2">
               <input id="sparkles" type="checkbox" class="w-4 h-4 accent-pink-500" checked /> Étincelles
             </label>
           </div>
-          <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-bold text-gray-500">
-            <label class="flex flex-col gap-1">Fond <input type="color" id="c1" value="#fecdd3" class="w-full h-8 rounded cursor-pointer" /></label>
-            <label class="flex flex-col gap-1">Dégradé <input type="color" id="c2" value="#fbcfe8" class="w-full h-8 rounded cursor-pointer" /></label>
-            <label class="flex flex-col gap-1">Texte <input type="color" id="fg" value="#9d174d" class="w-full h-8 rounded cursor-pointer" /></label>
-            <label class="flex flex-col gap-1">Bordure <input type="color" id="bord" value="#f9a8d4" class="w-full h-8 rounded cursor-pointer" /></label>
+          <div class="mt-4 flex flex-wrap gap-4 items-end text-[10px] font-extrabold uppercase text-gray-400">
+            <label class="flex flex-col items-center gap-1.5">Fond<input type="color" id="c1" value="#fecdd3" class="swatch" /></label>
+            <label class="flex flex-col items-center gap-1.5">Dégradé<input type="color" id="c2" value="#fbcfe8" class="swatch" /></label>
+            <label class="flex flex-col items-center gap-1.5">Texte<input type="color" id="fg" value="#9d174d" class="swatch" /></label>
+            <label class="flex flex-col items-center gap-1.5">Bordure<input type="color" id="bord" value="#f9a8d4" class="swatch" /></label>
           </div>
-          <div class="mt-4 grid grid-cols-2 gap-4 text-xs font-bold text-gray-500">
-            <label class="flex flex-col gap-1">Hauteur <span id="hv">100</span>px<input type="range" id="hgt" min="70" max="140" value="100" class="accent-pink-500" /></label>
-            <label class="flex flex-col gap-1">Bordure <span id="bwv">1.5</span>px<input type="range" id="bw" min="0" max="4" step="0.5" value="1.5" class="accent-pink-500" /></label>
-            <label class="flex flex-col gap-1">Taille texte <span id="fzv">24</span>px<input type="range" id="fz" min="16" max="34" value="24" class="accent-pink-500" /></label>
-            <label class="flex flex-col gap-1">Espacement <span id="lsv">0</span>px<input type="range" id="ls" min="0" max="6" step="0.5" value="0" class="accent-pink-500" /></label>
+          <div class="mt-4 grid grid-cols-2 gap-x-5 gap-y-3 text-xs font-bold text-gray-500">
+            <label class="flex flex-col gap-1">Hauteur <span><b id="hv">100</b>px</span><input type="range" id="hgt" min="70" max="140" value="100" class="accent-pink-500" /></label>
+            <label class="flex flex-col gap-1">Bordure <span><b id="bwv">1.5</b>px</span><input type="range" id="bw" min="0" max="4" step="0.5" value="1.5" class="accent-pink-500" /></label>
           </div>
-          <label class="mt-4 flex flex-col gap-1 text-xs font-bold text-gray-500">
-            Logo / émote (PNG) <input type="file" id="logo" accept="image/*" class="text-xs file:mr-3 file:rounded-lg file:border-0 file:bg-pink-50 file:text-pink-600 file:px-3 file:py-1.5 file:font-bold" />
-          </label>
-          <label class="mt-2 flex items-center gap-2 text-xs font-bold text-gray-500">
-            <input id="caps" type="checkbox" class="w-4 h-4 accent-pink-500" /> Tout en majuscules
-          </label>
-        </div>
+        </details>
 
-        <div class="card-aesthetic p-6">
-          <p class="font-extrabold text-gray-900 mb-4">3. Panneaux</p>
-          <div class="grid grid-cols-2 gap-2" id="panels">
+        <details open class="card-aesthetic p-5 group">
+          <summary class="font-extrabold text-gray-900 cursor-pointer list-none flex justify-between">3. Typographie <span class="text-pink-400 group-open:rotate-180 transition-transform">▾</span></summary>
+          <div class="grid grid-cols-2 gap-2.5 mt-4">
+            <select id="font" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
+              <option value="Nunito">Nunito (ronde)</option><option value="Fredoka">Fredoka (bulle)</option>
+              <option value="Jakarta">Plus Jakarta Sans</option><option value="Playfair">Playfair (luxe)</option>
+              <option value="Grotesk">Space Grotesk (tech)</option>
+            </select>
+            <select id="teffect" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
+              <option value="soft">Ombre douce</option><option value="sticker">Sticker (contour blanc)</option>
+              <option value="retro">Retro hard shadow</option><option value="none">Net (aucun)</option>
+            </select>
+          </div>
+          <div class="mt-4 grid grid-cols-2 gap-x-5 gap-y-3 text-xs font-bold text-gray-500">
+            <label class="flex flex-col gap-1">Taille <span><b id="fzv">24</b>px</span><input type="range" id="fz" min="16" max="34" value="24" class="accent-pink-500" /></label>
+            <label class="flex flex-col gap-1">Espacement <span><b id="lsv">0</b>px</span><input type="range" id="ls" min="0" max="6" step="0.5" value="0" class="accent-pink-500" /></label>
+          </div>
+          <label class="mt-3 flex items-center gap-2 text-xs font-bold text-gray-500">
+            <input id="caps" type="checkbox" class="w-4 h-4 accent-pink-500" /> MAJUSCULES
+          </label>
+        </details>
+
+        <details open class="card-aesthetic p-5 group">
+          <summary class="font-extrabold text-gray-900 cursor-pointer list-none flex justify-between">4. Panneaux & Icône <span class="text-pink-400 group-open:rotate-180 transition-transform">▾</span></summary>
+          <div class="grid grid-cols-2 gap-2 mt-4" id="panels">
             {panels.map((p) => (
               <label class="flex items-center gap-2 text-sm font-semibold text-gray-700">
                 <input type="checkbox" class="pnl w-4 h-4 accent-pink-500" value={p} checked={['À Propos','Règles','Planning','Setup','Discord'].includes(p)} /> {p}
               </label>
             ))}
           </div>
-          <div class="mt-4 flex gap-2">
-            <input id="custom-txt" type="text" placeholder="Nom personnalisé…" class="flex-1 text-sm border border-pink-100 rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-pink-300" />
-            <button id="custom-add" class="px-4 py-2.5 rounded-xl bg-pink-500 text-white text-sm font-bold hover:bg-pink-600">+ Ajouter</button>
+          <div class="mt-3 flex gap-2">
+            <input id="custom-txt" type="text" placeholder="Nom personnalisé…" class="flex-1 text-sm border border-pink-100 rounded-xl px-3 py-2.5" />
+            <button id="custom-add" class="px-4 py-2.5 rounded-xl bg-pink-500 text-white text-sm font-bold">+</button>
           </div>
-        </div>
+          <div class="mt-4 grid grid-cols-3 gap-2 text-xs font-bold text-gray-500">
+            <label class="flex items-center gap-1.5"><input type="radio" name="iconpos" value="left" checked class="w-3.5 h-3.5 accent-pink-500" /> Gauche</label>
+            <label class="flex items-center gap-1.5"><input type="radio" name="iconpos" value="top" class="w-3.5 h-3.5 accent-pink-500" /> Haut</label>
+            <label class="flex items-center gap-1.5"><input type="radio" name="iconpos" value="none" class="w-3.5 h-3.5 accent-pink-500" /> Aucune</label>
+          </div>
+          <label class="mt-3 flex flex-col gap-1 text-xs font-bold text-gray-500">Taille icône <span><b id="iszv">44</b>px</span>
+            <input type="range" id="isz" min="20" max="72" value="44" class="accent-pink-500" /></label>
+          <label class="mt-3 flex flex-col gap-1 text-xs font-bold text-gray-500">
+            Logo / émote (PNG) <input type="file" id="logo" accept="image/*" class="text-xs file:mr-3 file:rounded-lg file:border-0 file:bg-pink-50 file:text-pink-600 file:px-3 file:py-1.5 file:font-bold" />
+          </label>
+        </details>
 
-        <div class="card-aesthetic p-6">
-          <p class="font-extrabold text-gray-900 mb-4">4. Ta bio setup</p>
-          <div id="bio-list" class="space-y-2 max-h-52 overflow-y-auto">
+        <details class="card-aesthetic p-5 group">
+          <summary class="font-extrabold text-gray-900 cursor-pointer list-none flex justify-between">5. Bio setup (affiliation) <span class="text-pink-400 group-open:rotate-180 transition-transform">▾</span></summary>
+          <div id="bio-list" class="space-y-2 max-h-52 overflow-y-auto mt-4">
             {bioProducts.map((g) => (
               <div>
                 <p class="text-xs font-extrabold uppercase tracking-widest text-pink-500 mb-1">{g.cat}</p>
@@ -133,7 +148,7 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
           </div>
           <textarea id="bio-out" readonly rows="5" class="mt-4 w-full text-xs font-mono bg-gray-50 border border-pink-100 rounded-xl p-3" placeholder="Coche les produits…"></textarea>
           <button id="bio-copy" class="btn-cta mt-3 px-5 py-2.5 text-sm">Copier le code</button>
-        </div>
+        </details>
       </div>
 
       <div class="lg:sticky lg:top-28">
@@ -154,75 +169,89 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
           <div id="preview" class="bg-[#18181b] p-5 grid grid-cols-3 gap-3"></div>
         </div>
         <button id="dl" class="btn-cta mt-5 w-full px-6 py-4 text-base font-extrabold">Télécharger mon pack (.zip)</button>
-        <p class="mt-3 text-xs text-gray-400 text-center">PNG 320×100 · Clique un panneau pour le copier directement.</p>
+        <p class="mt-3 text-xs text-gray-400 text-center">PNG 320 px · Clique un panneau pour le copier directement.</p>
       </div>
     </div>
   </div>
 
+  <style>
+    .swatch{appearance:none;-webkit-appearance:none;width:2.25rem;height:2.25rem;border-radius:9999px;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.15);padding:0;cursor:pointer;background:none}
+    .swatch::-webkit-color-swatch-wrapper{padding:0}
+    .swatch::-webkit-color-swatch{border:none;border-radius:9999px}
+  </style>
+
   <script is:inline src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
   <script is:inline>
     const PRESETS = {
-      strawberry:{ c1:'#fecdd3', c2:'#fbcfe8', c3:'#fde2e4', fg:'#9d174d', border:'#f9a8d4' },
-      lavender: { c1:'#ddd6fe', c2:'#c4b5fd', c3:'#a5b4fc', fg:'#6d28d9', border:'#c4b5fd' },
-      matcha:   { c1:'#d9f99d', c2:'#bbf7d0', c3:'#fde68a', fg:'#3f6212', border:'#a3e635' },
-      studio:   { c1:'#ffffff', c2:'#fdf2f8', c3:'#fff1f2', fg:'#374151', border:'#f9a8d4' },
+      strawberry:{ c1:'#fecdd3', c2:'#fbcfe8', fg:'#9d174d', bord:'#f9a8d4' },
+      lavender: { c1:'#ddd6fe', c2:'#c4b5fd', fg:'#6d28d9', bord:'#c4b5fd' },
+      matcha:   { c1:'#d9f99d', c2:'#bbf7d0', fg:'#3f6212', bord:'#a3e635' },
+      studio:   { c1:'#ffffff', c2:'#fdf2f8', fg:'#374151', bord:'#f9a8d4' },
     };
-    const FONTS = {
-      Nunito:"'Nunito Variable', sans-serif", Fredoka:"'Fredoka', sans-serif",
+    const FONTS = { Nunito:"'Nunito Variable', sans-serif", Fredoka:"'Fredoka', sans-serif",
       Jakarta:"'Plus Jakarta Sans', sans-serif", Playfair:"'Playfair Display', serif",
-      Grotesk:"'Space Grotesk', sans-serif"
-    };
+      Grotesk:"'Space Grotesk', sans-serif" };
     const FWT = { Nunito:'800', Fredoka:'600', Jakarta:'700', Playfair:'700', Grotesk:'700' };
-    let LOGO = null;
-    document.getElementById('logo').addEventListener('change',(e)=>{
-      const f=e.target.files[0];if(!f)return;const i=new Image();
-      i.onload=()=>{LOGO=i;render();};i.src=URL.createObjectURL(f);
-    });
     const TAG = 'missstrm-21';
-    let PRE = 'strawberry';
+    let LOGO = null;
     const $ = (s) => document.querySelector(s);
     const list = () => [...document.querySelectorAll('.pnl:checked')].map(i => i.value);
     const opt = (id) => document.getElementById(id).value;
 
     function sparkle(ctx,x,y,r){ctx.beginPath();for(let i=0;i<8;i++){const a=i*Math.PI/4,l=i%2?r*0.35:r;ctx.lineTo(x+Math.cos(a)*l,y+Math.sin(a)*l);}ctx.closePath();ctx.fill();}
+    function paintPattern(ctx,type,W,H){
+      ctx.save();ctx.globalAlpha=0.12;ctx.strokeStyle='#fff';ctx.fillStyle='#fff';
+      if(type==='grid'){ctx.lineWidth=1;for(let x=0;x<=W;x+=16){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}for(let y=0;y<=H;y+=16){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}}
+      if(type==='dots'){for(let x=8;x<W;x+=20){for(let y=8;y<H;y+=20){ctx.beginPath();ctx.arc(x+((y/20)%2)*8,y,1.8,0,7);ctx.fill();}}}
+      ctx.restore();
+    }
 
     function draw(name){
       const H = +opt('hgt'), dpr = window.devicePixelRatio||1;
       const c1 = opt('c1'), c2 = opt('c2'), fg = opt('fg'), bord = opt('bord'), bw = +opt('bw');
       const c = document.createElement('canvas'); c.width=320*dpr; c.height=H*dpr; c.style.width='100%';
       const ctx = c.getContext('2d'); ctx.scale(dpr,dpr);
-      const rad = +opt('shape'), style = opt('style');
+      const rad = Math.min(+opt('shape'),H/2), style = opt('style');
       ctx.beginPath();
-      if (ctx.roundRect) ctx.roundRect(0,0,320,H,Math.min(rad,H/2)); else ctx.rect(0,0,320,H);
+      if (ctx.roundRect) ctx.roundRect(0,0,320,H,rad); else ctx.rect(0,0,320,H);
+      ctx.save();ctx.clip();
       if (style==='mesh'||style==='flat'){
         ctx.fillStyle=c1;ctx.fill();
         if(style==='mesh'){
-          const g=ctx.createRadialGradient(70,20,10,70,20,140);g.addColorStop(0,c2);g.addColorStop(1,'transparent');
-          ctx.fillStyle=g;ctx.fill();
-          const g2=ctx.createRadialGradient(260,H-10,10,260,H-10,140);g2.addColorStop(0,c2);g2.addColorStop(1,'transparent');
-          ctx.globalAlpha=0.7;ctx.fillStyle=g2;ctx.fill();ctx.globalAlpha=1;}
+          const g=ctx.createRadialGradient(70,20,10,70,20,140);g.addColorStop(0,c2);g.addColorStop(1,'transparent');ctx.fillStyle=g;ctx.fill();
+          const g2=ctx.createRadialGradient(260,H-10,10,260,H-10,140);g2.addColorStop(0,c2);g2.addColorStop(1,'transparent');ctx.globalAlpha=0.7;ctx.fillStyle=g2;ctx.fill();ctx.globalAlpha=1;}
       } else if (style==='glass'){
         ctx.fillStyle='rgba(255,255,255,0.55)';ctx.fill();
         const g=ctx.createLinearGradient(0,0,320,H);g.addColorStop(0,c1);g.addColorStop(1,c2);
         ctx.globalAlpha=0.35;ctx.fillStyle=g;ctx.fill();ctx.globalAlpha=1;
-        ctx.strokeStyle='rgba(255,255,255,0.9)';ctx.lineWidth=3;ctx.stroke();
       } else if (style==='washi'){
-        const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,c1);g.addColorStop(1,c2);
-        ctx.fillStyle=g;ctx.fill();
+        const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,c1);g.addColorStop(1,c2);ctx.fillStyle=g;ctx.fill();
       }
-      if(bw>0){ctx.strokeStyle=bord;ctx.lineWidth=bw;ctx.stroke();}
+      paintPattern(ctx,opt('pattern'),320,H);
+      ctx.restore();
+      if(bw>0){ctx.strokeStyle=bord;ctx.lineWidth=bw;if(ctx.roundRect){ctx.beginPath();ctx.roundRect(bw/2,bw/2,320-bw,H-bw,rad);ctx.stroke();}else ctx.strokeRect(0,0,320,H);}
+      if(style==='glass'){ctx.strokeStyle='rgba(255,255,255,0.9)';ctx.lineWidth=2;if(ctx.roundRect){ctx.beginPath();ctx.roundRect(2,2,316,H-4,rad);ctx.stroke();}}
       if(style==='washi'){ctx.save();ctx.globalAlpha=0.45;ctx.fillStyle='#fff';ctx.translate(160,4);ctx.rotate(-0.06);ctx.fillRect(-38,0,76,16);ctx.restore();}
-      if(document.getElementById('sparkles').checked){ctx.fillStyle='rgba(255,255,255,0.95)';sparkle(ctx,290,22,7);sparkle(ctx,28,H-22,6);ctx.fillStyle=fg;ctx.globalAlpha=0.25;sparkle(ctx,50,20,5);ctx.globalAlpha=1;}
-      const fz = +opt('fz'), ls = +opt('ls'), txt = document.getElementById('caps').checked ? name.toUpperCase() : name;
-      ctx.fillStyle=fg;
-      ctx.shadowColor='rgba(0,0,0,0.12)';ctx.shadowBlur=4;ctx.shadowOffsetY=1;
+      if(document.getElementById('sparkles').checked){ctx.fillStyle='rgba(255,255,255,0.95)';sparkle(ctx,290,20,6);sparkle(ctx,28,H-20,5);}
+
+      const fz = +opt('fz'), ls = +opt('ls'), eff = opt('teffect');
+      const txt = document.getElementById('caps').checked ? name.toUpperCase() : name;
+      const pos = document.querySelector('input[name=iconpos]:checked').value;
+      const isz = +opt('isz');
+      const icon = LOGO;
+      let tx = 160, ty = H/2+1, ix = null, iy = null;
+      if(pos==='left'&&icon){ix=14;iy=(H-isz)/2;tx=180+(isz-44)*0.6;}
+      if(pos==='top'&&icon){ix=160-isz/2;iy=10;ty=H-14-fz/2;}
       ctx.font=`${FWT[opt('font')]} ${fz}px ${FONTS[opt('font')]}`;
       try{ctx.letterSpacing=ls+'px';}catch(e){}
       ctx.textAlign='center';ctx.textBaseline='middle';
-      const tx = LOGO?185:160;
-      ctx.fillText(txt,tx,H/2+1);
-      ctx.shadowColor='transparent';
-      if(LOGO){const s=Math.min(56,H-24);ctx.drawImage(LOGO,28,(H-s)/2,s,s);}
+      if(eff==='soft'){ctx.shadowColor='rgba(0,0,0,0.12)';ctx.shadowBlur=4;ctx.shadowOffsetY=1;}
+      if(eff==='retro'){ctx.shadowColor=fg;ctx.globalAlpha=0.3;ctx.shadowBlur=0;ctx.shadowOffsetX=3;ctx.shadowOffsetY=3;}
+      ctx.fillStyle=eff==='retro'?fg:fg;
+      ctx.fillText(txt,tx,ty);
+      ctx.shadowColor='transparent';ctx.globalAlpha=1;
+      if(eff==='sticker'){ctx.strokeStyle='#fff';ctx.lineWidth=Math.max(4,fz*0.22);ctx.lineJoin='round';ctx.strokeText(txt,tx,ty);ctx.fillStyle=fg;ctx.fillText(txt,tx,ty);}
+      if(icon&&pos!=='none'){ctx.drawImage(icon,ix,iy,isz,isz);}
       return c;
     }
 
@@ -233,7 +262,6 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
         btn.textContent='Copié !';setTimeout(()=>btn.textContent='Copier',1200);
       }catch{btn.textContent='…';}});
     }
-
     function render(){
       const prev=document.getElementById('preview');prev.innerHTML='';
       list().forEach(n=>{
@@ -249,34 +277,38 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
 
     document.getElementById('presets').addEventListener('click',(e)=>{
       const b=e.target.closest('.preset');if(!b)return;
-      PRE=b.dataset.preset;const P=PRESETS[PRE];
+      const P=PRESETS[b.dataset.preset];
       document.getElementById('c1').value=P.c1;document.getElementById('c2').value=P.c2;
-      document.getElementById('fg').value=P.fg;document.getElementById('bord').value=P.border;
+      document.getElementById('fg').value=P.fg;document.getElementById('bord').value=P.bord;
       render();
     });
-    ['hgt','bw','fz','ls'].forEach(id=>{
+    ['hgt','bw','fz','ls','isz'].forEach(id=>{
       document.getElementById(id).addEventListener('input',()=>{
-        document.getElementById({hgt:'hv',bw:'bwv',fz:'fzv',ls:'lsv'}[id]).textContent=document.getElementById(id).value;
+        document.getElementById({hgt:'hv',bw:'bwv',fz:'fzv',ls:'lsv',isz:'iszv'}[id]).textContent=document.getElementById(id).value;
         render();
       });
     });
-    ['c1','c2','fg','bord','caps'].forEach(id=>document.getElementById(id).addEventListener('input',render));
-    document.getElementById('bio-add').addEventListener('click',()=>{
-      const cat=document.getElementById('bio-cat').value,nom=document.getElementById('bio-custom').value.trim();
-      if(!nom)return;
-      const url=`https://www.amazon.fr/s?k=${encodeURIComponent(nom)}&tag=${TAG}`;
-      const ta=document.getElementById('bio-out');
-      ta.value=(ta.value.replace(/\n\n_setup.*$/s,'')+(ta.value.trim()?'\n':''))+`- **${cat} :** [${nom}](${url})`+'\n\n_setup recommandé par missstream.xyz_';
-      document.getElementById('bio-custom').value='';
+    ['style','pattern','shape','font','teffect'].forEach(id=>document.getElementById(id).addEventListener('change',render));
+    ['c1','c2','fg','bord','sparkles','caps'].forEach(id=>document.getElementById(id).addEventListener('input',render));
+    document.querySelectorAll('input[name=iconpos]').forEach(r=>r.addEventListener('change',render));
+    document.getElementById('logo').addEventListener('change',(e)=>{
+      const f=e.target.files[0];if(!f)return;const i=new Image();
+      i.onload=()=>{LOGO=i;render();};i.src=URL.createObjectURL(f);
     });
-    ['style','shape','font'].forEach(id=>document.getElementById(id).addEventListener('change',render));
-    document.getElementById('sparkles').addEventListener('change',render);
     document.getElementById('panels').addEventListener('change',render);
     document.getElementById('custom-add').addEventListener('click',()=>{
       const t=document.getElementById('custom-txt').value.trim();if(!t)return;
       const l=document.createElement('label');l.className='flex items-center gap-2 text-sm font-semibold text-gray-700';
       l.innerHTML=`<input type="checkbox" class="pnl w-4 h-4 accent-pink-500" value="${t.replace(/"/g,'')}" checked /> ${t}`;
       document.getElementById('panels').appendChild(l);document.getElementById('custom-txt').value='';render();
+    });
+    document.getElementById('bio-add').addEventListener('click',()=>{
+      const cat=document.getElementById('bio-cat').value,nom=document.getElementById('bio-custom').value.trim();
+      if(!nom)return;
+      const url=`https://www.amazon.fr/s?k=${encodeURIComponent(nom)}&tag=${TAG}`;
+      const ta=document.getElementById('bio-out');
+      ta.value=(ta.value.replace(/\n\n_setup.*$/s,'')+(ta.value.trim() ?'\n':''))+`- **${cat} :** [${nom}](${url})`+'\n\n_setup recommandé par missstream.xyz_';
+      document.getElementById('bio-custom').value='';
     });
     document.getElementById('dl').addEventListener('click',async()=>{
       const zip=new JSZip();
