@@ -59,7 +59,9 @@
           "query": "redragon k617 pastel"
         }
       }
-    ]
+    ],
+    "image": "/images/streamers/gotaga.webp",
+    "jeu_principal": "FPS & Variété"
   },
   {
     "slug": "squeezie",
@@ -103,7 +105,9 @@
         "query": "elgato stream deck plus",
         "avis": "Le pilotage du live du bout des doigts."
       }
-    ]
+    ],
+    "image": "/images/streamers/squeezie.webp",
+    "jeu_principal": "Variété"
   },
   {
     "slug": "kameto",
@@ -138,6 +142,156 @@
         "nom": "HyperX Cloud II",
         "query": "hyperx cloud ii",
         "avis": "Un classique indestructible, idéal en vocal."
+      }
+    ],
+    "image": "/images/streamers/kameto.webp",
+    "jeu_principal": "LoL & TFT"
+  },
+  {
+    "slug": "zywoo",
+    "nom": "ZywOo",
+    "bio": "Double MVP mondial CS2. La précision absolue chez Vitality.",
+    "jeu_principal": "CS2",
+    "image": "/images/streamers/zywoo.webp",
+    "reseaux": {
+      "twitch": "zywoo",
+      "twitter": "zywoo"
+    },
+    "setup": [
+      {
+        "cat": "Périphériques",
+        "nom": "Logitech G Pro X Superlight 2",
+        "query": "logitech g pro x superlight",
+        "avis": "La référence esport, utilisée par toute la scène CS2."
+      },
+      {
+        "cat": "PC & Image",
+        "nom": "Zowie XL2546K 360Hz",
+        "query": "zowie xl2546k",
+        "avis": "L'écran tournoi par excellence, 360Hz de fluidité."
+      },
+      {
+        "cat": "Périphériques",
+        "nom": "SteelSeries Apex Pro TKL",
+        "query": "steelseries apex pro tkl",
+        "avis": "Switches ajustables au 0.1mm près."
+      },
+      {
+        "cat": "Audio",
+        "nom": "HyperX Cloud II",
+        "query": "hyperx cloud ii",
+        "avis": "Le casque des majors, confort marathon."
+      }
+    ]
+  },
+  {
+    "slug": "pokimane",
+    "nom": "Pokimane",
+    "bio": "La streameuse la plus suivie au monde. Cozy et iconique.",
+    "jeu_principal": "Variété",
+    "image": "/images/streamers/pokimane.webp",
+    "reseaux": {
+      "twitch": "pokimane",
+      "twitter": "pokimanelol"
+    },
+    "setup": [
+      {
+        "cat": "Audio",
+        "nom": "Electro-Voice RE20",
+        "query": "electro voice re20",
+        "avis": "Le micro broadcast des grandes radios."
+      },
+      {
+        "cat": "Périphériques",
+        "nom": "Logitech G Pro Wireless",
+        "query": "logitech g pro wireless",
+        "avis": "Sobre, précise, sans fil."
+      },
+      {
+        "cat": "PC & Image",
+        "nom": "Sony A7III",
+        "query": "sony a7 iii",
+        "avis": "Le rendu cinématique de ses caméras."
+      },
+      {
+        "cat": "Éclairage",
+        "nom": "Elgato Key Light Air",
+        "query": "elgato key light air",
+        "avis": "La douceur lumineuse signature."
+      }
+    ]
+  },
+  {
+    "slug": "maghla",
+    "nom": "Maghla",
+    "bio": "La streameuse cozy par excellence. Horreur, variété, ambiance chill.",
+    "jeu_principal": "Variété",
+    "image": "/images/streamers/maghla.webp",
+    "reseaux": {
+      "twitch": "maghla",
+      "twitter": "Maghla"
+    },
+    "setup": [
+      {
+        "cat": "Audio",
+        "nom": "Shure SM7B",
+        "query": "shure sm7b",
+        "avis": "Le son radio de ses longues soirées."
+      },
+      {
+        "cat": "Éclairage",
+        "nom": "Elgato Ring Light",
+        "query": "elgato ring light",
+        "avis": "L'anneau signature pour les visages."
+      },
+      {
+        "cat": "Périphériques",
+        "nom": "Elgato Stream Deck",
+        "query": "elgato stream deck",
+        "avis": "Le contrôle total du live."
+      },
+      {
+        "cat": "PC & Image",
+        "nom": "Sony Alpha 6400",
+        "query": "sony a6400",
+        "avis": "Le look caméra des gros streams."
+      }
+    ]
+  },
+  {
+    "slug": "baghera",
+    "nom": "Baghera Jones",
+    "bio": "Ex-Switzerland, reine du Just Chatting suisse.",
+    "jeu_principal": "Just Chatting",
+    "image": "/images/streamers/baghera.webp",
+    "reseaux": {
+      "twitch": "bagherajones",
+      "twitter": "Baghera__Jones"
+    },
+    "setup": [
+      {
+        "cat": "Audio",
+        "nom": "Shure SM7B",
+        "query": "shure sm7b",
+        "avis": "Standard des streameuses pro."
+      },
+      {
+        "cat": "Périphériques",
+        "nom": "Logitech G Pro X Superlight",
+        "query": "logitech g pro x superlight",
+        "avis": "La souris des compétitrices."
+      },
+      {
+        "cat": "PC & Image",
+        "nom": "Logitech Brio",
+        "query": "logitech brio",
+        "avis": "La webcam simple et efficace."
+      },
+      {
+        "cat": "Éclairage",
+        "nom": "Elgato Key Light Mini",
+        "asin": "B07L755X9G",
+        "avis": "Petit mais costaud."
       }
     ]
   }
