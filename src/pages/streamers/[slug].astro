@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SeoSchema from '../../components/SeoSchema.astro';
 import { amazonUrl } from '../../site.config';
 import streamers from '../../data/streamers.json';
 
@@ -9,8 +10,6 @@ export function getStaticPaths() {
 
 const { s } = Astro.props;
 const cats = [...new Set(s.setup.map((p) => p.cat))];
----
-
 const CAT_GUIDE: Record<string, string> = {
   Audio: 'meilleur-micro-usb-blanc-pour-streamer',
   'PC & Image': 'webcam-4k-stream-rendu-net-et-lumineux',
