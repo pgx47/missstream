@@ -130,6 +130,22 @@ const dateFmt = (d: Date) =>
     </div>
   </section>
 
+  <section class="max-w-6xl mx-auto px-4 pb-12">
+    <div class="text-center mb-6">
+      <span class="badge-guide mb-2 inline-block">La preuve par l'image</span>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Avant / Après</h2>
+    </div>
+    <AvantApres
+      avant="/images/lookbook/avant.webp"
+      apres="/images/hero-setup.webp"
+      items={[
+        { nom: 'Barre lumineuse écran', query: 'barre lumineuse ecran' },
+        { nom: 'Tapis XXL pastel', asin: 'B0H6M26Z8C' },
+        { nom: 'Passe-câbles sous plateau', query: 'passe cables bureau' },
+      ]}
+    />
+  </section>
+
   <section class="max-w-6xl mx-auto px-4 py-12">
     <div class="flex items-end justify-between mb-6">
       <h2 class="text-2xl font-extrabold text-gray-900">Guides récents</h2>

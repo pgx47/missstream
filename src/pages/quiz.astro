@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { amazonUrl } from '../site.config';
+
+const resultats: Record<string, { nom: string; url: string }[]> = {
+  gaming: [
+    { nom: 'Micro Fifine AM8 blanc', url: amazonUrl({ asin: 'B0C74G9RLH' }) },
+    { nom: 'Casque HyperX Cloud Stinger 2 blanc', url: amazonUrl({ asin: 'B0BCFKG49M' }) },
+    { nom: 'Tapis XXL pastel', url: amazonUrl({ asin: 'B0H6M26Z8C' }) },
+  ],
+  chatting: [
+    { nom: 'Micro HyperX QuadCast S blanc', url: amazonUrl({ asin: 'B0DXW278KB' }) },
+    { nom: 'Webcam Logitech Brio 500', url: amazonUrl({ asin: 'B07W5JKKFJ' }) },
+    { nom: 'Litra Glow', url: amazonUrl({ asin: 'B0D2XMLRL3' }) },
+  ],
+  podcast: [
+    { nom: 'Micro Shure MV7 blanc', url: amazonUrl({ asin: 'B0CTJ6GQGZ' }) },
+    { nom: 'Bras Elgato Wave Mic Arm LP', url: amazonUrl({ asin: 'B097376LKF' }) },
+    { nom: 'Stream Deck Mini', url: amazonUrl({ asin: 'B07DYRS1WH' }) },
+  ],
+};
+---
+
+<BaseLayout title="Quiz : ton setup idéal" description="3 clics pour trouver les équipements indispensables selon ton contenu et ton budget.">
+  <div class="max-w-2xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-extrabold text-gray-900">Ton setup idéal en 3 clics</h1>
+    <p class="mt-3 text-gray-500">Réponds et obtiens ta sélection immédiate.</p>
+
+    <div class="mt-8">
+      <div class="card-aesthetic p-6" id="step1">
+        <p class="font-bold text-gray-800 mb-4">Tu streames quoi ?</p>
+        <div class="grid gap-3" id="quiz">
+          <button data-r="gaming" class="quiz-btn">Gaming / FPS</button>
+          <button data-r="chatting" class="quiz-btn">Just Chatting / Cozy</button>
+          <button data-r="podcast" class="quiz-btn">Podcast / ASMR / Voice</button>
+        </div>
+      </div>
+      <div id="result" class="hidden card-aesthetic p-6 mt-6">
+        <p class="text-xs font-bold uppercase tracking-widest text-pink-600 mb-3">Ta sélection</p>
+        <ul class="space-y-2" id="result-list"></ul>
+        <a href="/configurateur/" class="btn-cta mt-5 inline-block px-6 py-3 text-sm">Affiner selon mon budget →</a>
+      </div>
+    </div>
+
+    <script is:inline define:vars={{ resultats }}>
+      const RESULTS = resultats;
+      document.querySelectorAll('.quiz-btn').forEach((b) => {
+        b.className += ' w-full text-left px-4 py-3 rounded-xl border border-pink-100 font-bold text-sm text-gray-700 hover:bg-pink-50 hover:border-pink-300 transition-all';
+        b.addEventListener('click', () => {
+          const data = RESULTS[b.dataset.r];
+          const ul = document.getElementById('result-list');
+          ul.innerHTML = '';
+          data.forEach((p) => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = p.url; a.target = '_blank'; a.rel = 'nofollow sponsored noopener';
+            a.className = 'flex justify-between items-center rounded-lg border border-pink-100 px-4 py-3 text-sm font-bold text-gray-800 hover:border-pink-300 hover:shadow-sm';
+            a.innerHTML = p.nom + ' <span class="text-pink-500">Voir →</span>';
+            li.appendChild(a); ul.appendChild(li);
+          });
+          document.getElementById('result').classList.remove('hidden');
+          document.getElementById('step1').classList.add('hidden');
+        });
+      });
+    </script>
+  </div>
+</BaseLayout>

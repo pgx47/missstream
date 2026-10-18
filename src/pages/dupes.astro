@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { amazonUrl } from '../site.config';
+
+const dupes = [
+  {
+    titre: 'Le micro pro à prix doux',
+    original: { nom: 'Shure MV7 blanc', prix: '≈ 260 €', asin: 'B0CTJ6GQGZ' },
+    dupe: { nom: 'Fifine AM8 blanc', prix: '≈ 60 €', asin: 'B0C74G9RLH' },
+    gain: '−200 €',
+  },
+  {
+    titre: 'Le clavier nuage accessible',
+    original: { nom: 'Logitech G715 blanc', prix: '≈ 180 €', asin: 'B099XG1QNV' },
+    dupe: { nom: 'Redragon K617 pastel', prix: '≈ 45 €', query: 'redragon k617 pastel' },
+    gain: '−135 €',
+  },
+  {
+    titre: 'La lumière douce sans Elgato',
+    original: { nom: 'Elgato Key Light Mini', prix: '≈ 100 €', asin: 'B07L755X9G' },
+    dupe: { nom: 'Panneau LED Neewer bicolore', prix: '≈ 40 €', query: 'neewer led bicolor panel light' },
+    gain: '−60 €',
+  },
+  {
+    titre: 'Le casque mignon alternatif',
+    original: { nom: 'Razer Kraken Kitty V2 Quartz', prix: '≈ 150 €', asin: 'B0CCF7M8SG' },
+    dupe: { nom: 'Oreilles de chat universelles', prix: '≈ 15 €', asin: 'B0CCF7ZRLN' },
+    gain: '−135 €',
+  },
+  {
+    titre: 'La gestion des scènes en mini',
+    original: { nom: 'Elgato Stream Deck MK.2', prix: '≈ 150 €', asin: 'B09738CV2G' },
+    dupe: { nom: 'Elgato Stream Deck Mini', prix: '≈ 80 €', asin: 'B07DYRS1WH' },
+    gain: '−70 €',
+  },
+  {
+    titre: 'Le gros micro gamer pour moins',
+    original: { nom: 'HyperX QuadCast S blanc', prix: '≈ 160 €', asin: 'B0DXW278KB' },
+    dupe: { nom: 'Razer Seiren Mini Quartz', prix: '≈ 45 €', asin: 'B0CT6G556J' },
+    gain: '−115 €',
+  },
+];
+---
+
+<BaseLayout
+  title="Dupes & Alternatives"
+  description="Les alternatives abordables aux produits stars du streaming : même look pastel, budget divisé par trois."
+>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Dupes & alternatives</h1>
+    <p class="mt-3 text-gray-500 max-w-2xl">
+      Les pièces cultes coûtent cher — voici leurs équivalents économiques, aussi beaux en caméra.
+    </p>
+
+    <div class="mt-8 space-y-5">
+      {
+        dupes.map((d) => (
+          <div class="card-aesthetic p-5">
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="font-extrabold text-gray-900">{d.titre}</h2>
+              <span class="text-xs font-extrabold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2.5 py-1 rounded-full">{d.gain}</span>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div class="rounded-xl border border-gray-200 p-4">
+                <p class="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-1">L'original</p>
+                <p class="font-bold text-gray-800">{d.original.nom}</p>
+                <p class="text-xs text-gray-400 line-through">{d.original.prix}</p>
+                <a href={amazonUrl({ asin: d.original.asin, query: d.original.nom })} target="_blank" rel="nofollow sponsored noopener" class="mt-2 inline-block text-xs font-bold text-gray-500 hover:text-pink-500">Voir →</a>
+              </div>
+              <div class="rounded-xl border border-pink-200 bg-pink-50/40 p-4">
+                <p class="text-[11px] font-bold uppercase tracking-widest text-pink-500 mb-1">La dupe</p>
+                <p class="font-bold text-gray-800">{d.dupe.nom}</p>
+                <p class="text-xs font-bold text-pink-600">{d.dupe.prix}</p>
+                <a href={amazonUrl({ asin: d.dupe.asin, query: d.dupe.nom })} target="_blank" rel="nofollow sponsored noopener" class="mt-2 inline-block text-xs font-extrabold text-pink-600 hover:underline">Voir le prix →</a>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>

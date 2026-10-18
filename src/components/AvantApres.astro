@@ -1,0 +1,58 @@
+---
+import { amazonUrl } from '../site.config';
+
+interface Props {
+  avant: string;
+  apres: string;
+  items?: { nom: string; asin?: string }[];
+}
+
+const { avant, apres, items = [] } = Astro.props;
+---
+
+<section class="card-aesthetic overflow-hidden">
+  <div class="relative w-full aspect-[16/9] select-none" id="ba-wrap" style="--x:50%">
+    <img src={apres} alt="Après : setup transformé" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+    <div class="absolute inset-0 overflow-hidden" style="clip-path: inset(0 calc(100% - var(--x)) 0 0)">
+      <img src={avant} alt="Avant : bureau basique" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+    </div>
+    <div class="absolute inset-y-0 w-0.5 bg-white shadow-lg" style="left: var(--x)"></div>
+    <div
+      class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white shadow-xl border border-pink-200 flex items-center justify-center cursor-ew-resize z-10"
+      style="left: var(--x)"
+      id="ba-handle"
+    >
+      <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"/></svg>
+    </div>
+    <span class="absolute top-3 left-3 text-[10px] font-extrabold uppercase tracking-widest bg-black/40 text-white px-2.5 py-1 rounded-full">Avant</span>
+    <span class="absolute top-3 right-3 text-[10px] font-extrabold uppercase tracking-widest bg-pink-500/80 text-white px-2.5 py-1 rounded-full">Après</span>
+  </div>
+
+  {
+    items.length > 0 && (
+      <div class="p-5">
+        <p class="text-sm font-bold text-gray-800 mb-3">Les 3 accessoires qui font la différence :</p>
+        <div class="flex flex-wrap gap-2">
+          {items.map((it) => (
+            <a href={amazonUrl({ asin: it.asin, query: it.nom })} target="_blank" rel="nofollow sponsored noopener" class="text-xs font-bold text-pink-600 bg-pink-50 border border-pink-100 rounded-full px-3 py-1.5 hover:bg-pink-100">
+              {it.nom} →
+            </a>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  <script>
+    const w = document.getElementById('ba-wrap');
+    if (w) {
+      const set = (e) => {
+        const r = w.getBoundingClientRect();
+        const x = Math.min(Math.max(((e.clientX - r.left) / r.width) * 100, 2), 98);
+        w.style.setProperty('--x', x + '%');
+      };
+      w.addEventListener('pointerdown', set);
+      w.addEventListener('pointermove', (e) => e.buttons && set(e));
+    }
+  </script>
+</section>
