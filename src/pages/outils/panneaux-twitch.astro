@@ -59,7 +59,12 @@ const bioProducts = [
               <select id="style" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
                 <option value="mesh">Mesh gradient</option><option value="flat">Couleur unie</option>
                 <option value="glass">Glassmorphism</option><option value="washi">Washi tape</option>
+                <option value="image">🖼️ Image perso</option>
               </select>
+              <label id="bgimg-wrap" class="hidden col-span-2 px-3 py-2.5 rounded-xl border border-dashed border-pink-300 text-xs font-bold text-pink-500 cursor-pointer text-center">
+                Importer mon modèle de bouton
+                <input type="file" id="bgimg" accept="image/*" class="sr-only" />
+              </label>
               <select id="pattern" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
                 <option value="none">Sans texture</option><option value="grid">Grid lofi</option><option value="dots">Polka dots</option>
               </select>
@@ -133,16 +138,23 @@ const bioProducts = [
         </div>
 
         <div class="lg:col-span-5 lg:sticky lg:top-24">
+          <div class="flex items-center gap-2 mb-3">
+            <button data-bgmode="dark" class="bgmode px-3 py-1.5 rounded-lg text-[11px] font-extrabold bg-gray-900 text-white">🌙 Sombre</button>
+            <button data-bgmode="light" class="bgmode px-3 py-1.5 rounded-lg text-[11px] font-extrabold bg-gray-100 text-gray-600">☀️ Clair</button>
+            <label class="flex items-center gap-1.5 text-[11px] font-extrabold text-gray-600 cursor-pointer">
+              🎨 <input type="color" id="prev-bg-color" value="#18181b" class="swatch !w-6 !h-6" />
+            </label>
+          </div>
           <div class="card-aesthetic p-0 overflow-hidden">
-            <div class="bg-[#18181b] px-4 py-3 flex items-center gap-2">
+            <div id="prev-head" class="bg-[#18181b] px-4 py-3 flex items-center gap-2">
               <div id="prev-avatar" class="w-8 h-8 rounded-full bg-gradient-to-br from-pink-400 to-purple-400 overflow-hidden"></div>
               <div>
                 <p id="prev-name" class="text-white text-xs font-bold">ta_chaine</p>
-                <p class="text-purple-300 text-[10px]">EN DIRECT · Aperçu panels</p>
+                <p id="prev-live" class="text-purple-300 text-[10px]">EN DIRECT · Aperçu panels</p>
               </div>
             </div>
-            <div class="bg-[#0e0e10] px-4 py-1 text-[10px] font-bold text-gray-400 flex gap-4 border-b border-white/5">
-              <span class="text-pink-400 border-b-2 border-pink-400 py-2">Accueil</span>
+            <div id="prev-nav" class="bg-[#0e0e10] px-4 py-1 text-[10px] font-bold text-gray-400 flex gap-4 border-b border-white/5">
+              <span id="prev-nav-act" class="text-pink-400 border-b-2 border-pink-400 py-2">Accueil</span>
               <span class="py-2">À propos</span><span class="py-2">Calendrier</span><span class="py-2">Vidéos</span>
             </div>
             <div id="preview" class="bg-[#18181b] p-5 grid grid-cols-3 gap-3"></div>
@@ -207,7 +219,7 @@ const bioProducts = [
     const FWT = { Nunito:'800', Fredoka:'600', Jakarta:'700', Playfair:'700', Grotesk:'700' };
     const TAG = 'missstrm-21';
     const PANELS = ['À Propos','Règles','Planning','Setup','Discord'];
-    let LOGO = null;
+    let LOGO = null, BGIMG = null;
     const $ = (s) => document.querySelector(s);
     const list = () => PANELS.slice();
     const opt = (id) => document.getElementById(id).value;
@@ -255,7 +267,12 @@ const bioProducts = [
       ctx.beginPath();
       if (ctx.roundRect) ctx.roundRect(0,0,320,H,rad); else ctx.rect(0,0,320,H);
       ctx.save();ctx.clip();
-      if (style==='mesh'||style==='flat'){
+      if (style==='image'&&BGIMG){
+        const ir=BGIMG.width/BGIMG.height, cr=320/H;
+        let dw,dh,dx,dy;
+        if(ir>cr){dh=H;dw=H*ir;dx=-(dw-320)/2;dy=0;}else{dw=320;dh=320/ir;dx=0;dy=-(dh-H)/2;}
+        ctx.drawImage(BGIMG,dx,dy,dw,dh);
+      } else if (style==='mesh'||style==='flat'||style==='image'){
         ctx.fillStyle=c1;ctx.fill();
         if(style==='mesh'){
           const a=+opt('ang')*Math.PI/180,dx=Math.cos(a)*160,dy=Math.sin(a)*160;
@@ -331,7 +348,28 @@ const bioProducts = [
         render();
       });
     });
-    ['style','pattern','shape','font','teffect'].forEach(id=>document.getElementById(id).addEventListener('change',render));
+    ['style','pattern','shape','font','teffect'].forEach(id=>document.getElementById(id).addEventListener('change',()=>{
+      document.getElementById('bgimg-wrap').classList.toggle('hidden',opt('style')!=='image');
+      render();
+    }));
+    document.getElementById('bgimg').addEventListener('change',(e)=>{
+      const f=e.target.files[0];if(!f)return;const i=new Image();
+      i.onload=()=>{BGIMG=i;render();};i.src=URL.createObjectURL(f);
+    });
+    const BGMODES={dark:{bg:'#18181b',nav:'#0e0e10',txt:'#ffffff',live:'#d8b4fe',border:'rgba(255,255,255,0.05)'},
+                   light:{bg:'#f7f7f8',nav:'#ffffff',txt:'#1f1f23',live:'#9333ea',border:'rgba(0,0,0,0.08)'}};
+    function setPrevBg(mode,color){
+      const m=BGMODES[mode]||{bg:color,nav:color,txt:'#1f1f23',live:'#9333ea',border:'rgba(0,0,0,0.08)'};
+      document.getElementById('prev-head').style.backgroundColor=m.bg;
+      document.getElementById('preview').style.backgroundColor=m.bg;
+      document.getElementById('prev-nav').style.backgroundColor=m.nav;
+      document.getElementById('prev-nav').style.borderColor=m.border;
+      document.getElementById('prev-name').style.color=m.txt;
+      document.getElementById('prev-live').style.color=m.live;
+      document.getElementById('prev-nav').style.color='#9ca3af';
+    }
+    document.querySelectorAll('.bgmode').forEach(b=>b.addEventListener('click',()=>setPrevBg(b.dataset.bgmode)));
+    document.getElementById('prev-bg-color').addEventListener('input',(e)=>setPrevBg('custom',e.target.value));
     ['c1','c2','fg','bord','sparkles','caps'].forEach(id=>document.getElementById(id).addEventListener('input',render));
     document.querySelectorAll('input[name=iconpos]').forEach(r=>r.addEventListener('change',render));
     document.getElementById('logo').addEventListener('change',(e)=>{
