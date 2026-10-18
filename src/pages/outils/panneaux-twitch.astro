@@ -82,8 +82,8 @@ const bioProducts = [
               </label>
             </div>
             <div class="flex flex-wrap gap-4 items-end text-[10px] font-extrabold uppercase text-gray-400">
-              <label class="flex flex-col items-center gap-1.5">Fond<input type="color" id="c1" value="#fecdd3" class="swatch" /></label>
-              <label class="flex flex-col items-center gap-1.5">Dégradé<input type="color" id="c2" value="#fbcfe8" class="swatch" /></label>
+              <label class="flex flex-col items-center gap-1.5">Couleur 1<input type="color" id="c1" value="#fecdd3" class="swatch" /></label>
+              <label class="flex flex-col items-center gap-1.5">Couleur 2<input type="color" id="c2" value="#fbcfe8" class="swatch" /></label>
               <label class="flex flex-col items-center gap-1.5">Texte<input type="color" id="fg" value="#9d174d" class="swatch" /></label>
               <label class="flex flex-col items-center gap-1.5">Bordure<input type="color" id="bord" value="#f9a8d4" class="swatch" /></label>
             </div>
@@ -136,6 +136,10 @@ const bioProducts = [
               </div>
               <label class="flex flex-col gap-1 text-xs font-bold text-gray-500">Taille icône <b id="iszv">44</b>px
                 <input type="range" id="isz" min="20" max="72" value="44" class="accent-pink-500" /></label>
+              <select id="sticker" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
+                <option value="none">Sans sticker</option><option value="heart">Cœur</option>
+                <option value="pad">Manette</option><option value="star">Étoile</option><option value="bow">Nœud</option>
+              </select>
             </div>
             <label class="flex flex-col gap-1 text-xs font-bold text-gray-500">
               Logo / émote (PNG) <input type="file" id="logo" accept="image/*" class="text-xs file:mr-3 file:rounded-lg file:border-0 file:bg-pink-50 file:text-pink-600 file:px-3 file:py-1.5 file:font-bold" />
