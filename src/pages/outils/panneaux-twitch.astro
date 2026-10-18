@@ -299,8 +299,7 @@ const bioProducts = [
         if(style==='mesh'){
           const a=+opt('ang')*Math.PI/180,dx=Math.cos(a)*160,dy=Math.sin(a)*160;
           const g=ctx.createLinearGradient(160-dx,H/2-dy,160+dx,H/2+dy);g.addColorStop(0,c1);g.addColorStop(1,c2);
-          ctx.fillStyle=g;ctx.fill();
-          const g2=ctx.createRadialGradient(70,20,10,70,20,140);g2.addColorStop(0,'rgba(255,255,255,0.5)');g2.addColorStop(1,'transparent');ctx.fillStyle=g2;ctx.fill();}
+          ctx.fillStyle=g;ctx.fill();}
       } else if (style==='glass'){
         ctx.fillStyle='rgba(255,255,255,0.55)';ctx.fill();
         const g=ctx.createLinearGradient(0,0,320,H);g.addColorStop(0,c1);g.addColorStop(1,c2);
@@ -351,7 +350,7 @@ const bioProducts = [
       const prev=document.getElementById('preview');prev.innerHTML='';
       list().forEach(pn=>{
         const w=document.createElement('div');w.className='relative group';
-        const cv=draw(pn);cv.className='rounded-lg w-full cursor-pointer shadow';
+        const cv=draw(pn);cv.className='rounded-lg w-full cursor-pointer shadow transition-transform duration-150 group-hover:scale-[1.02] group-hover:ring-2 group-hover:ring-pink-400';
         cv.addEventListener('click',()=>copyCanvas(pn,w.querySelector('.cp')));
         const b=document.createElement('button');b.textContent='Copier';
         b.className='cp absolute inset-x-0 bottom-1 mx-auto w-max text-[9px] font-bold bg-white/90 text-gray-700 rounded px-1.5 py-0.5 opacity-0 group-hover:opacity-100 transition-opacity';
