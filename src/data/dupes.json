@@ -1,86 +1,72 @@
 [
   {
-    "titre": "Le micro pro à prix doux",
+    "titre": "Elgato HD60 X — même ASIN, deux fiches catalogue",
     "original": {
-      "nom": "Shure MV7 blanc",
-      "prix": "≈ 260 €",
-      "asin": "B0CTJ6GQGZ"
+      "nom": "Elgato HD60 X",
+      "prix": null,
+      "asin": "B09V1KJ3J4"
     },
     "dupe": {
-      "nom": "Fifine AM8 blanc",
-      "prix": "≈ 60 €",
-      "asin": "B0C74G9RLH"
+      "nom": "Elgato HD60 X — capture externe",
+      "prix": null,
+      "asin": "B09V1KJ3J4"
     },
-    "gain": "−200 €"
+    "gain": null
   },
   {
-    "titre": "Le clavier nuage accessible",
+    "titre": "HyperX Cloud Stinger 2 — même ASIN, deux fiches catalogue",
     "original": {
-      "nom": "Logitech G715 blanc",
-      "prix": "≈ 180 €",
-      "asin": "B099XG1QNV"
+      "nom": "HyperX Cloud Stinger 2",
+      "prix": null,
+      "asin": "B0BCFKG49M"
     },
     "dupe": {
-      "nom": "Redragon K617 pastel",
-      "prix": "≈ 45 €",
-      "query": "redragon k617 pastel"
+      "nom": "HyperX Cloud Stinger 2 — blanc",
+      "prix": null,
+      "asin": "B0BCFKG49M"
     },
-    "gain": "−135 €"
+    "gain": null
   },
   {
-    "titre": "La lumière douce sans Elgato",
+    "titre": "Logitech G335 — même ASIN, deux fiches catalogue",
     "original": {
-      "nom": "Elgato Key Light Mini",
-      "prix": "≈ 100 €",
-      "asin": "B07L755X9G"
+      "nom": "Logitech G335",
+      "prix": null,
+      "asin": "B08KKBSDTY"
     },
     "dupe": {
-      "nom": "Panneau LED Neewer bicolore",
-      "prix": "≈ 40 €",
-      "query": "neewer led bicolor panel light"
+      "nom": "Logitech G335 — casque blanc léger",
+      "prix": null,
+      "asin": "B08KKBSDTY"
     },
-    "gain": "−60 €"
+    "gain": null
   },
   {
-    "titre": "Le casque mignon alternatif",
+    "titre": "Secretlab Titan Evo — même ASIN, deux fiches catalogue",
     "original": {
-      "nom": "Razer Kraken Kitty V2 Quartz",
-      "prix": "≈ 150 €",
-      "asin": "B0CCF7M8SG"
+      "nom": "Secretlab Titan Evo",
+      "prix": null,
+      "asin": "B0FX3MV89W"
     },
     "dupe": {
-      "nom": "Oreilles de chat universelles",
-      "prix": "≈ 15 €",
-      "asin": "B0CCF7ZRLN"
+      "nom": "Secretlab Titan Evo — édition claire",
+      "prix": null,
+      "asin": "B0FX3MV89W"
     },
-    "gain": "−135 €"
+    "gain": null
   },
   {
-    "titre": "La gestion des scènes en mini",
+    "titre": "Elgato Stream Deck Mini — même ASIN, deux fiches catalogue",
     "original": {
-      "nom": "Elgato Stream Deck MK.2",
-      "prix": "≈ 150 €",
-      "asin": "B09738CV2G"
-    },
-    "dupe": {
       "nom": "Elgato Stream Deck Mini",
-      "prix": "≈ 80 €",
+      "prix": null,
       "asin": "B07DYRS1WH"
     },
-    "gain": "−70 €"
-  },
-  {
-    "titre": "Le gros micro gamer pour moins",
-    "original": {
-      "nom": "HyperX QuadCast S blanc",
-      "prix": "≈ 160 €",
-      "asin": "B0DXW278KB"
-    },
     "dupe": {
-      "nom": "Razer Seiren Mini Quartz",
-      "prix": "≈ 45 €",
-      "asin": "B0CT6G556J"
+      "nom": "Elgato Stream Deck Mini — blanc",
+      "prix": null,
+      "asin": "B07DYRS1WH"
     },
-    "gain": "−115 €"
+    "gain": null
   }
 ]

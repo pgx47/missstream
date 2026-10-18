@@ -1,73 +1,73 @@
 [
   {
-    "id": "debutante",
+    "id": "debutante-150",
     "nom": "Pack Débutante",
-    "budget": "≈ 150 €",
-    "accroche": "Le minimum vital pour un premier stream propre.",
+    "budget": "~150€",
+    "accroche": "L’essentiel pour démarrer un setup stream léger et soigné.",
     "items": [
       {
-        "nom": "Fifine AM8 blanc (micro)",
-        "asin": "B0C74G9RLH"
+        "nom": "HyperX Cloud Stinger 2 — blanc",
+        "asin": "B0BCFKG49M"
       },
       {
-        "nom": "Webcam 1080p blanche",
+        "nom": "Razer Seiren Mini — édition Quartz",
+        "asin": "B0CMTQPWQ8"
+      },
+      {
+        "nom": "New Bee Support Casque Blanc",
+        "asin": "B08SC6Y5XN"
+      },
+      {
+        "nom": "Tapis de souris XXL pastel",
+        "asin": "B0H6M26Z8C"
+      }
+    ]
+  },
+  {
+    "id": "creator-400",
+    "nom": "Pack Creator",
+    "budget": "~400€",
+    "accroche": "Capture, micro, webcam et lumière pour créer et diffuser sans friction.",
+    "items": [
+      {
+        "nom": "Elgato HD60 X — capture externe",
+        "asin": "B09V1KJ3J4"
+      },
+      {
+        "nom": "Elgato Stream Deck Mini — blanc",
+        "asin": "B07DYRS1WH"
+      },
+      {
+        "nom": "Logitech Brio 500 — webcam blanche",
         "asin": "B07W5JKKFJ"
       },
       {
-        "nom": "Mini ring light blanche",
-        "asin": "B08LZKSMRH"
-      }
-    ]
-  },
-  {
-    "id": "creator",
-    "nom": "Pack Creator",
-    "budget": "≈ 400 €",
-    "accroche": "Le niveau qui change tout : son pro + contrôle du live.",
-    "items": [
-      {
-        "nom": "HyperX QuadCast S blanc",
-        "asin": "B0DXW278KB"
-      },
-      {
-        "nom": "Elgato Stream Deck Neo",
-        "asin": "B0CVY4566H"
-      },
-      {
-        "nom": "Elgato Wave Mic Arm LP blanc",
-        "asin": "B097376LKF"
-      },
-      {
-        "nom": "Logitech Litra Glow",
-        "asin": "B0D2XMLRL3"
-      }
-    ]
-  },
-  {
-    "id": "studio",
-    "nom": "Pack Studio Pastel",
-    "budget": "≈ 900 €",
-    "accroche": "Le setup complet magazine : confort, image et son au top.",
-    "items": [
-      {
-        "nom": "Shure MV7 blanc",
-        "asin": "B0CTJ6GQGZ"
-      },
-      {
-        "nom": "Webcam 4K Insta360 Link 2",
-        "asin": "B0DDTH3HX8"
+        "nom": "Fifine AM8 — micro USB/XLR blanc",
+        "asin": "B0BMFQP2ZZ"
       },
       {
         "nom": "Elgato Key Light Mini",
         "asin": "B07L755X9G"
+      }
+    ]
+  },
+  {
+    "id": "studio-900",
+    "nom": "Pack Studio",
+    "budget": "~900€",
+    "accroche": "Le socle premium : confort, voix studio et contrôle du stream.",
+    "items": [
+      {
+        "nom": "Secretlab Titan Evo — édition claire",
+        "asin": "B0FX3MV89W"
       },
       {
-        "nom": "Chaise gaming rose ergonomique",
-        "asin": "B0CG6TN45R"
+        "nom": "Shure MV7 — micro dynamique blanc",
+        "asin": "B0CTJ7PVN1"
       },
       {
-        "nom": "Logitech G715 blanc",
-        "asin": "B099XG1QNV"
+        "nom": "Elgato Stream Deck MK.2",
+        "asin": "B09738CV2G"
       }
     ]
   }
