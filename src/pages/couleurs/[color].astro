@@ -1,0 +1,59 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AffiliateBox from '../../components/AffiliateBox.astro';
+
+const COLORS: Record<string, { label: string; mots: string[] }> = {
+  'rose-pastel': { label: 'Rose pastel', mots: ['rose', 'quartz', 'pink', 'pastel'] },
+  'blanc-minimaliste': { label: 'Blanc minimaliste', mots: ['blanc', 'white', 'nuage'] },
+  'lavande-lilas': { label: 'Lavande & lilas', mots: ['lavande', 'lilas', 'violet', 'purple'] },
+  'vert-menthe': { label: 'Vert menthe', mots: ['menthe', 'mint', 'vert'] },
+};
+
+export function getStaticPaths() {
+  return Object.keys({
+    'rose-pastel': 1,
+    'blanc-minimaliste': 1,
+    'lavande-lilas': 1,
+    'vert-menthe': 1,
+  }).map((color) => ({ params: { color } }));
+}
+
+const { color } = Astro.params;
+const meta = COLORS[color];
+
+const guides = await getCollection('guides', ({ data }) => !data.draft);
+const produits = guides.flatMap((g) =>
+  (g.data.products || [])
+    .filter((p) =>
+      meta.mots.some((m) =>
+        `${p.nom} ${p.couleur ?? ''} ${p.badge ?? ''}`.toLowerCase().includes(m)
+      )
+    )
+    .map((p) => ({ ...p, guideTitle: g.data.title, guideSlug: g.id }))
+);
+---
+
+<BaseLayout
+  title={`Setup ${meta.label.toLowerCase()}`}
+  description={`Tous les produits ${meta.label.toLowerCase()} repérés dans nos guides : micros, casques, claviers et accessoires en ce coloris.`}
+>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">L'univers {meta.label}</h1>
+    <p class="mt-3 text-gray-500">{produits.length} produits en ce coloris, issus de nos guides.</p>
+
+    <div class="mt-8">
+      {produits.map((p) => (
+        <div>
+          <a href={`/articles/${p.guideSlug}/`} class="text-xs font-bold text-purple-500 uppercase tracking-widest hover:underline">
+            {p.guideTitle}
+          </a>
+          <AffiliateBox
+            nom={p.nom} asin={p.asin} image={p.image} stars={p.stars} avis={p.avis}
+            couleur={p.couleur} badge={p.badge} pointsForts={p.pointsForts} pointsFaibles={p.pointsFaibles}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

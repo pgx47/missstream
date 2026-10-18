@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const termes = [
+  { t: 'Directivité cardioïde', d: 'Forme de captation d\'un micro : il entend surtout ce qui est devant lui et ignore les bruits latéraux et arrière. Idéal quand le clavier claque à côté.' },
+  { t: 'Condensateur vs dynamique', d: 'Les micros condensateurs captent plus de détails (et de bruit de pièce). Les dynamiques sont plus tolérants dans une chambre non traitée.' },
+  { t: 'Filtre anti-pop', d: 'Écran fin placé devant le micro qui coupe les "p" et "b" explosifs sans toucher à la voix.' },
+  { t: 'Bras de micro (perche)', d: 'Bras articulé fixé au bureau qui suspend le micro à hauteur de bouche et libère le plan de travail.' },
+  { t: 'Suspension antichoc', d: 'Système d\'élastiques qui tient le micro en l\'air et bloque les vibrations transmises par le bureau.' },
+  { t: 'Gain', d: 'Le niveau d\'entrée du micro. Trop haut = souffle et saturation ; la règle : gain bas + parler proche.' },
+  { t: 'Monitoring', d: 'S\'écouter en direct dans son casque pour régler sa voix sans latence. Présent sur la plupart des micros streamer.' },
+  { t: 'Fréquence d\'échantillonnage', d: 'Nombre de mesures par seconde du signal audio. 48 kHz suffit largement pour le stream.' },
+  { t: 'Interface audio', d: 'Boîtier externe qui transforme le signal XLR d\'un micro en USB exploitable par le PC. Nécessaire dès qu\'on passe en XLR.' },
+  { t: 'Stream deck', d: 'Boîtier à touches écran qui lance scènes, mutes et actions OBS en une pression.' },
+  { t: 'Scène OBS', d: 'Agencement d\'écran dans OBS : cam + jeu, just chatting, pause. On commute entre elles en direct.' },
+  { t: 'Overlay', d: 'Habillage graphique du stream : cadre caméra, alertes, bandeaux. Peut plomber le jeu s\'il est trop lourd.' },
+  { t: 'Bitrate', d: 'Débit vidéo envoyé à la plateforme. Plus il est haut, plus l\'image est nette — au prix d\'une connexion plus sollicitée.' },
+  { t: 'Passthrough', d: 'Sur une carte d\'acquisition : le signal de la console traverse la carte vers l\'écran sans latence.' },
+  { t: 'Latence', d: 'Le délai entre ton action et ce que voient les viewers. Se règle dans les paramètres du stream.' },
+  { t: 'Clipping', d: 'Découper un moment fort du live en extrait partageable — le nerf de la croissance sur TikTok.' },
+  { t: 'Température de couleur', d: 'Chaleur de la lumière en kelvins. 4500-5000 K = le point doux flatteur pour le visage.' },
+  { t: 'Ring light', d: 'Anneau lumineux placé autour de la caméra. Simple, mais aplatit les traits — mieux en appoint qu\'en lumière principale.' },
+  { t: 'Panneau LED', d: 'Source carrée à diffuser placée à 45° de la caméra : la vraie solution pour un visage net sans fatigue visuelle.' },
+  { t: 'RGBIC', d: 'LED adressables par segments : chaque zone du ruban affiche sa propre couleur — c\'est ce qui fait les dégradés pastel.' },
+  { t: 'Switch linéaire', d: 'Type de touche mécanique sans "clic" perceptible : frappe fluide et discrète au micro.' },
+  { t: 'Hot-swap', d: 'Clavier dont les switches se remplacent sans soudure — tu changes de sensation de frappe à volonté.' },
+  { t: 'TKL / 75 % / 65 %', d: 'Formats de clavier compacts : plus il est petit, plus il libère de place sur le bureau de stream.' },
+  { t: 'Sous-main XXL', d: 'Grand tapis couvrant clavier + souris : unifie visuellement le bureau et protège le plateau.' },
+  { t: 'Pied perche / pied de table', d: 'Le petit pied livré avec le micro. Dépanne au départ, mais un bras fait mieux à l\'usage.' },
+];
+---
+
+<BaseLayout
+  title="Glossaire du streaming"
+  description="Le jargon du stream expliqué simplement : cardioïde, gain, bitrate, RGBIC, hot-swap — 25 définitions en langage clair."
+>
+  <div class="max-w-3xl mx-auto px-4 py-12">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Glossaire du streaming</h1>
+    <p class="mt-3 text-gray-500">Les termes techniques des guides, expliqués sans jargon.</p>
+
+    <dl class="mt-8 space-y-4">
+      {termes.map((x) => (
+        <div class="card-aesthetic p-4" id={x.t.toLowerCase().replace(/[^a-z0-9]+/g, '-')}>
+          <dt class="font-extrabold text-gray-900">{x.t}</dt>
+          <dd class="mt-1 text-sm text-gray-600 leading-relaxed">{x.d}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</BaseLayout>
