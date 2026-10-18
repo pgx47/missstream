@@ -159,11 +159,20 @@ const bioProducts = [
             </div>
             <div id="preview" class="bg-[#18181b] p-5 grid grid-cols-3 gap-3"></div>
           </div>
-          <button id="dl" class="btn-cta mt-5 w-full px-6 py-4 text-base font-extrabold">Télécharger mon pack (.zip)</button>
-          <p class="mt-3 text-xs text-gray-400 text-center">Astuce : clique sur un panneau pour le copier directement.</p>
+          <button id="dl" class="btn-cta mt-5 w-full px-6 py-4 text-base font-extrabold">Télécharger le pack complet (.zip)</button>
+          <p class="mt-2 text-[11px] text-gray-400 text-center">Panneaux + bannière 1200×480 + écran « live bientôt » 1920×1080 · Clic = copie directe.</p>
         </div>
       </div>
     </div>
+
+    <details class="card-aesthetic p-6 mt-12 max-w-3xl mx-auto">
+      <summary class="font-extrabold text-gray-900 cursor-pointer list-none flex justify-between">Comment installer tes panneaux sur Twitch ? <span class="text-pink-400">▾</span></summary>
+      <ol class="mt-4 space-y-3 text-sm text-gray-600 leading-relaxed list-decimal list-inside">
+        <li>Sur ta chaîne, ouvre l'onglet <b>Discussion</b> et active <b>« Éditer les panneaux »</b>.</li>
+        <li>Clique sur <b>+</b> → <b>« Ajouter un panneau d'image »</b> et uploade le PNG 320 px généré.</li>
+        <li>Colle ton lien (Discord, setup) dans <b>« Lien de l'image »</b>, puis désactive le mode édition.</li>
+      </ol>
+    </details>
 
     <div id="tab-bio" class="hidden">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
@@ -218,7 +227,13 @@ const bioProducts = [
       Grotesk:"'Space Grotesk', sans-serif" };
     const FWT = { Nunito:'800', Fredoka:'600', Jakarta:'700', Playfair:'700', Grotesk:'700' };
     const TAG = 'missstrm-21';
-    const PANELS = ['À Propos','Règles','Planning','Setup','Discord'];
+    const PANELS = [{n:'À Propos',s:''},{n:'Règles',s:''},{n:'Planning',s:'Tous les soirs dès 20h'},{n:'Setup',s:''},{n:'Discord',s:'Rejoins le serveur'}];
+    const STICKERS = {
+      heart:(c,x,y,r)=>{c.beginPath();c.moveTo(x,y+r);c.bezierCurveTo(x-r*1.6,y-r*0.4,x-r*0.7,y-r*1.5,x,y-r*0.6);c.bezierCurveTo(x+r*0.7,y-r*1.5,x+r*1.6,y-r*0.4,x,y+r);c.fill();},
+      star:(c,x,y,r)=>{c.beginPath();for(let i=0;i<10;i++){const a=i*Math.PI/5-Math.PI/2,l=i%2?r*0.45:r;c.lineTo(x+Math.cos(a)*l,y+Math.sin(a)*l);}c.closePath();c.fill();},
+      pad:(c,x,y,r)=>{c.beginPath();if(c.roundRect)c.roundRect(x-r,y-r*0.6,r*2,r*1.2,r*0.4);else c.rect(x-r,y-r*0.6,r*2,r*1.2);c.fill();},
+      bow:(c,x,y,r)=>{c.beginPath();c.ellipse(x-r*0.6,y,r*0.55,r*0.35,0.3,0,7);c.fill();c.beginPath();c.ellipse(x+r*0.6,y,r*0.55,r*0.35,-0.3,0,7);c.fill();c.beginPath();c.arc(x,y,r*0.22,0,7);c.fill();}
+    };
     let LOGO = null, BGIMG = null;
     const $ = (s) => document.querySelector(s);
     const list = () => PANELS.slice();
@@ -238,16 +253,21 @@ const bioProducts = [
 
     function renderTags(){
       const box=document.getElementById('panel-tags');box.innerHTML='';
-      PANELS.forEach((n,i)=>{
+      PANELS.forEach((pn,i)=>{
         const t=document.createElement('span');
         t.className='inline-flex items-center gap-1 bg-pink-50 border border-pink-100 rounded-lg px-2 py-1';
         const inp=document.createElement('input');
-        inp.value=n;inp.className='w-24 bg-transparent text-xs font-bold text-gray-700 outline-none';
-        inp.addEventListener('input',()=>{PANELS[i]=inp.value;render();});
+        inp.value=pn.n;inp.className='w-24 bg-transparent text-xs font-bold text-gray-700 outline-none';
+        inp.addEventListener('input',()=>{PANELS[i].n=inp.value;render();});
+        const si=document.createElement('input');
+        si.value=pn.s||'';si.placeholder='sous-titre';si.className='w-24 bg-transparent text-[10px] text-gray-400 outline-none italic';
+        si.addEventListener('input',()=>{PANELS[i].s=si.value;render();});
         const x=document.createElement('button');x.textContent='×';
         x.className='text-pink-400 hover:text-pink-600 font-bold text-sm leading-none';
         x.addEventListener('click',()=>{PANELS.splice(i,1);renderTags();render();});
-        t.appendChild(inp);t.appendChild(x);box.appendChild(t);
+        const col=document.createElement('span');col.className='flex flex-col';
+        col.appendChild(inp);col.appendChild(si);
+        t.appendChild(col);t.appendChild(x);box.appendChild(t);
       });
     }
     function sparkle(ctx,x,y,r){ctx.beginPath();for(let i=0;i<8;i++){const a=i*Math.PI/4,l=i%2?r*0.35:r;ctx.lineTo(x+Math.cos(a)*l,y+Math.sin(a)*l);}ctx.closePath();ctx.fill();}
@@ -258,7 +278,9 @@ const bioProducts = [
       ctx.restore();
     }
 
-    function draw(name){
+    function draw(panel){
+      const name = typeof panel==='object'?panel.n:panel;
+      const sub = typeof panel==='object'?(panel.s||''):'';
       const H = +opt('hgt'), dpr = window.devicePixelRatio||1;
       const c1 = opt('c1'), c2 = opt('c2'), fg = opt('fg'), bord = opt('bord'), bw = +opt('bw');
       const c = document.createElement('canvas'); c.width=320*dpr; c.height=H*dpr; c.style.width='100%';
@@ -297,7 +319,7 @@ const bioProducts = [
       const txt = document.getElementById('caps').checked ? name.toUpperCase() : name;
       const pos = document.querySelector('input[name=iconpos]:checked').value;
       const isz = +opt('isz');
-      let tx = 160, ty = H/2+1, ix = null, iy = null;
+      let tx = 160, ty = sub?H/2-fz*0.35:H/2+1, ix = null, iy = null;
       if(pos==='left'&&LOGO){ix=14;iy=(H-isz)/2;tx=180+(isz-44)*0.6;}
       if(pos==='right'&&LOGO){ix=306-isz;iy=(H-isz)/2;tx=140-(isz-44)*0.6;}
       if(pos==='top'&&LOGO){ix=160-isz/2;iy=10;ty=H-14-fz/2;}
@@ -311,7 +333,10 @@ const bioProducts = [
       ctx.fillText(txt,tx,ty);
       ctx.shadowColor='transparent';ctx.globalAlpha=1;
       if(eff==='sticker'){ctx.strokeStyle='#fff';ctx.lineWidth=Math.max(4,fz*0.22);ctx.lineJoin='round';ctx.strokeText(txt,tx,ty);ctx.fillStyle=fg;ctx.fillText(txt,tx,ty);}
+      if(sub){ctx.font=`600 ${Math.max(11,Math.round(fz*0.5))}px ${FONTS[opt('font')]}`;ctx.globalAlpha=0.75;ctx.fillStyle=fg;ctx.fillText(sub,tx,ty+fz*0.9);ctx.globalAlpha=1;}
       if(LOGO&&pos!=='none'){ctx.drawImage(LOGO,ix,iy,isz,isz);}
+      const st=opt('sticker');
+      if(st!=='none'&&STICKERS[st]){ctx.fillStyle=fg;ctx.globalAlpha=0.85;STICKERS[st](ctx,302,H-20,9);ctx.globalAlpha=1;}
       return c;
     }
 
@@ -324,13 +349,13 @@ const bioProducts = [
     }
     function render(){
       const prev=document.getElementById('preview');prev.innerHTML='';
-      list().forEach(n=>{
+      list().forEach(pn=>{
         const w=document.createElement('div');w.className='relative group';
-        const cv=draw(n);cv.className='rounded-lg w-full cursor-pointer shadow';
-        cv.addEventListener('click',()=>copyCanvas(n,w.querySelector('.cp')));
+        const cv=draw(pn);cv.className='rounded-lg w-full cursor-pointer shadow';
+        cv.addEventListener('click',()=>copyCanvas(pn,w.querySelector('.cp')));
         const b=document.createElement('button');b.textContent='Copier';
         b.className='cp absolute inset-x-0 bottom-1 mx-auto w-max text-[9px] font-bold bg-white/90 text-gray-700 rounded px-1.5 py-0.5 opacity-0 group-hover:opacity-100 transition-opacity';
-        b.addEventListener('click',(e)=>{e.stopPropagation();copyCanvas(n,b);});
+        b.addEventListener('click',(e)=>{e.stopPropagation();copyCanvas(pn,b);});
         w.appendChild(cv);w.appendChild(b);prev.appendChild(w);
       });
     }
@@ -348,7 +373,7 @@ const bioProducts = [
         render();
       });
     });
-    ['style','pattern','shape','font','teffect'].forEach(id=>document.getElementById(id).addEventListener('change',()=>{
+    ['style','pattern','shape','font','teffect','sticker'].forEach(id=>document.getElementById(id).addEventListener('change',()=>{
       document.getElementById('bgimg-wrap').classList.toggle('hidden',opt('style')!=='image');
       render();
     }));
@@ -378,7 +403,7 @@ const bioProducts = [
     });
     document.getElementById('custom-add').addEventListener('click',()=>{
       const t=document.getElementById('custom-txt').value.trim();if(!t)return;
-      PANELS.push(t);document.getElementById('custom-txt').value='';renderTags();render();
+      PANELS.push({n:t,s:''});document.getElementById('custom-txt').value='';renderTags();render();
     });
     document.getElementById('channel-name').addEventListener('input',(e)=>{
       document.getElementById('prev-name').textContent=e.target.value||'ta_chaine';
@@ -398,9 +423,27 @@ const bioProducts = [
       ta.value=(ta.value.replace(/\n\n_setup.*$/s,'')+(ta.value.trim() ?'\n':''))+`- **${cat} :** [${nom}](${url})`+'\n\n_setup recommandé par missstream.xyz_';
       document.getElementById('bio-custom').value='';
     });
+    function drawBig(W,Hh,text,sub){
+      const c=document.createElement('canvas');c.width=W;c.height=Hh;
+      const ctx=c.getContext('2d');
+      const c1=opt('c1'),c2=opt('c2'),fg=opt('fg'),a=+opt('ang')*Math.PI/180;
+      const g=ctx.createLinearGradient(W/2-Math.cos(a)*W/2,Hh/2-Math.sin(a)*Hh/2,W/2+Math.cos(a)*W/2,Hh/2+Math.sin(a)*Hh/2);
+      g.addColorStop(0,c1);g.addColorStop(1,c2);ctx.fillStyle=g;ctx.fillRect(0,0,W,Hh);
+      paintPattern(ctx,opt('pattern'),W,Hh);
+      ctx.fillStyle=fg;ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.font=`${FWT[opt('font')]} ${Math.round(Hh*0.16)}px ${FONTS[opt('font')]}`;
+      ctx.shadowColor='rgba(0,0,0,0.15)';ctx.shadowBlur=8;ctx.fillText(text,W/2,Hh/2-(sub?Hh*0.07:0));
+      ctx.shadowColor='transparent';
+      if(sub){ctx.font=`600 ${Math.round(Hh*0.06)}px ${FONTS[opt('font')]}`;ctx.globalAlpha=0.75;ctx.fillText(sub,W/2,Hh/2+Hh*0.1);ctx.globalAlpha=1;}
+      const st=opt('sticker');if(st!=='none'&&STICKERS[st]){ctx.globalAlpha=0.6;ctx.fillStyle=fg;STICKERS[st](ctx,W-70,Hh-60,16);STICKERS[st](ctx,70,60,12);ctx.globalAlpha=1;}
+      return c;
+    }
     document.getElementById('dl').addEventListener('click',async()=>{
       const zip=new JSZip();
-      list().forEach((n,i)=>zip.file(`${String(i+1).padStart(2,'0')}-${n.toLowerCase().replace(/[^a-z0-9]+/g,'-')}.png`,draw(n).toDataURL('image/png').split(',')[1],{base64:true}));
+      list().forEach((pn,i)=>zip.file(`${String(i+1).padStart(2,'0')}-${pn.n.toLowerCase().replace(/[^a-z0-9]+/g,'-')}.png`,draw(pn).toDataURL('image/png').split(',')[1],{base64:true}));
+      const ch=document.getElementById('channel-name').value||'ta_chaine';
+      zip.file('banniere-1200x480.png',drawBig(1200,480,ch,'rejoins le live ♡').toDataURL('image/png').split(',')[1],{base64:true});
+      zip.file('ecran-live-bientot-1920x1080.png',drawBig(1920,1080,'LE LIVE COMMENCE BIENTÔT',ch).toDataURL('image/png').split(',')[1],{base64:true});
       const blob=await zip.generateAsync({type:'blob'});
       const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='panneaux-twitch-missstream.zip';a.click();
     });
@@ -421,6 +464,27 @@ const bioProducts = [
       el.parentElement.appendChild(code);
       el.addEventListener('input',()=>code.textContent=el.value);
     });
+    function saveState(){
+      try{
+        const st={c1:opt('c1'),c2:opt('c2'),fg:opt('fg'),bord:opt('bord'),hgt:opt('hgt'),bw:opt('bw'),ang:opt('ang'),
+          style:opt('style'),pattern:opt('pattern'),shape:opt('shape'),font:opt('font'),teffect:opt('teffect'),
+          fz:opt('fz'),ls:opt('ls'),isz:opt('isz'),sticker:opt('sticker'),
+          pos:document.querySelector('input[name=iconpos]:checked').value,
+          caps:document.getElementById('caps').checked,spark:document.getElementById('sparkles').checked,p:PANELS};
+        history.replaceState(null,'','#'+btoa(unescape(encodeURIComponent(JSON.stringify(st)))));
+      }catch(e){}
+    }
+    const _render=render;render=()=>{_render();saveState();};
+    try{
+      const h=location.hash.slice(1);if(h&&h.length>10){
+        const st=JSON.parse(decodeURIComponent(escape(atob(h))));
+        ['c1','c2','fg','bord','hgt','bw','ang','style','pattern','shape','font','teffect','fz','ls','isz','sticker'].forEach(k=>{const el=document.getElementById(k);if(el&&st[k]!==undefined)el.value=st[k];});
+        if(st.pos){const r=document.querySelector(`input[name=iconpos][value="${st.pos}"]`);if(r)r.checked=true;}
+        if(st.caps!==undefined)document.getElementById('caps').checked=st.caps;
+        if(st.spark!==undefined)document.getElementById('sparkles').checked=st.spark;
+        if(Array.isArray(st.p)){PANELS.length=0;st.p.forEach(x=>PANELS.push(x));}
+      }
+    }catch(e){}
     renderTags();
     render();
   </script>
