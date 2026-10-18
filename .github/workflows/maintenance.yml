@@ -29,6 +29,12 @@ jobs:
           SCRAPER_API_KEY: ${{ secrets.SCRAPER_API_KEY }}
         run: python scripts/refresh_products.py
 
+      - name: Ajoute nouveaux profils streamers
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          SCRAPER_API_KEY: ${{ secrets.SCRAPER_API_KEY }}
+        run: python scripts/expand_streamers.py
+
       - name: Régénère dupes/packs/lookbook
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
