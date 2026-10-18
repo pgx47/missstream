@@ -41,4 +41,9 @@ jobs:
           else
             git commit -m "news: brève automatique"
             git push
+
+      - name: Ping IndexNow
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: python scripts/indexnow.py
           fi

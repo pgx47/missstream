@@ -1,8 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { amazonUrl } from '../site.config';
+import dupes from '../data/dupes.json';
 
-const dupes = [
+const _dupes = [
   {
     titre: 'Le micro pro à prix doux',
     original: { nom: 'Shure MV7 blanc', prix: '≈ 260 €', asin: 'B0CTJ6GQGZ' },

@@ -1,0 +1,86 @@
+[
+  {
+    "titre": "Le micro pro à prix doux",
+    "original": {
+      "nom": "Shure MV7 blanc",
+      "prix": "≈ 260 €",
+      "asin": "B0CTJ6GQGZ"
+    },
+    "dupe": {
+      "nom": "Fifine AM8 blanc",
+      "prix": "≈ 60 €",
+      "asin": "B0C74G9RLH"
+    },
+    "gain": "−200 €"
+  },
+  {
+    "titre": "Le clavier nuage accessible",
+    "original": {
+      "nom": "Logitech G715 blanc",
+      "prix": "≈ 180 €",
+      "asin": "B099XG1QNV"
+    },
+    "dupe": {
+      "nom": "Redragon K617 pastel",
+      "prix": "≈ 45 €",
+      "query": "redragon k617 pastel"
+    },
+    "gain": "−135 €"
+  },
+  {
+    "titre": "La lumière douce sans Elgato",
+    "original": {
+      "nom": "Elgato Key Light Mini",
+      "prix": "≈ 100 €",
+      "asin": "B07L755X9G"
+    },
+    "dupe": {
+      "nom": "Panneau LED Neewer bicolore",
+      "prix": "≈ 40 €",
+      "query": "neewer led bicolor panel light"
+    },
+    "gain": "−60 €"
+  },
+  {
+    "titre": "Le casque mignon alternatif",
+    "original": {
+      "nom": "Razer Kraken Kitty V2 Quartz",
+      "prix": "≈ 150 €",
+      "asin": "B0CCF7M8SG"
+    },
+    "dupe": {
+      "nom": "Oreilles de chat universelles",
+      "prix": "≈ 15 €",
+      "asin": "B0CCF7ZRLN"
+    },
+    "gain": "−135 €"
+  },
+  {
+    "titre": "La gestion des scènes en mini",
+    "original": {
+      "nom": "Elgato Stream Deck MK.2",
+      "prix": "≈ 150 €",
+      "asin": "B09738CV2G"
+    },
+    "dupe": {
+      "nom": "Elgato Stream Deck Mini",
+      "prix": "≈ 80 €",
+      "asin": "B07DYRS1WH"
+    },
+    "gain": "−70 €"
+  },
+  {
+    "titre": "Le gros micro gamer pour moins",
+    "original": {
+      "nom": "HyperX QuadCast S blanc",
+      "prix": "≈ 160 €",
+      "asin": "B0DXW278KB"
+    },
+    "dupe": {
+      "nom": "Razer Seiren Mini Quartz",
+      "prix": "≈ 45 €",
+      "asin": "B0CT6G556J"
+    },
+    "gain": "−115 €"
+  }
+]
