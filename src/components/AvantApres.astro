@@ -11,7 +11,7 @@ const { avant, apres, items = [] } = Astro.props;
 ---
 
 <section class="card-aesthetic overflow-hidden">
-  <div class="relative w-full aspect-[16/9] select-none" id="ba-wrap" style="--x:50%">
+  <div class="relative w-full aspect-[16/9] select-none touch-pan-y" id="ba-wrap" style="--x:50%">
     <img src={apres} alt="Après : setup transformé" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
     <div class="absolute inset-0 overflow-hidden" style="clip-path: inset(0 calc(100% - var(--x)) 0 0)">
       <img src={avant} alt="Avant : bureau basique" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
@@ -46,13 +46,17 @@ const { avant, apres, items = [] } = Astro.props;
   <script>
     const w = document.getElementById('ba-wrap');
     if (w) {
-      const set = (e) => {
+      let drag = false;
+      const set = (cx) => {
         const r = w.getBoundingClientRect();
-        const x = Math.min(Math.max(((e.clientX - r.left) / r.width) * 100, 2), 98);
+        const x = Math.min(Math.max(((cx - r.left) / r.width) * 100, 2), 98);
         w.style.setProperty('--x', x + '%');
       };
-      w.addEventListener('pointerdown', set);
-      w.addEventListener('pointermove', (e) => e.buttons && set(e));
+      w.addEventListener('pointerdown', (e) => { drag = true; set(e.clientX); w.setPointerCapture(e.pointerId); });
+      w.addEventListener('pointermove', (e) => drag && set(e.clientX));
+      w.addEventListener('pointerup', () => (drag = false));
+      w.addEventListener('touchstart', (e) => set(e.touches[0].clientX), { passive: true });
+      w.addEventListener('touchmove', (e) => set(e.touches[0].clientX), { passive: true });
     }
   </script>
 </section>
