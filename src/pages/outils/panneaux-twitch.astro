@@ -85,14 +85,14 @@ const bioProducts = [
               <input id="percolor" type="checkbox" class="w-4 h-4 accent-pink-500" /> Couleur par panneau (choisir les teintes dans l'onglet Panneaux)
             </label>
             <div class="flex flex-wrap gap-4 items-end text-[10px] font-extrabold uppercase text-gray-400">
-              <label class="flex flex-col items-center gap-1.5">Couleur 1<input type="color" id="c1" value="#fecdd3" class="swatch" /></label>
-              <label class="flex flex-col items-center gap-1.5">Couleur 2<input type="color" id="c2" value="#fbcfe8" class="swatch" /></label>
-              <label class="flex flex-col items-center gap-1.5">Texte<input type="color" id="fg" value="#9d174d" class="swatch" /></label>
-              <label class="flex flex-col items-center gap-1.5">Bordure<input type="color" id="bord" value="#f9a8d4" class="swatch" /></label>
+              <label class="flex flex-col items-center gap-1.5">Couleur 1<input type="color" id="c1" value="#FFDEE9" class="swatch" /></label>
+              <label class="flex flex-col items-center gap-1.5">Couleur 2<input type="color" id="c2" value="#B5FFFC" class="swatch" /></label>
+              <label class="flex flex-col items-center gap-1.5">Texte<input type="color" id="fg" value="#1F2937" class="swatch" /></label>
+              <label class="flex flex-col items-center gap-1.5">Bordure<input type="color" id="bord" value="#ffffff" class="swatch" /></label>
             </div>
             <div class="grid grid-cols-3 gap-4 text-xs font-bold text-gray-500">
               <label class="flex flex-col gap-1">Hauteur <b id="hv">100</b>px<input type="range" id="hgt" min="70" max="140" value="100" class="accent-pink-500" /></label>
-              <label class="flex flex-col gap-1">Bordure <b id="bwv">1.5</b>px <span class="text-[9px] font-normal text-gray-400">2px = effet sticker</span><input type="range" id="bw" min="0" max="4" step="0.5" value="1.5" class="accent-pink-500" /></label>
+              <label class="flex flex-col gap-1">Bordure <b id="bwv">2</b>px <span class="text-[9px] font-normal text-gray-400">2px = effet sticker</span><input type="range" id="bw" min="0" max="4" step="0.5" value="2" class="accent-pink-500" /></label>
               <label class="flex flex-col gap-1">Angle <b id="angv">135</b>°<input type="range" id="ang" min="0" max="360" value="135" class="accent-pink-500" /></label>
             </div>
           </div>
@@ -110,7 +110,7 @@ const bioProducts = [
               </select>
             </div>
             <div class="grid grid-cols-2 gap-4 text-xs font-bold text-gray-500">
-              <label class="flex flex-col gap-1">Taille <b id="fzv">24</b>px<input type="range" id="fz" min="16" max="34" value="24" class="accent-pink-500" /></label>
+              <label class="flex flex-col gap-1">Taille <b id="fzv">26</b>px<input type="range" id="fz" min="16" max="34" value="26" class="accent-pink-500" /></label>
               <label class="flex flex-col gap-1">Espacement <b id="lsv">0</b>px<input type="range" id="ls" min="0" max="6" step="0.5" value="0" class="accent-pink-500" /></label>
             </div>
             <label class="flex items-center gap-2 text-xs font-bold text-gray-500">
@@ -140,7 +140,7 @@ const bioProducts = [
               <label class="flex flex-col gap-1 text-xs font-bold text-gray-500">Taille icône <b id="iszv">44</b>px
                 <input type="range" id="isz" min="20" max="72" value="44" class="accent-pink-500" /></label>
               <select id="sticker" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
-                <option value="none">Sans sticker</option><option value="heart">Cœur</option>
+                <option value="heart">Cœur</option><option value="none">Sans sticker</option>
                 <option value="pad">Manette</option><option value="star">Étoile</option><option value="bow">Nœud</option>
               </select>
             </div>
@@ -244,7 +244,7 @@ const bioProducts = [
   <script is:inline src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
   <script is:inline>
     const PRESETS = {
-      strawberry:{ c1:'#f9a8d4', c2:'#fde68a', fg:'#9d174d', bord:'#f472b6' },
+      strawberry:{ c1:'#FFDEE9', c2:'#B5FFFC', fg:'#1F2937', bord:'#ffffff' },
       lavender: { c1:'#c4b5fd', c2:'#818cf8', fg:'#4c1d95', bord:'#a78bfa' },
       matcha:   { c1:'#d9f99d', c2:'#6ee7b7', fg:'#365314', bord:'#a3e635' },
       studio:   { c1:'#ffffff', c2:'#fda4af', fg:'#374151', bord:'#f9a8d4' },
@@ -359,7 +359,7 @@ const bioProducts = [
       ctx.font=`${FWT[opt('font')]} ${fz}px ${FONTS[opt('font')]}`;
       try{ctx.letterSpacing=ls+'px';}catch(e){}
       ctx.textAlign='center';ctx.textBaseline='middle';
-      if(eff==='soft'){ctx.shadowColor='rgba(0,0,0,0.12)';ctx.shadowBlur=4;ctx.shadowOffsetY=1;}
+      if(eff==='soft'){ctx.shadowColor='rgba(255,255,255,0.85)';ctx.shadowBlur=0;ctx.shadowOffsetY=2;}
       if(eff==='retro'){ctx.shadowColor=fg;ctx.globalAlpha=0.3;ctx.shadowBlur=0;ctx.shadowOffsetX=3;ctx.shadowOffsetY=3;}
       if(eff==='neon'){ctx.shadowColor=fg;ctx.shadowBlur=14;}
       ctx.fillStyle=fg;
