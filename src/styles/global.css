@@ -31,6 +31,30 @@ html {
     @apply rounded-2xl bg-surface-card border border-pink-100 shadow-sm transition-all duration-300;
   }
 
+  .prose-cozy table {
+    @apply w-full text-left border-collapse my-8 text-sm overflow-x-auto block sm:table;
+  }
+
+  .prose-cozy thead {
+    @apply sm:table-header-group;
+  }
+
+  .prose-cozy th {
+    @apply bg-pink-50/60 text-gray-900 font-extrabold px-4 py-3 border-b-2 border-pink-200 whitespace-nowrap;
+  }
+
+  .prose-cozy td {
+    @apply px-4 py-3 border-b border-gray-100 text-gray-700 align-top;
+  }
+
+  .prose-cozy tbody tr:nth-child(even) {
+    @apply bg-pink-50/20;
+  }
+
+  .prose-cozy tbody tr:hover {
+    @apply bg-pink-50/50;
+  }
+
   .card-aesthetic:hover {
     @apply -translate-y-0.5;
     box-shadow: 0 8px 24px 0 rgba(244, 114, 182, 0.16);
