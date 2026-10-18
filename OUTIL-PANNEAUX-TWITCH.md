@@ -1,40 +1,48 @@
-# Générateur de Panneaux Twitch & Bio Setup
+# Studio de Panneaux Twitch & Bio Setup
 
 Page : `/outils/panneaux-twitch/` — `src/pages/outils/panneaux-twitch.astro`
 
-Outil 100 % client-side (zéro backend). Point d'entrée du hub `/outils/`.
+Mini-SaaS 100 % client-side (Canvas API, zéro backend). Deux onglets :
+**🎨 Créateur de Panneaux** et **📝 Bio Setup**.
 
-## Moteur Canvas (v3)
+## Moteur Canvas
 
-- Largeur fixe Twitch **320 px**, hauteur **réglable 70–140 px**.
-- Netteté Retina via `devicePixelRatio`.
-- Styles de fond : mesh gradient pastel, glassmorphism, washi tape, couleur unie.
-- Formes : coins arrondis, pilule, carrés subtils.
-- Décorations : sparkles vectorielles (toggle), ombre douce sous le texte.
+- Largeur Twitch **320 px**, hauteur réglable 70–140 px, net Retina (`devicePixelRatio`).
+- Fonds : mesh gradient (angle 0–360°), couleur unie, glassmorphism, washi tape, **image perso uploadée** (cover-crop).
+- Textures : grid lofi, polka dots, sparkles.
+- Typo : 5 polices (Nunito, Fredoka, Jakarta, Playfair, Space Grotesk), taille 16–34 px, letter-spacing, majuscules.
+- Effets texte : ombre douce, sticker (contour blanc), retro shadow, néon.
+- Sous-titre par panneau (position fixe H×0.72).
+- Stickers vectoriels canvas : cœur, manette, étoile, nœud.
+- Logo/émote uploadé : gauche/droite/haut + taille slider.
 
 ## Personnalisation
 
-- **Couleurs libres** : 4 `<input type="color">` (fond, dégradé, texte, bordure) — les presets remplissent les pickers.
-- **Sliders** : hauteur, épaisseur de bordure (0–4 px), taille de texte (16–34 px), letter-spacing (0–6 px).
-- **Upload** : logo/émote PNG dessiné à gauche du texte.
-- **Polices** : Nunito, Fredoka, Plus Jakarta Sans, Playfair, Space Grotesk.
-- **Option** : tout en majuscules.
-- **Presets 1 clic** : Strawberry Milk, Lavender Lofi, Matcha Latte, Clean Studio.
+- 4 swatches couleur (Couleur 1, Couleur 2, texte, bordure) + HEX affiché.
+- Toggle **couleur par panneau** (picker par tag).
+- Panneaux : tags renommables + sous-titre + `×` supprimer + ajout libre.
+- Presets 1 clic bicolores contrastés (Strawberry, Lavender, Matcha, Studio).
+- Sliders : hauteur, bordure (effet sticker à 2px), angle dégradé.
 
-## Préview & Export
+## Preview Twitch
 
-- Aperçu **mode Twitch** (fond `#18181b`, header fake chaîne, grille 3 colonnes).
-- Clic sur un panneau = copie PNG directe (`navigator.clipboard.write` / ClipboardItem).
-- Export `.zip` global via JSZip CDN — PNG 320×H, nommés `01-a-propos.png`…
+- Fausse interface (`#18181b`) avec pseudo + avatar éditables en direct.
+- Sélecteur d'ambiance segmenté : 🌙 Sombre / ☀️ Clair / 🎨 Personnalisé (uni, dégradé C1→C2, ou **image de fond uploadée**).
+- Clic sur un panneau = copie PNG directe (`ClipboardItem`).
+- Sticky `lg:top-24` pendant le scroll de l'éditeur.
 
-## Générateur de bio setup
+## Export
 
-- Checkboxes de produits (micros, casques, accessoires, lumière) → Markdown :
-  `- **Micro :** [Fifine AM8 blanc](https://www.amazon.fr/dp/ASIN?tag=missstrm-21)`
-- **Ajout libre** : catégorie + nom du produit → lien recherche Amazon tagué
-  `https://www.amazon.fr/s?k={nom}&tag=missstrm-21`
-- Copie en un clic via `navigator.clipboard`.
+- **Pack complet ZIP** (JSZip CDN) : panneaux PNG + bannière 1200×480 + écran « live bientôt » 1920×1080, même charte.
+- **État sauvegardé dans l'URL** (`#hash` base64) : partage/template sans compte.
 
-## Stack
+## Onglet Bio Setup
 
-Astro statique, Tailwind v4, JS vanilla + Canvas API, JSZip 3.10.1 (CDN jsdelivr). Aucune dépendance serveur.
+- Grille de produits avec miniatures Amazon (`/images/products/{asin}.webp`) + checkbox.
+- Ajout libre : catégorie + nom → lien recherche tagué `amazon.fr/s?k=…&tag=missstrm-21`.
+- Éditeur Markdown style Twitch (fond `#18181b`, bouton `#9146FF`, copie clipboard).
+
+## UX
+
+- Bloc onboarding 3 étapes, guide d'installation Twitch en bas de page (SEO).
+- Outil référencé dans le hub `/outils/` (carte avec bannière 16:9).
