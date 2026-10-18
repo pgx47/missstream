@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../site.config';
+---
+
+<BaseLayout
+  title="Politique de confidentialité"
+  description="Politique de confidentialité et protection des données personnelles du site Miss Stream."
+>
+  <div class="max-w-3xl mx-auto px-4 py-12 prose-cozy">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6">Politique de confidentialité</h1>
+    <p class="text-sm text-gray-400 mb-8">Dernière mise à jour : octobre 2026</p>
+
+    <h2>Données collectées</h2>
+    <p>
+      {SITE.name} ne collecte aucune donnée personnelle de manière automatique : pas de compte
+      utilisateur, pas de tracking publicitaire, pas de cookie de suivi.
+    </p>
+    <p>
+      Le seul cas de collecte est le <strong>formulaire de contact</strong> : nom, adresse email et
+      message, utilisés uniquement pour vous répondre et jamais transmis à des tiers.
+    </p>
+
+    <h2>Cookies</h2>
+    <p>
+      Aucun cookie propriétaire n'est déposé. La mesure d'audience, le cas échéant, est assurée par
+      Cloudflare Web Analytics, solution sans cookie conforme au RGPD.
+    </p>
+
+    <h2>Liens sortants</h2>
+    <p>
+      Les liens vers Amazon.fr sont des liens affiliés (Programme Partenaires Amazon EU) :
+      en cliquant, vous quittez notre site et la politique de confidentialité d'Amazon s'applique.
+    </p>
+
+    <h2>Vos droits (RGPD)</h2>
+    <p>
+      Vous disposez d'un droit d'accès, de rectification et de suppression des données vous
+      concernant. Pour toute demande : <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      {SITE.name} — {SITE.url} — Contact : <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+    </p>
+  </div>
+</BaseLayout>
