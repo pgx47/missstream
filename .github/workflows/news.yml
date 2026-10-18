@@ -2,7 +2,7 @@ name: Fetch news
 
 on:
   schedule:
-    - cron: "0 10 * * 2,5" # mardi & vendredi 10:00 UTC
+    - cron: "0 10 * * 2,4,6" # mar/jeu/sam 10:00 UTC
   workflow_dispatch:
 
 permissions:

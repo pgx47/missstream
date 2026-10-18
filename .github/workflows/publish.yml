@@ -2,7 +2,7 @@ name: Publish guide
 
 on:
   schedule:
-    - cron: "0 8 * * 1,4" # lundi & jeudi 08:00 UTC
+    - cron: "0 8 * * 1,3,5" # lun/mer/ven 08:00 UTC
   workflow_dispatch:
 
 permissions:
