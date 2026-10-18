@@ -398,7 +398,7 @@ const bioProducts = [
       const P=PRESETS[b.dataset.preset];
       document.getElementById('c1').value=P.c1;document.getElementById('c2').value=P.c2;
       document.getElementById('fg').value=P.fg;document.getElementById('bord').value=P.bord;
-      render();
+      autoFg();render();
     });
     ['hgt','bw','fz','ls','isz','ang'].forEach(id=>{
       document.getElementById(id).addEventListener('input',()=>{
@@ -417,6 +417,9 @@ const bioProducts = [
     const BGMODES={dark:{bg:'#18181b',nav:'#0e0e10',txt:'#ffffff',live:'#d8b4fe',border:'rgba(255,255,255,0.05)'},
                    light:{bg:'#f7f7f8',nav:'#ffffff',txt:'#1f1f23',live:'#9333ea',border:'rgba(0,0,0,0.08)'}};
     let CBG_IMG=null;
+    let USER_FG=false;
+    function yiq(hex){const h=hex.replace('#','');const r=parseInt(h.substr(0,2),16),g=parseInt(h.substr(2,2),16),b=parseInt(h.substr(4,2),16);return ((r*299)+(g*587)+(b*114))/1000>=128?'#1F2937':'#FFFFFF';}
+    function autoFg(){if(USER_FG)return;const el=document.getElementById('fg');el.value=yiq(opt('c1'));}
     function applyPreviewBg(el,bg){el.style.backgroundColor='';el.style.backgroundImage='';el.style.backgroundSize='';el.style.background=bg;}
     function setPrevBg(mode){
       document.getElementById('custom-bg-settings').classList.toggle('hidden',mode!=='custom');
@@ -449,7 +452,9 @@ const bioProducts = [
       const r=new FileReader();r.onload=()=>{CBG_IMG=r.result;setPrevBg('custom');};r.readAsDataURL(f);
     });
     document.getElementById('percolor').addEventListener('change',()=>{renderTags();render();});
-    ['c1','c2','fg','bord','sparkles','caps'].forEach(id=>document.getElementById(id).addEventListener('input',render));
+    document.getElementById('fg').addEventListener('input',()=>{USER_FG=true;render();});
+    ['c1','c2','sparkles','caps'].forEach(id=>document.getElementById(id).addEventListener('input',()=>{autoFg();render();}));
+    document.getElementById('bord').addEventListener('input',render);
     document.querySelectorAll('input[name=iconpos]').forEach(r=>r.addEventListener('change',render));
     document.getElementById('logo').addEventListener('change',(e)=>{
       const f=e.target.files[0];if(!f)return;const i=new Image();
