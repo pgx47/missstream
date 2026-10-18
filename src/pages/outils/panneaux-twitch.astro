@@ -38,6 +38,16 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
     <div class="grid lg:grid-cols-2 gap-10 items-start">
       <div class="space-y-5">
         <details open class="card-aesthetic p-5 group">
+          <summary class="font-extrabold text-gray-900 cursor-pointer list-none flex justify-between">0. Identité (preview) <span class="text-pink-400 group-open:rotate-180 transition-transform">▾</span></summary>
+          <div class="mt-4 flex gap-2">
+            <input id="channel-name" type="text" value="ta_chaine" placeholder="Ton pseudo" class="flex-1 text-sm border border-pink-100 rounded-xl px-3 py-2.5" />
+            <label class="px-3 py-2.5 rounded-xl bg-purple-50 text-purple-600 text-xs font-bold cursor-pointer flex items-center gap-1.5">
+              <input type="file" id="avatar-file" accept="image/*" class="sr-only" /> Avatar
+            </label>
+          </div>
+        </details>
+
+        <details open class="card-aesthetic p-5 group">
           <summary class="font-extrabold text-gray-900 cursor-pointer list-none flex justify-between">1. Ambiance <span class="text-pink-400 group-open:rotate-180 transition-transform">▾</span></summary>
           <div class="grid grid-cols-2 gap-2.5 mt-4" id="presets">
             <button data-preset="strawberry" class="preset px-3 py-3 rounded-xl border border-pink-200 text-xs font-extrabold bg-gradient-to-br from-pink-100 to-rose-50 text-pink-700">🍓 Strawberry Milk</button>
@@ -155,9 +165,9 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
       <div class="lg:sticky lg:top-28">
         <div class="card-aesthetic p-0 overflow-hidden">
           <div class="bg-[#18181b] px-4 py-3 flex items-center gap-2">
-            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-pink-400 to-purple-400"></div>
+            <div id="prev-avatar" class="w-8 h-8 rounded-full bg-gradient-to-br from-pink-400 to-purple-400 overflow-hidden"></div>
             <div>
-              <p class="text-white text-xs font-bold">ta_chaine</p>
+              <p id="prev-name" class="text-white text-xs font-bold">ta_chaine</p>
               <p class="text-purple-300 text-[10px]">EN DIRECT · Aperçu panels</p>
             </div>
           </div>
@@ -326,6 +336,16 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
     document.getElementById('bio-copy').addEventListener('click',(e)=>{
       navigator.clipboard.writeText(document.getElementById('bio-out').value);
       e.target.textContent='Copié !';setTimeout(()=>e.target.textContent='Copier le code',1500);
+    });
+    document.getElementById('channel-name').addEventListener('input',(e)=>{
+      document.getElementById('prev-name').textContent=e.target.value||'ta_chaine';
+    });
+    document.getElementById('avatar-file').addEventListener('change',(e)=>{
+      const f=e.target.files[0];if(!f)return;
+      const i=new Image();i.onload=()=>{
+        const a=document.getElementById('prev-avatar');a.innerHTML='';
+        i.className='w-full h-full object-cover';a.appendChild(i);
+      };i.src=URL.createObjectURL(f);
     });
     render();
   </script>
