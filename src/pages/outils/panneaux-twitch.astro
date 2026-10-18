@@ -84,6 +84,7 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
           <div class="mt-4 grid grid-cols-2 gap-x-5 gap-y-3 text-xs font-bold text-gray-500">
             <label class="flex flex-col gap-1">Hauteur <span><b id="hv">100</b>px</span><input type="range" id="hgt" min="70" max="140" value="100" class="accent-pink-500" /></label>
             <label class="flex flex-col gap-1">Bordure <span><b id="bwv">1.5</b>px</span><input type="range" id="bw" min="0" max="4" step="0.5" value="1.5" class="accent-pink-500" /></label>
+            <label class="flex flex-col gap-1">Angle dégradé <span><b id="angv">135</b>°</span><input type="range" id="ang" min="0" max="360" value="135" class="accent-pink-500" /></label>
           </div>
         </details>
 
@@ -97,7 +98,8 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
             </select>
             <select id="teffect" class="text-sm border border-pink-100 rounded-xl px-3 py-2.5">
               <option value="soft">Ombre douce</option><option value="sticker">Sticker (contour blanc)</option>
-              <option value="retro">Retro hard shadow</option><option value="none">Net (aucun)</option>
+              <option value="retro">Retro hard shadow</option><option value="neon">Néon glow</option>
+              <option value="none">Net (aucun)</option>
             </select>
           </div>
           <div class="mt-4 grid grid-cols-2 gap-x-5 gap-y-3 text-xs font-bold text-gray-500">
@@ -111,16 +113,10 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
 
         <details open class="card-aesthetic p-5 group">
           <summary class="font-extrabold text-gray-900 cursor-pointer list-none flex justify-between">4. Panneaux & Icône <span class="text-pink-400 group-open:rotate-180 transition-transform">▾</span></summary>
-          <div class="grid grid-cols-2 gap-2 mt-4" id="panels">
-            {panels.map((p) => (
-              <label class="flex items-center gap-2 text-sm font-semibold text-gray-700">
-                <input type="checkbox" class="pnl w-4 h-4 accent-pink-500" value={p} checked={['À Propos','Règles','Planning','Setup','Discord'].includes(p)} /> {p}
-              </label>
-            ))}
-          </div>
+          <div id="panel-tags" class="mt-4 flex flex-wrap gap-2"></div>
           <div class="mt-3 flex gap-2">
             <input id="custom-txt" type="text" placeholder="Nom personnalisé…" class="flex-1 text-sm border border-pink-100 rounded-xl px-3 py-2.5" />
-            <button id="custom-add" class="px-4 py-2.5 rounded-xl bg-pink-500 text-white text-sm font-bold">+</button>
+            <button id="custom-add" class="px-4 py-2.5 rounded-xl bg-pink-500 text-white text-sm font-bold">+ Ajouter un panneau</button>
           </div>
           <div class="mt-4 grid grid-cols-3 gap-2 text-xs font-bold text-gray-500">
             <label class="flex items-center gap-1.5"><input type="radio" name="iconpos" value="left" checked class="w-3.5 h-3.5 accent-pink-500" /> Gauche</label>
@@ -206,8 +202,23 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
     const TAG = 'missstrm-21';
     let LOGO = null;
     const $ = (s) => document.querySelector(s);
-    const list = () => [...document.querySelectorAll('.pnl:checked')].map(i => i.value);
+    const PANELS = ['À Propos','Règles','Planning','Setup','Discord'];
+    const list = () => PANELS.slice();
     const opt = (id) => document.getElementById(id).value;
+    function renderTags(){
+      const box=document.getElementById('panel-tags');box.innerHTML='';
+      PANELS.forEach((n,i)=>{
+        const t=document.createElement('span');
+        t.className='inline-flex items-center gap-1 bg-pink-50 border border-pink-100 rounded-lg px-2 py-1';
+        const inp=document.createElement('input');
+        inp.value=n;inp.className='w-24 bg-transparent text-xs font-bold text-gray-700 outline-none';
+        inp.addEventListener('input',()=>{PANELS[i]=inp.value;render();});
+        const x=document.createElement('button');x.textContent='×';
+        x.className='text-pink-400 hover:text-pink-600 font-bold text-sm leading-none';
+        x.addEventListener('click',()=>{PANELS.splice(i,1);renderTags();render();});
+        t.appendChild(inp);t.appendChild(x);box.appendChild(t);
+      });
+    }
 
     function sparkle(ctx,x,y,r){ctx.beginPath();for(let i=0;i<8;i++){const a=i*Math.PI/4,l=i%2?r*0.35:r;ctx.lineTo(x+Math.cos(a)*l,y+Math.sin(a)*l);}ctx.closePath();ctx.fill();}
     function paintPattern(ctx,type,W,H){
@@ -229,8 +240,10 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
       if (style==='mesh'||style==='flat'){
         ctx.fillStyle=c1;ctx.fill();
         if(style==='mesh'){
-          const g=ctx.createRadialGradient(70,20,10,70,20,140);g.addColorStop(0,c2);g.addColorStop(1,'transparent');ctx.fillStyle=g;ctx.fill();
-          const g2=ctx.createRadialGradient(260,H-10,10,260,H-10,140);g2.addColorStop(0,c2);g2.addColorStop(1,'transparent');ctx.globalAlpha=0.7;ctx.fillStyle=g2;ctx.fill();ctx.globalAlpha=1;}
+          const a=+opt('ang')*Math.PI/180,dx=Math.cos(a)*160,dy=Math.sin(a)*160;
+          const g=ctx.createLinearGradient(160-dx,H/2-dy,160+dx,H/2+dy);g.addColorStop(0,c1);g.addColorStop(1,c2);
+          ctx.fillStyle=g;ctx.fill();
+          const g2=ctx.createRadialGradient(70,20,10,70,20,140);g2.addColorStop(0,'rgba(255,255,255,0.5)');g2.addColorStop(1,'transparent');ctx.fillStyle=g2;ctx.fill();}
       } else if (style==='glass'){
         ctx.fillStyle='rgba(255,255,255,0.55)';ctx.fill();
         const g=ctx.createLinearGradient(0,0,320,H);g.addColorStop(0,c1);g.addColorStop(1,c2);
@@ -259,6 +272,7 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
       ctx.textAlign='center';ctx.textBaseline='middle';
       if(eff==='soft'){ctx.shadowColor='rgba(0,0,0,0.12)';ctx.shadowBlur=4;ctx.shadowOffsetY=1;}
       if(eff==='retro'){ctx.shadowColor=fg;ctx.globalAlpha=0.3;ctx.shadowBlur=0;ctx.shadowOffsetX=3;ctx.shadowOffsetY=3;}
+      if(eff==='neon'){ctx.shadowColor=fg;ctx.shadowBlur=14;}
       ctx.fillStyle=eff==='retro'?fg:fg;
       ctx.fillText(txt,tx,ty);
       ctx.shadowColor='transparent';ctx.globalAlpha=1;
@@ -294,9 +308,9 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
       document.getElementById('fg').value=P.fg;document.getElementById('bord').value=P.bord;
       render();
     });
-    ['hgt','bw','fz','ls','isz'].forEach(id=>{
+    ['hgt','bw','fz','ls','isz','ang'].forEach(id=>{
       document.getElementById(id).addEventListener('input',()=>{
-        document.getElementById({hgt:'hv',bw:'bwv',fz:'fzv',ls:'lsv',isz:'iszv'}[id]).textContent=document.getElementById(id).value;
+        document.getElementById({hgt:'hv',bw:'bwv',fz:'fzv',ls:'lsv',isz:'iszv',ang:'angv'}[id]).textContent=document.getElementById(id).value;
         render();
       });
     });
@@ -307,12 +321,9 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
       const f=e.target.files[0];if(!f)return;const i=new Image();
       i.onload=()=>{LOGO=i;render();};i.src=URL.createObjectURL(f);
     });
-    document.getElementById('panels').addEventListener('change',render);
     document.getElementById('custom-add').addEventListener('click',()=>{
       const t=document.getElementById('custom-txt').value.trim();if(!t)return;
-      const l=document.createElement('label');l.className='flex items-center gap-2 text-sm font-semibold text-gray-700';
-      l.innerHTML=`<input type="checkbox" class="pnl w-4 h-4 accent-pink-500" value="${t.replace(/"/g,'')}" checked /> ${t}`;
-      document.getElementById('panels').appendChild(l);document.getElementById('custom-txt').value='';render();
+      PANELS.push(t);document.getElementById('custom-txt').value='';renderTags();render();
     });
     document.getElementById('bio-add').addEventListener('click',()=>{
       const cat=document.getElementById('bio-cat').value,nom=document.getElementById('bio-custom').value.trim();
@@ -347,6 +358,15 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
         i.className='w-full h-full object-cover';a.appendChild(i);
       };i.src=URL.createObjectURL(f);
     });
+    ['c1','c2','fg','bord'].forEach(id=>{
+      const el=document.getElementById(id);
+      const code=document.createElement('span');
+      code.className='text-[9px] font-mono text-gray-400';
+      code.textContent=el.value;
+      el.parentElement.appendChild(code);
+      el.addEventListener('input',()=>code.textContent=el.value);
+    });
+    renderTags();
     render();
   </script>
 </BaseLayout>
