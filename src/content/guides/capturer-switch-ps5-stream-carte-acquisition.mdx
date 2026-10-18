@@ -1,0 +1,187 @@
+---
+title: 'Capturer sa Switch ou PS5 en stream : quelle carte d''acquisition ?'
+description: 'Trois cartes d''acquisition testées pour capturer sa Switch ou sa PS5
+  en stream : passthrough, HDCP, audio, câbles et intégration dans un setup.'
+publishDate: '2026-10-18'
+image: /images/guides/capturer-switch-ps5-stream-carte-acquisition.webp
+category: guides
+faq:
+- question: OBS affiche un écran noir alors que ma PS5 est allumée, pourquoi ?
+  answer: Neuf fois sur dix, c'est le HDCP. Va dans Réglages, Système, HDMI sur la
+    PS5 et désactive le HDCP. Ensuite vérifie que la carte est sur un port USB 3 direct
+    et non sur un hub, et que tu as bien sélectionné la carte comme périphérique de
+    capture vidéo dans OBS.
+- question: Est-ce que je peux capturer ma Switch en mode portable ?
+  answer: Non. La Switch n'envoie de la vidéo que lorsqu'elle est dans son dock, via
+    le câble HDMI. En mode portable, aucune sortie vidéo n'est active, donc aucune
+    carte ne pourra récupérer le signal.
+- question: Une carte 4K est-elle utile si je streame en 1080p ?
+  answer: 'Pour le live lui-même, non : Twitch compresse bien en dessous. L''intérêt
+    est ailleurs, dans le passthrough 4K (ta TV garde sa qualité pendant que tu joues),
+    dans les VODs YouTube en 4K, et dans le 120 Hz si ta TV le gère.'
+- question: Ça ajoute du retard dans mes manettes ?
+  answer: Non, la latence des manettes ne change pas. Le passthrough d'une bonne carte
+    est quasi instantané, tu joues sur la TV comme si la carte n'existait pas. Le
+    seul décalage perceptible concerne l'aperçu OBS et le son écouté sur le PC.
+- question: Ma carte est bien reconnue mais l'image saccade, je fais quoi ?
+  answer: 'Cherche côté connexion avant de blâmer la carte : hub USB, port USB 2,
+    rallonge trop longue, câble HDMI bas de gamme, ou une résolution de capture supérieure
+    à ce que ton port supporte. Repasse en 1080p60 pour tester, puis remonte progressivement.'
+products:
+- nom: Elgato HD60 X
+  couleur: Noir mat
+  badge: Meilleur global
+  pointsForts:
+  - 'Passthrough 4K60 HDR : tu joues sur ta TV dans ta qualité habituelle'
+  - Reconnue sans pilote par OBS, Streamlabs et Twitch Studio
+  - Capture 1080p60 propre, largement suffisante pour un live
+  - Deux prises HDMI et un USB-C, branchement en trois minutes
+  pointsFaibles:
+  - Pas de capture 4K, donc inadaptée si tu veux archiver en 4K
+  - Le logiciel maison n'apporte rien de plus qu'OBS
+  - Boîtier noir uniquement, à cacher dans un setup pastel
+  asin: B09V1KJ3J4
+  stars: 4.6
+  avis: 5354
+  image: /images/products/B09V1KJ3J4.webp
+- nom: Elgato 4K X
+  couleur: Noir
+  badge: Coup de cœur design
+  pointsForts:
+  - Passthrough jusqu'à 4K144, ta PS5 en 120 fps reste fluide
+  - Capture 4K60 HDR pour les VODs et les extraits
+  - Boîtier compact qui se glisse derrière une TV sans se voir
+  - USB 3.2, installée en quelques minutes
+  pointsFaibles:
+  - Réclame un port USB 3.2 Gen 2 récent pour tenir le 4K
+  - Le modèle le plus cher de la sélection
+  - Surpasse largement les besoins d'un live Twitch en 1080p
+  asin: B0CPFWXMBL
+  stars: 4.5
+  avis: 1073
+  image: /images/products/B0CPFWXMBL.webp
+- nom: AVerMedia Live Gamer Mini
+  couleur: Noir / gris anthracite
+  badge: Meilleur budget
+  pointsForts:
+  - Format mini, se planque facilement derrière la TV
+  - Capture 1080p60 nette, suffisante pour débuter sur Twitch
+  - Prix d'entrée idéal pour tester si la capture te plaît
+  pointsFaibles:
+  - 'Pas de passthrough 4K : la TV retombe en 1080p60'
+  - Pas de HDR
+  - USB 2.0, réglages limités et pas de 120 fps
+  - Modèle ancien, peu de mises à jour
+  asin: B07R6P2JJR
+  stars: 4.4
+  avis: 1453
+  image: /images/products/B07R6P2JJR.webp
+- nom: AVerMedia Live Gamer Ultra 2.1
+  couleur: Noir
+  badge: Pour les TV 120 Hz
+  pointsForts:
+  - Passthrough 4K144 et 1080p240, parfait pour le mode performance PS5
+  - Capture 4K60 HDR
+  - HDMI 2.1 et USB 3.2, adaptée aux TV récentes
+  pointsFaibles:
+  - Nécessite un port USB 3.2 Gen 2 pour exploiter la 4K
+  - Chauffe et ventile, à ne pas enfermer dans un meuble fermé
+  - Surdimensionnée si ton écran est 1080p60
+  asin: B0CGD86HNB
+  stars: 4.2
+  avis: 303
+  image: /images/products/B0CGD86HNB.webp
+---
+
+## Le choix de la rédaction
+
+| Usage | Produit | Verdict |
+| --- | --- | --- |
+| Meilleur global | Elgato HD60 X | Le bon choix par défaut |
+| Meilleur budget | AVerMedia Live Gamer Mini | Petit prix, limites assumées |
+| Coup de cœur design | Elgato 4K X | Compact, discret, se fait oublier |
+
+Ta PS5 est branchée en HDMI sur ton PC depuis vingt minutes et OBS affiche toujours du noir. Tu as relancé le logiciel, changé de câble, soufflé un bon coup, et le chat a fini par demander si le stream était en pause. Le souci ne vient ni de la console ni d'OBS : une console n'envoie pas son image vers un logiciel, elle l'envoie vers un écran. Il manque juste la pièce qui fait la traduction.
+
+Cette pièce, c'est la carte d'acquisition. Et sur les fiches produit, elles se ressemblent toutes : un boîtier noir, deux prises HDMI, des chiffres partout. J'ai branché les modèles dont on parle le plus dans les setups de créatrices, dans un salon qui sert aussi de chambre, avec une TV 4K et une Switch qui sort du dock. Voilà ce qui change vraiment ton quotidien, ce qui ne sert à rien, et comment planquer le boîtier dans un setup pastel sans transformer ton meuble en nœud de câbles.
+
+## Pourquoi ta console ne s'affiche pas dans OBS
+
+Une console n'envoie pas sa vidéo comme une webcam. Elle sort un flux HDMI prévu pour un écran, souvent verrouillé par le HDCP, un système anti-copie. Ton PC, lui, ne sait lire que ce qu'un logiciel accepte : une source vidéo standard, reconnue comme un périphérique. Sans carte d'acquisition, il n'y a littéralement rien à sélectionner dans la liste des sources.
+
+Deuxième piège : la diffusion intégrée de la PS5. Elle existe, elle est gratuite, et elle dépanne quand tu veux juste montrer trois minutes de gameplay. Sauf qu'elle diffuse sans ta scène, sans tes alertes, sans ta webcam, sans ton overlay. Tu perds exactement ce qui fait ton stream. La carte, elle, pose ta console dans la même scène que ton micro et ta caméra.
+
+La Switch a son caractère aussi : pas de souci de HDCP en général, mais elle n'envoie de la vidéo que dans son dock. En mode portable, il ne sort rien du tout. Un câble HDMI et le dock, il n'y a pas de raccourci.
+
+## Ce qui compte vraiment, et les chiffres qui impressionnent pour rien
+
+Le passthrough, d'abord. C'est le signal que la carte renvoie vers ta TV. Il décide de la qualité que tu vois pendant que tu joues. Une carte sans passthrough 4K te fait retomber en 1080p sur un écran 4K, et honnêtement, ça se voit sur les jeux aux textes fins. C'est le critère numéro un, avant la résolution de capture.
+
+La capture en 1080p60 suffit dans la grande majorité des cas. Twitch compresse un live classique bien en dessous de ce que ta carte sait sortir. Si tu veux du 4K, c'est pour YouTube en différé, pour tes archives, ou pour retravailler tes extraits.
+
+Le HDR, ignore-le si tu ne sais pas déjà pourquoi tu en veux. Les plateformes le convertissent à leur sauce, et une capture HDR mal réglée donne des noirs bouchés. Le HDR en passthrough, en revanche, garde ta TV fidèle à ce que la console envoie.
+
+Le 120 Hz ne concerne que celles qui jouent en mode performance sur une TV compatible. Si ta TV plafonne à 60 Hz, ça ne changera rien.
+
+Le port USB compte plus que la fiche technique. Une carte branchée sur un hub, sur un port USB 2 ou sur une rallonge douteuse, c'est l'image qui saute et l'audio qui grésille. Port USB 3 direct sur la carte mère, toujours.
+
+La latence de l'aperçu, enfin : ne joue jamais dans la fenêtre OBS. Tu joues sur la TV, l'aperçu ne sert qu'à vérifier le cadrage et le son.
+
+## Trois cartes, trois usages réels
+
+### Elgato HD60 X
+
+Celle que je conseille quand on ne veut pas se poser de question. Elle laisse passer le 4K60 HDR vers la TV, donc tu joues dans ta qualité habituelle, et elle capture en 1080p60. Reconnue sans pilote par OBS, Streamlabs ou Twitch Studio. Deux prises HDMI, un USB-C, trois minutes de branchement. Ses limites : pas de capture 4K, et un boîtier noir mat qu'il faudra cacher dans un setup clair.
+
+### Elgato 4K X
+
+La version qui voit plus loin : passthrough jusqu'à 4K144, capture 4K60 HDR, USB 3.2. Si ta PS5 tourne en 120 images par seconde ou si tu enregistres tes VODs en 4K, c'est elle. Attention, elle réclame un vrai port USB 3.2 récent pour tenir le 4K, et elle coûte plus cher que la plupart des autres éléments de ton setup. Pour un live Twitch en 1080p, tu paies de la marge que tu n'utiliseras pas tout de suite.
+
+### AVerMedia Live Gamer Mini
+
+Le ticket d'entrée. Format minuscule, capture 1080p60, elle fait le travail pour un live. Le défaut est net et il faut le savoir avant d'acheter : pas de passthrough 4K, donc ta TV retombe en 1080p60 quand elle est dans la chaîne. Pas de HDR non plus, et de l'USB 2.0 qui limite les réglages. C'est un bon choix si tu streames en 1080p sur un écran 1080p et que tu veux surtout tester si la capture te plaît.
+
+### AVerMedia Live Gamer Ultra 2.1
+
+Pour celles qui ont une TV HDMI 2.1 et une PS5 en mode performance : passthrough 4K144, capture 4K60 HDR, USB 3.2. Elle chauffe et ventile, donc ne la coince pas sous un meuble fermé, et il faut un port USB compatible pour l'exploiter.
+
+## Le branchement en quatre prises
+
+1. Console vers l'entrée IN de la carte.
+2. Sortie OUT de la carte vers la TV.
+3. Carte vers le PC, en USB 3, sur un port direct.
+4. Dans OBS, ajoute une source « Périphérique de capture vidéo », choisis la carte, règle 1920x1080 et 60 images par seconde, puis ajoute le son via le même périphérique.
+
+Et avant tout ça, coupe le HDCP sur la PS5 : Réglages, Système, HDMI, puis désactive l'option HDCP. Netflix et compagnie ne fonctionneront plus sur la console dans cette configuration, c'est le prix à payer. Sur Xbox, l'option se trouve dans les réglages TV et affichage. Sur Switch, rien à désactiver.
+
+## Le son, l'étape qu'on oublie tout le temps
+
+Le son du jeu part avec l'image dans le HDMI. Il arrive dans la carte, puis dans le PC, et tu le récupères dans OBS. Si tu branches ton casque sur le PC, tu l'entends avec un léger retard, ce qui est déstabilisant sur un jeu de rythme. Deux solutions : brancher le casque sur la manette ou sur la TV, ou accepter le décalage et surveiller le son dans OBS. Si tu ajoutes un micro pour commenter, un [micro USB blanc ou rose pour streamer](/articles/meilleur-micro-usb-blanc-rose-pour-streamer/) se gère à part, sur le PC, sans passer par la carte.
+
+## Où la planquer dans une pièce de vie
+
+Aucune carte d'acquisition ne se vend en pastel. Ce sont des blocs noirs d'une dizaine de centimètres, avec des LED. La bonne stratégie n'est pas de les mettre en valeur, c'est de les faire disparaître : derrière la TV, sous le plateau avec du velcro, ou dans le meuble à côté de la box. Prévois des câbles HDMI courts et coudés, c'est ce qui change le plus le rendu final.
+
+Si tu travailles sur un [bureau assis-debout blanc pour setup créateur](/articles/bureau-assis-debout-blanc-setup-createur/), attention : quand le plateau monte, le câble USB tire. Fixe la carte sous le plateau et laisse une boucle de mou. Et pour la partie bureau, un [tapis de souris XXL pastel et un bras de micro blanc](/articles/tapis-souris-xxl-pastel-bras-micro-blanc/) finissent le décor bien mieux qu'un boîtier noir posé sur le bureau.
+
+Si tu passes du gameplay seul au face cam, la lumière devient le vrai sujet : un [ring light ou des barres LED bien orientées](/articles/ring-light-led-setup-streaming/) évitent l'écran surexposé et le visage dans l'ombre.
+
+## Trois erreurs qui pourrissent la capture
+
+Le hub USB. La carte a besoin de bande passante, un hub la partage avec ta souris et ton clavier. Branche-la seule.
+
+Le câble HDMI récupéré au fond d'un tiroir. Un vieux câble ne tient pas le débit, et tu passes une heure à chercher un problème logiciel qui n'existe pas.
+
+L'aperçu OBS pour jouer. Tu vas ressentir un retard, tu vas l'attribuer à la carte, et la carte n'y est pour rien.
+
+Ajoute une vérification après chaque grosse mise à jour de la console : le HDCP peut se réactiver, et l'écran noir revient sans prévenir.
+
+## Carte d'acquisition ou capture intégrée ?
+
+Si tu veux juste poster trois extraits de boss sur ton TikTok et que tu n'as pas de PC à côté, la fonction intégrée suffit. Dès que tu veux ta scène, ton overlay, ton micro et ton chat sur le même écran, la carte devient obligatoire. C'est la même logique que pour ton éclairage : le matériel ne fait pas le stream, mais il arrête de te freiner.
+
+## Comment arbitrer ton budget
+
+Une carte d'acquisition se situe dans le même ordre de prix qu'un bon micro ou une webcam correcte. La question n'est donc pas de mettre plus, mais de savoir ce que tu as en face : une TV 1080p60 ne justifie pas une carte 4K144, et une TV 4K avec une PS5 en 120 Hz rendra le passthrough 4K vraiment utile. Compte aussi les câbles HDMI, souvent oubliés, et garde le reste du budget pour la lumière et le son, qui changent plus ton rendu qu'un boîtier plus haut de gamme.
+
+Pour résumer : HD60 X si tu veux le choix tranquille, Live Gamer Mini si ton écran est 1080p et que tu débutes, 4K X ou Ultra 2.1 si ta TV et tes VODs méritent la 4K. Dans les trois cas, la carte disparaît derrière la TV et le setup reste celui d'une pièce de vie.

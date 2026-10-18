@@ -111,7 +111,9 @@
       "Elgato 4K X",
       "AverMedia Live Gamer Mini"
     ],
-    "status": "pending"
+    "status": "done",
+    "vs_extra": "",
+    "slug": "capturer-switch-ps5-stream-carte-acquisition"
   },
   {
     "keyword": "meilleure enceinte de monitoring blanche pour streamer sur Twitch",
@@ -121,7 +123,9 @@
       "Mackie CR3-X White",
       "Edifier R1280DB White"
     ],
-    "status": "pending"
+    "status": "done",
+    "vs_extra": "",
+    "slug": "meilleure-enceinte-monitoring-blanche-stream-twitch"
   },
   {
     "keyword": "support casque blanc pour bureau de créatrice stream",
@@ -130,6 +134,41 @@
       "Razer Base Station V2 Chroma Mercury White",
       "Corsair ST100 RGB White",
       "New Bee Support Casque Blanc"
+    ],
+    "status": "done",
+    "vs_extra": "",
+    "slug": "support-casque-blanc-bureau-createatrice-stream"
+  },
+  {
+    "keyword": "Fifine AM8 vs Shure MV7 : lequel pour un setup blanc",
+    "type": "vs",
+    "silo": "audio",
+    "categorie": "micros",
+    "produits": [
+      "Fifine AM8 blanc",
+      "Shure MV7"
+    ],
+    "status": "pending"
+  },
+  {
+    "keyword": "Stream Deck Neo vs MK.2 : lequel choisir pour débuter",
+    "type": "vs",
+    "silo": "accessoires",
+    "categorie": "stream deck",
+    "produits": [
+      "Elgato Stream Deck Neo",
+      "Elgato Stream Deck MK.2"
+    ],
+    "status": "pending"
+  },
+  {
+    "keyword": "Logitech Litra Glow vs Elgato Key Light Mini",
+    "type": "vs",
+    "silo": "video",
+    "categorie": "eclairage",
+    "produits": [
+      "Logitech Litra Glow",
+      "Elgato Key Light Mini"
     ],
     "status": "pending"
   },
@@ -260,39 +299,6 @@
       "Anker Power Strip 6 Prises USB Blanc",
       "Brennenstuhl Multiprise Premium-Line USB Blanc",
       "Belkin Multiprise USB Blanche"
-    ],
-    "status": "pending"
-  },
-  {
-    "keyword": "Fifine AM8 vs Shure MV7 : lequel pour un setup blanc",
-    "type": "vs",
-    "silo": "audio",
-    "categorie": "micros",
-    "produits": [
-      "Fifine AM8 blanc",
-      "Shure MV7"
-    ],
-    "status": "pending"
-  },
-  {
-    "keyword": "Stream Deck Neo vs MK.2 : lequel choisir pour débuter",
-    "type": "vs",
-    "silo": "accessoires",
-    "categorie": "stream deck",
-    "produits": [
-      "Elgato Stream Deck Neo",
-      "Elgato Stream Deck MK.2"
-    ],
-    "status": "pending"
-  },
-  {
-    "keyword": "Logitech Litra Glow vs Elgato Key Light Mini",
-    "type": "vs",
-    "silo": "video",
-    "categorie": "eclairage",
-    "produits": [
-      "Logitech Litra Glow",
-      "Elgato Key Light Mini"
     ],
     "status": "pending"
   }
