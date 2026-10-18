@@ -47,11 +47,13 @@ const looks = [
       le prix et les coloris dispo.
     </p>
 
-    <div class="mt-8 space-y-10">
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
       {
         looks.map((l) => (
           <div class="card-aesthetic overflow-hidden">
-            <img src={l.image} alt={l.titre} class="w-full h-56 md:h-72 object-cover" loading="lazy" />
+            <div class="relative w-full aspect-[16/10] overflow-hidden bg-gray-100">
+              <img src={l.image} alt={l.titre} class="w-full h-full object-cover object-center" loading="lazy" />
+            </div>
             <div class="p-5 md:p-6">
               <h2 class="text-xl font-extrabold text-gray-900">{l.titre}</h2>
               <div class="mt-4 grid grid-cols-2 lg:grid-cols-4 gap-3">
