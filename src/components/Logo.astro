@@ -5,20 +5,17 @@ interface Props {
 
 const { size = "md" } = Astro.props;
 
-const sizes = {
-  sm: "w-12 h-12 -mt-4 text-xl",
-  md: "w-16 h-16 sm:w-20 sm:h-20 -mt-6 sm:-mt-8 text-2xl sm:text-3xl",
-  lg: "w-20 h-20 -mt-8 text-3xl",
-};
+const av = { sm: "w-12 h-12 -mt-4", md: "w-16 h-16 sm:w-20 sm:h-20 -mt-6 sm:-mt-8", lg: "w-20 h-20 -mt-8" };
+const tx = { sm: "text-xl", md: "text-2xl sm:text-3xl", lg: "text-3xl" };
 ---
 
-<a href="/" class="group flex items-center gap-3 relative z-[100]">
+<a href="/" class="group flex items-center gap-3 relative">
   <img
     src="/logo-avatar.webp"
-    alt="MissStream"
-    class={`${sizes[size].split(" ").slice(0, 3).join(" ")} shrink-0 object-contain drop-shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-3`}
+    alt="Miss Stream"
+    class={`${av[size]} shrink-0 relative z-20 object-contain drop-shadow-md transition-transform duration-200 group-hover:scale-105`}
   />
-  <span class={`font-extrabold tracking-tight ${sizes[size].split(" ").slice(3).join(" ")}`}>
+  <span class={`font-extrabold tracking-tight select-none ${tx[size]}`}>
     <span class="text-gray-900">Miss</span><span class="bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">Stream</span>
   </span>
 </a>
