@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { amazonUrl } from '../../site.config';
+import streamers from '../../data/streamers.json';
+
+export function getStaticPaths() {
+  return streamers.map((s) => ({ params: { slug: s.slug }, props: { s } }));
+}
+
+const { s } = Astro.props;
+const cats = [...new Set(s.setup.map((p) => p.cat))];
+---
+
+<BaseLayout
+  title={`Setup de ${s.nom}`}
+  description={`Le matériel exact de ${s.nom} : ${s.setup.map((p) => p.nom).slice(0, 4).join(', ')}… et les alternatives budget.`}
+>
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <div class="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
+      <div class="w-24 h-24 rounded-full bg-gradient-to-br from-pink-400 to-purple-400 flex items-center justify-center text-white text-4xl font-extrabold shrink-0">
+        {s.nom[0]}
+      </div>
+      <div>
+        <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Setup de {s.nom}</h1>
+        <p class="mt-2 text-gray-500">{s.bio}</p>
+        <div class="mt-3 flex flex-wrap justify-center sm:justify-start gap-2">
+          {
+            Object.entries(s.reseaux).map(([r, h]) => (
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-purple-50 text-purple-600 border border-purple-100 capitalize">{r}</span>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-10 flex gap-2 flex-wrap" id="tabs">
+      <button data-cat="all" class="tab-btn px-4 py-2 rounded-xl text-sm font-bold bg-gradient-to-r from-pink-500 to-rose-400 text-white">Tout</button>
+      {
+        cats.map((c) => (
+          <button data-cat={c} class="tab-btn px-4 py-2 rounded-xl text-sm font-bold bg-white text-gray-600 border border-pink-100">{c}</button>
+        ))
+      }
+    </div>
+
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        s.setup.map((p) => (
+          <div class="prod card-aesthetic overflow-hidden flex flex-col" data-cat={p.cat}>
+            {p.asin && (
+              <div class="h-40 bg-surface-bg flex items-center justify-center p-4">
+                <img src={`/images/products/${p.asin}.webp`} alt={p.nom} class="h-full object-contain" loading="lazy" />
+              </div>
+            )}
+            <div class="p-5 flex-1 flex flex-col">
+              <p class="text-[10px] font-extrabold uppercase tracking-widest text-purple-500">{p.cat}</p>
+              <h3 class="mt-1 font-extrabold text-gray-900">{p.nom}</h3>
+              <a
+                href={amazonUrl({ asin: p.asin, query: p.nom })}
+                target="_blank"
+                rel="nofollow sponsored noopener"
+                class="btn-cta mt-3 text-center px-4 py-2.5 text-sm"
+              >
+                Voir sur Amazon
+              </a>
+              {p.dupe && (
+                <div class="mt-3 rounded-xl bg-pink-50/50 border border-pink-100 p-3">
+                  <p class="text-[10px] font-extrabold uppercase tracking-widest text-pink-500">Alternative budget</p>
+                  <p class="text-sm font-bold text-gray-800 mt-0.5">{p.dupe.nom}</p>
+                  <a
+                    href={amazonUrl({ asin: p.dupe.asin, query: p.dupe.nom })}
+                    target="_blank"
+                    rel="nofollow sponsored noopener"
+                    class="mt-1.5 inline-block text-xs font-extrabold text-pink-600 hover:underline"
+                  >
+                    Voir l'alternative →
+                  </a>
+                </div>
+              )}
+              <p class="mt-3 pt-3 border-t border-gray-100 text-xs text-gray-400 leading-relaxed flex-1">
+                L'avis Miss Stream : {p.avis}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <script is:inline>
+    document.querySelectorAll('.tab-btn').forEach((b) => {
+      b.addEventListener('click', () => {
+        const c = b.dataset.cat;
+        document.querySelectorAll('.prod').forEach((el) => {
+          el.classList.toggle('hidden', c !== 'all' && el.dataset.cat !== c);
+        });
+        document.querySelectorAll('.tab-btn').forEach((x) => {
+          x.className = x === b
+            ? 'tab-btn px-4 py-2 rounded-xl text-sm font-bold bg-gradient-to-r from-pink-500 to-rose-400 text-white'
+            : 'tab-btn px-4 py-2 rounded-xl text-sm font-bold bg-white text-gray-600 border border-pink-100';
+        });
+      });
+    });
+  </script>
+</BaseLayout>

@@ -1,0 +1,144 @@
+[
+  {
+    "slug": "gotaga",
+    "nom": "Gotaga",
+    "bio": "Le French Monster. FPS, variété et production premium.",
+    "reseaux": {
+      "twitch": "gotaga",
+      "youtube": "gotaga",
+      "twitter": "Gotaga"
+    },
+    "setup": [
+      {
+        "cat": "Audio",
+        "nom": "Shure SM7B",
+        "query": "shure sm7b",
+        "avis": "Le graal du micro stream, mais exige un bras robuste et une interface audio.",
+        "dupe": {
+          "nom": "Fifine AM8 blanc",
+          "asin": "B0C74G9RLH"
+        }
+      },
+      {
+        "cat": "Périphériques",
+        "nom": "Logitech G Pro X Superlight 2",
+        "query": "logitech g pro x superlight",
+        "avis": "La souris pro par défaut : ultra légère, zéro latence.",
+        "dupe": {
+          "nom": "Logitech G305 blanc",
+          "query": "logitech g305 white"
+        }
+      },
+      {
+        "cat": "PC & Image",
+        "nom": "Elgato 4K X",
+        "asin": "B0CN2B1V6N",
+        "avis": "Capture 4K 144fps sans compromis pour les streams pro.",
+        "dupe": {
+          "nom": "AverMedia Live Gamer Mini",
+          "query": "avermedia live gamer mini"
+        }
+      },
+      {
+        "cat": "Audio",
+        "nom": "Beyerdynamic DT 990 Pro",
+        "query": "beyerdynamic dt 990 pro",
+        "avis": "Casque ouvert très précis, parfait en FPS.",
+        "dupe": {
+          "nom": "Logitech G335 blanc",
+          "asin": "B08KKBSDTY"
+        }
+      },
+      {
+        "cat": "Périphériques",
+        "nom": "Wooting 60HE",
+        "query": "wooting 60he",
+        "avis": "Le clavier analogique des compétiteurs.",
+        "dupe": {
+          "nom": "Redragon K617 pastel",
+          "query": "redragon k617 pastel"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "squeezie",
+    "nom": "Squeezie",
+    "bio": "Le roi du divertissement français. Multi-jeux et production léchée.",
+    "reseaux": {
+      "twitch": "squeezie",
+      "youtube": "Squeezie",
+      "twitter": "Squeezie"
+    },
+    "setup": [
+      {
+        "cat": "Audio",
+        "nom": "Shure MV7 blanc",
+        "asin": "B0CTJ6GQGZ",
+        "avis": "Le SM7B accessible : branché en USB, ça marche direct."
+      },
+      {
+        "cat": "PC & Image",
+        "nom": "Sony ZV-E10",
+        "query": "sony zv-e10",
+        "avis": "Caméra hybride, le rendu cinéma du stream.",
+        "dupe": {
+          "nom": "Logitech Brio 500",
+          "asin": "B07W5JKKFJ"
+        }
+      },
+      {
+        "cat": "Audio",
+        "nom": "Beyerdynamic MMX 300",
+        "query": "beyerdynamic mmx 300",
+        "avis": "Casque broadcast, confort sur de longues sessions.",
+        "dupe": {
+          "nom": "HyperX Cloud Stinger 2 blanc",
+          "asin": "B0BCFKG49M"
+        }
+      },
+      {
+        "cat": "Périphériques",
+        "nom": "Elgato Stream Deck +",
+        "query": "elgato stream deck plus",
+        "avis": "Le pilotage du live du bout des doigts."
+      }
+    ]
+  },
+  {
+    "slug": "kameto",
+    "nom": "Kameto",
+    "bio": "Patron de la KCORP. LoL, TFT et énergie brute.",
+    "reseaux": {
+      "twitch": "kameto",
+      "youtube": "kameto",
+      "twitter": "Kameto"
+    },
+    "setup": [
+      {
+        "cat": "Audio",
+        "nom": "HyperX QuadCast S blanc",
+        "asin": "B0DXW278KB",
+        "avis": "Le USB qui impressionne : RGB, son pro, look clean."
+      },
+      {
+        "cat": "Périphériques",
+        "nom": "Razer Viper V3 Pro",
+        "query": "razer viper v3 pro",
+        "avis": "Le sniper FPS de la team KC."
+      },
+      {
+        "cat": "PC & Image",
+        "nom": "Logitech Brio 4K",
+        "query": "logitech brio 4k",
+        "avis": "La webcam qui gère les soirées faiblement éclairées."
+      },
+      {
+        "cat": "Audio",
+        "nom": "HyperX Cloud II",
+        "query": "hyperx cloud ii",
+        "avis": "Un classique indestructible, idéal en vocal."
+      }
+    ]
+  }
+]
