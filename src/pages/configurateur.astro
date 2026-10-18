@@ -80,18 +80,32 @@ const _packs = [
           <p class="text-gray-500">{p.accroche}</p>
           <ul class="mt-5 space-y-3">
             {p.items.map((it) => (
-              <li class="flex items-center justify-between gap-3 rounded-xl bg-pink-50/40 border border-pink-100 px-4 py-3">
-                {it.asin && (
-                  <img src={`/images/products/${it.asin}.webp`} alt={it.nom} class="w-12 h-12 rounded-lg object-contain bg-white border border-pink-50 shrink-0" loading="lazy" />
-                )}
-                <span class="font-bold text-gray-800 text-sm flex-1">{it.nom}</span>
+              <li class="group flex items-center justify-between gap-3 p-3 sm:p-4 bg-white rounded-xl border border-pink-50 hover:border-pink-200 hover:shadow-sm transition-all duration-200">
+                <div class="flex items-center gap-4 sm:gap-6 flex-1 min-w-0">
+                  {
+                    it.asin && (
+                      <div class="shrink-0 w-20 h-20 sm:w-24 sm:h-24 bg-surface-bg rounded-lg p-2 flex items-center justify-center overflow-hidden border border-gray-100">
+                        <img
+                          src={`/images/products/${it.asin}.webp`}
+                          alt={it.nom}
+                          class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                          loading="lazy"
+                        />
+                      </div>
+                    )
+                  }
+                  <div class="min-w-0 pr-2">
+                    <h4 class="text-sm sm:text-base font-bold text-gray-900 truncate">{it.nom}</h4>
+                  </div>
+                </div>
                 <a
                   href={amazonUrl({ asin: it.asin, query: it.nom })}
                   target="_blank"
                   rel="nofollow sponsored noopener"
-                  class="shrink-0 text-xs font-bold text-pink-600 hover:underline"
+                  class="shrink-0 flex items-center gap-1.5 text-xs sm:text-sm font-extrabold text-pink-600 group-hover:text-pink-500 transition-colors"
                 >
-                  Voir le prix →
+                  Voir le prix
+                  <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                 </a>
               </li>
             ))}
