@@ -67,11 +67,31 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
               <option value="Nunito">Nunito (ronde)</option>
               <option value="Fredoka">Fredoka (bulle)</option>
               <option value="Jakarta">Plus Jakarta Sans (moderne)</option>
+              <option value="Playfair">Playfair (luxe)</option>
+              <option value="Grotesk">Space Grotesk (tech)</option>
             </select>
             <label class="flex items-center gap-2 text-sm font-semibold text-gray-700 px-2">
               <input id="sparkles" type="checkbox" class="w-4 h-4 accent-pink-500" checked /> Étincelles
             </label>
           </div>
+          <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-bold text-gray-500">
+            <label class="flex flex-col gap-1">Fond <input type="color" id="c1" value="#fecdd3" class="w-full h-8 rounded cursor-pointer" /></label>
+            <label class="flex flex-col gap-1">Dégradé <input type="color" id="c2" value="#fbcfe8" class="w-full h-8 rounded cursor-pointer" /></label>
+            <label class="flex flex-col gap-1">Texte <input type="color" id="fg" value="#9d174d" class="w-full h-8 rounded cursor-pointer" /></label>
+            <label class="flex flex-col gap-1">Bordure <input type="color" id="bord" value="#f9a8d4" class="w-full h-8 rounded cursor-pointer" /></label>
+          </div>
+          <div class="mt-4 grid grid-cols-2 gap-4 text-xs font-bold text-gray-500">
+            <label class="flex flex-col gap-1">Hauteur <span id="hv">100</span>px<input type="range" id="hgt" min="70" max="140" value="100" class="accent-pink-500" /></label>
+            <label class="flex flex-col gap-1">Bordure <span id="bwv">1.5</span>px<input type="range" id="bw" min="0" max="4" step="0.5" value="1.5" class="accent-pink-500" /></label>
+            <label class="flex flex-col gap-1">Taille texte <span id="fzv">24</span>px<input type="range" id="fz" min="16" max="34" value="24" class="accent-pink-500" /></label>
+            <label class="flex flex-col gap-1">Espacement <span id="lsv">0</span>px<input type="range" id="ls" min="0" max="6" step="0.5" value="0" class="accent-pink-500" /></label>
+          </div>
+          <label class="mt-4 flex flex-col gap-1 text-xs font-bold text-gray-500">
+            Logo / émote (PNG) <input type="file" id="logo" accept="image/*" class="text-xs file:mr-3 file:rounded-lg file:border-0 file:bg-pink-50 file:text-pink-600 file:px-3 file:py-1.5 file:font-bold" />
+          </label>
+          <label class="mt-2 flex items-center gap-2 text-xs font-bold text-gray-500">
+            <input id="caps" type="checkbox" class="w-4 h-4 accent-pink-500" /> Tout en majuscules
+          </label>
         </div>
 
         <div class="card-aesthetic p-6">
@@ -102,6 +122,14 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
                 ))}
               </div>
             ))}
+          </div>
+          <div class="mt-4 flex gap-2">
+            <select id="bio-cat" class="text-xs border border-pink-100 rounded-xl px-2 py-2 w-28">
+              <option>Micro</option><option>Casque</option><option>Caméra</option><option>Clavier</option>
+              <option>Souris</option><option>Écran</option><option>Éclairage</option><option>Bureau</option><option>Accessoire</option>
+            </select>
+            <input id="bio-custom" type="text" placeholder="Ton matériel (ex. Sony ZV-E10)" class="flex-1 text-xs border border-pink-100 rounded-xl px-3 py-2" />
+            <button id="bio-add" class="px-3 py-2 rounded-xl bg-pink-500 text-white text-xs font-bold">+</button>
           </div>
           <textarea id="bio-out" readonly rows="5" class="mt-4 w-full text-xs font-mono bg-gray-50 border border-pink-100 rounded-xl p-3" placeholder="Coche les produits…"></textarea>
           <button id="bio-copy" class="btn-cta mt-3 px-5 py-2.5 text-sm">Copier le code</button>
@@ -139,7 +167,18 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
       matcha:   { c1:'#d9f99d', c2:'#bbf7d0', c3:'#fde68a', fg:'#3f6212', border:'#a3e635' },
       studio:   { c1:'#ffffff', c2:'#fdf2f8', c3:'#fff1f2', fg:'#374151', border:'#f9a8d4' },
     };
-    const FONTS = { Nunito:"800 24px 'Nunito Variable', sans-serif", Fredoka:"600 25px 'Fredoka', sans-serif", Jakarta:"700 24px 'Plus Jakarta Sans', sans-serif" };
+    const FONTS = {
+      Nunito:"'Nunito Variable', sans-serif", Fredoka:"'Fredoka', sans-serif",
+      Jakarta:"'Plus Jakarta Sans', sans-serif", Playfair:"'Playfair Display', serif",
+      Grotesk:"'Space Grotesk', sans-serif"
+    };
+    const FWT = { Nunito:'800', Fredoka:'600', Jakarta:'700', Playfair:'700', Grotesk:'700' };
+    let LOGO = null;
+    document.getElementById('logo').addEventListener('change',(e)=>{
+      const f=e.target.files[0];if(!f)return;const i=new Image();
+      i.onload=()=>{LOGO=i;render();};i.src=URL.createObjectURL(f);
+    });
+    const TAG = 'missstrm-21';
     let PRE = 'strawberry';
     const $ = (s) => document.querySelector(s);
     const list = () => [...document.querySelectorAll('.pnl:checked')].map(i => i.value);
@@ -148,36 +187,42 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
     function sparkle(ctx,x,y,r){ctx.beginPath();for(let i=0;i<8;i++){const a=i*Math.PI/4,l=i%2?r*0.35:r;ctx.lineTo(x+Math.cos(a)*l,y+Math.sin(a)*l);}ctx.closePath();ctx.fill();}
 
     function draw(name){
-      const P = PRESETS[PRE], dpr = window.devicePixelRatio||1;
-      const c = document.createElement('canvas'); c.width=320*dpr; c.height=100*dpr; c.style.width='100%';
+      const H = +opt('hgt'), dpr = window.devicePixelRatio||1;
+      const c1 = opt('c1'), c2 = opt('c2'), fg = opt('fg'), bord = opt('bord'), bw = +opt('bw');
+      const c = document.createElement('canvas'); c.width=320*dpr; c.height=H*dpr; c.style.width='100%';
       const ctx = c.getContext('2d'); ctx.scale(dpr,dpr);
       const rad = +opt('shape'), style = opt('style');
       ctx.beginPath();
-      if (ctx.roundRect) ctx.roundRect(0,0,320,100,rad); else ctx.rect(0,0,320,100);
+      if (ctx.roundRect) ctx.roundRect(0,0,320,H,Math.min(rad,H/2)); else ctx.rect(0,0,320,H);
       if (style==='mesh'||style==='flat'){
-        if(style==='flat'){ctx.fillStyle=P.c1;ctx.fill();}
-        else{ctx.fillStyle=P.c1;ctx.fill();
-          const g=ctx.createRadialGradient(70,20,10,70,20,140);g.addColorStop(0,P.c2);g.addColorStop(1,'transparent');
+        ctx.fillStyle=c1;ctx.fill();
+        if(style==='mesh'){
+          const g=ctx.createRadialGradient(70,20,10,70,20,140);g.addColorStop(0,c2);g.addColorStop(1,'transparent');
           ctx.fillStyle=g;ctx.fill();
-          const g2=ctx.createRadialGradient(260,90,10,260,90,140);g2.addColorStop(0,P.c3);g2.addColorStop(1,'transparent');
-          ctx.fillStyle=g2;ctx.fill();}
+          const g2=ctx.createRadialGradient(260,H-10,10,260,H-10,140);g2.addColorStop(0,c2);g2.addColorStop(1,'transparent');
+          ctx.globalAlpha=0.7;ctx.fillStyle=g2;ctx.fill();ctx.globalAlpha=1;}
       } else if (style==='glass'){
         ctx.fillStyle='rgba(255,255,255,0.55)';ctx.fill();
-        const g=ctx.createLinearGradient(0,0,320,100);g.addColorStop(0,P.c1);g.addColorStop(1,P.c2);
+        const g=ctx.createLinearGradient(0,0,320,H);g.addColorStop(0,c1);g.addColorStop(1,c2);
         ctx.globalAlpha=0.35;ctx.fillStyle=g;ctx.fill();ctx.globalAlpha=1;
         ctx.strokeStyle='rgba(255,255,255,0.9)';ctx.lineWidth=3;ctx.stroke();
       } else if (style==='washi'){
-        const g=ctx.createLinearGradient(0,0,0,100);g.addColorStop(0,P.c1);g.addColorStop(1,P.c2);
+        const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,c1);g.addColorStop(1,c2);
         ctx.fillStyle=g;ctx.fill();
       }
-      ctx.strokeStyle=P.border;ctx.lineWidth=1.5;ctx.stroke();
+      if(bw>0){ctx.strokeStyle=bord;ctx.lineWidth=bw;ctx.stroke();}
       if(style==='washi'){ctx.save();ctx.globalAlpha=0.45;ctx.fillStyle='#fff';ctx.translate(160,4);ctx.rotate(-0.06);ctx.fillRect(-38,0,76,16);ctx.restore();}
-      if(document.getElementById('sparkles').checked){ctx.fillStyle='rgba(255,255,255,0.95)';sparkle(ctx,290,22,7);sparkle(ctx,28,78,6);ctx.fillStyle=P.fg;ctx.globalAlpha=0.25;sparkle(ctx,50,20,5);ctx.globalAlpha=1;}
-      ctx.fillStyle=P.fg;
+      if(document.getElementById('sparkles').checked){ctx.fillStyle='rgba(255,255,255,0.95)';sparkle(ctx,290,22,7);sparkle(ctx,28,H-22,6);ctx.fillStyle=fg;ctx.globalAlpha=0.25;sparkle(ctx,50,20,5);ctx.globalAlpha=1;}
+      const fz = +opt('fz'), ls = +opt('ls'), txt = document.getElementById('caps').checked ? name.toUpperCase() : name;
+      ctx.fillStyle=fg;
       ctx.shadowColor='rgba(0,0,0,0.12)';ctx.shadowBlur=4;ctx.shadowOffsetY=1;
-      ctx.font=FONTS[opt('font')];ctx.textAlign='center';ctx.textBaseline='middle';
-      ctx.fillText(name,160,52);
+      ctx.font=`${FWT[opt('font')]} ${fz}px ${FONTS[opt('font')]}`;
+      try{ctx.letterSpacing=ls+'px';}catch(e){}
+      ctx.textAlign='center';ctx.textBaseline='middle';
+      const tx = LOGO?185:160;
+      ctx.fillText(txt,tx,H/2+1);
       ctx.shadowColor='transparent';
+      if(LOGO){const s=Math.min(56,H-24);ctx.drawImage(LOGO,28,(H-s)/2,s,s);}
       return c;
     }
 
@@ -204,7 +249,25 @@ const panels = ['À Propos', 'Règles', 'Planning', 'Discord', 'Setup', 'Dons', 
 
     document.getElementById('presets').addEventListener('click',(e)=>{
       const b=e.target.closest('.preset');if(!b)return;
-      PRE=b.dataset.preset;render();
+      PRE=b.dataset.preset;const P=PRESETS[PRE];
+      document.getElementById('c1').value=P.c1;document.getElementById('c2').value=P.c2;
+      document.getElementById('fg').value=P.fg;document.getElementById('bord').value=P.border;
+      render();
+    });
+    ['hgt','bw','fz','ls'].forEach(id=>{
+      document.getElementById(id).addEventListener('input',()=>{
+        document.getElementById({hgt:'hv',bw:'bwv',fz:'fzv',ls:'lsv'}[id]).textContent=document.getElementById(id).value;
+        render();
+      });
+    });
+    ['c1','c2','fg','bord','caps'].forEach(id=>document.getElementById(id).addEventListener('input',render));
+    document.getElementById('bio-add').addEventListener('click',()=>{
+      const cat=document.getElementById('bio-cat').value,nom=document.getElementById('bio-custom').value.trim();
+      if(!nom)return;
+      const url=`https://www.amazon.fr/s?k=${encodeURIComponent(nom)}&tag=${TAG}`;
+      const ta=document.getElementById('bio-out');
+      ta.value=(ta.value.replace(/\n\n_setup.*$/s,'')+(ta.value.trim()?'\n':''))+`- **${cat} :** [${nom}](${url})`+'\n\n_setup recommandé par missstream.xyz_';
+      document.getElementById('bio-custom').value='';
     });
     ['style','shape','font'].forEach(id=>document.getElementById(id).addEventListener('change',render));
     document.getElementById('sparkles').addEventListener('change',render);
