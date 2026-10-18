@@ -1,40 +1,38 @@
 #!/usr/bin/env python3
 """Ping Google Indexing API pour les URLs récentes (guides/news modifiés).
-Requiert : GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REFRESH_TOKEN.
-Sans les secrets : exit 0 silencieux."""
+Requiert : GOOGLE_SA_JSON (JSON complet du compte de service).
+Le compte doit être ajouté comme utilisateur dans Search Console.
+Sans secret : exit 0 silencieux."""
 import json
 import os
 import re
 import subprocess
 import sys
-import urllib.parse
 import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 HOST = "https://missstream.xyz"
-CID = os.environ.get("GOOGLE_CLIENT_ID")
-CS = os.environ.get("GOOGLE_CLIENT_SECRET")
-RT = os.environ.get("GOOGLE_REFRESH_TOKEN")
+SA_JSON = os.environ.get("GOOGLE_SA_JSON")
 
 
 def access_token() -> str | None:
-    req = urllib.request.Request(
-        "https://oauth2.googleapis.com/token",
-        data=urllib.parse.urlencode({
-            "client_id": CID, "client_secret": CS,
-            "refresh_token": RT, "grant_type": "refresh_token",
-        }).encode(),
-    )
     try:
-        return json.load(urllib.request.urlopen(req, timeout=20))["access_token"]
+        from google.oauth2 import service_account
+        from google.auth.transport.requests import Request
+
+        creds = service_account.Credentials.from_service_account_info(
+            json.loads(SA_JSON),
+            scopes=["https://www.googleapis.com/auth/indexing"],
+        )
+        creds.refresh(Request())
+        return creds.token
     except Exception as e:
         print(f"token KO : {e}")
         return None
 
 
 def recent_urls() -> list[str]:
-    """MDX touchés par le dernier commit (ou tout le sitemap en fallback)."""
     try:
         out = subprocess.run(
             ["git", "diff", "--name-only", "HEAD~1", "HEAD"],
@@ -67,8 +65,8 @@ def ping(url: str, tok: str) -> bool:
 
 
 def main() -> int:
-    if not (CID and CS and RT):
-        print("Secrets Google manquants : skip.")
+    if not SA_JSON:
+        print("GOOGLE_SA_JSON absent : skip.")
         return 0
     tok = access_token()
     if not tok:
