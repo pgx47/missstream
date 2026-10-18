@@ -11,7 +11,7 @@ const packs = [
     items: [
       { nom: 'Fifine AM8 blanc (micro)', asin: 'B0C74G9RLH' },
       { nom: 'Webcam 1080p blanche', asin: 'B07W5JKKFJ' },
-      { nom: 'Mini ring light', query: 'mini ring light blanche' },
+      { nom: 'Mini ring light blanche', asin: 'B08LZKSMRH' },
     ],
   },
   {
@@ -80,7 +80,10 @@ const packs = [
           <ul class="mt-5 space-y-3">
             {p.items.map((it) => (
               <li class="flex items-center justify-between gap-3 rounded-xl bg-pink-50/40 border border-pink-100 px-4 py-3">
-                <span class="font-bold text-gray-800 text-sm">{it.nom}</span>
+                {it.asin && (
+                  <img src={`/images/products/${it.asin}.webp`} alt={it.nom} class="w-12 h-12 rounded-lg object-contain bg-white border border-pink-50 shrink-0" loading="lazy" />
+                )}
+                <span class="font-bold text-gray-800 text-sm flex-1">{it.nom}</span>
                 <a
                   href={amazonUrl({ asin: it.asin, query: it.nom })}
                   target="_blank"
