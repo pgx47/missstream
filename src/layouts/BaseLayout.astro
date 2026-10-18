@@ -116,33 +116,62 @@ const nav = [
       <slot />
     </main>
 
-    <footer class="mt-16 border-t border-pink-100 bg-white">
-      <div class="max-w-6xl mx-auto px-4 py-10 grid gap-8 md:grid-cols-3">
-        <div>
-          <Logo size="sm" />
-          <p class="text-sm text-gray-500 mt-3 leading-relaxed">{SITE.tagline}</p>
-        </div>
-        <nav class="text-sm flex flex-col gap-2">
-          <p class="font-bold text-gray-800 mb-1">Navigation</p>
-          {nav.map((item) => <a href={item.href} class="text-gray-500 hover:text-pink-600">{item.label}</a>)}
-          <a href="/configurateur/" class="text-gray-500 hover:text-pink-600">Configurateur</a>
-          <a href="/lookbook/" class="text-gray-500 hover:text-pink-600">Lookbook</a>
-          <a href="/checklist/" class="text-gray-500 hover:text-pink-600">Checklist live</a>
-          <a href="/glossaire/" class="text-gray-500 hover:text-pink-600">Glossaire</a>
-          <a href="/dupes/" class="text-gray-500 hover:text-pink-600">Dupes</a>
-          <a href="/quiz/" class="text-gray-500 hover:text-pink-600">Quiz</a>
-        </nav>
-        <div class="text-sm flex flex-col gap-2">
-          <p class="font-bold text-gray-800 mb-1">Légal</p>
-          <a href="/mentions-legales/" class="text-gray-500 hover:text-pink-600">Mentions légales</a>
-          <a href="/politique-confidentialite/" class="text-gray-500 hover:text-pink-600">Confidentialité</a>
-          <a href="/contact/" class="text-gray-500 hover:text-pink-600">Contact</a>
+    <footer class="mt-16 bg-white border-t border-pink-100/80">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div class="space-y-4">
+            <Logo size="sm" />
+            <p class="text-sm text-gray-500 leading-relaxed">
+              Le guide indépendant pour concevoir un espace de streaming esthétique, cozy
+              et performant. Tests matériel, guides débutants et comparatifs design.
+            </p>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-pink-50 text-pink-700 border border-pink-100">
+              100 % dédié aux créatrices
+            </span>
+          </div>
+          <div>
+            <p class="text-xs font-extrabold text-gray-900 uppercase tracking-widest mb-4">Comparatifs</p>
+            <ul class="space-y-2.5 text-sm">
+              <li><a href="/articles/" class="text-gray-600 hover:text-pink-500 transition-colors">Tous les guides setup</a></li>
+              <li>
+                <a href="/bons-plans/" class="text-gray-600 hover:text-pink-500 transition-colors flex items-center gap-1.5">
+                  Bons plans du jour <span class="text-[10px] bg-rose-100 text-rose-600 font-extrabold px-1.5 py-0.5 rounded">PROMOS</span>
+                </a>
+              </li>
+              <li><a href="/actualites/" class="text-gray-600 hover:text-purple-500 transition-colors">Actualités & sorties tech</a></li>
+              <li><a href="/glossaire/" class="text-gray-600 hover:text-pink-500 transition-colors">Glossaire du streaming</a></li>
+              <li><a href="/dupes/" class="text-gray-600 hover:text-pink-500 transition-colors">Dupes & alternatives</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xs font-extrabold text-gray-900 uppercase tracking-widest mb-4">Outils gratuits</p>
+            <ul class="space-y-2.5 text-sm">
+              <li>
+                <a href="/configurateur/" class="text-gray-600 hover:text-pink-500 transition-colors flex items-center gap-1.5">
+                  Configurateur de budget <span class="text-[10px] bg-pink-100 text-pink-600 font-extrabold px-1.5 py-0.5 rounded">NEW</span>
+                </a>
+              </li>
+              <li><a href="/lookbook/" class="text-gray-600 hover:text-pink-500 transition-colors">Lookbook setups cozy</a></li>
+              <li><a href="/checklist/" class="text-gray-600 hover:text-pink-500 transition-colors">Checklist avant-live</a></li>
+              <li><a href="/quiz/" class="text-gray-600 hover:text-pink-500 transition-colors">Quiz setup idéal</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xs font-extrabold text-gray-900 uppercase tracking-widest mb-4">À propos</p>
+            <ul class="space-y-2.5 text-sm">
+              <li><a href="/a-propos/" class="text-gray-600 hover:text-pink-500 transition-colors">Ligne éditoriale</a></li>
+              <li><a href="/contact/" class="text-gray-600 hover:text-pink-500 transition-colors">Nous contacter</a></li>
+              <li><a href="/mentions-legales/" class="text-gray-600 hover:text-pink-500 transition-colors">Mentions légales</a></li>
+              <li><a href="/politique-confidentialite/" class="text-gray-600 hover:text-pink-500 transition-colors">Politique de confidentialité</a></li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div class="border-t border-gray-100">
-        <p class="max-w-6xl mx-auto px-4 py-4 text-xs text-gray-400 leading-relaxed">
-          {SITE.affiliationDisclosure}
-        </p>
+      <div class="border-t border-pink-50 bg-[#FAF7F9]/80 py-5">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-gray-500 text-center md:text-left">
+          <p>© 2026 Miss Stream. Tous droits réservés.</p>
+          <p class="max-w-xl text-gray-400">{SITE.affiliationDisclosure}</p>
+        </div>
       </div>
     </footer>
   </body>
