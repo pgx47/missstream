@@ -128,7 +128,7 @@ const bioProducts = [
     const list = () => [...document.querySelectorAll('.pnl:checked')].map(i => i.value);
 
     function draw(name) {
-      const pal = PAL[document.querySelector('input[name=palette]:checked'].value];
+      const pal = PAL[document.querySelector('input[name=palette]:checked').value];
       const c = document.createElement('canvas');
       const dpr = window.devicePixelRatio || 1;
       c.width = 320 * dpr; c.height = 100 * dpr;
