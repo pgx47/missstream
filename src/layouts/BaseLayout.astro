@@ -54,6 +54,11 @@ const nav = [
   </head>
 
   <body class="min-h-screen flex flex-col antialiased">
+    <div class="bg-gradient-to-r from-pink-500 via-rose-400 to-purple-500 text-white text-xs py-2 px-4 text-center font-bold tracking-wide">
+      <span>Besoin d'un setup clé en main ?</span>
+      <a href="/configurateur/" class="underline underline-offset-2 ml-1.5 hover:text-pink-100">Configure ton espace de stream en 3 clics →</a>
+    </div>
+
     <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-lg border-b border-pink-100/60 shadow-sm transition-all duration-300">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         <Logo size="md" />
@@ -62,12 +67,18 @@ const nav = [
             Guides Setup
             <span class="absolute inset-x-0 bottom-0 h-0.5 bg-pink-500 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
           </a>
-          <a href="/actualites/" class="relative text-gray-700 hover:text-purple-500 transition-colors duration-300 group py-2">
-            News Creator
+          <a href="/lookbook/" class="relative text-gray-700 hover:text-purple-500 transition-colors duration-300 group py-2">
+            Lookbook
             <span class="absolute inset-x-0 bottom-0 h-0.5 bg-purple-500 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
           </a>
-          <a href="/a-propos/" class="text-gray-500 hover:text-gray-900 transition-colors duration-300">
-            À propos
+          <a href="/configurateur/" class="relative text-gray-700 hover:text-pink-500 transition-colors duration-300 group py-2">
+            Configurateur
+            <span class="absolute -top-1 -right-7 bg-pink-500 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded-full">NEW</span>
+            <span class="absolute inset-x-0 bottom-0 h-0.5 bg-pink-500 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
+          </a>
+          <a href="/checklist/" class="relative text-gray-700 hover:text-purple-500 transition-colors duration-300 group py-2">
+            Checklist
+            <span class="absolute inset-x-0 bottom-0 h-0.5 bg-purple-500 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
           </a>
           <div class="pl-4 border-l border-gray-200">
             <a href="/bons-plans/" class="btn-cta inline-flex items-center gap-2 px-5 py-2.5 text-sm group">

@@ -131,6 +131,17 @@ const breadcrumbs = [
 
     {shopTheLook.length > 0 && <ShopTheLook items={shopTheLook} image={image} />}
 
+    <div class="my-10 p-6 rounded-2xl bg-gradient-to-r from-pink-50 to-purple-50 border border-pink-100 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="text-left">
+        <p class="text-xs uppercase tracking-widest font-bold text-pink-600 mb-1">Tu débutes ?</p>
+        <p class="text-base font-extrabold text-gray-900">Découvre les équipements compatibles selon ton budget</p>
+        <p class="text-xs text-gray-500 mt-1">Trois packs matériels testés (150 €, 400 € et 900 €) prêts à l'emploi.</p>
+      </div>
+      <a href="/configurateur/" class="shrink-0 px-5 py-3 rounded-xl bg-white border border-pink-200 text-pink-600 font-extrabold text-sm shadow-sm hover:bg-pink-500 hover:text-white hover:border-pink-500 transition-all">
+        Ouvrir le configurateur
+      </a>
+    </div>
+
     {
       products.length > 0 && (
         <section class="mt-10">
