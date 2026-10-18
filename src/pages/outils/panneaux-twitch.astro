@@ -81,6 +81,9 @@ const bioProducts = [
                 <input id="sparkles" type="checkbox" class="w-4 h-4 accent-pink-500" checked /> Étincelles
               </label>
             </div>
+            <label class="flex items-center gap-2 text-xs font-bold text-gray-500">
+              <input id="percolor" type="checkbox" class="w-4 h-4 accent-pink-500" /> Couleur par panneau (choisir les teintes dans l'onglet Panneaux)
+            </label>
             <div class="flex flex-wrap gap-4 items-end text-[10px] font-extrabold uppercase text-gray-400">
               <label class="flex flex-col items-center gap-1.5">Couleur 1<input type="color" id="c1" value="#fecdd3" class="swatch" /></label>
               <label class="flex flex-col items-center gap-1.5">Couleur 2<input type="color" id="c2" value="#fbcfe8" class="swatch" /></label>
@@ -227,10 +230,10 @@ const bioProducts = [
   <script is:inline src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
   <script is:inline>
     const PRESETS = {
-      strawberry:{ c1:'#fecdd3', c2:'#fbcfe8', fg:'#9d174d', bord:'#f9a8d4' },
-      lavender: { c1:'#ddd6fe', c2:'#c4b5fd', fg:'#6d28d9', bord:'#c4b5fd' },
-      matcha:   { c1:'#d9f99d', c2:'#bbf7d0', fg:'#3f6212', bord:'#a3e635' },
-      studio:   { c1:'#ffffff', c2:'#fdf2f8', fg:'#374151', bord:'#f9a8d4' },
+      strawberry:{ c1:'#f9a8d4', c2:'#fde68a', fg:'#9d174d', bord:'#f472b6' },
+      lavender: { c1:'#c4b5fd', c2:'#818cf8', fg:'#4c1d95', bord:'#a78bfa' },
+      matcha:   { c1:'#d9f99d', c2:'#6ee7b7', fg:'#365314', bord:'#a3e635' },
+      studio:   { c1:'#ffffff', c2:'#fda4af', fg:'#374151', bord:'#f9a8d4' },
     };
     const FONTS = { Nunito:"'Nunito Variable', sans-serif", Fredoka:"'Fredoka', sans-serif",
       Jakarta:"'Plus Jakarta Sans', sans-serif", Playfair:"'Playfair Display', serif",
@@ -272,12 +275,16 @@ const bioProducts = [
         const si=document.createElement('input');
         si.value=pn.s||'';si.placeholder='sous-titre';si.className='w-24 bg-transparent text-[10px] text-gray-400 outline-none italic';
         si.addEventListener('input',()=>{PANELS[i].s=si.value;render();});
+        const pc=document.createElement('input');pc.type='color';pc.value=pn.c1||'#f9a8d4';
+        pc.className='w-6 h-6 rounded-full border border-white cursor-pointer p-0';
+        pc.title='Couleur du panneau';pc.style.display=document.getElementById('percolor').checked?'block':'none';
+        pc.addEventListener('input',()=>{PANELS[i].c1=pc.value;render();});
         const x=document.createElement('button');x.textContent='×';
         x.className='text-pink-400 hover:text-pink-600 font-bold text-sm leading-none';
         x.addEventListener('click',()=>{PANELS.splice(i,1);renderTags();render();});
         const col=document.createElement('span');col.className='flex flex-col';
         col.appendChild(inp);col.appendChild(si);
-        t.appendChild(col);t.appendChild(x);box.appendChild(t);
+        t.appendChild(col);t.appendChild(pc);t.appendChild(x);box.appendChild(t);
       });
     }
     function sparkle(ctx,x,y,r){ctx.beginPath();for(let i=0;i<8;i++){const a=i*Math.PI/4,l=i%2?r*0.35:r;ctx.lineTo(x+Math.cos(a)*l,y+Math.sin(a)*l);}ctx.closePath();ctx.fill();}
@@ -292,7 +299,10 @@ const bioProducts = [
       const name = typeof panel==='object'?panel.n:panel;
       const sub = typeof panel==='object'?(panel.s||''):'';
       const H = +opt('hgt'), dpr = window.devicePixelRatio||1;
-      const c1 = opt('c1'), c2 = opt('c2'), fg = opt('fg'), bord = opt('bord'), bw = +opt('bw');
+      const perCol = typeof panel==='object'&&document.getElementById('percolor').checked;
+      const c1 = perCol&&panel.c1?panel.c1:opt('c1');
+      const c2 = perCol&&panel.c1?panel.c2||panel.c1:opt('c2');
+      const fg = opt('fg'), bord = opt('bord'), bw = +opt('bw');
       const c = document.createElement('canvas'); c.width=320*dpr; c.height=H*dpr; c.style.width='100%';
       const ctx = c.getContext('2d'); ctx.scale(dpr,dpr);
       const rad = Math.min(+opt('shape'),H/2), style = opt('style');
@@ -328,7 +338,7 @@ const bioProducts = [
       const txt = document.getElementById('caps').checked ? name.toUpperCase() : name;
       const pos = document.querySelector('input[name=iconpos]:checked').value;
       const isz = +opt('isz');
-      let tx = 160, ty = sub?H/2-fz*0.35:H/2+1, ix = null, iy = null;
+      let tx = 160, ty = sub?H*0.42:H/2+1, ix = null, iy = null;
       if(pos==='left'&&LOGO){ix=14;iy=(H-isz)/2;tx=180+(isz-44)*0.6;}
       if(pos==='right'&&LOGO){ix=306-isz;iy=(H-isz)/2;tx=140-(isz-44)*0.6;}
       if(pos==='top'&&LOGO){ix=160-isz/2;iy=10;ty=H-14-fz/2;}
@@ -342,7 +352,7 @@ const bioProducts = [
       ctx.fillText(txt,tx,ty);
       ctx.shadowColor='transparent';ctx.globalAlpha=1;
       if(eff==='sticker'){ctx.strokeStyle='#fff';ctx.lineWidth=Math.max(4,fz*0.22);ctx.lineJoin='round';ctx.strokeText(txt,tx,ty);ctx.fillStyle=fg;ctx.fillText(txt,tx,ty);}
-      if(sub){ctx.font=`600 ${Math.max(11,Math.round(fz*0.5))}px ${FONTS[opt('font')]}`;ctx.globalAlpha=0.75;ctx.fillStyle=fg;ctx.fillText(sub,tx,ty+fz*0.9);ctx.globalAlpha=1;}
+      if(sub){ctx.font=`600 ${Math.max(11,Math.round(fz*0.5))}px ${FONTS[opt('font')]}`;ctx.globalAlpha=0.8;ctx.fillStyle=fg;ctx.fillText(sub,tx,H*0.72);ctx.globalAlpha=1;}
       if(LOGO&&pos!=='none'){ctx.drawImage(LOGO,ix,iy,isz,isz);}
       const st=opt('sticker');
       if(st!=='none'&&STICKERS[st]){ctx.fillStyle=fg;ctx.globalAlpha=0.85;STICKERS[st](ctx,302,H-20,9);ctx.globalAlpha=1;}
@@ -404,6 +414,7 @@ const bioProducts = [
     }
     document.querySelectorAll('.bgmode').forEach(b=>b.addEventListener('click',()=>setPrevBg(b.dataset.bgmode)));
     document.getElementById('prev-bg-color').addEventListener('input',(e)=>setPrevBg('custom',e.target.value));
+    document.getElementById('percolor').addEventListener('change',()=>{renderTags();render();});
     ['c1','c2','fg','bord','sparkles','caps'].forEach(id=>document.getElementById(id).addEventListener('input',render));
     document.querySelectorAll('input[name=iconpos]').forEach(r=>r.addEventListener('change',render));
     document.getElementById('logo').addEventListener('change',(e)=>{
