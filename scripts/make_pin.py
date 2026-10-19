@@ -11,8 +11,12 @@ txt = f.read_text(encoding="utf-8")
 fm = yaml.safe_load(re.match(r"^---\n(.*?)\n---", txt, re.S).group(1))
 from PIL import Image, ImageDraw, ImageFont
 src = fm["image"].split("?")[0]
-img_path = ROOT / ("public" + src if src.startswith("/") else src)
-img = Image.open(img_path).convert("RGB")
+if src.startswith("http"):
+    import io, requests
+    img = Image.open(io.BytesIO(requests.get(src, timeout=30).content)).convert("RGB")
+else:
+    img_path = ROOT / ("public" + src if src.startswith("/") else src)
+    img = Image.open(img_path).convert("RGB")
 W, H = 1000, 1500
 w, h = img.size; r = W / w
 img = img.resize((W, int(h * r)), Image.LANCZOS)

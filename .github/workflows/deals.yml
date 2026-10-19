@@ -36,9 +36,9 @@ jobs:
           else
             git commit -m "deals: actualisation quotidienne"
             git push
+          fi
 
       - name: Ping IndexNow
         env:
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
         run: python scripts/indexnow.py
-          fi

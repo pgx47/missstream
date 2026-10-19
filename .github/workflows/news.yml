@@ -41,6 +41,7 @@ jobs:
           else
             git commit -m "news: brève automatique"
             git push
+          fi
 
       - name: Ping IndexNow
         env:
@@ -51,4 +52,3 @@ jobs:
         env:
           GOOGLE_SA_JSON: ${{ secrets.GOOGLE_SA_JSON }}
         run: python scripts/google_index.py
-          fi
