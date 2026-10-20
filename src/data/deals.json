@@ -1,5 +1,55 @@
 [
   {
+    "asin": "B0D9V94H1Z",
+    "nom": "IMYB A36 Pink Gaming Headset with Mic Stereo Headphones for Pc, PS5, Xbox",
+    "categorie": "Casques",
+    "badge": "Promo en cours",
+    "note": null,
+    "image": "/images/deals/products/B0D9V94H1Z.webp",
+    "stars": 4.3,
+    "avis": 3992
+  },
+  {
+    "asin": "B0D44VDMBQ",
+    "nom": "Jimonyer Gaming Headset for PS5 PS4 Xbox Series X|S PC Switch (Pink)",
+    "categorie": "Casques",
+    "badge": "Promo en cours",
+    "note": null,
+    "image": "/images/deals/products/B0D44VDMBQ.webp",
+    "stars": 4.4,
+    "avis": 1287
+  },
+  {
+    "asin": "B0F9P16LDK",
+    "nom": "Jimonyer Gaming Headset with Microphone, 7.1 Surround Sound and Noise Canceling Over Ear Headphones for PC/PS4",
+    "categorie": "Casques",
+    "badge": "Promo en cours",
+    "note": null,
+    "image": "/images/deals/products/B0F9P16LDK.webp",
+    "stars": 4.4,
+    "avis": 1287
+  },
+  {
+    "asin": "B0F94Y5LXJ",
+    "nom": "SteelSeries Arctis Nova 3P Wireless Multi-Platform Gaming Headset - Lavender",
+    "categorie": "Casques",
+    "badge": "Promo en cours",
+    "note": null,
+    "image": "/images/deals/products/B0F94Y5LXJ.webp",
+    "stars": 4.1,
+    "avis": 609
+  },
+  {
+    "asin": "B0H7C7KPS4",
+    "nom": "EPOMAKER GX1 Wireless Gaming Headset for PS4/PS5/Switch, 70Hr+",
+    "categorie": "Casques",
+    "badge": "Promo en cours",
+    "note": null,
+    "image": "/images/deals/products/B0H7C7KPS4.webp",
+    "stars": 4.1,
+    "avis": 56
+  },
+  {
     "asin": "B0BMFQP2ZZ",
     "nom": "Fifine AM8 — micro USB/XLR blanc",
     "categorie": "Micros",
@@ -146,71 +196,5 @@
     "image": "/images/deals/products/B09H5VSKTZ.webp",
     "stars": 4.5,
     "avis": 3451
-  },
-  {
-    "asin": "B07W5JKKFJ",
-    "nom": "Logitech Brio 500 — webcam blanche",
-    "categorie": "Webcams",
-    "badge": "Design épuré",
-    "note": "1080p net, finition blanche, cache intégré.",
-    "image": "/images/deals/products/B07W5JKKFJ.webp",
-    "stars": 4.4,
-    "avis": 1253
-  },
-  {
-    "asin": "B0DDTH3HX8",
-    "nom": "Insta360 Link 2 — webcam PTZ",
-    "categorie": "Webcams",
-    "badge": "Suivi auto",
-    "note": "4K + tracking, excellente en lumière douce.",
-    "image": "/images/deals/products/B0DDTH3HX8.webp",
-    "stars": 4.6,
-    "avis": 1563
-  },
-  {
-    "asin": "B07DYRS1WH",
-    "nom": "Elgato Stream Deck Mini — blanc",
-    "categorie": "Stream Deck",
-    "badge": "Premier stream deck",
-    "note": "6 touches, la porte d'entrée du contrôle live.",
-    "image": "/images/deals/products/B07DYRS1WH.webp",
-    "stars": 4.7,
-    "avis": 7944
-  },
-  {
-    "asin": "B097376LKF",
-    "nom": "Elgato Wave Mic Arm LP — blanc",
-    "categorie": "Accessoires",
-    "badge": "Profil bas",
-    "note": "Le bras qui disparaît sous la ligne caméra.",
-    "image": "/images/deals/products/B097376LKF.webp",
-    "stars": 4.6,
-    "avis": 5048
-  },
-  {
-    "asin": "B0H6M26Z8C",
-    "nom": "Tapis de souris XXL pastel",
-    "categorie": "Accessoires",
-    "badge": "Effet immédiat",
-    "note": "Unifie tout le bureau pour quelques euros.",
-    "image": "/images/deals/products/B0H6M26Z8C.webp"
-  },
-  {
-    "asin": null,
-    "nom": "Bureau assis-debout blanc électrique",
-    "categorie": "Bureaux",
-    "badge": "Confort dos",
-    "note": "Plateau clair + moteur silencieux.",
-    "image": "/images/deals/bureaux.webp"
-  },
-  {
-    "asin": "B09V1KJ3J4",
-    "nom": "Elgato HD60 X — capture externe",
-    "categorie": "Capture",
-    "badge": "Pour consoles",
-    "note": "Streamer sa Switch/PS5 en 4K60 HDR passthrough.",
-    "image": "/images/deals/products/B09V1KJ3J4.webp",
-    "stars": 4.6,
-    "avis": 5354
   }
 ]
