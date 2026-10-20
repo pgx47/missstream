@@ -30,7 +30,7 @@ const {
 const url = amazonUrl({ asin, query: nom });
 const imageUrl =
   image ||
-  (asin ? `https://m.media-amazon.com/images/P/${asin}.01._SCLZZZZZZZ_SX400_.jpg` : '');
+  (asin ? `/images/products/${asin}.webp` : '');
 const fullStars = stars ? Math.round(stars) : 0;
 ---
 
