@@ -72,12 +72,10 @@ const _ambiances = [
   description="Nos inspirations de setups streaming cozy et pastel : clique sur un produit pour recréer l'ambiance chez toi."
 >
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="text-center max-w-2xl mx-auto mb-14">
-      <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
-        Le <span class="bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">Lookbook</span>
-      </h1>
+    <div class="max-w-2xl mb-14">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">Déco & Lookbook</h1>
       <p class="text-lg text-gray-600">
-        Un look te plaît ? Clique sur les produits pour recréer l'ambiance chez toi.
+        Inspirations d'ambiances et sélection d'accessoires esthétiques pour ton bureau de stream — clique pour recréer le look.
       </p>
     </div>
 
@@ -107,8 +105,8 @@ const _ambiances = [
                     >
                       <span class="flex items-center gap-3 min-w-0">
                         {p.asin && (
-                          <span class="shrink-0 w-12 h-12 bg-white rounded-md border border-gray-100 p-1 flex items-center justify-center overflow-hidden">
-                            <img src={`/images/products/${p.asin}.webp`} alt={p.nom} class="w-full h-full object-contain" loading="lazy" />
+                          <span class="shrink-0 w-14 h-14 bg-white rounded-md border border-gray-100 p-1 flex items-center justify-center overflow-hidden">
+                            <img src={`/images/products/${p.asin}.webp`} onerror={`this.onerror=null;this.src='https://m.media-amazon.com/images/P/${p.asin}.01._SCLZZZZZZZ_SX400_.jpg'`} alt={p.nom} referrerpolicy="no-referrer" class="w-full h-full object-contain" loading="lazy" />
                           </span>
                         )}
                         <span class="text-sm font-bold text-gray-700 group-hover:text-pink-600 transition-colors line-clamp-1">{p.nom}</span>
