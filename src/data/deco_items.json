@@ -1,10 +1,127 @@
 [
- {"nom":"Lava Lamp rose pastel","asin":"B0FD2F53C8","cat":"lumieres","prix":"≈ 35 €","desc":"L'objet hypnotique par excellence pour un fond cozy.","badge":"TikTok Trend"},
- {"nom":"Projecteur galaxie astronaute","asin":"B0FNWYHPTK","cat":"lumieres","prix":"≈ 25 €","desc":"Le best-seller qui projette des nébuleuses au plafond.","badge":"Best Seller"},
- {"nom":"Écran pixel Divoom Pixoo","asin":"B09H3YWPCH","cat":"gadgets-y2k","prix":"≈ 45 €","desc":"Cadre pixel-art animé : météo, score Twitch, horloge.","badge":"Coup de cœur"},
- {"nom":"Clavier mécanique rétro machine à écrire","asin":"B0GYMZWVJ1","cat":"gadgets-y2k","prix":"≈ 60 €","desc":"Touches rondes façon 2000, rétroéclairage blanc."},
- {"nom":"Ruban LED RGBIC Govee 5m","asin":"B0991Q94KP","cat":"lumieres","prix":"≈ 20 €","desc":"Dégradés de couleurs animés derrière le bureau."},
- {"nom":"Guirlande feuilles d'érable lumineuse","asin":"B09BL4XN2C","cat":"kawaii","prix":"≈ 15 €","desc":"Ambiance automne cozy instantanée.","badge":"Saisonnier"},
- {"nom":"Bougies LED flamme vacillante (lot)","asin":"B07SN3Y7LZ","cat":"kawaii","prix":"≈ 18 €","desc":"La lueur chaude sans risque, effet hygge."},
- {"nom":"Néon chauve-souris / mural","asin":"B0H3L574PX","cat":"lumieres","prix":"≈ 25 €","desc":"Néon décoratif pour personnaliser le fond de stream."}
+  {
+    "nom": "Lava Lamp rose pastel",
+    "asin": "B0FD2F53C8",
+    "cat": "lumieres",
+    "prix": "≈ 35 €",
+    "desc": "L'objet hypnotique par excellence pour un fond cozy.",
+    "badge": "TikTok Trend"
+  },
+  {
+    "nom": "Projecteur galaxie astronaute",
+    "asin": "B0FNWYHPTK",
+    "cat": "lumieres",
+    "prix": "≈ 25 €",
+    "desc": "Le best-seller qui projette des nébuleuses au plafond.",
+    "badge": "Best Seller"
+  },
+  {
+    "nom": "Écran pixel Divoom Pixoo",
+    "asin": "B09H3YWPCH",
+    "cat": "gadgets-y2k",
+    "prix": "≈ 45 €",
+    "desc": "Cadre pixel-art animé : météo, score Twitch, horloge.",
+    "badge": "Coup de cœur"
+  },
+  {
+    "nom": "Clavier mécanique rétro machine à écrire",
+    "asin": "B0GYMZWVJ1",
+    "cat": "gadgets-y2k",
+    "prix": "≈ 60 €",
+    "desc": "Touches rondes façon 2000, rétroéclairage blanc."
+  },
+  {
+    "nom": "Ruban LED RGBIC Govee 5m",
+    "asin": "B0991Q94KP",
+    "cat": "lumieres",
+    "prix": "≈ 20 €",
+    "desc": "Dégradés de couleurs animés derrière le bureau."
+  },
+  {
+    "nom": "Guirlande feuilles d'érable lumineuse",
+    "asin": "B09BL4XN2C",
+    "cat": "kawaii",
+    "prix": "≈ 15 €",
+    "desc": "Ambiance automne cozy instantanée.",
+    "badge": "Saisonnier"
+  },
+  {
+    "nom": "Bougies LED flamme vacillante (lot)",
+    "asin": "B07SN3Y7LZ",
+    "cat": "kawaii",
+    "prix": "≈ 18 €",
+    "desc": "La lueur chaude sans risque, effet hygge."
+  },
+  {
+    "nom": "Néon chauve-souris / mural",
+    "asin": "B0H3L574PX",
+    "cat": "lumieres",
+    "prix": "≈ 25 €",
+    "desc": "Néon décoratif pour personnaliser le fond de stream."
+  },
+  {
+    "nom": "Tsrarey Sunset Lamp Projection, Not Only 21 Colors Sunset Li",
+    "asin": "B0BDRSG2BT",
+    "cat": "lumieres",
+    "prix": "≈ 22 €",
+    "desc": "Le coucher de soleil permanent pour fond vidéo.",
+    "badge": "TikTok Trend"
+  },
+  {
+    "nom": "Rose Flower Neon Lights,LED Rose Flower Neon Signs for Wall ",
+    "asin": "B0D8PLLC4R",
+    "cat": "lumieres",
+    "prix": "≈ 20 €",
+    "desc": "Néon cœur pour personnaliser le mur."
+  },
+  {
+    "nom": "Bedroom Glass Mushroom Lamp, Orange",
+    "asin": "B0FGHZJ777",
+    "cat": "lumieres",
+    "prix": "≈ 35 €",
+    "desc": "Lampe champignon rétro très cozy."
+  },
+  {
+    "nom": "JOYIN 30PCS Animal Cube Mochi, Cute Kawaii Animal Mochi Squi",
+    "asin": "B0H4SRRMT9",
+    "cat": "kawaii",
+    "prix": "≈ 15 €",
+    "desc": "Peluche molle style mochi pour le setup."
+  },
+  {
+    "nom": "DearHouse Artificial Ivy Leaf Plants Vine Hanging Garland, 1",
+    "asin": "B0GV42ZT95",
+    "cat": "kawaii",
+    "prix": "≈ 16 €",
+    "desc": "Lianes artificielles à draper sur les étagères."
+  },
+  {
+    "nom": "Der Rose 4 Pack Mini Fake Plants in Black Pots, 7\" Bathroom ",
+    "asin": "B0BZ85F98Q",
+    "cat": "kawaii",
+    "prix": "≈ 18 €",
+    "desc": "Verdure sans entretien pour le fond caméra."
+  },
+  {
+    "nom": "ClocTeck Nixie Tube Clock with Wi-Fi SYNC, Alarm & Timer, 12",
+    "asin": "B0B4VX2CQG",
+    "cat": "gadgets-y2k",
+    "prix": "≈ 55 €",
+    "desc": "Horloge nixie/LED rétro pour vibe Y2K.",
+    "badge": "Tendance"
+  },
+  {
+    "nom": "Retro Wall Phone Decor, Vintage Rotary Telephone Decorative ",
+    "asin": "B0H7RGLG2Y",
+    "cat": "gadgets-y2k",
+    "prix": "≈ 30 €",
+    "desc": "Téléphone vintage à afficher en déco."
+  },
+  {
+    "nom": "Monitor Light Bar, Eye-Care USB Computer Monitor Lamp for Ho",
+    "asin": "B0GSPZ797T",
+    "cat": "lumieres",
+    "prix": "≈ 28 €",
+    "desc": "Barre LED d'écran pour éclairage sans reflets."
+  }
 ]
