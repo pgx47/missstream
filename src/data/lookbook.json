@@ -130,7 +130,7 @@
         "asin": "B0GYMZWVJ1"
       }
     ],
-    "image": "/images/lookbook/neon.webp"
+    "image": "/images/lookbook/retro.webp"
   },
   {
     "titre": "Cosmic Stream",
@@ -149,7 +149,7 @@
         "asin": "B0991Q94KP"
       }
     ],
-    "image": "/images/lookbook/podcast.webp"
+    "image": "/images/lookbook/cosmic.webp"
   },
   {
     "titre": "Automne & Halloween",
@@ -168,6 +168,6 @@
         "asin": "B0H3L574PX"
       }
     ],
-    "image": "/images/lookbook/cat.webp"
+    "image": "/images/lookbook/automne.webp"
   }
 ]
