@@ -302,7 +302,24 @@ def get_image(image_prompt: str, slug: str) -> str:
         except Exception as e:
             print(f"Échec Unsplash : {e}")
 
-    # Niveau 2 : Pollinations désactivé (watermark intégré même avec nologo=true)
+    # Niveau 2 : Cloudflare Workers AI FLUX (sans watermark, via secrets CF)
+    cf_token, cf_acct = os.environ.get("CLOUDFLARE_API_TOKEN"), os.environ.get("CLOUDFLARE_ACCOUNT_ID")
+    if cf_token and cf_acct:
+        try:
+            r = requests.post(
+                f"https://api.cloudflare.com/client/v4/accounts/{cf_acct}/ai/run/@cf/black-forest-labs/flux-1-schnell",
+                headers={"Authorization": f"Bearer {cf_token}"},
+                json={"prompt": f"Photorealistic cozy aesthetic desk setup, {image_prompt}, warm soft lighting, cinematic, depth of field, 8k, no text, no watermark", "steps": 4},
+                timeout=60,
+            )
+            data = r.json()
+            b64 = (data.get("result") or {}).get("image")
+            if b64:
+                import base64
+                print("Image Workers AI FLUX")
+                return save_image(base64.b64decode(b64), slug)
+        except Exception as e:
+            print(f"Échec Workers AI : {e}")
 
     # Niveau 3 : pool local WebP
     pool = sorted(FALLBACK_DIR.glob("*.webp"))
