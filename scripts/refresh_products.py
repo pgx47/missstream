@@ -9,6 +9,7 @@ import urllib.parse
 from pathlib import Path
 
 import requests
+from scraper_api import get as scraper_get
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -24,7 +25,7 @@ def check_asin(asin: str) -> dict | None:
         f"?api_key={KEY}&query={asin}&country=fr"
     )
     try:
-        r = requests.get(url, timeout=60)
+        r = (scraper_get(url, timeout=60) if "scraperapi" in str(url) else requests.get(url, timeout=60))
         if r.status_code != 200:
             return None
         for p in r.json().get("results", []):

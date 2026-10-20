@@ -15,6 +15,7 @@ from pathlib import Path
 
 import feedparser
 import requests
+from scraper_api import get as scraper_get
 import yaml
 from bs4 import BeautifulSoup
 from openai import OpenAI
@@ -60,7 +61,7 @@ def get_news_image(article_url: str, slug: str) -> str:
                 f"https://api.scraperapi.com?api_key={SCRAPER_API_KEY}"
                 f"&url={urllib.parse.quote(article_url)}"
             )
-            r = requests.get(api, timeout=20)
+            r = scraper_get(api, timeout=20)
             if r.status_code == 200:
                 og = BeautifulSoup(r.text, "html.parser").find("meta", property="og:image")
                 if og and og.get("content", "").startswith("http"):

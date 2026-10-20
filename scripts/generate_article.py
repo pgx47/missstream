@@ -19,6 +19,7 @@ import urllib.parse
 from pathlib import Path
 
 import requests
+from scraper_api import get as scraper_get
 import yaml
 from openai import OpenAI
 
@@ -346,10 +347,7 @@ def enrich_products(products: list[dict]) -> None:
             continue
         try:
             q = urllib.parse.quote(p["nom"])
-            r = requests.get(
-                f"https://api.scraperapi.com/structured/amazon/search?api_key={SCRAPER_API_KEY}&query={q}&country=fr",
-                timeout=60,
-            )
+            r = scraper_get(f"https://api.scraperapi.com/structured/amazon/search?api_key={SCRAPER_API_KEY}&query={q}&country=fr", timeout=60)
             res = r.json().get("results", [])
             if not res:
                 continue

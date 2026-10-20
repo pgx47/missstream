@@ -15,6 +15,7 @@ import urllib.parse
 from pathlib import Path
 
 import requests
+from scraper_api import get as scraper_get
 
 ROOT = Path(__file__).resolve().parent.parent
 DEALS_FILE = ROOT / "src/data/deals.json"
@@ -51,7 +52,7 @@ def amazon_search(query: str) -> list[dict]:
         "https://api.scraperapi.com/structured/amazon/search"
         f"?api_key={SCRAPER_API_KEY}&query={urllib.parse.quote(query)}&country=fr"
     )
-    r = requests.get(url, timeout=60)
+    r = (scraper_get(url, timeout=60) if "scraperapi" in str(url) else requests.get(url, timeout=60))
     if r.status_code != 200:
         print(f"  HTTP {r.status_code} pour '{query}'")
         return []
@@ -65,7 +66,7 @@ def download_image(url: str, asin: str) -> str | None:
     if out.exists():
         return f"/images/deals/products/{asin}.webp"
     try:
-        raw = requests.get(url, timeout=30).content
+        raw = (scraper_get(url, timeout=30) if "scraperapi" in str(url) else requests.get(url, timeout=30)).content
         from PIL import Image
 
         img = Image.open(io.BytesIO(raw)).convert("RGB")

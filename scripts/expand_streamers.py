@@ -11,6 +11,7 @@ import urllib.parse
 from pathlib import Path
 
 import requests
+from scraper_api import get as scraper_get
 import yaml
 from PIL import Image
 
@@ -62,10 +63,7 @@ def enrich_product(p: dict) -> None:
     if not SKEY or p.get("asin"):
         return
     try:
-        r = requests.get(
-            f"https://api.scraperapi.com/structured/amazon/search?api_key={SKEY}&query={urllib.parse.quote(p['nom'])}&country=fr",
-            timeout=60,
-        )
+        r = scraper_get(f"https://api.scraperapi.com/structured/amazon/search?api_key={SKEY}&query={urllib.parse.quote(p['nom'])}&country=fr", timeout=60)
         res = r.json().get("results", [])
         if not res:
             return
