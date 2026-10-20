@@ -17,10 +17,23 @@ const fullStars = stars ? Math.round(stars) : 0;
 const url = amazonUrl({ asin, query: nom });
 ---
 
+{
+  /* eslint-disable */
+}
 <div class="card-aesthetic overflow-hidden flex flex-col">
   {
-    image && (
-      <img src={image} alt={nom} class="w-full h-32 object-cover" loading="lazy" />
+    asin && (
+      <div class="relative w-full aspect-[4/3] bg-pink-50/40 overflow-hidden p-4 flex items-center justify-center">
+        <img
+          src={image || `https://ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&Format=_SL400_&ASIN=${asin}&MarketPlace=FR&ID=AsinImage`}
+          onerror={`this.onerror=null;this.src='https://ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&Format=_SL400_&ASIN=${asin}&MarketPlace=FR&ID=AsinImage'`}
+          alt={nom}
+          loading="lazy"
+          decoding="async"
+          referrerpolicy="no-referrer"
+          class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
+        />
+      </div>
     )
   }
   <div class="p-5 flex flex-col flex-1">
