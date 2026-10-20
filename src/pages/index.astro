@@ -146,17 +146,25 @@ const dateFmt = (d: Date) =>
         </div>
       </a>
       <!-- Configurateur -->
-      <a href="/configurateur/" class="md:col-span-1 card-aesthetic p-6 group shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-        <div>
-          <h3 class="text-lg font-extrabold text-gray-900 group-hover:text-pink-500 transition-colors">Configurateur de budget</h3>
-          <p class="text-sm text-gray-600 mt-1.5 leading-relaxed">Le pack complet prêt à brancher, au bon prix.</p>
-          <div class="mt-4 flex flex-wrap gap-2">
-            <span class="px-3 py-1.5 rounded-lg bg-pink-50 border border-pink-100 text-pink-700 text-xs font-extrabold">150 €</span>
-            <span class="px-3 py-1.5 rounded-lg bg-purple-50 border border-purple-100 text-purple-700 text-xs font-extrabold">400 €</span>
-            <span class="px-3 py-1.5 rounded-lg bg-amber-50 border border-amber-100 text-amber-700 text-xs font-extrabold">900 €</span>
+      <a href="/configurateur/" class="md:col-span-1 group relative flex flex-col justify-between p-6 sm:p-8 bg-gradient-to-br from-purple-50 to-pink-50/30 border border-purple-100 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 overflow-hidden min-h-[220px]">
+        <div class="absolute -right-6 -bottom-6 w-32 h-32 opacity-10 group-hover:opacity-20 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 pointer-events-none text-purple-600">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" /></svg>
+        </div>
+        <div class="z-10 relative">
+          <h3 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-2">Configurateur de budget</h3>
+          <p class="text-gray-500 text-sm sm:text-base max-w-[80%] mb-6">Le pack complet, du micro à la webcam, adapté à ton enveloppe.</p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="inline-flex items-center bg-white border border-pink-100 text-pink-600 text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">150 €</span>
+            <span class="inline-flex items-center bg-white border border-purple-100 text-purple-600 text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">400 €</span>
+            <span class="inline-flex items-center bg-white border border-amber-100 text-amber-600 text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">900 €</span>
           </div>
         </div>
-        <span class="mt-4 text-sm font-extrabold text-pink-600 inline-flex items-center gap-1">Lancer la simulation →</span>
+        <div class="z-10 mt-auto flex items-center justify-between">
+          <span class="text-sm font-bold text-pink-500 group-hover:text-rose-500 transition-colors">Lancer la simulation</span>
+          <div class="flex items-center justify-center w-8 h-8 rounded-full bg-white text-pink-500 group-hover:bg-rose-500 group-hover:text-white transition-colors shadow-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+          </div>
+        </div>
       </a>
       <!-- Dupes -->
       <a href="/dupes/" class="md:col-span-2 card-aesthetic p-6 sm:p-8 group shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative overflow-hidden min-h-[140px]">
