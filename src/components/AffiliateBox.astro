@@ -33,8 +33,8 @@ const {
 } = Astro.props;
 
 const nom = _nom || _title || 'Produit';
-const pointsForts2 = pointsForts2.length ? pointsForts : (Array.isArray(pros) ? pros : String(pros).split('|').filter(Boolean));
-const pointsFaibles2 = pointsFaibles2.length ? pointsFaibles : (Array.isArray(cons) ? cons : String(cons).split('|').filter(Boolean));
+const pointsForts2 = pointsForts.length ? pointsForts : (Array.isArray(pros) ? pros : String(pros).split('|').filter(Boolean));
+const pointsFaibles2 = pointsFaibles.length ? pointsFaibles : (Array.isArray(cons) ? cons : String(cons).split('|').filter(Boolean));
 const stars = _stars ?? _rating;
 const avis = _avis ?? _reviews;
 
