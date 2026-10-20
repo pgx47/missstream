@@ -340,5 +340,45 @@
     "silo": "audio",
     "categorie": "micros",
     "status": "pending"
+  },
+  {
+    "keyword": "Shure MV7 vs Shure SM7B pour streamer",
+    "type": "vs",
+    "status": "pending"
+  },
+  {
+    "keyword": "Rode PodMic USB vs Elgato Wave:3",
+    "type": "vs",
+    "status": "pending"
+  },
+  {
+    "keyword": "Elgato Facecam Pro vs Razer Kiyo Pro Ultra",
+    "type": "vs",
+    "status": "pending"
+  },
+  {
+    "keyword": "Elgato 4K X vs AVerMedia Live Gamer Ultra pour capture",
+    "type": "vs",
+    "status": "pending"
+  },
+  {
+    "keyword": "Elgato Wave Mic Arm LP vs Rode PSA1+ bras micro",
+    "type": "vs",
+    "status": "pending"
+  },
+  {
+    "keyword": "carte capture PCIe vs boîtier USB externe pour streamer",
+    "type": "guide",
+    "status": "pending"
+  },
+  {
+    "keyword": "caméra Sony ZV-E10 vs webcam 4K pour le just chatting",
+    "type": "vs",
+    "status": "pending"
+  },
+  {
+    "keyword": "interface audio USB pour micro XLR pas cher",
+    "type": "guide",
+    "status": "pending"
   }
 ]
