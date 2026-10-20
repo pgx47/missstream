@@ -15,7 +15,7 @@ URL = f"https://api.cloudflare.com/client/v4/accounts/{ACCT}/ai/run/{MODEL}"
 def flux(prompt: str) -> bytes:
     r = requests.post(URL, headers={"Authorization": f"Bearer {TOKEN}"}, json={
         "prompt": f"Photorealistic cozy aesthetic streaming desk setup, {prompt}, soft ambient lighting, 8k, shot on 35mm, no text, no watermark, no people",
-        "num_steps": 4,
+        "steps": 4,
     }, timeout=60)
     r.raise_for_status()
     return base64.b64decode(r.json()["result"]["image"])
