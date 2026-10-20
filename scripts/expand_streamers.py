@@ -22,7 +22,7 @@ SKEY = os.environ.get("SCRAPER_API_KEY")
 LLM_KEY = os.environ.get("DEEPSEEK_API_KEY") or os.environ.get("ANTHROPIC_API_KEY")
 LLM_BASE = os.environ.get("LLM_BASE_URL") or "https://api.deepseek.com/v1"
 MODEL = os.environ.get("LLM_MODEL") or "deepseek-flash"
-MAX_NEW = 3
+MAX_NEW = int(os.environ.get("MAX_NEW", 3))
 
 
 def ask(prompt: str, max_tokens: int = 3000):

@@ -308,5 +308,266 @@
     ],
     "description_longue": "Baghera Jones garde un setup épuré et efficace pour le Just Chatting : micro broadcast, webcam nette, éclairage discret. Une référence parfaite pour commencer sans exploser son budget.",
     "biographie_longue": "Baghera Jones, streameuse suisse francophone, s’est imposée comme une figure singulière du Just Chatting. Son parcours s’est construit autour d’une présence authentique, d’un humour spontané et d’une vraie capacité à faire vivre la conversation avec sa communauté. Identifiée un temps à l’écosystème Ex-Switzerland, elle a su dépasser le cadre strict du jeu pour installer un rendez-vous où la parole, la réaction et la complicité avec le chat occupent une place centrale. Si elle reste associée au Just Chatting, elle explore aussi des formats variés, des jeux communautaires et des collaborations qui nourrissent son contenu. Son style d’animation repose sur le rythme, l’écoute et une proximité savamment entretenue : anecdotes, débats légers, réactions à l’actualité culturelle et interactions directes avec les viewers. Elle transforme souvent des moments ordinaires en séquences mémorables, sans surjouer, avec une énergie qui lui est propre. Cette approche lui a permis de fidéliser une audience large et de devenir une référence du Just Chatting suisse, tout en conservant une identité clairement reconnaissable.\n\nCôté setup, son installation s’inscrit dans une logique « voice-first » : la qualité de la voix et le confort de diffusion priment sur la démonstration technique. Le choix du matériel répond à trois exigences : une capture audio propre et constante, une image soignée mais naturelle, et une ergonomie adaptée aux sessions longues. Pour un stream de Just Chatting, l’exigence n’est pas celle d’un FPS compétitif, mais elle rejoint une forme de rigueur esportive dans la fiabilité : latence maîtrisée, flux stable, périphériques réactifs et multitâche sans compromis. L’esthétique du setup reste cohérente : espace épuré, éclairage doux, cadrage lisible et branding discret, au service du contenu plutôt que de la performance visuelle. Cette sélection de matériel présente donc les équipements et choix techniques qui structurent cet équilibre entre qualité de production, exigence de diffusion et identité visuelle."
+  },
+  {
+    "slug": "lea",
+    "nom": "LittleBigWhale",
+    "bio": "Créatrice et streameuse française connue pour ses talks, ses jeux et son énergie communicative sur Twitch.",
+    "description_longue": "LittleBigWhale s’est imposée dans le paysage Twitch francophone grâce à un style direct, chaleureux et spontané. Son stream mélange Just Chatting, réactions à l’actualité, jeux et moments de communauté, avec une vraie culture du direct. Côté setup, elle privilégie un rendu propre et lisible : micro broadcast, caméra nette, lumière douce et scène épurée. L’ensemble reste technique sans être froid, au service de l’échange et du rythme.",
+    "biographie_longue": "LittleBigWhale fait partie des créatrices qui ont contribué à installer le Just Chatting comme un format fort sur Twitch francophone. Elle a construit son audience par la régularité, un ton très personnel et une capacité à transformer des sujets simples en discussions vivantes. Son parcours s’inscrit dans la professionnalisation du streaming français : collaborations, événements communautaires, apparitions avec d’autres créateurs et diversification des formats. Elle reste associée à une image de proximité, avec une communauté qui suit autant les temps forts que les moments plus calmes du direct. Son style ne repose pas sur une surenchère permanente, mais sur une présence authentique et une vraie aisance à l’oral.\n\nSon setup reflète cette approche : priorité à l’audio, à la lisibilité de l’image et à une lumière maîtrisée. Un micro broadcast de type Shure SM7B, une interface ou table de mixage dédiée, un Stream Deck pour piloter scènes et alertes, une caméra compacte et un éclairage doux composent un ensemble cohérent. Ce matériel permet de garder un rendu professionnel sans écraser la personnalité du stream. L’analyse du setup montre surtout une recherche de stabilité : voix propre, cadrage net, ambiance chaleureuse et outils fiables pour le direct. C’est un équilibre typique des créatrices de Just Chatting qui veulent rester concentrées sur l’échange plutôt que sur la démonstration technique.",
+    "jeu_principal": "Just Chatting",
+    "image": "/images/streamers/lea.webp",
+    "reseaux": {
+      "twitch": "littlebigwhale"
+    },
+    "setup": [
+      {
+        "cat": "Audio",
+        "nom": "Shure SM7B",
+        "avis": "Micro très prisé pour sa chaleur et son rejet hors axe, même s’il demande un bon préampli pour briller.",
+        "asin": "B0002E4Z8M"
+      },
+      {
+        "cat": "Audio",
+        "nom": "GoXLR",
+        "avis": "Table de mixage pratique pour gérer voix, jeu et alertes, mais son logiciel peut parfois être capricieux.",
+        "asin": "B07JKNG4NV"
+      },
+      {
+        "cat": "Périphériques",
+        "nom": "Elgato Stream Deck XL",
+        "avis": "Outil indispensable pour lancer scènes et alertes d’un geste, à condition d’aimer configurer ses raccourcis.",
+        "asin": "B07RL8H55Z"
+      },
+      {
+        "cat": "PC & Image",
+        "nom": "Sony Alpha ZV-E10",
+        "avis": "Caméra compacte et nette pour le streaming, avec un autofocus fiable mais une autonomie limitée.",
+        "asin": "B0FLSPG85G"
+      },
+      {
+        "cat": "Éclairage",
+        "nom": "Elgato Key Light Air",
+        "avis": "Éclairage doux et réglable, très pratique pour un rendu propre sans chauffer la pièce.",
+        "asin": "B0GYDFGCCQ"
+      }
+    ]
+  },
+  {
+    "slug": "ultia",
+    "nom": "Ultia",
+    "bio": "Créatrice et streameuse française, Ultia explore jeux, talks et formats variés avec une communauté fidèle.",
+    "description_longue": "Ultia propose une variété de formats sur Twitch, entre jeux, discussions et concepts communautaires. Son style repose sur la spontanéité, l'humour et une vraie proximité avec son chat. Côté setup, elle privilégie un son soigné, une image nette et des outils de régie discrets pour garder le contrôle sans alourdir le direct. L'ensemble reste pensé pour la flexibilité : passer d'un jeu à un format talk sans friction.",
+    "biographie_longue": "Ultia est une créatrice de contenu française active sur Twitch, où elle s'est fait connaître par une approche très variée du streaming. Plutôt que de se limiter à un seul jeu ou à une seule catégorie, elle alterne les titres, les formats conversationnels et les concepts communautaires, ce qui lui permet de renouveler régulièrement son antenne. Son ton direct, son humour et sa capacité à fédérer une communauté fidèle ont contribué à installer sa place dans le paysage du streaming francophone. Elle incarne une génération de créatrices qui mélangent jeu, talk et divertissement, avec une forte dimension de proximité avec son audience.\n\nCôté setup, son équipement semble guidé par la polyvalence et la qualité audio, essentielles pour des streams où la voix porte autant que l'image. Un micro dynamique de type Shure SM7B apporte un rendu chaleureux, même s'il demande un gain propre et un traitement soigné. Le Stream Deck MK.2 sert de régie compacte pour les scènes, alertes et changements de format, tandis qu'une souris légère comme la G Pro X Superlight reste adaptée aux sessions de jeu. Pour l'image, un boîtier Sony ZV-E10 ou une webcam haut de gamme du même segment offre une nette montée en qualité, à condition de maîtriser l'éclairage. Justement, une Key Light Air ou équivalent permet un rendu doux et réglable, pratique pour varier les ambiances sans setup lourd.",
+    "jeu_principal": "Variété",
+    "image": "/images/streamers/ultia.webp",
+    "reseaux": {
+      "twitch": "Ultia"
+    },
+    "setup": [
+      {
+        "cat": "Audio",
+        "nom": "Shure SM7B",
+        "avis": "Micro dynamique très prisé pour le streaming, chaleureux mais exigeant en gain et en traitement."
+      },
+      {
+        "cat": "Périphériques",
+        "nom": "Elgato Stream Deck MK.2",
+        "avis": "Régie pratique pour piloter scènes et alertes sans lâcher le clavier ou la manette.",
+        "asin": "B09738CV2G"
+      },
+      {
+        "cat": "Périphériques",
+        "nom": "Logitech G Pro X Superlight",
+        "avis": "Souris légère et fiable pour le jeu, même si son prix reste élevé.",
+        "asin": "B09NBWL8J5"
+      },
+      {
+        "cat": "PC & Image",
+        "nom": "Sony ZV-E10",
+        "avis": "Boîtier polyvalent pour une image plus pro, mais il demande un bon éclairage et un peu de réglage."
+      },
+      {
+        "cat": "Éclairage",
+        "nom": "Elgato Key Light Air",
+        "avis": "Éclairage doux et réglable, pratique mais moins puissant qu'une Key Light classique.",
+        "asin": "B0GYDFGCCQ"
+      }
+    ]
+  },
+  {
+    "slug": "horty",
+    "nom": "Horty",
+    "bio": "Horty est une streameuse variété française qui déniche les pépites indés et les sorties du moment dans une ambiance détendue et très communautaire.",
+    "description_longue": "Sur Twitch, Horty mise sur la curiosité plutôt que sur la performance : soirées découverte où le chat vote, jeux d'horreur en petit comité, sorties indés et quelques défis à thème. Le ton reste simple et sincère, avec beaucoup d'autodérision et une vraie place laissée aux habitués. Côté technique, le setup est volontairement sobre : un seul PC polyvalent, un son travaillé et une lumière douce, pour que l'image serve le jeu sans jamais prendre le dessus sur la conversation.",
+    "biographie_longue": "Horty débarque sur Twitch à la fin des années 2010, d'abord par passion pour les jeux indés et les petites pépites dénichées sur itch.io. Les premières diffusions se font dans une chambre, avec un micro USB et beaucoup de bonne volonté. Le ton se pose vite : humour, autodérision et curiosité sincère pour des titres que personne ne met en avant. La chaîne grandit par bouche-à-oreille, portée par des soirées « découverte » où le chat vote pour le prochain jeu. Horty diversifie ensuite les formats : sorties du moment, jeux d'horreur en petit comité, défis à thème et quelques streams plus posés avec la communauté. Le partenariat Twitch arrive au bout de deux ans, suivi de collaborations avec des éditeurs indés et de quelques événements caritatifs. Aujourd'hui, la chaîne reste volontairement à taille humaine : la régularité, l'échange avec le chat et une programmation éclectique passent avant la course aux gros pics d'audience.\n\nCôté matériel, l'approche est pragmatique : une machine unique qui sert à la fois à jouer et à encoder, une capture propre et une lumière travaillée plutôt qu'un décor surchargé. Le micro est le véritable pilier de la chaîne, car les streams de Horty reposent sur la parole et les réactions à chaud ; le reste du setup est pensé pour ne pas distraire. L'image reste nette sans être surcalibrée, avec un fond neutre et un éclairage diffus qui évite les ombres dures sur le visage. Les périphériques sont choisis pour l'endurance et la discrétion : souris légère, clavier compact et casque ouvert pour garder une oreille sur le chat. Horty assume de ne pas courir après le dernier produit à la mode : chaque ajout doit répondre à un problème concret, qu'il s'agisse de bruit ambiant, de confort sur les longues sessions ou de la charge de travail liée à l'encodage.",
+    "jeu_principal": "Variété (indés, sorties du moment, jeux d'horreur)",
+    "image": "/images/streamers/horty.webp",
+    "reseaux": {
+      "twitch": "horty"
+    },
+    "setup": [
+      {
+        "cat": "Audio",
+        "nom": "Shure SM7B",
+        "avis": "Un son chaud et très bien isolé qui pardonne une pièce imparfaite, mais il demande un bon préampli et oblige à rester près du micro.",
+        "asin": "B0002E4Z8M"
+      },
+      {
+        "cat": "Périphériques",
+        "nom": "Logitech G Pro X Superlight 2",
+        "avis": "Ultralégère et sans fil impeccable pour les longues sessions, même si le tarif reste difficile à justifier pour un usage purement variété.",
+        "asin": "B09NBWL8J5"
+      },
+      {
+        "cat": "Périphériques",
+        "nom": "Wooting 60HE",
+        "avis": "La frappe analogique est un vrai plus en jeu et le format compact libère le bureau, mais il faut réapprendre ses raccourcis sans pavé numérique.",
+        "asin": "B0DSMWJD6M"
+      },
+      {
+        "cat": "PC & Image",
+        "nom": "Sony ZV-E10",
+        "avis": "L'image est nettement au-dessus d'une webcam classique avec un autofocus fiable, à condition d'accepter l'alimentation et le câble de capture en plus.",
+        "asin": "B0CLC5XJ2K"
+      },
+      {
+        "cat": "Éclairage",
+        "nom": "Elgato Key Light Air",
+        "avis": "Lumière douce et réglable à la volée très pratique au quotidien, même si les pieds prennent vite de la place derrière l'écran.",
+        "asin": "B0GYDFGCCQ"
+      }
+    ]
+  },
+  {
+    "slug": "anaee",
+    "nom": "Anaee",
+    "bio": "Anaee est une créatrice Twitch qui partage Valorant avec une communauté proche et une ambiance posée.",
+    "description_longue": "Anaee propose un stream Valorant à la fois compétitif et accessible, avec une énergie posée et une vraie proximité avec sa communauté. Son style repose sur des parties commentées, des échanges simples et une ambiance sans surjeu. Côté setup, elle privilégie la fiabilité : micro propre, souris légère, clavier réactif, écran 240 Hz et éclairage doux. Le tout reste lisible et confortable, au service du jeu et de la conversation plutôt que du spectaculaire.",
+    "biographie_longue": "Anaee s’est fait connaître sur Twitch autour de Valorant, un jeu qui lui permet de mêler réflexion, précision et échanges avec le chat. Son parcours de créatrice s’est construit progressivement, avec des streams réguliers, une communauté fidèle et un ton naturel qui tranche avec les formats trop produits. Elle a su trouver un équilibre entre contenu compétitif et moments plus détendus, en restant lisible pour les nouveaux viewers comme pour les habitués. Son identité de streamer repose moins sur la performance brute que sur la régularité, la sincérité et la capacité à commenter ses choix de jeu sans se prendre au sérieux. Au fil du temps, elle a affiné son format, ses horaires et son ambiance, jusqu’à devenir une présence reconnaissable de la scène Valorant francophone.\n\nSon setup reflète cette recherche de constance : chaque élément semble choisi pour réduire les frictions et laisser la place au jeu et à la conversation. Le Shure SM7B apporte une voix chaude et propre, tandis que la Logitech G Pro X Superlight 2 et le Wooting 60HE privilégient la légèreté et la réactivité, deux qualités précieuses sur Valorant. L’écran BenQ ZOWIE XL2546K assure une fluidité rassurante pour le FPS, même si son contraste reste moyen. Enfin, l’Elgato Key Light Air installe un éclairage doux et régulier, utile pour rester lisible à l’écran sans agresser la caméra. L’ensemble n’est pas là pour impressionner, mais pour tenir dans la durée : un setup cohérent, fiable et adapté à un stream où le confort compte autant que la performance.",
+    "jeu_principal": "Valorant",
+    "image": "/images/streamers/anaee.webp",
+    "reseaux": {
+      "twitch": "anaee"
+    },
+    "setup": [
+      {
+        "cat": "Audio",
+        "nom": "Shure SM7B",
+        "avis": "Un micro très propre et chaleureux, mais il exige une bonne interface et un réglage soigné pour ne pas étouffer la voix.",
+        "asin": "B0002E4Z8M"
+      },
+      {
+        "cat": "Périphériques",
+        "nom": "Logitech G Pro X Superlight 2",
+        "avis": "Souris légère et fiable pour Valorant, même si son prix reste élevé pour un gain finalement assez marginal.",
+        "asin": "B09NBWL8J5"
+      },
+      {
+        "cat": "Périphériques",
+        "nom": "Wooting 60HE",
+        "avis": "Clavier rapide et réactif grâce aux switches analogiques, mais l’apprentissage des réglages demande un peu de temps.",
+        "asin": "B0DSMWJD6M"
+      },
+      {
+        "cat": "PC & Image",
+        "nom": "BenQ ZOWIE XL2546K",
+        "avis": "Moniteur 240 Hz taillé pour le FPS, avec un contraste moyen mais une fluidité convaincante.",
+        "asin": "B0DKZPJ1X6"
+      },
+      {
+        "cat": "Éclairage",
+        "nom": "Elgato Key Light Air",
+        "avis": "Éclairage doux et réglable très pratique pour le stream, malgré un pied qui prend de la place sur le bureau.",
+        "asin": "B0GYDFGCCQ"
+      }
+    ]
+  },
+  {
+    "slug": "jeel",
+    "nom": "Jeel",
+    "bio": "Jeel est une streameuse française Variety/Minecraft connue pour son énergie communicative et ses streams détendus.",
+    "description_longue": "Sur Twitch, Jeel mélange Minecraft, découvertes indie et formats variés avec une ambiance décontractée et une vraie proximité avec son chat. Son setup mise sur un son propre et une lumière douce : micro broadcast, éclairage Elgato, périphériques sans fil et écran réactif. Elle privilégie un décor chaleureux, des overlays sobres et une caméra bien réglée pour garder le confort visuel. Le tout tourne sur une config stable, pensée pour le multi-tâche entre jeu, chat et modération, sans surcharge visuelle.",
+    "biographie_longue": "Jeel s’est fait connaître sur Twitch en construisant patiemment une communauté autour du jeu vidéo et de la bonne humeur. Ses débuts reposent sur des streams réguliers, souvent consacrés à Minecraft, où elle alterne constructions, survie et discussions avec son chat. Au fil des mois, elle élargit son contenu au variety : jeux indépendants, sorties marquantes, formats multijoueurs et sessions plus détendues. Cette polyvalence lui permet de ne pas s’enfermer dans un seul titre tout en gardant Minecraft comme fil rouge. Sa progression s’appuie moins sur un coup d’éclat que sur la constance, une présence authentique et une capacité à créer des moments simples mais partageables. Elle soigne aussi ses relations avec sa communauté, avec un chat actif et des habitués qui participent à l’ambiance des lives. Son style reste accessible : humour, réactions franches et envie de découvrir sans surjouer.\n\nCôté technique, le setup de Jeel répond à une logique de confort et de fiabilité. L’audio est prioritaire : un micro de type broadcast comme le Shure MV7 permet une voix claire, essentielle pour les streams de discussion et les jeux où la communication compte. L’image reste sobre, avec un écran QHD réactif adapté à Minecraft et au variety, et un éclairage doux qui évite les contrastes trop durs. Les périphériques sans fil, souris légère et Stream Deck, libèrent le bureau et simplifient les changements de scène. La config privilégie la stabilité au multi-tâche : jeu, chat, alertes et modération doivent tourner sans à-coups. Enfin, le décor et les lumières sont pensés pour un rendu chaleureux sans surcharger l’écran, ce qui correspond bien à son ton proche et décontracté. Ce n’est pas un setup de démonstration technique pure, mais un ensemble cohérent, pensé pour durer et garder le stream agréable.",
+    "jeu_principal": "Variety / Minecraft",
+    "image": "/images/streamers/jeel.webp",
+    "reseaux": {
+      "twitch": "jeel"
+    },
+    "setup": [
+      {
+        "cat": "Audio",
+        "nom": "Shure MV7",
+        "avis": "Micro USB/XLR très propre pour la voix, idéal pour un stream solo même si le rendu brut demande un léger traitement.",
+        "asin": "B0CTJ7PVN1"
+      },
+      {
+        "cat": "Périphériques",
+        "nom": "Logitech G Pro X Superlight 2",
+        "avis": "Souris légère et fiable pour le variety, avec une autonomie confortable et un clic précis.",
+        "asin": "B09NBWL8J5"
+      },
+      {
+        "cat": "Périphériques",
+        "nom": "Elgato Stream Deck MK.2",
+        "avis": "Pratique pour lancer scènes, alertes et sons sans quitter le jeu, même si on peut vite multiplier les raccourcis.",
+        "asin": "B09738CV2G"
+      },
+      {
+        "cat": "PC & Image",
+        "nom": "LG UltraGear 27GP850-B",
+        "avis": "Écran QHD 165 Hz réactif et lisible, bon compromis pour Minecraft et les jeux variés sans surcoût excessif."
+      },
+      {
+        "cat": "Éclairage",
+        "nom": "Elgato Key Light Air",
+        "avis": "Lumière douce et réglable qui améliore nettement le rendu caméra, à condition de bien la placer.",
+        "asin": "B0GYDFGCCQ"
+      }
+    ]
+  },
+  {
+    "slug": "locklear",
+    "nom": "Locklear",
+    "bio": "Streameuse Fortnite au ton direct et à l'ambiance chill, Locklear alterne ranked sérieux et variety sans jamais forcer le personnage.",
+    "description_longue": "Locklear incarne une approche décontractée du streaming : sessions Fortnite centrées sur le ranked et les défis, ponctuées de variety quand la lassitude pointe. Le ton est direct, l'ambiance posée, avec une vraie proximité avec le chat et l'habitude de commenter ses décisions en jeu plutôt que de surjouer la performance. Côté technique, le setup reste volontairement sobre : image nette à très haut refresh rate, micro propre, lumière douce, rien d'ostentatoire. L'objectif est clair : que le jeu et la personnalité prennent le dessus sur le décor.",
+    "biographie_longue": "Locklear se fait connaître sur Twitch par la régularité plus que par un coup d'éclat : des streams quotidiens consacrés à Fortnite, d'abord en mode découverte puis de plus en plus orientés progression et ranked. Les clips de bons fights et de moments de rage comique circulent, la communauté se structure autour d'un chat qui aime chambrer autant que débriefer les parties. Petit à petit, le contenu s'élargit : défis communautaires, duos avec d'autres créateurs, puis sessions variety pour souffler entre deux saisons de Fortnite. Cette bascule progressive permet de garder une audience fidèle sans s'enfermer dans un seul jeu, et le format « on joue, on discute, on analyse » devient la marque de fabrique de la chaîne.\n\nL'analyse du setup reflète cette même logique de sobriété et d'efficacité. Le cœur de l'installation, c'est l'écran : un moniteur compétitif à très haut taux de rafraîchissement, pensé pour la réactivité en build fight plutôt que pour la fidélité colorimétrique. La souris ultra légère et le clavier rapide au format compact vont dans le même sens, avec un câblage et un espace de bureau réduits au strict nécessaire. Côté audio, un micro dynamique apporte un son proche et peu de bruit de pièce, quitte à demander un gain important et donc un préampli adapté — un compromis assumé pour la qualité de voix. L'éclairage LED réglable complète l'ensemble sans transformer la pièce en studio : une lumière propre sur le visage, une ambiance sombre derrière, et une image qui reste lisible même après six heures de stream. Rien de spectaculaire, donc, mais un ensemble cohérent où chaque périphérique sert la performance en jeu.",
+    "jeu_principal": "Fortnite (ranked, défis et duos) — variety en complément",
+    "image": "/images/streamers/locklear.webp",
+    "reseaux": {
+      "twitch": "locklear"
+    },
+    "setup": [
+      {
+        "cat": "Audio",
+        "nom": "Shure SM7B",
+        "avis": "Micro dynamique très propre et chaleureux, mais il exige un gain conséquent (donc un préampli type Cloudlifter) pour être exploité correctement.",
+        "asin": "B0CCSVYWMH"
+      },
+      {
+        "cat": "Périphériques",
+        "nom": "Logitech G Pro X Superlight 2",
+        "avis": "Souris ultra légère et fiable, le choix par défaut du compétitif, même si le prix reste élevé pour ce qu'elle propose.",
+        "asin": "B09NBWL8J5"
+      },
+      {
+        "cat": "Périphériques",
+        "nom": "Wooting 60HE",
+        "avis": "Clavier analogique à la frappe très rapide et au format compact, parfait pour Fortnite, mais l'absence de pavé numérique et le tarif se paient.",
+        "asin": "B0DSMWJD6M"
+      },
+      {
+        "cat": "PC & Image",
+        "nom": "BenQ ZOWIE XL2566K",
+        "avis": "Moniteur 360 Hz taillé pour la compétition, fluidité imbattable mais couleurs et angles de vision clairement en retrait face à un IPS.",
+        "asin": "B0D3JC9S9M"
+      },
+      {
+        "cat": "Éclairage",
+        "nom": "Elgato Key Light Air",
+        "avis": "Éclairage LED réglable et simple à piloter, efficace pour un rendu net du visage sans inonder une pièce déjà sombre.",
+        "asin": "B0GYDFGCCQ"
+      }
+    ]
   }
 ]
