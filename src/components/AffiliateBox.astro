@@ -30,7 +30,7 @@ const {
 const url = amazonUrl({ asin, query: nom });
 const imageUrl =
   image ||
-  (asin ? `https://ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&Format=_SL400_&ASIN=${asin}&MarketPlace=FR&ID=AsinImage` : '');
+  (asin ? `https://m.media-amazon.com/images/P/${asin}.01._SCLZZZZZZZ_SX400_.jpg` : '');
 const fullStars = stars ? Math.round(stars) : 0;
 ---
 
@@ -47,7 +47,7 @@ const fullStars = stars ? Math.round(stars) : 0;
         loading="lazy"
         decoding="async"
         referrerpolicy="no-referrer"
-        onerror={`this.onerror=null;this.src='https://ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&Format=_SL400_&ASIN=${asin}&MarketPlace=FR&ID=AsinImage'`}
+        onerror={`this.onerror=null;this.src='https://m.media-amazon.com/images/P/${asin}.01._SCLZZZZZZZ_SX400_.jpg'`}
         class="max-w-full max-h-52 object-contain drop-shadow-md hover:scale-105 transition-transform duration-300"
       />
     )}
@@ -87,7 +87,7 @@ const fullStars = stars ? Math.round(stars) : 0;
     {avisClient && <p class="text-xs italic text-gray-500 border-l-2 border-pink-200 pl-3 mb-4">« {avisClient} »</p>}
 
     <div class="mt-auto flex flex-col sm:flex-row gap-3 items-center justify-between">
-      <a href={url} target="_blank" rel="nofollow sponsored noopener" class="btn-cta w-full sm:w-auto text-center px-6 py-3">Vérifier le prix et la promo ↗</a>
+      <a href={url} target="_blank" rel="nofollow sponsored noopener" class="!text-white !no-underline font-extrabold text-sm px-6 py-3 rounded-xl bg-gradient-to-r from-pink-500 to-rose-400 hover:from-pink-600 hover:to-rose-500 shadow-md hover:shadow-lg transition-all inline-flex items-center justify-center gap-2 w-full sm:w-auto">Vérifier le prix et la promo ↗</a>
       <span class="text-[10px] text-gray-400">✓ Prime 24h · retours gratuits</span>
     </div>
   </div>
