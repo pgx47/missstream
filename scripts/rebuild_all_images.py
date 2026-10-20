@@ -8,7 +8,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 ACCT = os.environ["CLOUDFLARE_ACCOUNT_ID"]
-TOKEN = os.environ["CLOUDFLARE_API_TOKEN"]
+TOKEN = os.environ.get("CF_AI_TOKEN") or os.environ["CLOUDFLARE_API_TOKEN"]
 MODEL = "@cf/black-forest-labs/flux-1-schnell"
 URL = f"https://api.cloudflare.com/client/v4/accounts/{ACCT}/ai/run/{MODEL}"
 

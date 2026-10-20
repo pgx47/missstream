@@ -305,7 +305,7 @@ def get_image(image_prompt: str, slug: str) -> str:
             print(f"Échec Unsplash : {e}")
 
     # Niveau 2 : Cloudflare Workers AI FLUX (sans watermark, via secrets CF)
-    cf_token, cf_acct = os.environ.get("CLOUDFLARE_API_TOKEN"), os.environ.get("CLOUDFLARE_ACCOUNT_ID")
+    cf_token, cf_acct = (os.environ.get("CF_AI_TOKEN") or os.environ.get("CLOUDFLARE_API_TOKEN")), os.environ.get("CLOUDFLARE_ACCOUNT_ID")
     if cf_token and cf_acct:
         try:
             r = requests.post(
