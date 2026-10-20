@@ -157,21 +157,31 @@ const breadcrumbs = [
     {
       products.length > 0 && (
         <section class="mt-10">
-          <h2 class="text-2xl font-extrabold text-gray-900">Les produits de ce guide</h2>
-          {products.map((p) => (
-            <AffiliateBox
-              nom={p.nom}
-              asin={p.asin}
-              image={p.image}
-              stars={p.stars}
-              avis={p.avis}
-              avisClient={p.avisClient}
-              couleur={p.couleur}
-              badge={p.badge}
-              pointsForts={p.pointsForts}
-              pointsFaibles={p.pointsFaibles}
-            />
-          ))}
+          <h2 class="text-2xl font-extrabold text-gray-900 mb-5">Récap : les produits de ce guide</h2>
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {products.map((p) => (
+              <a
+                href={amazonUrl({ asin: p.asin, query: p.nom })}
+                target="_blank"
+                rel="nofollow sponsored noopener"
+                class="card-aesthetic !p-4 flex flex-col items-center text-center group"
+              >
+                {(p.image || p.asin) && (
+                  <img
+                    src={p.image || `/images/products/${p.asin}.webp`}
+                    onerror={`this.onerror=null;this.src='https://m.media-amazon.com/images/P/${p.asin}.01._SCLZZZZZZZ_SX400_.jpg'`}
+                    alt={p.nom}
+                    referrerpolicy="no-referrer"
+                    class="w-16 h-16 object-contain mb-3"
+                    loading="lazy"
+                  />
+                )}
+                {p.badge && <span class="text-[9px] uppercase font-extrabold text-pink-500 bg-pink-50 px-2 py-0.5 rounded-full mb-1">{p.badge}</span>}
+                <p class="text-xs font-bold text-gray-800 leading-snug flex-1">{p.nom}</p>
+                <span class="mt-2 text-[11px] font-extrabold text-pink-600 group-hover:underline">Voir l'offre ↗</span>
+              </a>
+            ))}
+          </div>
         </section>
       )
     }
