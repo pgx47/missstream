@@ -2,74 +2,71 @@
 
 Site de niche affilié Amazon, 100 % statique, contenu généré automatiquement.
 
-- **Domaine** : missstream.xyz
-- **Stack** : Astro 7 + @astrojs/mdx + Tailwind CSS v4 + @astrojs/sitemap
-- **Hébergement** : Cloudflare Pages (projet `missstream`, déploiement via Wrangler en CI)
-- **Tag Amazon** : `missstrm-21` (configuré dans `src/site.config.ts`)
-- **LLM** : DeepSeek (`api.deepseek.com`, modèle `deepseek-chat` par défaut, compatible OpenRouter via variables)
+- **Domaine** : missstream.xyz (Pages `missstream.pages.dev`)
+- **Stack** : Astro 7 + @astrojs/mdx + Tailwind v4 + @astrojs/sitemap + content collections Zod
+- **Hébergement** : Cloudflare Pages (deploy via Wrangler en CI)
+- **Images** : Cloudflare R2 (`images.missstream.xyz`) + fallbacks locaux `public/images/`
+- **Tag Amazon** : `missstrm-21` (`src/site.config.ts`)
+- **LLM** : DeepSeek (`deepseek-flash`), chaîne de secours OpenRouter → Anthropic
 
-## Secrets GitHub à créer (Settings → Secrets and variables → Actions)
+## Secrets GitHub configurés
 
-| Secret | Rôle | Statut |
-|---|---|---|
-| `CLOUDFLARE_API_TOKEN` | Déploiement Pages | ✅ configuré |
-| `CLOUDFLARE_ACCOUNT_ID` | Compte Cloudflare | ✅ configuré |
-| `R2_ACCESS_KEY_ID` / `R2_SECRET_ACCESS_KEY` | Stockage images R2 | ✅ configuré |
-| `SCRAPER_API_KEY` | Scraping Amazon (deals) + og:image news | ✅ configuré |
-| `INDEXNOW_KEY` | Ping IndexNow (fichier clé dans `public/`) | ✅ configuré |
-| `DEEPSEEK_API_KEY` | Génération articles + news | ❌ à renseigner |
-| `OPENROUTER_API_KEY` / `ANTHROPIC_API_KEY` | LLM de secours | ❌ optionnel |
-| `UNSPLASH_ACCESS_KEY` | Fallback images niveau 2 | ❌ optionnel |
+| Secret | Rôle |
+|---|---|
+| `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` | Deploy Pages |
+| `R2_ACCESS_KEY_ID` + `R2_SECRET_ACCESS_KEY` + `R2_BUCKET`/`R2_PUBLIC_URL` | Upload images R2 |
+| `SCRAPER_API_KEY` | Scraping Amazon (ASINs, images, notes, og:image) |
+| `DEEPSEEK_API_KEY` | Génération articles/news/bios |
+| `INDEXNOW_KEY` | Ping Bing/Yandex (clé fichier `public/`) |
+| `GOOGLE_SA_JSON` | Google Indexing API (service account) |
+| `UNSPLASH_ACCESS_KEY` | Photos fallback |
+| `PINTEREST_ACCESS_TOKEN` + `PINTEREST_BOARD_ID` | Autopost épingles (❌ en attente) |
 
-Variables (onglet *Variables*) : `AMAZON_TAG` ✅, `R2_BUCKET` ✅ (`images-missstream`),
-`R2_PUBLIC_URL` ❌ (URL publique du bucket à activer), `LLM_BASE_URL`, `LLM_MODEL`.
-
-Le LLM suit la chaîne DeepSeek → OpenRouter → Anthropic : un seul des trois
-suffit pour faire tourner la génération.
-
-## Workflows
+## Workflows (`.github/workflows/`)
 
 | Workflow | Cron | Action |
 |---|---|---|
-| `deploy.yml` | push `main` | Build Astro → `wrangler pages deploy dist` |
-| `publish.yml` | lun & jeu 08:00 UTC | `generate_article.py` → commit guide + image + topics.json |
-| `deals.yml` | quotidien 06:00 UTC | `fetch_deals.py` → commit `src/data/deals.json` |
-| `news.yml` | mar & ven 10:00 UTC | `fetch_news.py` → commit brève MDX |
+| `deploy.yml` | push `main` | Build → `wrangler pages deploy dist` (~30s) |
+| `publish.yml` | lun/mer/ven 08:00 UTC | `generate_article.py` : 1 guide MDX + image + pin + pings index |
+| `news.yml` | mar/jeu/sam 10:00 UTC | `fetch_news.py` : 1 brève RSS + image + pings |
+| `deals.yml` | lun/mer/ven 06:00 UTC | `fetch_deals.py` : refresh `deals.json` (garde-fou anti-[]) |
+| `maintenance.yml` | dimanche | `refresh_products.py` (ASINs/notes) + `expand_streamers.py` + `build_feature_pages.py` |
 
-Tous les workflows sont déclenchables à la main (`workflow_dispatch`).
+Tous les `contents: write`, déclenchables `workflow_dispatch`, jamais de `[skip ci]`.
 
 ## Pipeline de contenu
 
-- **Guides** (`src/content/guides/*.mdx`) : sujets tirés de `scripts/topics.json`
-  (statut `pending` → `done`). Si ≤ 2 sujets restants, le script en régénère 15
-  via LLM — le backlog ne s'épuise jamais. Maillage interne obligatoire (2 liens).
-- **News** (`src/content/news/*.mdx`) : flux RSS Google News filtré (Elgato, Razer,
-  Logitech, Twitch, TikTok, setup streaming), 1 brève max par run.
-- **Images** : Pollinations/FLUX → Unsplash → `public/images/fallbacks/*.webp`.
-- **Deals** (`src/data/deals.json`) : scraping Amazon via ScraperAPI. Aucun prix
-  figé — conformité TOS Amazon (badges "Promo en cours" uniquement).
+- **Guides** : sujets de `scripts/topics.json` (pending→done), auto-refill 15 sujets si ≤2.
+  Maillage interne sur slugs réels, FAQ schema, produits `<AffiliateBox/>` enrichis
+  ScraperAPI (ASIN + image + note). Duel `vs` : tableau comparatif + verdict.
+- **News** : RSS Google News (Elgato, Razer, Logitech, Twitch, TikTok), image :
+  og:image ScraperAPI → Unsplash → pool local.
+- **Images articles** : Unsplash → Pollinations/FLUX → fallbacks locaux, prompts
+  pastel/bright verrouillés.
+- **Streamers** : `expand_streamers.py` hebdo — DeepSeek propose profils, avatars
+  Twitch, bios 300 mots, produits ASINs enrichis.
+- **Épingles** : `make_pin.py` 1000×1500 → `public/images/pins/` (supporte URLs R2).
 
-## Validation frontmatter
+## Pages & outils
 
-Schémas Zod dans `src/content.config.ts` (Astro ≥5 : ce fichier remplace
-l'ancien `src/content/config.ts`). ASIN validé en 10 car. alphanumériques ;
-si absent, les liens d'affiliation basculent sur une recherche Amazon taguée.
+`/articles/`, `/actualites/`, `/bons-plans/`, `/streamers/` (+7 profils),
+`/configurateur/` (packs 150/400/900), `/lookbook/`, `/dupes/`, `/quiz/`,
+`/checklist/`, `/glossaire/`, `/couleurs/*`, `/avant-apres/`, `/streamers/[slug]/`
+(bios, tableau récap, FAQ JSON-LD), hub `/outils/` + `/outils/panneaux-twitch/`
+(mini-SaaS canvas 100% client — cf. OUTIL-PANNEAUX-TWITCH.md).
 
-## Mise en production (première fois)
+## SEO
 
-1. `gh repo create missstream --private --source=. --push`
-2. DNS : domaine sur Cloudflare, créer le projet Pages `missstream` ou laisser
-   le premier `wrangler pages deploy` le créer.
-3. Brancher `missstream.xyz` en custom domain dans Pages.
-4. Injecter les secrets ci-dessus, lancer `Publish guide` manuellement pour tester.
-5. Google Search Console : TXT DNS dans Cloudflare, soumettre `sitemap-index.xml`.
+Sitemap-index, robots, IndexNow + Google Indexing API à chaque publication,
+Product/Review/FAQPage JSON-LD, E-E-A-T (à propos, contact, confidentialité).
 
 ## Commandes
 
 ```bash
-npm run dev      # dev local
-npm run build    # build statique → dist/
-python3 scripts/generate_article.py   # générer un guide en local (env vars requises)
-python3 scripts/fetch_news.py
-python3 scripts/fetch_deals.py
+npm run dev / npm run build
+python3 scripts/generate_article.py   # 1 guide
+python3 scripts/fetch_news.py         # 1 news
+python3 scripts/fetch_deals.py        # refresh deals
+python3 scripts/expand_streamers.py   # +3 profils streamers
+python3 scripts/make_pin.py <slug>    # épingle Pinterest
 ```
