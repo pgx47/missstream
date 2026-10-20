@@ -21,7 +21,7 @@ const url = (a: string) => `https://www.amazon.fr/dp/${a}?tag=missstrm-21`;
 
     <div id="filters" class="mt-6 flex flex-wrap gap-2">
       {cats.map((c) => (
-        <button data-cat={c.id} class="deco-filter px-4 py-2 rounded-full text-sm font-bold border transition-colors {c.id === 'all' ? 'bg-pink-500 text-white border-pink-500' : 'bg-white text-gray-600 border-pink-100 hover:border-pink-300'}">
+        <button data-cat={c.id} class:list={["deco-filter px-4 py-2 rounded-full text-sm font-bold border transition-colors", c.id === 'all' ? 'bg-pink-500 text-white border-pink-500' : 'bg-white text-gray-600 border-pink-100 hover:border-pink-300']}>
           {c.label}
         </button>
       ))}
