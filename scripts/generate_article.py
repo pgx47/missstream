@@ -286,7 +286,8 @@ def get_image(image_prompt: str, slug: str) -> str:
             words = re.sub(r"[^a-zA-Z ]", "", image_prompt).split()[:4]
             topical = " ".join(words)
             q = urllib.parse.quote(random.choice(
-                [f"{topical} pastel", f"{topical} white desk", f"{topical} aesthetic"]
+                [f"{topical} pastel", f"{topical} white desk", f"{topical} aesthetic",
+                 "aesthetic desk setup cozy", "pastel computer workspace", "retro gaming desk setup", "cozy streamer room decor"]
             ))
             r = requests.get(
                 f"https://api.unsplash.com/search/photos?query={q}&orientation=landscape&per_page=12&content_filter=high",
@@ -301,15 +302,7 @@ def get_image(image_prompt: str, slug: str) -> str:
         except Exception as e:
             print(f"Échec Unsplash : {e}")
 
-    # Niveau 2 : Pollinations/FLUX (FLUX, gratuit)
-    try:
-        url = f"https://image.pollinations.ai/prompt/{urllib.parse.quote(full_prompt)}?width=1200&height=630&nologo=true"
-        r = requests.get(url, timeout=90)
-        if r.status_code == 200 and len(r.content) > 10000:
-            print("Image Pollinations")
-            return save_image(r.content, slug)
-    except Exception as e:
-        print(f"Échec Pollinations : {e}")
+    # Niveau 2 : Pollinations désactivé (watermark intégré même avec nologo=true)
 
     # Niveau 3 : pool local WebP
     pool = sorted(FALLBACK_DIR.glob("*.webp"))
