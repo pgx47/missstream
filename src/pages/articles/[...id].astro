@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import AffiliateBox from '../../components/AffiliateBox.astro';
 
 export async function getStaticPaths() {
   const guides = await getCollection('guides', ({ data }) => !data.draft);
@@ -24,5 +25,5 @@ const { Content, headings } = await render(entry);
   shopTheLook={entry.data.shopTheLook}
   headings={headings}
 >
-  <Content />
+  <Content components={{ AffiliateBox }} />
 </ArticleLayout>

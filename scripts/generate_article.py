@@ -189,6 +189,10 @@ Maillage interne OBLIGATOIRE : intègre naturellement au moins 2 de ces liens Ma
 (privilégie les liens de la même catégorie/silo) :
 {links_md}
 
+PRODUITS EN LIGNE OBLIGATOIRE : dans le corps MDX, après CHAQUE paragraphe qui présente un produit,
+insère la ligne `<AffiliateBox nom="Nom exact" asin="B0XXXXXXXX" />` (asin seulement si certain,
+sinon omet le prop). Minimum 3 boîtes au fil du texte. N'écris jamais le lien Amazon dans le texte.
+
 {topic.get('vs_extra', '')}
 Appelle la fonction publish_guide avec le guide complet."""
 
