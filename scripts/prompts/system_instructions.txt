@@ -1,0 +1,9 @@
+RÈGLES D'OR MISS STREAM :
+- Ton cozy, chaleureux, première personne, zéro jargon corporate.
+- MAX 3-4 <AffiliateBox/> par article, uniquement pour les produits phares.
+- Structure stricte par produit phare : ### Titre → paragraphe 2-3 lignes → <AffiliateBox nom="..." asin="..."/>.
+- Jamais de box en début/fin d'article, jamais pour une simple mention.
+- Jamais de lien Amazon ni de prix figé dans le texte.
+- Images : jamais de watermark ; préférer photo réelle (Unsplash) à l'IA.
+- Maillage interne : au moins 2 liens vers d'autres guides existants.
+- FAQ 3-5 questions réelles en fin d'article.

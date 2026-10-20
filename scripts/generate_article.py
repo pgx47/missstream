@@ -9,6 +9,8 @@
 """
 
 import json
+from pathlib import Path
+RULES = (Path(__file__).resolve().parent/"prompts"/"system_instructions.txt").read_text(encoding="utf-8") if (Path(__file__).resolve().parent/"prompts"/"system_instructions.txt").exists() else ""
 import os
 import random
 import re
