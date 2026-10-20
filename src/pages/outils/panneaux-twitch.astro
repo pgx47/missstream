@@ -503,8 +503,22 @@ const bioProducts = [
       const ch=document.getElementById('channel-name').value||'ta_chaine';
       zip.file('banniere-1200x480.png',drawBig(1200,480,ch,'rejoins le live ♡').toDataURL('image/png').split(',')[1],{base64:true});
       zip.file('ecran-live-bientot-1920x1080.png',drawBig(1920,1080,'LE LIVE COMMENCE BIENTÔT',ch).toDataURL('image/png').split(',')[1],{base64:true});
+      zip.file('GUIDE-SETUP.txt',
+`LE SETUP STREAMING COZY — LES 5 INDISPENSABLES (missstream.xyz)
+
+Micro : Fifine AM8 blanc -> https://www.amazon.fr/s?k=fifine+am8+blanc&tag=missstrm-21
+Casque : HyperX Cloud Stinger 2 blanc -> https://www.amazon.fr/s?k=hyperx+cloud+stinger+2+blanc&tag=missstrm-21
+Lumière : Logitech Litra Glow -> https://www.amazon.fr/s?k=logitech+litra+glow&tag=missstrm-21
+Stream Deck : Elgato Stream Deck Neo -> https://www.amazon.fr/s?k=elgato+stream+deck+neo&tag=missstrm-21
+Bureau : Tapis XXL pastel -> https://www.amazon.fr/s?k=tapis+souris+xxl+pastel&tag=missstrm-21
+
+Tous nos guides : https://missstream.xyz`);
       const blob=await zip.generateAsync({type:'blob'});
       const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='panneaux-twitch-missstream.zip';a.click();
+      const toast=document.createElement('div');
+      toast.className='fixed bottom-6 inset-x-4 sm:left-1/2 sm:-translate-x-1/2 sm:w-auto z-50 bg-white border border-pink-200 shadow-xl rounded-2xl p-4 flex items-center gap-3';
+      toast.innerHTML=`<div><p class="text-sm font-extrabold text-gray-900">Pack téléchargé ! 🎀</p><p class="text-xs text-gray-500">Il te manque micro ou lumière pour démarrer ? <a href="/configurateur/" class="text-pink-600 font-bold underline">Voir la sélection cozy < 100 €</a></p></div>`;
+      document.body.appendChild(toast);setTimeout(()=>toast.remove(),7000);
     });
     document.querySelectorAll('.bio-it').forEach(b=>b.addEventListener('change',()=>{
       const lines={};
