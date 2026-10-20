@@ -189,12 +189,13 @@ Maillage interne OBLIGATOIRE : intègre naturellement au moins 2 de ces liens Ma
 (privilégie les liens de la même catégorie/silo) :
 {links_md}
 
-PRODUITS EN LIGNE — STRUCTURE STRICTE pour chaque produit recommandé :
+PRODUITS EN LIGNE — RÈGLE D'OR : MAXIMUM 3-4 `<AffiliateBox/>` par article, réservés aux
+produits phares. Structure stricte par produit phare :
   ### [Nom du produit]
-  (paragraphe de 2-3 lignes)
+  (paragraphe 2-3 lignes)
   <AffiliateBox nom="Nom exact" asin="B0XXXXXXXX" />
-(asin seulement si certain, sinon omet). Minimum 3 produits ainsi. INTERDIT : regrouper les
-composants en début/fin de texte. Jamais de lien Amazon dans le texte.
+(asin seulement si certain). JAMAIS de box pour une simple mention. JAMAIS de regroupement
+en début/fin. Jamais de lien Amazon dans le texte.
 
 {topic.get('vs_extra', '')}
 Appelle la fonction publish_guide avec le guide complet."""
