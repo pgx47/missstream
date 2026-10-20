@@ -48,7 +48,7 @@ for f in glob.glob(str(ROOT / "src/content/*/*.mdx")):
         continue
     fm = yaml.safe_load(fm_m.group(1))
     img = fm.get("image", "") or ""
-    if img and "pollinations.ai" not in img:
+    if not os.environ.get("ALL_GUIDES") and img and "pollinations.ai" not in img:
         continue
     title = fm.get("title", "")
     slug = Path(f).stem

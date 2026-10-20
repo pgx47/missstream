@@ -6,6 +6,7 @@ const cats = [
   { id: 'all', label: 'Tout' },
   { id: 'lumieres', label: '💡 Lumières & Néons' },
   { id: 'kawaii', label: '🧸 Kawaii & Cozy' },
+  { id: 'rangement', label: '🗄️ Rangement' },
   { id: 'gadgets-y2k', label: '📟 Gadgets Y2K' },
 ];
 const url = (a: string) => `https://www.amazon.fr/dp/${a}?tag=missstrm-21`;
@@ -47,21 +48,48 @@ const url = (a: string) => `https://www.amazon.fr/dp/${a}?tag=missstrm-21`;
         </a>
       ))}
     </div>
+
+    <div id="pagination" class="mt-10 flex justify-center gap-2"></div>
   </div>
 
   <script>
+    const PER_PAGE = 20;
+    let curCat = 'all';
+    let curPage = 1;
+    const items = [...document.querySelectorAll('.deco-item')];
+    const pag = document.getElementById('pagination');
+
+    function visible() { return items.filter(el => curCat === 'all' || el.getAttribute('data-cat') === curCat); }
+
+    function render() {
+      const vis = visible();
+      const pages = Math.max(1, Math.ceil(vis.length / PER_PAGE));
+      curPage = Math.min(curPage, pages);
+      items.forEach(el => el.style.display = 'none');
+      vis.slice((curPage - 1) * PER_PAGE, curPage * PER_PAGE).forEach(el => el.style.display = '');
+      pag.innerHTML = '';
+      if (pages > 1) {
+        for (let i = 1; i <= pages; i++) {
+          const b = document.createElement('button');
+          b.textContent = i;
+          b.className = 'px-4 py-2 rounded-xl text-sm font-extrabold border ' + (i === curPage ? 'bg-pink-500 text-white border-pink-500' : 'bg-white text-gray-600 border-pink-100');
+          b.onclick = () => { curPage = i; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+          pag.appendChild(b);
+        }
+      }
+    }
+
     document.querySelectorAll('.deco-filter').forEach((btn) => {
       btn.addEventListener('click', () => {
-        const cat = btn.getAttribute('data-cat');
+        curCat = btn.getAttribute('data-cat'); curPage = 1;
         document.querySelectorAll('.deco-filter').forEach((b) => {
           const on = b === btn;
           b.className = b.className.replace(/bg-pink-500 text-white border-pink-500|bg-white text-gray-600 border-pink-100 hover:border-pink-300/g, '') +
             (on ? ' bg-pink-500 text-white border-pink-500' : ' bg-white text-gray-600 border-pink-100 hover:border-pink-300');
         });
-        document.querySelectorAll('.deco-item').forEach((el) => {
-          (el as HTMLElement).style.display = (cat === 'all' || el.getAttribute('data-cat') === cat) ? '' : 'none';
-        });
+        render();
       });
     });
+    render();
   </script>
 </BaseLayout>
