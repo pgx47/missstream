@@ -49,12 +49,14 @@ const urlAvis = asin ? `${url}#customerReviews` : url;
 
   <div class="flex gap-4 items-start">
     {
-      image && (
+      (image || asin) && (
         <img
-          src={image}
+          src={image || `https://ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&Format=_SL400_&ASIN=${asin}&MarketPlace=FR&ID=AsinImage`}
+          onerror={image ? `this.onerror=null;this.src='https://ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&Format=_SL400_&ASIN=${asin}&MarketPlace=FR&ID=AsinImage'` : "this.style.display='none'"}
           alt={nom}
           width="112"
           height="112"
+          referrerpolicy="no-referrer"
           class="w-24 h-24 md:w-28 md:h-28 rounded-xl object-contain bg-white border border-gray-100 shrink-0"
           loading="lazy"
         />
