@@ -1,17 +1,17 @@
 [
   {
-    "titre": "Elgato HD60 X — même ASIN, deux fiches catalogue",
+    "titre": "La carte d’acquisition abordable",
     "original": {
       "nom": "Elgato HD60 X",
-      "prix": null,
+      "prix": "≈ 190 €",
       "asin": "B09V1KJ3J4"
     },
     "dupe": {
-      "nom": "Elgato HD60 X — capture externe",
-      "prix": null,
-      "asin": "B09V1KJ3J4"
+      "nom": "Carte capture 4K HDMI pas chère",
+      "prix": "≈ 35 €",
+      "query": "carte capture hdmi 4k pas cher"
     },
-    "gain": null
+    "gain": "−155 €"
   },
   {
     "titre": "HyperX Cloud Stinger 2 — même ASIN, deux fiches catalogue",
