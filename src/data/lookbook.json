@@ -112,5 +112,62 @@
       }
     ],
     "image": "/images/lookbook/chair.webp"
+  },
+  {
+    "titre": "Retro Aesthetic",
+    "description": "Ambiance années 2000 : lave, pixels et pastel.",
+    "produits": [
+      {
+        "nom": "Lava The Original Lamp - New 14.5\" Wild Pink – Classic Liqui",
+        "asin": "B0FD2F53C8"
+      },
+      {
+        "nom": "Divoom Pixoo-64 - WiFi Pixel Cloud Digital Frame with APP Co",
+        "asin": "B09H3YWPCH"
+      },
+      {
+        "nom": "Wireless Typewriter Style Mechanical Keyboard with White Bac",
+        "asin": "B0GYMZWVJ1"
+      }
+    ],
+    "image": "/images/lookbook/neon.webp"
+  },
+  {
+    "titre": "Cosmic Stream",
+    "description": "Le fond galaxie : projecteurs et néons spatiaux.",
+    "produits": [
+      {
+        "nom": "FlyLily Galaxy Projector for Bedroom, 13 in 1 Planetarium St",
+        "asin": "B0FNWYHPTK"
+      },
+      {
+        "nom": "Fayoo 2 Pack Halloween Decorations Glow in Dark Bat Foil Fri",
+        "asin": "B0H3L574PX"
+      },
+      {
+        "nom": "Govee 16.4ft RGBIC LED Strip Lights, LED Lights for Bedroom,",
+        "asin": "B0991Q94KP"
+      }
+    ],
+    "image": "/images/lookbook/podcast.webp"
+  },
+  {
+    "titre": "Automne & Halloween",
+    "description": "Spooky cozy : feuilles d'érable et bougies LED.",
+    "produits": [
+      {
+        "nom": "Hairui Lighted Maple Leaf Garland with Timer 6FT 24 Warm Whi",
+        "asin": "B09BL4XN2C"
+      },
+      {
+        "nom": "Wondise Flameless Candles with 6H Timer Battery Operated",
+        "asin": "B07SN3Y7LZ"
+      },
+      {
+        "nom": "Fayoo 2 Pack Halloween Decorations Glow in Dark Bat Foil Fri",
+        "asin": "B0H3L574PX"
+      }
+    ],
+    "image": "/images/lookbook/cat.webp"
   }
 ]

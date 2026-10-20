@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Génère un guide d'achat MDX pour missstream.xyz via DeepSeek.
+"""Génère un guide d'achat Pour les articles deco, propose des objets hypnotiques prises TikTok/Twitch (lava lamps, projecteurs galaxie/astronaute, lampes sunset, horloges Nixie, neons muraux) et de la deco saisonniere (guirlandes automne, mini-citrouilles LED Halloween, guirlandes guinguette Noel) MDX pour missstream.xyz via DeepSeek.
 
 - Lit le prochain topic `pending` dans scripts/topics.json
 - Appel LLM structuré (tool call) : title, description, slug, body, faq, products, imagePrompt
