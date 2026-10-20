@@ -159,20 +159,22 @@ const dateFmt = (d: Date) =>
         <span class="mt-4 text-sm font-extrabold text-pink-600 inline-flex items-center gap-1">Lancer la simulation →</span>
       </a>
       <!-- Dupes -->
-      <a href="/dupes/" class="md:col-span-2 card-aesthetic p-6 group shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative overflow-hidden">
-        <div class="absolute -right-12 -top-12 w-48 h-48 bg-gradient-to-br from-amber-100/40 to-pink-100/40 rounded-full blur-3xl group-hover:scale-110 transition-transform"></div>
-        <div class="relative z-10">
-          <span class="bg-amber-400 text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full">Bons plans</span>
-          <h3 class="text-lg font-extrabold text-gray-900 mt-2 group-hover:text-pink-500 transition-colors">Le Chasseur de Dupes</h3>
-          <p class="text-sm text-gray-600 mt-1 leading-relaxed max-w-md">Le même rendu audio et visuel sans payer la taxe premium des grandes marques.</p>
+      <a href="/dupes/" class="md:col-span-2 card-aesthetic p-6 sm:p-8 group shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative overflow-hidden min-h-[140px]">
+        <div class="absolute right-0 top-0 w-1/2 h-full opacity-15 group-hover:opacity-25 transition-opacity pointer-events-none z-0" style="mask-image:linear-gradient(to left,black,transparent);-webkit-mask-image:linear-gradient(to left,black,transparent);">
+          <img src="/images/lookbook/cosmic-stream.webp" class="w-full h-full object-cover object-right" alt="" loading="lazy" />
+        </div>
+        <div class="relative z-10 flex-1">
+          <span class="bg-amber-400 text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full shadow-sm">Bons plans</span>
+          <h3 class="text-xl sm:text-2xl font-extrabold text-gray-900 mt-2 group-hover:text-pink-500 transition-colors">Le Chasseur de Dupes</h3>
+          <p class="text-sm sm:text-base text-gray-600 mt-1 leading-relaxed max-w-md">Le même rendu audio et visuel sans payer la taxe premium des grandes marques.</p>
         </div>
         <div class="relative z-10 flex items-center gap-4 shrink-0">
           <div class="text-right">
             <span class="block text-[10px] uppercase font-semibold text-gray-400">Ex. setup complet</span>
             <span class="text-sm text-gray-400 line-through">399 €</span>
-            <span class="text-2xl font-black text-rose-500 ml-1.5">159 €</span>
+            <span class="text-3xl font-black text-rose-500 ml-1.5">159 €</span>
           </div>
-          <div class="w-11 h-11 rounded-full bg-pink-50 text-pink-500 group-hover:bg-rose-500 group-hover:text-white transition-colors flex items-center justify-center">
+          <div class="w-12 h-12 rounded-full bg-pink-50 text-pink-500 group-hover:bg-rose-500 group-hover:text-white transition-colors flex items-center justify-center shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
           </div>
         </div>
