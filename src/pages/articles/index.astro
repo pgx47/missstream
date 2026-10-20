@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import SeasonalBanner from '../../components/SeasonalBanner.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SeoSchema from '../../components/SeoSchema.astro';
 
@@ -14,6 +15,7 @@ const dateFmt = (d: Date) =>
   title="Articles & guides setup"
   description="Guides d'achat et comparatifs pour un setup de streaming esthétique : micros, casques, chaises, LED et accessoires pastel."
 >
+  <SeasonalBanner />
   <SeoSchema
     slot="head"
     type="Breadcrumb"

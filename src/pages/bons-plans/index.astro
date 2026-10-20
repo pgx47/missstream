@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SeasonalBanner from '../../components/SeasonalBanner.astro';
 import DealCard from '../../components/DealCard.astro';
 import SeoSchema from '../../components/SeoSchema.astro';
 import { SITE } from '../../site.config';
@@ -16,6 +17,7 @@ const updated = new Date().toLocaleDateString('fr-FR', {
   title="Bons plans setup streaming"
   description="Promotions repérées chaque jour sur le matériel de streaming esthétique : micros, casques, chaises et LED pastel."
 >
+  <SeasonalBanner />
   <SeoSchema
     slot="head"
     type="Breadcrumb"

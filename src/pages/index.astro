@@ -5,6 +5,7 @@ import SeoSchema from '../components/SeoSchema.astro';
 import DealCard from '../components/DealCard.astro';
 import AvantApres from '../components/AvantApres.astro';
 import streamers from '../data/streamers.json';
+import SeasonalBanner from '../components/SeasonalBanner.astro';
 
 const topStreamers = streamers.filter((s) =>
   ['zywoo', 'pokimane', 'gotaga', 'maghla'].includes(s.slug)
@@ -99,6 +100,8 @@ const dateFmt = (d: Date) =>
       </div>
     </div>
   </section>
+
+  <SeasonalBanner />
 
   <style>
     .animate-bounce-slow {

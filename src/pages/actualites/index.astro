@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import SeasonalBanner from '../../components/SeasonalBanner.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SeoSchema from '../../components/SeoSchema.astro';
 
@@ -14,6 +15,7 @@ const dateFmt = (d: Date) =>
   title="Actualités streaming & setup"
   description="Les dernières sorties matériel, nouveautés Elgato, Razer, Logitech et tendances setups pour créatrices de contenu."
 >
+  <SeasonalBanner />
   <SeoSchema
     slot="head"
     type="Breadcrumb"
