@@ -1,28 +1,81 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SeoSchema from '../../components/SeoSchema.astro';
 import streamers from '../../data/streamers.json';
+
+const esport = ['gotaga', 'squeezie', 'kameto', 'zywoo'];
+const cozy = ['pokimane', 'maghla', 'baghera'];
+
+const faq = [
+  { question: "Quel est le micro le plus utilisé par les streamers ?", answer: "Le Shure SM7B domine le marché chez les pros (Gotaga, Kameto, Pokimane). Pour un budget serré, le Fifine AM8 blanc ou le Razer Seiren Mini offrent un rendu similaire pour un tiers du prix." },
+  { question: "Faut-il deux PC pour streamer sur Twitch ?", answer: "Non, un seul PC performant suffit pour la majorité des streameuses et streameurs. Le double PC est réservé aux compétiteurs qui capturent du jeu à très haute fréquence d'images." },
+  { question: "Combien coûte le setup d'un streamer pro ?", answer: "Un setup de créateur confirmé tourne entre 3 000 et 6 000 € (PC, caméra, micro XLR, lumières). Mais un setup cozy crédible démarre à 150 € avec nos dupes et alternatives." },
+];
 ---
 
 <BaseLayout
-  title="Setups des streamers"
-  description="Le matériel exact des streamers francophones — Gotaga, Squeezie, Kameto — et les alternatives abordables pour chaque pièce."
+  title="Setups des streamers : le matériel des pros de Twitch et YouTube"
+  description="On décortique le matériel des plus grands créateurs — micros, caméras, PC, périphériques — avec les alternatives budget pour t'inspirer."
 >
+  <SeoSchema slot="head" type="FAQPage" faq={faq} />
   <div class="max-w-5xl mx-auto px-4 py-12">
-    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Setups des streamers</h1>
-    <p class="mt-3 text-gray-500">Le matos des pros, détaillé pièce par pièce — avec l'alternative budget pour chaque produit.</p>
-    <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Setups des streamers : le matériel des pros</h1>
+    <p class="mt-4 text-gray-600 max-w-3xl leading-relaxed">
+      On décortique pièce par pièce le matériel des plus grands créateurs Twitch et YouTube — micros, caméras, PC, claviers, éclairages — pour t'inspirer sans payer le prix pro. Chaque fiche compare l'équipement réel avec une alternative budget. Tu débutes ? Utilise notre <a href="/configurateur/" class="text-pink-600 font-bold hover:underline">configurateur de budget ↗</a> ou lis nos <a href="/articles/" class="text-pink-600 font-bold hover:underline">guides d'achat ↗</a>.
+    </p>
+
+    <h2 class="mt-12 mb-5 text-xl font-extrabold text-gray-900">Les figures de l'Esport & FPS</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {
-        streamers.map((s) => (
+        streamers.filter((s) => esport.includes(s.slug)).map((s) => (
           <a href={`/streamers/${s.slug}/`} class="card-aesthetic p-6 block group text-center">
             <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-4 border-pink-100 shadow-md">
               <img src={s.image} alt={s.nom} class="w-full h-full object-cover" loading="lazy" />
             </div>
-            <h2 class="text-xl font-extrabold text-gray-900 group-hover:text-pink-500 transition-colors">{s.nom}</h2>
-            <p class="text-sm text-gray-500 mt-2 line-clamp-2">{s.bio}</p>
+            <h3 class="text-xl font-extrabold text-gray-900 group-hover:text-pink-500 transition-colors">{s.nom}</h3>
+            <p class="text-xs text-gray-400 mt-1">{s.jeu_principal}</p>
+            <div class="mt-3 flex flex-wrap justify-center gap-1.5">
+              {(s.setup || []).slice(0, 3).map((p) => (
+                <span class="text-[10px] font-bold text-gray-600 bg-pink-50 border border-pink-100 px-2 py-0.5 rounded-full">{p.nom.split(' ')[0]} {p.nom.split(' ').slice(1,3).join(' ')}</span>
+              ))}
+            </div>
             <span class="mt-4 inline-block text-sm font-bold text-pink-500 group-hover:translate-x-1 transition-transform">Voir son setup →</span>
           </a>
         ))
       }
     </div>
+
+    <h2 class="mt-12 mb-5 text-xl font-extrabold text-gray-900">Cozy, Variété & Just Chatting</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        streamers.filter((s) => cozy.includes(s.slug)).map((s) => (
+          <a href={`/streamers/${s.slug}/`} class="card-aesthetic p-6 block group text-center">
+            <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-4 border-pink-100 shadow-md">
+              <img src={s.image} alt={s.nom} class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <h3 class="text-xl font-extrabold text-gray-900 group-hover:text-pink-500 transition-colors">{s.nom}</h3>
+            <p class="text-xs text-gray-400 mt-1">{s.jeu_principal}</p>
+            <div class="mt-3 flex flex-wrap justify-center gap-1.5">
+              {(s.setup || []).slice(0, 3).map((p) => (
+                <span class="text-[10px] font-bold text-gray-600 bg-purple-50 border border-purple-100 px-2 py-0.5 rounded-full">{p.nom.split(' ')[0]} {p.nom.split(' ').slice(1,3).join(' ')}</span>
+              ))}
+            </div>
+            <span class="mt-4 inline-block text-sm font-bold text-pink-500 group-hover:translate-x-1 transition-transform">Voir son setup →</span>
+          </a>
+        ))
+      }
+    </div>
+
+    <section class="mt-14">
+      <h2 class="text-2xl font-extrabold text-gray-900 mb-5">Questions fréquentes sur les setups de streamers</h2>
+      <div class="space-y-3">
+        {faq.map((f) => (
+          <details class="card-aesthetic p-5 group">
+            <summary class="font-bold text-gray-900 cursor-pointer list-none flex items-center justify-between">{f.question}<span class="text-pink-400 group-open:rotate-180 transition-transform">▾</span></summary>
+            <p class="mt-3 text-sm text-gray-600 leading-relaxed">{f.answer}</p>
+          </details>
+        ))}
+      </div>
+    </section>
   </div>
 </BaseLayout>
