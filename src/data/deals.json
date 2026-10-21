@@ -7,27 +7,7 @@
     "note": null,
     "image": "/images/deals/products/B0D9V94H1Z.webp",
     "stars": 4.3,
-    "avis": 3992
-  },
-  {
-    "asin": "B0D44VDMBQ",
-    "nom": "Jimonyer Gaming Headset for PS5 PS4 Xbox Series X|S PC Switch (Pink)",
-    "categorie": "Casques",
-    "badge": "Promo en cours",
-    "note": null,
-    "image": "/images/deals/products/B0D44VDMBQ.webp",
-    "stars": 4.4,
-    "avis": 1287
-  },
-  {
-    "asin": "B0F9P16LDK",
-    "nom": "Jimonyer Gaming Headset with Microphone, 7.1 Surround Sound and Noise Canceling Over Ear Headphones for PC/PS4",
-    "categorie": "Casques",
-    "badge": "Promo en cours",
-    "note": null,
-    "image": "/images/deals/products/B0F9P16LDK.webp",
-    "stars": 4.4,
-    "avis": 1287
+    "avis": 3994
   },
   {
     "asin": "B0F94Y5LXJ",
@@ -48,6 +28,36 @@
     "image": "/images/deals/products/B0H7C7KPS4.webp",
     "stars": 4.1,
     "avis": 56
+  },
+  {
+    "asin": "B0FVLZZN3K",
+    "nom": "Streaming Deck,Macro pad/Calculator/Numeric Keypad three modes | 15 Customizable Macro Keys and LCD Bar,Large ",
+    "categorie": "Stream Deck",
+    "badge": "Promo en cours",
+    "note": null,
+    "image": "/images/deals/products/B0FVLZZN3K.webp",
+    "stars": 4.5,
+    "avis": 49
+  },
+  {
+    "asin": "B0D44VDMBQ",
+    "nom": "Jimonyer Gaming Headset for PS5 PS4 Xbox Series X|S PC Switch (Pink)",
+    "categorie": "Casques",
+    "badge": "Bien noté",
+    "note": null,
+    "image": "/images/deals/products/B0D44VDMBQ.webp",
+    "stars": 4.4,
+    "avis": 1287
+  },
+  {
+    "asin": "B0F9P16LDK",
+    "nom": "Jimonyer Gaming Headset with Microphone, 7.1 Surround Sound and Noise Canceling Over Ear Headphones for PC/PS4",
+    "categorie": "Casques",
+    "badge": "Bien noté",
+    "note": null,
+    "image": "/images/deals/products/B0F9P16LDK.webp",
+    "stars": 4.4,
+    "avis": 1287
   },
   {
     "asin": "B0BMFQP2ZZ",
@@ -186,15 +196,5 @@
     "image": "/images/deals/products/B097QZGRCQ.webp",
     "stars": 4.5,
     "avis": 3411
-  },
-  {
-    "asin": "B09H5VSKTZ",
-    "nom": "Govee Glide — barres LED RGBIC",
-    "categorie": "Éclairage",
-    "badge": "Ambiance pastel",
-    "note": "Transforme le mur de fond en 10 minutes.",
-    "image": "/images/deals/products/B09H5VSKTZ.webp",
-    "stars": 4.5,
-    "avis": 3451
   }
 ]
