@@ -27,6 +27,25 @@ def fix_file(f):
         fm = re.sub(r"^image:.*$", f"image: {fallback}", fm, count=1, flags=re.M) if m else fm + f"image: {fallback}\n"
         changed = True
 
+    # 1b. injecter asin dans les boxes inline (depuis frontmatter)
+    prods = {p.get("nom", "").lower(): p for p in fm and (re.findall(r"- nom: (.*?)\n", fm) and []) or []}
+    y = __import__("yaml")
+    fmdata = y.safe_load(fm)
+    prods = {p.get("nom", "").lower(): p for p in (fmdata.get("products") or [])}
+    def _inj(m):
+        tag = m.group(0)
+        if "asin=" in tag: return tag
+        nm = re.search(r'nom="([^"]+)"', tag)
+        if not nm: return tag
+        n = nm.group(1).lower()
+        hit = prods.get(n) or next((v for k, v in prods.items() if n in k or k in n), None)
+        if hit and re.fullmatch(r"[A-Za-z0-9]{10}", hit.get("asin") or ""):
+            return tag.replace(" />", f' asin="{hit["asin"]}" />')
+        return tag
+    body2 = re.sub(r"<AffiliateBox [^>]*/>", _inj, body)
+    if body2 != body:
+        body = body2; changed = True
+
     # 2. cap AffiliateBox à 4 + rien avant le premier ##
     boxes = [m.start() for m in re.finditer(r"<AffiliateBox", body)]
     first_h2 = body.find("\n##")
