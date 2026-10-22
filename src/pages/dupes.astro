@@ -65,23 +65,23 @@ const _dupes = [
               <div class="rounded-xl border border-gray-200 p-4 flex flex-col items-center text-center">
                 <p class="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-2">L'original</p>
                 {d.original.asin && (
-                  <div class="w-36 h-36 sm:w-44 sm:h-44 aspect-square bg-slate-50/70 rounded-xl p-3 flex items-center justify-center mb-3 border border-pink-50">
+                  <a href={amazonUrl({ asin: d.original.asin, query: d.original.nom })} target="_blank" rel="nofollow sponsored noopener" class="w-36 h-36 sm:w-44 sm:h-44 aspect-square bg-slate-50/70 rounded-xl p-3 flex items-center justify-center mb-3 border border-pink-50 hover:border-pink-200 transition-colors">
                     <img src={`/images/products/${d.original.asin}.webp`} onerror={`this.onerror=null;this.src='https://m.media-amazon.com/images/P/${d.original.asin}.01._SCLZZZZZZZ_SX400_.jpg'`} alt={d.original.nom} referrerpolicy="no-referrer" loading="lazy" class="max-h-full max-w-full object-contain drop-shadow-sm hover:scale-105 transition-transform duration-300" />
-                  </div>
+                  </a>
                 )}
                 <p class="font-bold text-gray-800 text-sm">{d.original.nom}</p>
-                <p class="text-xs text-gray-400 line-through">{d.original.prix}</p>
+                <p class="text-xs text-gray-400">{d.original.prix}</p>
                 <a href={amazonUrl({ asin: d.original.asin, query: d.original.nom })} target="_blank" rel="nofollow sponsored noopener" class="mt-2 inline-block text-xs font-bold text-gray-500 hover:text-pink-500">Voir →</a>
               </div>
               <div class="rounded-xl border border-pink-200 bg-pink-50/40 p-4 flex flex-col items-center text-center">
                 <p class="text-[11px] font-bold uppercase tracking-widest text-pink-500 mb-2">La dupe</p>
                 {d.dupe.asin && (
-                  <div class="w-36 h-36 sm:w-44 sm:h-44 aspect-square bg-white/80 rounded-xl p-3 flex items-center justify-center mb-3 border border-pink-100">
+                  <a href={amazonUrl({ asin: d.dupe.asin, query: d.dupe.nom })} target="_blank" rel="nofollow sponsored noopener" class="w-36 h-36 sm:w-44 sm:h-44 aspect-square bg-white/80 rounded-xl p-3 flex items-center justify-center mb-3 border border-pink-100 hover:border-pink-300 transition-colors">
                     <img src={`/images/products/${d.dupe.asin}.webp`} onerror={`this.onerror=null;this.src='https://m.media-amazon.com/images/P/${d.dupe.asin}.01._SCLZZZZZZZ_SX400_.jpg'`} alt={d.dupe.nom} referrerpolicy="no-referrer" loading="lazy" class="max-h-full max-w-full object-contain drop-shadow-sm hover:scale-105 transition-transform duration-300" />
-                  </div>
+                  </a>
                 )}
                 <p class="font-bold text-gray-800 text-sm">{d.dupe.nom}</p>
-                <p class="text-xs font-bold text-pink-600">{d.dupe.prix}</p>
+                <p class="text-xs"><span class="text-gray-400 line-through mr-1">{d.original.prix}</span><span class="font-bold text-pink-600">{d.dupe.prix}</span></p>
                 <a href={amazonUrl({ asin: d.dupe.asin, query: d.dupe.nom })} target="_blank" rel="nofollow sponsored noopener" class="mt-2 inline-block text-xs font-extrabold text-pink-600 hover:underline">Vérifier le prix →</a>
               </div>
             </div>
