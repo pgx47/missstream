@@ -73,3 +73,14 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh workflow run deploy.yml || true
+
+      - name: Post pin to Pinterest (Make)
+        env:
+          MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
+        run: |
+          slug=$(git diff --name-only HEAD~1 | grep -o 'src/content/guides/[^/]*' | head -1 | sed 's/.*\///')
+          if [ -n "$slug" ] && [ -n "$MAKE_WEBHOOK_URL" ]; then
+            sleep 60
+            title=$(grep -m1 '^title:' "src/content/guides/$slug.mdx" | cut -d'"' -f2 || echo "$slug")
+            curl -sS -X POST "$MAKE_WEBHOOK_URL" -H 'Content-Type: application/json' -d "{\"image\":\"https://missstream.xyz/images/pins/$slug.png\",\"title\":\"$title\",\"link\":\"https://missstream.xyz/articles/$slug/\"}" || true
+          fi
