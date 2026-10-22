@@ -1,0 +1,14 @@
+# MissStream
+> Le guide indépendant pour concevoir un espace de streaming esthétique — guides, comparatifs, dupes et inspirations déco pour créatrices et streamers.
+
+## Contenu
+- [Guides & Tests](https://missstream.xyz/articles/): comparatifs matériel streaming (micros, webcams, chaises, éclairage)
+- [Lookbook](https://missstream.xyz/lookbook/): ambiances de setups complets à recréer
+- [Boutique Déco](https://missstream.xyz/deco/): objets esthétiques unitaires (lampes, néons, gadgets)
+- [Setups de Streamers](https://missstream.xyz/streamers/): matériel réel des créateurs (Gotaga, Pokimane, Maghla...)
+- [Outils](https://missstream.xyz/outils/): générateur de panneaux Twitch, configurateur budget, checklist
+- [Actualités](https://missstream.xyz/actualites/): brèves tech & streaming
+- [Bons Plans](https://missstream.xyz/bons-plans/): promos et dupes à prix réduit
+
+## Notes
+Site affilié Amazon (liens nofollow/sponsored). Contenu en français, orienté setup cozy/pastel.

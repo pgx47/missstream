@@ -28,6 +28,7 @@ const dateFmt = (d: Date) =>
 
 <BaseLayout title={SITE.name} description={SITE.description}>
   <SeoSchema slot="head" type="WebSite" />
+  <link slot="head" rel="preload" as="image" href="/images/hero-setup.webp" fetchpriority="high" />
 
   <section class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -74,7 +75,7 @@ const dateFmt = (d: Date) =>
             class="relative w-full max-w-md lg:max-w-none lg:w-[110%] rounded-2xl shadow-2xl overflow-hidden border-4 border-white rotate-2 hover:rotate-0 transition-transform duration-500"
           >
             <img
-              src="/images/hero-setup.webp"
+              src="/images/hero-setup.webp" fetchpriority="high" width="1200" height="900"
               alt="Setup de streaming pastel esthétique"
               class="w-full h-full object-cover aspect-[4/3] lg:aspect-auto"
               loading="eager"
