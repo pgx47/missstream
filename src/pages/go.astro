@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Redirection" description="Redirection vers Amazon">
+  <meta slot="head" name="robots" content="noindex,nofollow" />
+  <div class="min-h-[60vh] flex items-center justify-center">
+    <p class="text-gray-500 text-sm">Redirection en cours…</p>
+  </div>
+  <script>
+    const p = new URLSearchParams(location.search);
+    const asin = p.get('a');
+    const q = p.get('q');
+    const TAG = 'missstrm-21';
+    const url = asin
+      ? `https://www.amazon.fr/dp/${asin}?tag=${TAG}`
+      : `https://www.amazon.fr/s?k=${encodeURIComponent(q || 'setup streaming')}&tag=${TAG}`;
+    location.replace(url);
+  </script>
+</BaseLayout>

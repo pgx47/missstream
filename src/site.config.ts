@@ -15,8 +15,8 @@ export const SITE = {
 
 export function amazonUrl({ asin, query }: { asin?: string; query?: string }): string {
   if (asin) {
-    return `https://www.amazon.fr/dp/${asin}?tag=${SITE.amazonTag}`;
+    return `/go/?a=${asin}`;
   }
   const q = encodeURIComponent(query ?? 'setup streaming');
-  return `https://www.amazon.fr/s?k=${q}&tag=${SITE.amazonTag}`;
+  return `/go/?q=${q}`;
 }
