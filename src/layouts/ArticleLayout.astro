@@ -196,7 +196,7 @@ const breadcrumbs = [
           ['Étagère pegboard bureau','etagere pegboard bureau'],
           ['Barre lumineuse écran','barre lumineuse ecran moniteur'],
         ].map(([nom,q]) => (
-          <a href={`https://www.amazon.fr/s?k=${encodeURIComponent(q)}&tag=missstrm-21`} target="_blank" rel="nofollow sponsored noopener" class="flex items-center justify-between p-3 rounded-xl border border-pink-50 hover:border-pink-200 hover:bg-pink-50/40 transition-colors text-sm font-bold text-gray-700">
+          <a href={`/go/?q=${encodeURIComponent(q)}`} target="_blank" rel="nofollow sponsored noopener" class="flex items-center justify-between p-3 rounded-xl border border-pink-50 hover:border-pink-200 hover:bg-pink-50/40 transition-colors text-sm font-bold text-gray-700">
             {nom} <span class="text-pink-500 text-xs shrink-0 ml-2">Voir →</span>
           </a>
         ))}
