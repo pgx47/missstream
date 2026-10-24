@@ -41,7 +41,11 @@ const avis = _avis ?? _reviews;
 const url = amazonUrl({ asin, query: nom });
 const imageUrl =
   image ||
-  (asin ? `/images/products/${asin}.webp` : '');
+  (asin ? `/images/products/${asin}.webp` : '') ||
+  '/logo-avatar.webp';
+const fallbackImg = asin
+  ? `https://m.media-amazon.com/images/P/${asin}.01._SCLZZZZZZZ_SX400_.jpg`
+  : '/logo-avatar.webp';
 const fullStars = stars ? Math.round(stars) : 0;
 ---
 
@@ -58,7 +62,7 @@ const fullStars = stars ? Math.round(stars) : 0;
         loading="lazy"
         decoding="async"
         referrerpolicy="no-referrer"
-        onerror={`this.onerror=null;this.src='https://m.media-amazon.com/images/P/${asin}.01._SCLZZZZZZZ_SX400_.jpg'`}
+        onerror={`this.onerror=null;this.src='${fallbackImg}'`}
         class="max-w-full max-h-52 object-contain drop-shadow-md hover:scale-105 transition-transform duration-300"
       />
     )}
