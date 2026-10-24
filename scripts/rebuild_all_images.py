@@ -47,13 +47,13 @@ for f in glob.glob(str(ROOT / "src/content/*/*.mdx")):
     if not fm_m:
         continue
     fm = yaml.safe_load(fm_m.group(1))
-    if os.environ.get("ONLY_SLUG") and stem not in os.environ.get("ONLY_SLUG",""):
+    slug = Path(f).stem
+    if os.environ.get("ONLY_SLUG") and slug not in os.environ.get("ONLY_SLUG",""):
         continue
     img = fm.get("image", "") or ""
     if not os.environ.get("ALL_GUIDES") and not os.environ.get("ONLY_SLUG") and img and "pollinations.ai" not in img:
         continue
     title = fm.get("title", "")
-    slug = Path(f).stem
     try:
         fm["image"] = save(flux(title), f"/images/guides/{slug}.webp")
         new_fm = yaml.dump(fm, allow_unicode=True, sort_keys=False)
