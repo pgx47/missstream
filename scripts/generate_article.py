@@ -282,7 +282,26 @@ def get_image(image_prompt: str, slug: str) -> str:
         "NO black leather furniture, no 3D render, no cartoon, no clipart, no text."
     )
 
-    # Niveau 1 : Unsplash (vraies photos), requêtes biaisées pastel/clair
+    # Niveau 1 : FLUX (Cloudflare Workers AI) Workers AI FLUX (sans watermark, via secrets CF)
+    cf_token, cf_acct = (os.environ.get("CF_AI_TOKEN") or os.environ.get("CLOUDFLARE_API_TOKEN")), os.environ.get("CLOUDFLARE_ACCOUNT_ID")
+    if cf_token and cf_acct:
+        try:
+            r = requests.post(
+                f"https://api.cloudflare.com/client/v4/accounts/{cf_acct}/ai/run/@cf/black-forest-labs/flux-1-schnell",
+                headers={"Authorization": f"Bearer {cf_token}"},
+                json={"prompt": f"Photorealistic cozy aesthetic desk setup, {image_prompt}, warm soft lighting, cinematic, depth of field, 8k, no text, no watermark", "steps": 4},
+                timeout=60,
+            )
+            data = r.json()
+            b64 = (data.get("result") or {}).get("image")
+            if b64:
+                import base64
+                print("Image Workers AI FLUX")
+                return save_image(base64.b64decode(b64), slug)
+        except Exception as e:
+            print(f"Échec Workers AI : {e}")
+
+    # Niveau 2 : Unsplash (fallback si FLUX échoue) (vraies photos), requêtes biaisées pastel/clair
     key = os.environ.get("UNSPLASH_ACCESS_KEY")
     if key:
         try:
@@ -304,25 +323,6 @@ def get_image(image_prompt: str, slug: str) -> str:
                 return save_image(img, slug)
         except Exception as e:
             print(f"Échec Unsplash : {e}")
-
-    # Niveau 2 : Cloudflare Workers AI FLUX (sans watermark, via secrets CF)
-    cf_token, cf_acct = (os.environ.get("CF_AI_TOKEN") or os.environ.get("CLOUDFLARE_API_TOKEN")), os.environ.get("CLOUDFLARE_ACCOUNT_ID")
-    if cf_token and cf_acct:
-        try:
-            r = requests.post(
-                f"https://api.cloudflare.com/client/v4/accounts/{cf_acct}/ai/run/@cf/black-forest-labs/flux-1-schnell",
-                headers={"Authorization": f"Bearer {cf_token}"},
-                json={"prompt": f"Photorealistic cozy aesthetic desk setup, {image_prompt}, warm soft lighting, cinematic, depth of field, 8k, no text, no watermark", "steps": 4},
-                timeout=60,
-            )
-            data = r.json()
-            b64 = (data.get("result") or {}).get("image")
-            if b64:
-                import base64
-                print("Image Workers AI FLUX")
-                return save_image(base64.b64decode(b64), slug)
-        except Exception as e:
-            print(f"Échec Workers AI : {e}")
 
     # Niveau 3 : pool local WebP
     pool = sorted(FALLBACK_DIR.glob("*.webp"))

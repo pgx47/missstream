@@ -6,6 +6,10 @@ on:
         description: 'Regenerer TOUTES les couvertures guides'
         default: false
         type: boolean
+      slug:
+        description: 'Un seul slug a regénérer (optionnel)'
+        default: ''
+        type: string
 
 permissions:
   contents: write
@@ -26,6 +30,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CF_AI_TOKEN: ${{ secrets.CF_AI_TOKEN }}
           ALL_GUIDES: ${{ inputs.all_guides }}
+          ONLY_SLUG: ${{ inputs.slug }}
         run: python3 scripts/rebuild_all_images.py
       - name: Commit regenerated images
         run: |
