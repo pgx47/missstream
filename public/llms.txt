@@ -1,14 +1,36 @@
 # MissStream
 > Le guide indépendant pour concevoir un espace de streaming esthétique — guides, comparatifs, dupes et inspirations déco pour créatrices et streamers.
 
-## Contenu
-- [Guides & Tests](https://missstream.xyz/articles/): comparatifs matériel streaming (micros, webcams, chaises, éclairage)
-- [Lookbook](https://missstream.xyz/lookbook/): ambiances de setups complets à recréer
-- [Boutique Déco](https://missstream.xyz/deco/): objets esthétiques unitaires (lampes, néons, gadgets)
-- [Setups de Streamers](https://missstream.xyz/streamers/): matériel réel des créateurs (Gotaga, Pokimane, Maghla...)
-- [Outils](https://missstream.xyz/outils/): générateur de panneaux Twitch, configurateur budget, checklist
-- [Actualités](https://missstream.xyz/actualites/): brèves tech & streaming
-- [Bons Plans](https://missstream.xyz/bons-plans/): promos et dupes à prix réduit
+## Sections
+- [Guides & Tests](https://missstream.xyz/articles/)
+- [Lookbook](https://missstream.xyz/lookbook/)
+- [Boutique Déco](https://missstream.xyz/deco/)
+- [Setups de Streamers](https://missstream.xyz/streamers/)
+- [Outils](https://missstream.xyz/outils/)
+- [Actualités](https://missstream.xyz/actualites/)
+- [Bons Plans](https://missstream.xyz/bons-plans/)
+- [Dupes](https://missstream.xyz/dupes/)
 
-## Notes
-Site affilié Amazon (liens nofollow/sponsored). Contenu en français, orienté setup cozy/pastel.
+## Guides récents
+- ['Accessoires Y2K rétro pour bureau de stream : 5 pièces testées (2026)'](https://missstream.xyz/articles/accessoires-y2k-retro-bureau-de-stream/)
+- ['Bureau assis-debout blanc pour setup créateur : 3 modèles testés'](https://missstream.xyz/articles/bureau-assis-debout-blanc-setup-createur/)
+- ['Capturer sa Switch ou PS5 en stream : quelle carte d''acquisition ?'](https://missstream.xyz/articles/capturer-switch-ps5-stream-carte-acquisition/)
+- ['Casque gamer oreilles de chat : comparatif qualité audio 2026'](https://missstream.xyz/articles/casque-gamer-oreilles-de-chat-comparatif-qualite-audio/)
+- [Chaise de bureau gaming pastel confortable pour streamer en 2026](https://missstream.xyz/articles/chaise-bureau-gaming-pastel-confortable-pour-streamer/)
+- ['Clavier mécanique blanc et pastel : les meilleurs compacts pour un setup esthétique'](https://missstream.xyz/articles/clavier-mecanique-pastel-blanc-compact/)
+- ['Fifine AM8 vs Shure MV7 : le duel des micros pour un setup blanc'](https://missstream.xyz/articles/fifine-am8-vs-shure-mv7-setup-blanc/)
+- ['Idées cadeaux streameuse Noël 2026 : 5 présents qui servent vraiment'](https://missstream.xyz/articles/idees-cadeaux-streameuse-noel/)
+- [Lampe sunset vs projecteur étoiles pour éclairer son mur (2026)](https://missstream.xyz/articles/lampe-sunset-vs-projecteur-etoiles-eclairer-son-mur/)
+- [Meilleur micro USB blanc ou rose pour streamer en 2026](https://missstream.xyz/articles/meilleur-micro-usb-blanc-pour-streamer/)
+- ['Meilleur micro USB blanc ou rose pour streamer : 4 modèles testés'](https://missstream.xyz/articles/meilleur-micro-usb-blanc-rose-pour-streamer/)
+- ['Meilleur stream deck pour débuter sur Twitch : 4 modèles testés'](https://missstream.xyz/articles/meilleur-stream-deck-pour-debuter-sur-twitch/)
+- ['Meilleure enceinte de monitoring blanche : 3 modèles testés en stream'](https://missstream.xyz/articles/meilleure-enceinte-monitoring-blanche-stream-twitch/)
+- ['Ring light et barres LED : éclairer son setup de stream sans s''éblouir'](https://missstream.xyz/articles/ring-light-led-setup-streaming/)
+- ['Stream Deck Neo vs MK.2 : lequel choisir pour débuter (2026)'](https://missstream.xyz/articles/stream-deck-neo-vs-mk2-lequel-choisir-pour-debuter/)
+- ['Support casque blanc pour bureau : l''erreur de 90% des streameuses'](https://missstream.xyz/articles/support-casque-blanc-bureau-createatrice-stream/)
+- ['Tapis de souris XXL pastel et bras de micro blanc : les accessoires qui finissent](https://missstream.xyz/articles/tapis-souris-xxl-pastel-bras-micro-blanc/)
+- ['Webcam 4K en stream : quelle caméra pour un rendu net et lumineux ?'](https://missstream.xyz/articles/webcam-4k-stream-rendu-net-et-lumineux/)
+
+## Actualités récentes
+
+Site affilié Amazon (liens nofollow/sponsored). Contenu FR, univers cozy/pastel.
