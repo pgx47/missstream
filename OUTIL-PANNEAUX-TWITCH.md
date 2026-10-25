@@ -39,7 +39,7 @@ Mini-SaaS 100 % client-side (Canvas API, zéro backend). Deux onglets :
 ## Onglet Bio Setup
 
 - Grille de produits avec miniatures Amazon (`/images/products/{asin}.webp`) + checkbox.
-- Ajout libre : catégorie + nom → lien recherche tagué `amazon.fr/s?k=…&tag=missstrm-21`.
+- Ajout libre : catégorie + nom → lien recherche tagué `amazon.fr/s?k=…&tag=streamlibfr0f-21`.
 - Éditeur Markdown style Twitch (fond `#18181b`, bouton `#9146FF`, copie clipboard).
 
 ## UX

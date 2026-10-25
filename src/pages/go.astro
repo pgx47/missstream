@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../site.config';
 ---
 
 <BaseLayout title="Redirection" description="Redirection vers Amazon">
@@ -7,11 +8,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <div class="min-h-[60vh] flex items-center justify-center">
     <p class="text-gray-500 text-sm">Redirection en cours…</p>
   </div>
-  <script>
+  <script is:inline define:vars={{ TAG: SITE.amazonTag }}>
     const p = new URLSearchParams(location.search);
     const asin = p.get('a');
     const q = p.get('q');
-    const TAG = 'missstrm-21';
     const url = asin
       ? `https://www.amazon.fr/dp/${asin}?tag=${TAG}`
       : `https://www.amazon.fr/s?k=${encodeURIComponent(q || 'setup streaming')}&tag=${TAG}`;

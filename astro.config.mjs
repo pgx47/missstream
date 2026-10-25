@@ -5,7 +5,12 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://missstream.xyz',
-  integrations: [mdx(), sitemap()],
+  integrations: [
+    mdx(),
+    sitemap({
+      filter: (page) => !page.includes('/go/'),
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },

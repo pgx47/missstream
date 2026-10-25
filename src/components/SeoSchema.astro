@@ -7,7 +7,7 @@ interface FaqItem {
 }
 
 interface Props {
-  type: 'Article' | 'FAQ' | 'Breadcrumb' | 'WebSite' | 'Product';
+  type: 'Article' | 'FAQ' | 'Breadcrumb' | 'WebSite' | 'Product' | 'Organization';
   productName?: string;
   stars?: number;
   avis?: number;
@@ -38,6 +38,8 @@ const {
 
 let schema: Record<string, unknown> = {};
 
+const LOGO = new URL('/logo.png', SITE.url).href;
+
 if (type === 'WebSite') {
   schema = {
     '@context': 'https://schema.org',
@@ -45,6 +47,23 @@ if (type === 'WebSite') {
     name: SITE.name,
     url: SITE.url,
     description: SITE.description,
+    inLanguage: 'fr-FR',
+    publisher: {
+      '@type': 'Organization',
+      name: SITE.name,
+      url: SITE.url,
+      logo: { '@type': 'ImageObject', url: LOGO },
+    },
+  };
+} else if (type === 'Organization') {
+  schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: SITE.name,
+    url: SITE.url,
+    description: SITE.description,
+    email: SITE.email,
+    logo: { '@type': 'ImageObject', url: LOGO },
     inLanguage: 'fr-FR',
   };
 } else if (type === 'Article') {
@@ -58,7 +77,12 @@ if (type === 'WebSite') {
     dateModified: (updatedDate ?? publishDate)?.toISOString(),
     mainEntityOfPage: url,
     author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
-    publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE.name,
+      url: SITE.url,
+      logo: { '@type': 'ImageObject', url: LOGO },
+    },
     inLanguage: 'fr-FR',
   };
 } else if (type === 'Product' && productName) {

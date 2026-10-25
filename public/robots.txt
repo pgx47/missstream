@@ -1,4 +1,23 @@
 User-agent: *
 Allow: /
+Disallow: /go/
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
 
 Sitemap: https://missstream.xyz/sitemap-index.xml

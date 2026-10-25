@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { amazonUrl } from '../../site.config';
+import { amazonUrl, SITE } from '../../site.config';
 
 const bioProducts = [
   { cat: 'Micro', items: [
@@ -242,7 +242,7 @@ const bioProducts = [
   </style>
 
   <script is:inline src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
-  <script is:inline>
+  <script is:inline define:vars={{ TAG: SITE.amazonTag }}>
     const PRESETS = {
       strawberry:{ c1:'#FFDEE9', c2:'#B5FFFC', fg:'#1F2937', bord:'#ffffff' },
       lavender: { c1:'#c4b5fd', c2:'#818cf8', fg:'#4c1d95', bord:'#a78bfa' },
@@ -253,7 +253,6 @@ const bioProducts = [
       Jakarta:"'Plus Jakarta Sans', sans-serif", Playfair:"'Playfair Display', serif",
       Grotesk:"'Space Grotesk', sans-serif" };
     const FWT = { Nunito:'800', Fredoka:'600', Jakarta:'700', Playfair:'700', Grotesk:'700' };
-    const TAG = 'missstrm-21';
     const PANELS = [{n:'À Propos',s:''},{n:'Règles',s:''},{n:'Planning',s:'Tous les soirs dès 20h'},{n:'Setup',s:''},{n:'Discord',s:'Rejoins le serveur'},{n:'Réseaux',s:''}];
     const STICKERS = {
       heart:(c,x,y,r)=>{c.beginPath();c.moveTo(x,y+r);c.bezierCurveTo(x-r*1.6,y-r*0.4,x-r*0.7,y-r*1.5,x,y-r*0.6);c.bezierCurveTo(x+r*0.7,y-r*1.5,x+r*1.6,y-r*0.4,x,y+r);c.fill();},
@@ -506,11 +505,11 @@ const bioProducts = [
       zip.file('GUIDE-SETUP.txt',
 `LE SETUP STREAMING COZY — LES 5 INDISPENSABLES (missstream.xyz)
 
-Micro : Fifine AM8 blanc -> https://www.amazon.fr/s?k=fifine+am8+blanc&tag=missstrm-21
-Casque : HyperX Cloud Stinger 2 blanc -> https://www.amazon.fr/s?k=hyperx+cloud+stinger+2+blanc&tag=missstrm-21
-Lumière : Logitech Litra Glow -> https://www.amazon.fr/s?k=logitech+litra+glow&tag=missstrm-21
-Stream Deck : Elgato Stream Deck Neo -> https://www.amazon.fr/s?k=elgato+stream+deck+neo&tag=missstrm-21
-Bureau : Tapis XXL pastel -> https://www.amazon.fr/s?k=tapis+souris+xxl+pastel&tag=missstrm-21
+Micro : Fifine AM8 blanc -> https://www.amazon.fr/s?k=fifine+am8+blanc&tag=${TAG}
+Casque : HyperX Cloud Stinger 2 blanc -> https://www.amazon.fr/s?k=hyperx+cloud+stinger+2+blanc&tag=${TAG}
+Lumière : Logitech Litra Glow -> https://www.amazon.fr/s?k=logitech+litra+glow&tag=${TAG}
+Stream Deck : Elgato Stream Deck Neo -> https://www.amazon.fr/s?k=elgato+stream+deck+neo&tag=${TAG}
+Bureau : Tapis XXL pastel -> https://www.amazon.fr/s?k=tapis+souris+xxl+pastel&tag=${TAG}
 
 Tous nos guides : https://missstream.xyz`);
       const blob=await zip.generateAsync({type:'blob'});

@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 import AffiliateBox from '../../components/AffiliateBox.astro';
+import { resolveUpdatedDate } from '../../utils/lastmod';
 
 export async function getStaticPaths() {
   const guides = await getCollection('guides', ({ data }) => !data.draft);
@@ -10,6 +11,39 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
+
+const all = await getCollection('guides', ({ data }) => !data.draft);
+const asins = new Set(entry.data.products.map((p) => p.asin).filter(Boolean));
+const words = new Set(
+  entry.data.title
+    .toLowerCase()
+    .split(/[^a-zà-ÿ0-9]+/)
+    .filter((w) => w.length > 4),
+);
+
+const related = all
+  .filter((g) => g.id !== entry.id)
+  .map((g) => {
+    const sharedAsins = g.data.products.filter((p) => p.asin && asins.has(p.asin)).length;
+    const sharedWords = g.data.title
+      .toLowerCase()
+      .split(/[^a-zà-ÿ0-9]+/)
+      .filter((w) => words.has(w)).length;
+    return { g, score: sharedAsins * 3 + sharedWords };
+  })
+  .sort(
+    (a, b) =>
+      b.score - a.score || b.g.data.publishDate.getTime() - a.g.data.publishDate.getTime(),
+  )
+  .slice(0, 3)
+  .map(({ g }) => ({ title: g.data.title, href: `/articles/${g.id}/`, image: g.data.image }));
+
+const updatedDate = resolveUpdatedDate(
+  'guides',
+  entry.id,
+  entry.data.publishDate,
+  entry.data.updatedDate,
+);
 ---
 
 <ArticleLayout
@@ -17,13 +51,14 @@ const { Content, headings } = await render(entry);
   description={entry.data.description}
   image={entry.data.image}
   publishDate={entry.data.publishDate}
-  updatedDate={entry.data.updatedDate}
+  updatedDate={updatedDate}
   section="Articles"
   sectionHref="/articles/"
   faq={entry.data.faq}
   products={entry.data.products}
   shopTheLook={entry.data.shopTheLook}
   headings={headings}
+  related={related}
 >
   <Content components={{ AffiliateBox }} />
 </ArticleLayout>

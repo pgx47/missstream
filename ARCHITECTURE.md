@@ -6,7 +6,7 @@ Site de niche affilié Amazon, 100 % statique, contenu généré automatiquement
 - **Stack** : Astro 7 + @astrojs/mdx + Tailwind v4 + @astrojs/sitemap + content collections Zod
 - **Hébergement** : Cloudflare Pages (deploy via Wrangler en CI)
 - **Images** : Cloudflare R2 (`images.missstream.xyz`) + fallbacks locaux `public/images/`
-- **Tag Amazon** : `missstrm-21` (`src/site.config.ts`)
+- **Tag Amazon** : `streamlibfr0f-21` (`src/site.config.ts`) — injecté dans les pages via `SITE.amazonTag`, jamais hardcodé
 - **LLM** : DeepSeek (`deepseek-flash`), chaîne de secours OpenRouter → Anthropic
 
 ## Secrets GitHub configurés

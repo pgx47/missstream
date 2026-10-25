@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { resolveUpdatedDate } from '../../utils/lastmod';
 
 export async function getStaticPaths() {
   const news = await getCollection('news', ({ data }) => !data.draft);
@@ -9,6 +10,19 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
+
+const related = (
+  await getCollection('guides', ({ data }) => !data.draft)
+)
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+  .slice(0, 3)
+  .map((g) => ({ title: g.data.title, href: `/articles/${g.id}/`, image: g.data.image }));
+
+const updatedDate = resolveUpdatedDate(
+  'news',
+  entry.id,
+  entry.data.publishDate,
+);
 ---
 
 <ArticleLayout
@@ -16,9 +30,11 @@ const { Content, headings } = await render(entry);
   description={entry.data.description}
   image={entry.data.image}
   publishDate={entry.data.publishDate}
+  updatedDate={updatedDate}
   section="Actualités"
   sectionHref="/actualites/"
   headings={headings}
+  related={related}
 >
   {
     entry.data.sourceUrl && (
