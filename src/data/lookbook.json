@@ -1,245 +1,116 @@
 [
   {
-    "titre": "Studio pastel streaming",
-    "description": "Un setup doux et rose pour streamer avec une identité visuelle cohesive.",
+    "titre": "Rétro arcade pastel",
+    "description": "Un coin nostalgique et ludique qui mélange pixels rétro, mini borne et compagnon virtuel.",
     "produits": [
       {
-        "nom": "Razer Kraken Kitty V2 Quartz",
-        "asin": "B0CCF7M8SG"
+        "nom": "Divoom Pixoo-64 écran pixel rétro",
+        "asin": "B09H3YWPCH"
       },
       {
-        "nom": "Fifine AM8 blanc",
-        "asin": "B0C74G9RLH"
+        "nom": "Tamagotchi Uni",
+        "asin": "B0C6RK9YR6"
       },
       {
-        "nom": "Tapis de souris XXL pastel",
-        "asin": "B0H6M26Z8C"
-      },
-      {
-        "nom": "10W Wireless Charging LED Desk Lamp with Pen Holder, CR",
-        "asin": "B0GY461FC7"
-      },
-      {
-        "nom": "Cloud Pillows, Decorative Throw Pillow with Soft Plush ",
-        "asin": "B0FF5CNBC4"
+        "nom": "Numskull Quarter Arcade borne miniature",
+        "asin": "B0DFQHLCZK"
       }
     ],
-    "image": "/images/lookbook/studio-pastel-streaming.webp"
+    "image": "/images/lookbook/pink-white.webp"
   },
   {
-    "titre": "Capture console efficace",
-    "description": "Une configuration simple pour capturer et diffuser ses sessions console sans friction.",
+    "titre": "Bureau blanc minimaliste",
+    "description": "Un setup clair et épuré pour travailler et jouer dans une ambiance lumineuse.",
     "produits": [
       {
-        "nom": "Elgato HD60 X",
-        "asin": "B09V1KJ3J4"
-      },
-      {
-        "nom": "Elgato Stream Deck MK.2",
-        "asin": "B09738CV2G"
-      },
-      {
-        "nom": "HyperX Cloud Stinger 2",
-        "asin": "B0BCFKG49M"
-      },
-      {
-        "nom": "KDD Headphone Stand, Controller Holder & Headset Holder",
-        "asin": "B0C6T6XD1K"
-      },
-      {
-        "nom": "Capture Card, 4K HDMI Video Capture Card, Game Capture ",
-        "asin": "B097DKNS1M"
-      }
-    ],
-    "image": "/images/lookbook/capture-console-efficace.webp"
-  },
-  {
-    "titre": "Bureau ergonomique minimal",
-    "description": "Un espace de travail clair et confortable pensé pour rester productif toute la journée.",
-    "produits": [
-      {
-        "nom": "Flexispot EG8 blanc",
-        "asin": "B09DYF1SRQ"
-      },
-      {
-        "nom": "Sihoo chaise de bureau ergonomique en mesh",
-        "asin": "B0G5WQ65P2"
-      },
-      {
-        "nom": "Logitech Brio 500",
-        "asin": "B07W5JKKFJ"
-      },
-      {
-        "nom": "Modernsolid Heavy Duty Monitor Arm for 34-49 Inch Ultra",
-        "asin": "B0F6T4WM6L"
-      },
-      {
-        "nom": "KDD Dual Headphone Stand for Desk - Rotatable Headset H",
-        "asin": "B0DT9F69Q9"
-      }
-    ],
-    "image": "/images/lookbook/bureau-ergonomique-minimal.webp"
-  },
-  {
-    "titre": "Podcast pro blanc",
-    "description": "Un coin podcast épuré avec un micro dynamique et un éclairage flatteur.",
-    "produits": [
-      {
-        "nom": "Shure MV7 blanc",
-        "asin": "B0CTJ6GQGZ"
-      },
-      {
-        "nom": "Elgato Wave Mic Arm LP blanc",
-        "asin": "B097376LKF"
-      },
-      {
-        "nom": "Elgato Key Light Mini",
-        "asin": "B07L755X9G"
-      },
-      {
-        "nom": "Foam Factory Inc 24 Pack Color Acoustic Foam Panel Stud",
-        "asin": "B0DLDKK8WT"
-      },
-      {
-        "nom": "Calvin Klein Women’s Constant Convertible Strap Lightly",
-        "asin": "B07JHV49DJ"
-      }
-    ],
-    "image": "/images/lookbook/podcast-pro-blanc.webp"
-  },
-  {
-    "titre": "Gaming RGB compact",
-    "description": "Un setup gaming compact avec des accents lumineux et un clavier sans fil blanc.",
-    "produits": [
-      {
-        "nom": "Govee Glide Wall Light",
-        "asin": "B09H5VSKTZ"
-      },
-      {
-        "nom": "Razer Base Station V2 Chroma Mercury White",
-        "asin": "B08JGGLKP9"
+        "nom": "Flexispot E7 blanc",
+        "asin": "B09LFSZ3J9"
       },
       {
         "nom": "Logitech G715",
         "asin": "B099XG1QNV"
       },
       {
-        "nom": "Bright LED RGB+IC Corner Floor Lamp with App, Remote Co",
-        "asin": "B0H392S15N"
-      },
-      {
-        "nom": "RGB Gaming Headset Stand with 2 USB Ports, Game Headpho",
-        "asin": "B08V58PY4L"
+        "nom": "Elgato Stream Deck MK.2 (édition blanche)",
+        "asin": "B09738CV2G"
       }
     ],
-    "image": "/images/lookbook/gaming-rgb-compact.webp"
+    "image": "/images/lookbook/minimal.webp"
   },
   {
-    "titre": "Streaming multi-caméra",
-    "description": "Une station de streaming avancée pour alterner facilement entre plusieurs angles caméra.",
+    "titre": "Studio streaming tout blanc",
+    "description": "Une configuration de créateur avec image nette, son propre et éclairage doux.",
     "produits": [
       {
         "nom": "Elgato Facecam Pro",
         "asin": "B0DVZG36J8"
       },
       {
-        "nom": "Insta360 Link 2",
-        "asin": "B0DDTH3HX8"
+        "nom": "Shure MV7+ blanc",
+        "asin": "B0D3Q6F9T1"
       },
       {
-        "nom": "Loupedeck Live S",
-        "asin": "B0BMLQYZNF"
-      },
-      {
-        "nom": "Relaxdays 10024270_49 Retro Lamp, Flexible Articulated ",
-        "asin": "B07K8WVCGY"
-      },
-      {
-        "nom": "Evershop Ring Light for Laptop Desk Clip On,Small Compu",
-        "asin": "B0BLHHV648"
+        "nom": "Elgato Key Light Mini",
+        "asin": "B07L755X9G"
       }
     ],
-    "image": "/images/lookbook/streaming-multi-cam-ra.webp"
+    "image": "/images/lookbook/neon.webp"
   },
   {
-    "titre": "Retro Aesthetic",
-    "description": "Ambiance années 2000 : lave, pixels et pastel.",
+    "titre": "Gaming rose kawaii",
+    "description": "Une ambiance gaming girly et confortable avec des touches rose et pastel.",
     "produits": [
       {
-        "nom": "Lava The Original Lamp - New 14.5\" Wild Pink – Classic Liqui",
-        "asin": "B0FD2F53C8"
+        "nom": "Razer Kraken Kitty V2 Quartz",
+        "asin": "B0CCF7M8SG"
       },
       {
-        "nom": "Divoom Pixoo-64 - WiFi Pixel Cloud Digital Frame with APP Co",
-        "asin": "B09H3YWPCH"
+        "nom": "Chaise gaming rose ergonomique Dowinx",
+        "asin": "B0CG6TN45R"
       },
       {
-        "nom": "Wireless Typewriter Style Mechanical Keyboard with White Bac",
-        "asin": "B0GYMZWVJ1"
-      },
-      {
-        "nom": "ClocTeck Nixie Tube Clock with Wi-Fi SYNC, Alarm & Time",
-        "asin": "B0B4VX2CQG"
-      },
-      {
-        "nom": "Cedilis Retro Vintage Landline Phone, Antique Ceramic T",
-        "asin": "B098XB553W"
+        "nom": "Tapis de souris XXL pastel",
+        "asin": "B0H6M26Z8C"
       }
     ],
-    "image": "/images/lookbook/retro-aesthetic.webp"
+    "image": "/images/lookbook/podcast.webp"
   },
   {
-    "titre": "Cosmic Stream",
-    "description": "Le fond galaxie : projecteurs et néons spatiaux.",
+    "titre": "Ambiance cosy étoilée",
+    "description": "Un espace relaxant baigné de lumière chaude et de projections galactiques.",
     "produits": [
       {
-        "nom": "FlyLily Galaxy Projector for Bedroom, 13 in 1 Planetarium St",
-        "asin": "B0FNWYHPTK"
+        "nom": "Lampe à lave Mathmos Astro",
+        "asin": "B0C5S8GN55"
       },
       {
-        "nom": "Fayoo 2 Pack Halloween Decorations Glow in Dark Bat Foil Fri",
-        "asin": "B0H3L574PX"
+        "nom": "Govee Projecteur d'étoiles Galaxy H6199",
+        "asin": "B0FL29G4R4"
       },
       {
-        "nom": "Govee 16.4ft RGBIC LED Strip Lights, LED Lights for Bedroom,",
-        "asin": "B0991Q94KP"
-      },
-      {
-        "nom": "Ktv Bar Wallpaper Luminous Grid Club Karaoke Hall Corri",
-        "asin": "B0FSS4C3FR"
-      },
-      {
-        "nom": "Galaxy Projector Pro for Bedroom, 13 in 1 Planetarium S",
-        "asin": "B0DYDKRK5Z"
+        "nom": "Beurer HK 45 Cosy coussin chauffant",
+        "asin": "B0FPMCG65Q"
       }
     ],
-    "image": "/images/lookbook/cosmic-stream.webp"
+    "image": "/images/lookbook/cat.webp"
   },
   {
-    "titre": "Automne & Halloween",
-    "description": "Spooky cozy : feuilles d'érable et bougies LED.",
+    "titre": "Setup productif et audio",
+    "description": "Un poste de travail soigné pour créer, contrôler et écouter dans de bonnes conditions.",
     "produits": [
       {
-        "nom": "Hairui Lighted Maple Leaf Garland with Timer 6FT 24 Warm Whi",
-        "asin": "B09BL4XN2C"
+        "nom": "Keychron Q1 Pro",
+        "asin": "B0G4MBZB4C"
       },
       {
-        "nom": "Wondise Flameless Candles with 6H Timer Battery Operated",
-        "asin": "B07SN3Y7LZ"
+        "nom": "PreSonus Eris 3.5 White",
+        "asin": "B07X1J5Y9W"
       },
       {
-        "nom": "Fayoo 2 Pack Halloween Decorations Glow in Dark Bat Foil Fri",
-        "asin": "B0H3L574PX"
-      },
-      {
-        "nom": "4 Pack Fall Thanksgiving Lighted Mercury Glass Pumpkin,",
-        "asin": "B0FGXH7PR1"
-      },
-      {
-        "nom": "BEISHIDA Orange Mix Paper Lanterns 12Pcs 6/8/10 Inch Ro",
-        "asin": "B0FWHVTJH5"
+        "nom": "Elgato Stream Deck + (blanc)",
+        "asin": "B0BJL8SJ59"
       }
     ],
-    "image": "/images/lookbook/automne-halloween.webp"
+    "image": "/images/lookbook/chair.webp"
   }
 ]

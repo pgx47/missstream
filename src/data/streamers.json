@@ -569,5 +569,85 @@
         "asin": "B0GYDFGCCQ"
       }
     ]
+  },
+  {
+    "slug": "domingo",
+    "nom": "Domingo",
+    "bio": "Domingo est un streamer français de variété, connu pour ses formats, ses discussions et son énergie communicative sur Twitch.",
+    "description_longue": "Domingo incarne une variété Twitch très française : talk-shows, jeux, réactions et formats collectifs, avec un ton direct et une vraie culture du direct. Son setup est pensé pour la parole autant que pour l’image : micro broadcast, interface audio dédiée, éclairage propre et périphériques fiables. Il privilégie un studio sobre, lisible et efficace, au service du rythme et de la proximité avec le chat plutôt que d’une démonstration matérielle.",
+    "biographie_longue": "Domingo s’est imposé dans le paysage Twitch français comme une figure de la variété, capable de passer d’un jeu à un talk, d’une réaction à un format collectif sans perdre le fil avec sa communauté. Son parcours s’inscrit dans la génération de streamers qui ont contribué à professionnaliser le direct en France, avec des émissions régulières, des invités et une culture assumée du live. Il ne construit pas son identité autour d’un seul titre : la curiosité, la conversation et le rythme priment, ce qui explique la place centrale de l’oral et de la réactivité dans son studio. Son ton direct, parfois rentre-dedans mais toujours accompagné d’autodérision, a fidélisé un public qui vient autant pour les jeux que pour les moments de discussion et les délires collectifs. La régularité et la capacité à fédérer des formats différents restent des marqueurs forts de son parcours.\n\nCôté setup, Domingo reste dans une logique de broadcast efficace plutôt que de vitrine technique. Le Shure SM7B apporte une voix chaude et propre, tandis que la Focusrite Scarlett Solo 3rd Gen assure une interface simple pour un micro dynamique. La Logitech G Pro X Superlight convient à un usage varié grâce à sa légèreté, et le BenQ ZOWIE XL2566K privilégie la réactivité pour les phases de jeu. L’Elgato Key Light Air complète l’ensemble avec un éclairage réglable et propre pour le visage. Ce matériel forme un studio cohérent : priorité au son, à la lisibilité et à la fiabilité, avec des choix connus du segment broadcast.",
+    "jeu_principal": "Variété",
+    "image": "/images/streamers/domingo.webp",
+    "reseaux": {
+      "twitch": "Domingo"
+    },
+    "setup": [
+      {
+        "cat": "Audio",
+        "nom": "Shure SM7B",
+        "avis": "Voix chaude et très propre, mais il exige un préampli et un placement soigné."
+      },
+      {
+        "cat": "Audio",
+        "nom": "Focusrite Scarlett Solo 3rd Gen",
+        "avis": "Interface simple et fiable pour un micro dynamique, même si elle manque d’entrées."
+      },
+      {
+        "cat": "Périphériques",
+        "nom": "Logitech G Pro X Superlight",
+        "avis": "Très légère et fiable, mais le prix reste élevé pour une souris sans fioritures."
+      },
+      {
+        "cat": "PC & Image",
+        "nom": "BenQ ZOWIE XL2566K",
+        "avis": "Moniteur 360 Hz taillé pour la compétition, très réactif mais aux couleurs moins flatteuses que des dalles IPS."
+      },
+      {
+        "cat": "Éclairage",
+        "nom": "Elgato Key Light Air",
+        "avis": "Éclairage propre et réglable pour le visage, pratique mais moins puissant qu’un gros panneau studio.",
+        "asin": "B0GYDFGCCQ"
+      }
+    ]
+  },
+  {
+    "slug": "pixia",
+    "nom": "Pixia",
+    "bio": "Créatrice et streameuse française sur Valorant, Pixia mise sur un jeu compétitif, une ambiance directe et une communauté fidèle.",
+    "description_longue": "Sur Twitch, Pixia incarne une approche de Valorant à la fois compétitive et accessible : ranked sérieux, calls précis, moments de tilt maîtrisés et échanges constants avec le chat. Son stream mise sur une ambiance directe, un rythme soutenu et une esthétique sobre, centrée sur le jeu. Côté setup, elle privilégie un poste fluide pour le FPS : souris légère, clavier réactif, casque confortable, moniteur rapide et éclairage discret pour rester concentrée pendant les longues sessions.",
+    "biographie_longue": "Pixia est une créatrice française active sur Twitch, où elle s’est progressivement imposée dans l’écosystème Valorant. Son parcours de streameuse s’inscrit dans une génération de créatrices qui ont grandi avec les FPS tactiques et ont transformé la pratique compétitive en contenu quotidien. Au fil des streams, elle a construit une identité basée sur la régularité, la progression en ranked et une relation directe avec sa communauté. Plutôt que de miser uniquement sur le spectacle, elle partage ses décisions, ses erreurs et ses ajustements, ce qui rend ses sessions utiles aux joueurs qui veulent comprendre le jeu. Son ton naturel, parfois cash mais jamais artificiel, a contribué à fidéliser un public qui vient autant pour le niveau de jeu que pour l’ambiance. La marque Pixia s’est ainsi installée dans le paysage francophone du streaming Valorant, avec une présence centrée sur Twitch et une communication simple, sans surcharge visuelle.\n\nL’analyse de son setup reflète cette philosophie : priorité à la performance perçue et à la constance. Pour un FPS comme Valorant, une souris légère et fiable, un clavier rapide, un casque confortable et un écran à haut rafraîchissement comptent davantage qu’une configuration spectaculaire. Pixia évolue dans un environnement sobre, pensé pour limiter les distractions : éclairage discret, bureau dégagé, réglages stables et matériel éprouvé. Ce choix d’un setup “compétition accessible” est cohérent avec son contenu : elle montre qu’il n’est pas nécessaire d’accumuler du matériel haut de gamme pour progresser, mais qu’il faut comprendre ses périphériques et garder des repères constants. La lumière, le placement de la caméra et la qualité audio sont aussi travaillés pour que le stream reste lisible sans détourner l’attention du jeu. Au final, son poste de streaming ressemble à son approche de Valorant : efficace, fonctionnel et orienté vers la régularité plutôt que la démonstration.",
+    "jeu_principal": "Valorant — FPS tactique 5v5, ranked et compétitif",
+    "image": "/images/streamers/pixia.webp",
+    "reseaux": {
+      "twitch": "Pixia"
+    },
+    "setup": [
+      {
+        "cat": "Périphériques",
+        "nom": "Logitech G Pro X Superlight 2",
+        "avis": "Souris légère et précise, très adaptée au FPS, mais son prix reste élevé pour un gain surtout ressenti par les joueurs exigeants."
+      },
+      {
+        "cat": "Périphériques",
+        "nom": "Wooting 60HE+",
+        "avis": "Clavier analogique très réactif et personnalisable, excellent pour Valorant, même si l’apprentissage des réglages peut rebuter.",
+        "asin": "B0DSMWJD6M"
+      },
+      {
+        "cat": "Audio",
+        "nom": "HyperX Cloud II",
+        "avis": "Confortable et fiable pour de longues sessions, même si le micro intégré reste juste pour un stream exigeant."
+      },
+      {
+        "cat": "PC & Image",
+        "nom": "BenQ ZOWIE XL2546K",
+        "avis": "Moniteur 240 Hz taillé pour le compétitif, avec une fluidité nette, mais des couleurs moins flatteuses qu’un écran polyvalent."
+      },
+      {
+        "cat": "Éclairage",
+        "nom": "Elgato Key Light Air",
+        "avis": "Éclairage propre et réglable pour la caméra, pratique et discret, même s’il reste un investissement dédié au streaming."
+      }
+    ]
   }
 ]

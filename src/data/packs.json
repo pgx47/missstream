@@ -3,15 +3,15 @@
     "id": "debutante-150",
     "nom": "Pack Débutante",
     "budget": "~150€",
-    "accroche": "L’essentiel pour démarrer un setup stream léger et soigné.",
+    "accroche": "Un petit setup audio et confort pour bien débuter sans exploser le budget.",
     "items": [
       {
-        "nom": "HyperX Cloud Stinger 2 — blanc",
-        "asin": "B0BCFKG49M"
+        "nom": "Logitech G335 — casque blanc léger",
+        "asin": "B08KKBSDTY"
       },
       {
-        "nom": "Razer Seiren Mini — édition Quartz",
-        "asin": "B0CMTQPWQ8"
+        "nom": "Fifine AM8 — micro USB/XLR blanc",
+        "asin": "B0BMFQP2ZZ"
       },
       {
         "nom": "New Bee Support Casque Blanc",
@@ -27,27 +27,23 @@
     "id": "creator-400",
     "nom": "Pack Creator",
     "budget": "~400€",
-    "accroche": "Capture, micro, webcam et lumière pour créer et diffuser sans friction.",
+    "accroche": "L’essentiel pour streamer, enregistrer et soigner son image sans dépasser 400€.",
     "items": [
       {
-        "nom": "Elgato HD60 X — capture externe",
-        "asin": "B09V1KJ3J4"
+        "nom": "Elgato Stream Deck MK.2 (édition blanche)",
+        "asin": "B09738CV2G"
       },
       {
-        "nom": "Elgato Stream Deck Mini — blanc",
-        "asin": "B07DYRS1WH"
-      },
-      {
-        "nom": "Logitech Brio 500 — webcam blanche",
-        "asin": "B07W5JKKFJ"
+        "nom": "Elgato Key Light Mini",
+        "asin": "B07L755X9G"
       },
       {
         "nom": "Fifine AM8 — micro USB/XLR blanc",
         "asin": "B0BMFQP2ZZ"
       },
       {
-        "nom": "Elgato Key Light Mini",
-        "asin": "B07L755X9G"
+        "nom": "Logitech Litra Glow",
+        "asin": "B0D2XMLRL3"
       }
     ]
   },
@@ -55,19 +51,23 @@
     "id": "studio-900",
     "nom": "Pack Studio",
     "budget": "~900€",
-    "accroche": "Le socle premium : confort, voix studio et contrôle du stream.",
+    "accroche": "Un setup creator plus ambitieux avec micro, caméra, contrôle et bras micro.",
     "items": [
       {
-        "nom": "Secretlab Titan Evo — édition claire",
-        "asin": "B0FX3MV89W"
+        "nom": "Shure MV7+ blanc",
+        "asin": "B0D3Q6F9T1"
       },
       {
-        "nom": "Shure MV7 — micro dynamique blanc",
-        "asin": "B0CTJ7PVN1"
+        "nom": "Elgato Facecam Pro",
+        "asin": "B0DVZG36J8"
       },
       {
-        "nom": "Elgato Stream Deck MK.2",
-        "asin": "B09738CV2G"
+        "nom": "Elgato Stream Deck + (blanc)",
+        "asin": "B0BJL8SJ59"
+      },
+      {
+        "nom": "Elgato Wave Mic Arm LP blanc",
+        "asin": "B097376LKF"
       }
     ]
   }

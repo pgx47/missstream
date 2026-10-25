@@ -1,16 +1,72 @@
 [
   {
-    "titre": "La carte d’acquisition abordable",
+    "titre": "Micro USB/XLR : Shure MV7+ vs Fifine AM8",
     "original": {
-      "nom": "Elgato HD60 X",
-      "prix": "≈ 190 €",
-      "asin": "B09V1KJ3J4"
+      "nom": "Shure MV7+ blanc",
+      "prix": "279 €",
+      "asin": "B0D3Q6F9T1"
     },
     "dupe": {
-      "nom": "Carte capture 4K HDMI pas chère",
-      "prix": "≈ 35 €",
-      "query": "carte capture hdmi 4k pas cher"
+      "nom": "Fifine AM8 blanc",
+      "prix": "69 €",
+      "asin": "B0C74G9RLH"
     },
-    "gain": "−155 €"
+    "gain": "210 €"
+  },
+  {
+    "titre": "Chaise gaming : Secretlab Titan Evo vs Dowinx rose",
+    "original": {
+      "nom": "Secretlab Titan Evo",
+      "prix": "549 €",
+      "asin": "B0FX3MV89W"
+    },
+    "dupe": {
+      "nom": "Chaise gaming rose ergonomique Dowinx",
+      "prix": "199 €",
+      "asin": "B0CG6TN45R"
+    },
+    "gain": "350 €"
+  },
+  {
+    "titre": "Clavier mécanique : Keychron Q1 Pro vs Akko 5075B Plus",
+    "original": {
+      "nom": "Keychron Q1 Pro",
+      "prix": "219 €",
+      "asin": "B0G4MBZB4C"
+    },
+    "dupe": {
+      "nom": "Akko 5075B Plus",
+      "prix": "89 €",
+      "asin": "B0CMWJSQMB"
+    },
+    "gain": "130 €"
+  },
+  {
+    "titre": "Contrôleur de stream : Elgato Stream Deck + vs Stream Deck Mini",
+    "original": {
+      "nom": "Elgato Stream Deck + (blanc)",
+      "prix": "249 €",
+      "asin": "B0BJL8SJ59"
+    },
+    "dupe": {
+      "nom": "Elgato Stream Deck Mini",
+      "prix": "79 €",
+      "asin": "B07DYRS1WH"
+    },
+    "gain": "170 €"
+  },
+  {
+    "titre": "Éclairage de bureau : Elgato Key Light Mini vs Logitech Litra Glow",
+    "original": {
+      "nom": "Elgato Key Light Mini",
+      "prix": "99 €",
+      "asin": "B07L755X9G"
+    },
+    "dupe": {
+      "nom": "Logitech Litra Glow",
+      "prix": "59 €",
+      "asin": "B0D2XMLRL3"
+    },
+    "gain": "40 €"
   }
 ]
