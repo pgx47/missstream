@@ -1,12 +1,20 @@
-<a href="/articles/" class="block mb-10 mx-4 sm:mx-0">
+---
+import { getCollection } from 'astro:content';
+import { seasonalGuide } from '../lib/content-selection.mjs';
+const guides = await getCollection('guides', ({ data }) => !data.draft);
+const selection = seasonalGuide(guides);
+const banner = selection
+  ? { href: `/articles/${selection.id}/`, title: selection.data.title, description: 'Une sélection de saison pour faire évoluer ton coin streaming.', action: 'Découvrir le guide →' }
+  : { href: '/lookbook/', title: 'Une nouvelle ambiance pour ton setup', description: 'Explore nos inspirations et retrouve les objets pour composer ton bureau.', action: 'Explorer le lookbook →' };
+---
+<a href={banner.href} class="block mb-10 mx-4 sm:mx-0">
   <div class="card-aesthetic p-5 sm:p-6 bg-gradient-to-r from-rose-50 via-pink-50 to-amber-50 border-rose-200/70 relative overflow-hidden group hover:shadow-lg transition-all">
-    <div class="absolute -right-6 -top-6 text-7xl opacity-20 rotate-12 group-hover:rotate-6 transition-transform">🎁</div>
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 relative">
       <div>
-        <p class="font-extrabold text-gray-900 text-lg">🎁 En manque d'inspiration ?</p>
-        <p class="text-sm text-gray-600">Nos sélections d'idées cadeaux pour un setup de stream parfait — dès 20 €.</p>
+        <p class="font-extrabold text-gray-900 text-lg">{banner.title}</p>
+        <p class="text-sm text-gray-600">{banner.description}</p>
       </div>
-      <span class="shrink-0 px-5 py-2.5 rounded-xl bg-gradient-to-r from-rose-400 to-pink-500 text-white text-sm font-extrabold shadow-md text-center">Voir le guide cadeaux →</span>
+      <span class="shrink-0 px-5 py-2.5 rounded-xl bg-gradient-to-r from-rose-400 to-pink-500 text-white text-sm font-extrabold shadow-md text-center">{banner.action}</span>
     </div>
   </div>
 </a>

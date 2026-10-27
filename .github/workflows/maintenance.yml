@@ -1,72 +1,83 @@
-name: Maintenance
+name: Sunday selections maintenance
 
 on:
   schedule:
-    - cron: "0 6 * * 0" # dimanche 06:00 UTC
+    - cron: "0 6 * * 0" # dimanche 07h Paris en hiver / 08h en été
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Valider sans appel fournisseur ni publication'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
   actions: write
 
+concurrency:
+  group: content-publish
+  cancel-in-progress: false
+
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
         with:
-          python-version: "3.12"
-
-      - name: Deps
-        run: pip install -r scripts/requirements.txt
-
-      - name: Refresh produits (ASINs, étoiles, avis)
+          node-version: 22
+          cache: npm
+      - run: pip install -r scripts/requirements.txt
+      - run: npm ci
+      - name: Regression tests
+        run: |
+          python -m unittest discover -s scripts/tests -v
+          node --test src/lib/content-selection.test.mjs
+      - name: Check products across all collections
         env:
           SCRAPER_API_KEY: ${{ secrets.SCRAPER_API_KEY }}
-        run: python scripts/refresh_products.py
-
-      - name: Ajoute nouveaux profils streamers
-        env:
-          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
-          SCRAPER_API_KEY: ${{ secrets.SCRAPER_API_KEY }}
-        run: python scripts/expand_streamers.py
-
-      - name: Expand deco + lookbook + dupes
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          if [ "$DRY_RUN" = 'true' ]; then
+            python scripts/refresh_products.py --dry-run
+          else
+            python scripts/refresh_products.py --limit 40
+          fi
+      - name: New decor and affordable alternative
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           LLM_BASE_URL: ${{ vars.LLM_BASE_URL }}
           LLM_MODEL: ${{ vars.LLM_MODEL }}
           SCRAPER_API_KEY: ${{ secrets.SCRAPER_API_KEY }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CF_AI_TOKEN: ${{ secrets.CF_AI_TOKEN }}
-        run: python scripts/expand_content.py
-
-      - name: Régénère dupes/packs/lookbook
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          if [ "$DRY_RUN" = 'true' ]; then
+            python scripts/expand_content.py --mode maintenance --dry-run
+          else
+            python scripts/expand_content.py --mode maintenance
+            python scripts/build_feature_pages.py
+          fi
+      - name: Validate content and build
+        run: |
+          python scripts/validate_content.py
+          npm run build
+      - name: Publish validated changes
+        if: inputs.dry_run != true
         env:
-          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
-          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python scripts/build_feature_pages.py
-
-      - name: Commit
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "missstream-bot"
           git config user.email "bot@missstream.xyz"
           git add src/data/ src/content/ public/images/
           if git diff --cached --quiet; then
-            echo "Rien à committer"
-          else
-            git commit -m "maintenance: refresh produits + pages features"
-            git push
+            echo 'Aucune nouveauté à publier' >> "$GITHUB_STEP_SUMMARY"
+            exit 0
           fi
-
-
-      - name: Trigger deploy
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh workflow run deploy.yml || true
+          git commit -m "maintenance: sélections du dimanche"
+          git pull --rebase origin main
+          git push
+          gh workflow run deploy.yml

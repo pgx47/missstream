@@ -1,29 +1,21 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { amazonUrl } from '../site.config';
+import { getCollection } from 'astro:content';
+import deals from '../data/deals.json';
+import packs from '../data/packs.json';
+import health from '../data/product-health.json';
+import { quizSelections } from '../lib/content-selection.mjs';
 
-const resultats: Record<string, { nom: string; url: string }[]> = {
-  gaming: [
-    { nom: 'Micro Fifine AM8 blanc', url: amazonUrl({ asin: 'B0C74G9RLH' }) },
-    { nom: 'Casque HyperX Cloud Stinger 2 blanc', url: amazonUrl({ asin: 'B0BCFKG49M' }) },
-    { nom: 'Tapis XXL pastel', url: amazonUrl({ asin: 'B0H6M26Z8C' }) },
-  ],
-  chatting: [
-    { nom: 'Micro HyperX QuadCast S blanc', url: amazonUrl({ asin: 'B0DXW278KB' }) },
-    { nom: 'Webcam Logitech Brio 500', url: amazonUrl({ asin: 'B07W5JKKFJ' }) },
-    { nom: 'Litra Glow', url: amazonUrl({ asin: 'B0D2XMLRL3' }) },
-  ],
-  podcast: [
-    { nom: 'Micro Shure MV7 blanc', url: amazonUrl({ asin: 'B0CTJ6GQGZ' }) },
-    { nom: 'Bras Elgato Wave Mic Arm LP', url: amazonUrl({ asin: 'B097376LKF' }) },
-    { nom: 'Stream Deck Mini', url: amazonUrl({ asin: 'B07DYRS1WH' }) },
-  ],
-};
+const guides = (await getCollection('guides', ({ data }) => !data.draft)).sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+const catalog = [...guides.flatMap(g => g.data.products || []), ...deals, ...packs.flatMap(p => p.items)];
+const selections = quizSelections(catalog, health.products);
+const resultats = Object.fromEntries(Object.entries(selections).map(([key, products]) => [key, products.map(p => ({nom: p.nom, url: amazonUrl({asin: p.asin})}))]));
 ---
 
-<BaseLayout title="Quiz : ton setup idéal" description="3 clics pour trouver les équipements indispensables selon ton contenu et ton budget.">
+<BaseLayout title="Quiz : ton setup idéal" description="Une sélection de produits pour ton format de stream, actualisée avec nos guides et bons plans.">
   <div class="max-w-2xl mx-auto px-4 py-12">
-    <h1 class="text-3xl font-extrabold text-gray-900">Ton setup idéal en 3 clics</h1>
+    <h1 class="text-3xl font-extrabold text-gray-900">Ton setup selon ton contenu</h1>
     <p class="mt-3 text-gray-500">Réponds et obtiens ta sélection immédiate.</p>
 
     <div class="mt-8">
@@ -49,13 +41,16 @@ const resultats: Record<string, { nom: string; url: string }[]> = {
         b.addEventListener('click', () => {
           const data = RESULTS[b.dataset.r];
           const ul = document.getElementById('result-list');
-          ul.innerHTML = '';
+          ul.replaceChildren();
           data.forEach((p) => {
             const li = document.createElement('li');
             const a = document.createElement('a');
             a.href = p.url; a.target = '_blank'; a.rel = 'nofollow sponsored noopener';
             a.className = 'flex justify-between items-center rounded-lg border border-pink-100 px-4 py-3 text-sm font-bold text-gray-800 hover:border-pink-300 hover:shadow-sm';
-            a.innerHTML = p.nom + ' <span class="text-pink-500">Voir →</span>';
+            a.textContent = p.nom;
+            const label = document.createElement('span');
+            label.className = 'text-pink-500'; label.textContent = 'Voir →';
+            a.appendChild(label);
             li.appendChild(a); ul.appendChild(li);
           });
           document.getElementById('result').classList.remove('hidden');

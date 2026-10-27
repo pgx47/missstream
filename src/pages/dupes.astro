@@ -1,46 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { amazonUrl } from '../site.config';
-import dupes from '../data/dupes.json';
-
-const _dupes = [
-  {
-    titre: 'Le micro pro à prix doux',
-    original: { nom: 'Shure MV7 blanc', prix: '≈ 260 €', asin: 'B0CTJ6GQGZ' },
-    dupe: { nom: 'Fifine AM8 blanc', prix: '≈ 60 €', asin: 'B0C74G9RLH' },
-    gain: '−200 €',
-  },
-  {
-    titre: 'Le clavier nuage accessible',
-    original: { nom: 'Logitech G715 blanc', prix: '≈ 180 €', asin: 'B099XG1QNV' },
-    dupe: { nom: 'Redragon K617 pastel', prix: '≈ 45 €', asin: 'B0FGXK7X6F' },
-    gain: '−135 €',
-  },
-  {
-    titre: 'La lumière douce sans Elgato',
-    original: { nom: 'Elgato Key Light Mini', prix: '≈ 100 €', asin: 'B07L755X9G' },
-    dupe: { nom: 'Panneau LED Neewer bicolore', prix: '≈ 40 €', asin: 'B0G4C1CC8R' },
-    gain: '−60 €',
-  },
-  {
-    titre: 'Le casque mignon alternatif',
-    original: { nom: 'Razer Kraken Kitty V2 Quartz', prix: '≈ 150 €', asin: 'B0CCF7M8SG' },
-    dupe: { nom: 'Oreilles de chat universelles', prix: '≈ 15 €', asin: 'B08DJB6V5P' },
-    gain: '−135 €',
-  },
-  {
-    titre: 'La gestion des scènes en mini',
-    original: { nom: 'Elgato Stream Deck MK.2', prix: '≈ 150 €', asin: 'B09738CV2G' },
-    dupe: { nom: 'Elgato Stream Deck Mini', prix: '≈ 80 €', asin: 'B07DYRS1WH' },
-    gain: '−70 €',
-  },
-  {
-    titre: 'Le gros micro gamer pour moins',
-    original: { nom: 'HyperX QuadCast S blanc', prix: '≈ 160 €', asin: 'B0DXW278KB' },
-    dupe: { nom: 'Razer Seiren Mini Quartz', prix: '≈ 45 €', asin: 'B0CT6G556J' },
-    gain: '−115 €',
-  },
-];
+import health from '../data/product-health.json';
+import dupeData from '../data/dupes.json';
+const dupes = dupeData.filter(d => health.products[d.original.asin]?.status !== 'unavailable' && health.products[d.dupe.asin]?.status !== 'unavailable');
 ---
 
 <BaseLayout
@@ -55,7 +18,7 @@ const _dupes = [
 
     <div class="mt-8 space-y-5">
       {
-        _dupes.map((d) => (
+        dupes.map((d) => (
           <div class="card-aesthetic p-5">
             <div class="flex items-center justify-between mb-4">
               <h2 class="font-extrabold text-gray-900">{d.titre}</h2>

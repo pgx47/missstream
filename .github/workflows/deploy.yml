@@ -26,8 +26,12 @@ jobs:
           cache: npm
 
       - run: npm ci
-      - name: Quality gate
-        run: python3 scripts/verify_quality.py || true
+      - name: Regression tests and collection validation
+        run: |
+          pip install -r scripts/requirements.txt
+          python3 -m unittest discover -s scripts/tests -v
+          node --test src/lib/content-selection.test.mjs
+          python3 scripts/validate_content.py
 
       - run: npm run build
 

@@ -6,10 +6,12 @@ import DealCard from '../components/DealCard.astro';
 import AvantApres from '../components/AvantApres.astro';
 import streamers from '../data/streamers.json';
 import SeasonalBanner from '../components/SeasonalBanner.astro';
+import lookbook from '../data/lookbook.json';
+import health from '../data/product-health.json';
+import { weeklySelection, latestInspirations } from '../lib/content-selection.mjs';
 
-const topStreamers = streamers.filter((s) =>
-  ['zywoo', 'pokimane', 'gotaga', 'maghla'].includes(s.slug)
-);
+const topStreamers = weeklySelection(streamers);
+const inspirations = latestInspirations(lookbook.filter(a => a.image && a.produits.some(p => health.products[p.asin]?.status !== 'unavailable')), 3);
 import { SITE } from '../site.config';
 import deals from '../data/deals.json';
 
@@ -176,7 +178,7 @@ const dateFmt = (d: Date) =>
         <div class="relative z-10 flex-1">
           <span class="bg-amber-400 text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full shadow-sm">Bons plans</span>
           <h3 class="text-xl sm:text-2xl font-extrabold text-gray-900 mt-2 group-hover:text-pink-500 transition-colors">Le Chasseur de Dupes</h3>
-          <p class="text-sm sm:text-base text-gray-600 mt-1 leading-relaxed max-w-md">Le même rendu audio et visuel sans payer la taxe premium des grandes marques.</p>
+          <p class="text-sm sm:text-base text-gray-600 mt-1 leading-relaxed max-w-md">Des alternatives à comparer pour adapter ton équipement à ton budget.</p>
         </div>
         <div class="relative z-10 flex items-center gap-4 shrink-0">
           <div class="text-right">
@@ -303,13 +305,9 @@ const dateFmt = (d: Date) =>
       <p class="text-sm text-gray-500 mt-2">Copiez les plus beaux bureaux de stream en un clic — lumières, accessoires, ambiance.</p>
     </div>
     <div class="grid sm:grid-cols-3 gap-5">
-      {[
-        { titre: 'Setup Pink Kawaii', img: '/images/lookbook/studio-pastel-streaming.webp' },
-        { titre: 'Cosmic Stream', img: '/images/lookbook/cosmic-stream.webp' },
-        { titre: 'Retro Y2K', img: '/images/lookbook/retro-aesthetic.webp' },
-      ].map((t) => (
+      {inspirations.map((t) => (
         <a href="/lookbook/" class="group relative rounded-2xl overflow-hidden aspect-[4/3] shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-          <img src={t.img} alt={t.titre} class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
+          <img src={t.image} alt={t.titre} class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
           <div class="absolute bottom-0 p-4 w-full flex items-center justify-between">
             <span class="font-extrabold text-white drop-shadow">{t.titre}</span>

@@ -1,5 +1,6 @@
 ---
 import { amazonUrl } from '../site.config';
+import health from '../data/product-health.json';
 
 interface Props {
   asin?: string;
@@ -20,6 +21,7 @@ const url = amazonUrl({ asin, query: nom });
 {
   /* eslint-disable */
 }
+{health.products[asin || '']?.status !== 'unavailable' && (
 <div class="card-aesthetic overflow-hidden flex flex-col">
   {
     asin && (
@@ -71,3 +73,5 @@ const url = amazonUrl({ asin, query: nom });
   <p class="mt-1.5 text-[11px] text-gray-600 font-semibold text-center">✓ Prime 24h · retours gratuits</p>
   </div>
 </div>
+
+)}

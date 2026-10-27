@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import items from '../../data/deco_items.json';
+import decoItems from '../../data/deco_items.json';
+import health from '../../data/product-health.json';
+const items = [...decoItems].filter(p => health.products[p.asin]?.status !== 'unavailable').sort((a, b) => (Date.parse(b.publishedAt || '') || 0) - (Date.parse(a.publishedAt || '') || 0));
 
 const cats = [
   { id: 'all', label: 'Tout' },

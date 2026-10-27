@@ -1,46 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { amazonUrl } from '../site.config';
-import packs from '../data/packs.json';
-
-const _packs = [
-  {
-    id: 'debutante',
-    nom: 'Pack Débutante',
-    budget: '≈ 150 €',
-    accroche: 'Le minimum vital pour un premier stream propre.',
-    items: [
-      { nom: 'Fifine AM8 blanc (micro)', asin: 'B0C74G9RLH' },
-      { nom: 'Webcam 1080p blanche', asin: 'B07W5JKKFJ' },
-      { nom: 'Mini ring light blanche', asin: 'B08LZKSMRH' },
-    ],
-  },
-  {
-    id: 'creator',
-    nom: 'Pack Creator',
-    budget: '≈ 400 €',
-    accroche: 'Le niveau qui change tout : son pro + contrôle du live.',
-    items: [
-      { nom: 'HyperX QuadCast S blanc', asin: 'B0DXW278KB' },
-      { nom: 'Elgato Stream Deck Neo', asin: 'B0CVY4566H' },
-      { nom: 'Elgato Wave Mic Arm LP blanc', asin: 'B097376LKF' },
-      { nom: 'Logitech Litra Glow', asin: 'B0D2XMLRL3' },
-    ],
-  },
-  {
-    id: 'studio',
-    nom: 'Pack Studio Pastel',
-    budget: '≈ 900 €',
-    accroche: 'Le setup complet magazine : confort, image et son au top.',
-    items: [
-      { nom: 'Shure MV7 blanc', asin: 'B0CTJ6GQGZ' },
-      { nom: 'Webcam 4K Insta360 Link 2', asin: 'B0DDTH3HX8' },
-      { nom: 'Elgato Key Light Mini', asin: 'B07L755X9G' },
-      { nom: 'Chaise gaming rose ergonomique', asin: 'B0CG6TN45R' },
-      { nom: 'Logitech G715 blanc', asin: 'B099XG1QNV' },
-    ],
-  },
-];
+import health from '../data/product-health.json';
+import packData from '../data/packs.json';
+const packs = packData.filter(p => p.items.length && p.items.every(it => it.productStatus !== 'unavailable' && health.products[it.asin]?.status !== 'unavailable'));
 ---
 
 <BaseLayout

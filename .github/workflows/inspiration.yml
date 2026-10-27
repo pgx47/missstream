@@ -1,0 +1,75 @@
+name: Wednesday setup inspiration
+
+on:
+  schedule:
+    - cron: "0 8 * * 3" # mercredi 09h Paris en hiver / 10h en été
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Valider sans génération ni publication'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: content-publish
+  cancel-in-progress: false
+
+jobs:
+  inspiration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: pip install -r scripts/requirements.txt
+      - run: npm ci
+      - name: Regression tests
+        run: |
+          python -m unittest discover -s scripts/tests -v
+          node --test src/lib/content-selection.test.mjs
+      - name: One new illustrated setup
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          LLM_BASE_URL: ${{ vars.LLM_BASE_URL }}
+          LLM_MODEL: ${{ vars.LLM_MODEL }}
+          SCRAPER_API_KEY: ${{ secrets.SCRAPER_API_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_AI_TOKEN: ${{ secrets.CF_AI_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          if [ "$DRY_RUN" = 'true' ]; then
+            python scripts/expand_content.py --mode inspiration --dry-run
+          else
+            python scripts/expand_content.py --mode inspiration
+          fi
+      - name: Validate content and build
+        run: |
+          python scripts/validate_content.py
+          npm run build
+      - name: Publish validated changes
+        if: inputs.dry_run != true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "missstream-bot"
+          git config user.email "bot@missstream.xyz"
+          git add src/data/ public/images/
+          if git diff --cached --quiet; then
+            echo 'Aucune nouveauté à publier' >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git commit -m "lookbook: inspiration du mercredi"
+          git pull --rebase origin main
+          git push
+          gh workflow run deploy.yml

@@ -1,5 +1,6 @@
 ---
 import { amazonUrl } from '../site.config';
+import health from '../data/product-health.json';
 
 interface Props {
   asin?: string;
@@ -49,6 +50,7 @@ const fallbackImg = asin
 const fullStars = stars ? Math.round(stars) : 0;
 ---
 
+{health.products[asin || '']?.status !== 'unavailable' && (
 <div class="card-aesthetic p-5 sm:p-6 my-8 flex flex-col md:flex-row gap-6 items-start">
   <!-- Image colonne gauche -->
   <div class="w-full md:w-48 md:h-48 shrink-0 bg-[#FAF7F9] rounded-xl p-4 flex items-center justify-center min-h-[180px] relative border border-pink-50">
@@ -107,3 +109,5 @@ const fullStars = stars ? Math.round(stars) : 0;
     </div>
   </div>
 </div>
+
+)}
