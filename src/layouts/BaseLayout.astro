@@ -1,4 +1,5 @@
 ---
+import analytics from '../data/analytics.json';
 import { SITE } from '../site.config';
 import Logo from '../components/Logo.astro';
 import '../styles/global.css';
@@ -62,6 +63,7 @@ const nav = [
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
     <slot name="head" />
+    {analytics.token && <script is:inline defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({token: analytics.token})}></script>}
   </head>
 
   <body class="min-h-screen flex flex-col antialiased overflow-x-hidden">
