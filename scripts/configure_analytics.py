@@ -23,7 +23,7 @@ sites=call('GET',BASE+'/list',params={'per_page':100})
 site=next((site for site in sites if site.get('ruleset',{}).get('zone_tag')==ZONE or any(rule.get('host')=='missstream.xyz' for rule in site.get('rules',[]))),None)
 if site:
     if site.get('auto_install'):
-        site=call('PUT',BASE+'/'+site['site_tag'],json={'auto_install':False,'enabled':True})
+        site=call('PUT',BASE+'/'+site['site_tag'],json={'auto_install':False,'zone_tag':ZONE})
 else:
     site=call('POST',BASE,json={'auto_install':False,'zone_tag':ZONE})
 token=site.get('site_token','')
