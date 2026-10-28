@@ -40,6 +40,36 @@
     "avis": 49
   },
   {
+    "asin": "B0FSPLLCGF",
+    "nom": "White Video Conference Lights for Zoom with Stand, 30 Modes, CRI 98 Recycled Claim Standard Blended",
+    "categorie": "Accessoires",
+    "badge": "Promo en cours",
+    "note": null,
+    "image": "/images/deals/products/B0FSPLLCGF.webp",
+    "stars": 4.5,
+    "avis": 649
+  },
+  {
+    "asin": "B0GRVPC54C",
+    "nom": "Torjim 12 Inch Video Light Kit for Creators | 30W High Brightness",
+    "categorie": "Accessoires",
+    "badge": "Promo en cours",
+    "note": null,
+    "image": "/images/deals/products/B0GRVPC54C.webp",
+    "stars": 4.5,
+    "avis": 3428
+  },
+  {
+    "asin": "B08NPCY5P3",
+    "nom": "MAONO Podcast Equipment Bundle with Audio Mixer & 3.5mm Mic for Streaming Global Recycled Standard Global Recy",
+    "categorie": "Accessoires",
+    "badge": "Promo en cours",
+    "note": null,
+    "image": "/images/deals/products/B08NPCY5P3.webp",
+    "stars": 4.2,
+    "avis": 3930
+  },
+  {
     "asin": "B0D44VDMBQ",
     "nom": "Jimonyer Gaming Headset for PS5 PS4 Xbox Series X|S PC Switch (Pink)",
     "categorie": "Casques",
@@ -166,35 +196,5 @@
     "image": "/images/deals/products/B0G5YNF75Q.webp",
     "stars": 5,
     "avis": 8
-  },
-  {
-    "asin": "B08LSJ4RHH",
-    "nom": "Keychron K-series — coque blanche",
-    "categorie": "Claviers",
-    "badge": "Custom évolutif",
-    "note": "Base blanche idéale pour keycaps pastel.",
-    "image": "/images/deals/products/B08LSJ4RHH.webp",
-    "stars": 4.3,
-    "avis": 819
-  },
-  {
-    "asin": "B07L755X9G",
-    "nom": "Elgato Key Light Mini",
-    "categorie": "Éclairage",
-    "badge": "Lumière pro",
-    "note": "Panneau compact piloté par app, 2900-7000 K.",
-    "image": "/images/deals/products/B07L755X9G.webp",
-    "stars": 4.5,
-    "avis": 4307
-  },
-  {
-    "asin": "B097QZGRCQ",
-    "nom": "Logitech Litra Glow",
-    "categorie": "Éclairage",
-    "badge": "Plug & play",
-    "note": "Se clipse sur l'écran, diffuseur intégré.",
-    "image": "/images/deals/products/B097QZGRCQ.webp",
-    "stars": 4.5,
-    "avis": 3411
   }
 ]
