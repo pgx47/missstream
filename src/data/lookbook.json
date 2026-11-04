@@ -112,5 +112,38 @@
       }
     ],
     "image": "/images/lookbook/chair.webp"
+  },
+  {
+    "id": "serre-botanique-urbaine-2026-11-04",
+    "titre": "Serre botanique urbaine",
+    "description": "Un bureau qui évoque une petite serre d'intérieur : bois clair aux veines visibles, poteries en terre cuite mates, feuillages verts qui débordent doucement des étagères. Les tons se répondent en vert sauge, ocre brûlé et beige lin, avec des textures naturelles — jute, rotin, céramique brute — et quelques touches de laiton patiné. La lumière est cha",
+    "image": "/images/lookbook/serre-botanique-urbaine-2026-11-04.webp",
+    "produits": [
+      {
+        "nom": "JUMMICO Fluted Dresser for Bedroom, 47.2\" W Chest of 7 Drawers",
+        "asin": "B0HDPHJ1S1",
+        "verifiedAt": "2026-11-04T16:58:52.396091+00:00",
+        "sourceUrl": "https://www.amazon.fr/dp/B0HDPHJ1S1"
+      },
+      {
+        "nom": "3 Inch Terracotta Pots with Saucer-20 Pack，Cactus Terra Cotta Flower Pot with Drainage，Succulent Nursery Clay Pots Great for Plants,DIY Crafts, Wedding Favor",
+        "asin": "B0BL6KP1DC",
+        "verifiedAt": "2026-11-04T16:58:52.396091+00:00",
+        "sourceUrl": "https://www.amazon.fr/dp/B0BL6KP1DC"
+      },
+      {
+        "nom": "Artificial Bird of Paradise Plant 28inch, Faux Strelitzia Fake Tropical Tree with 18 Giant Banana-Like Leaves in Weighted Pot, Indoor Floor Palm for Living Room",
+        "asin": "B0H2FC2CKV",
+        "verifiedAt": "2026-11-04T16:58:52.396091+00:00",
+        "sourceUrl": "https://www.amazon.fr/dp/B0H2FC2CKV"
+      },
+      {
+        "nom": "Washable Indoor Outdoor Rug 8x10 Weather Resistant Area Rugs Modern Solid Jute Rug for Porch Deck Balcony Backyard Patio Outside Carpet (8 X 10 Jute Beige)",
+        "asin": "B0H7T939QM",
+        "verifiedAt": "2026-11-04T16:58:52.396091+00:00",
+        "sourceUrl": "https://www.amazon.fr/dp/B0H7T939QM"
+      }
+    ],
+    "publishedAt": "2026-11-04T16:58:52.396091+00:00"
   }
 ]
