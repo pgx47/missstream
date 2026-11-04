@@ -48,11 +48,14 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           DRY_RUN: ${{ inputs.dry_run }}
         run: |
-          if [ "$DRY_RUN" = 'true' ]; then
-            python scripts/expand_content.py --mode inspiration --dry-run
-          else
-            python scripts/expand_content.py --mode inspiration
-          fi
+          flag=""
+          if [ "$DRY_RUN" = 'true' ]; then flag="--dry-run"; fi
+          for attempt in 1 2 3; do
+            if python scripts/expand_content.py --mode inspiration $flag; then exit 0; fi
+            if [ "$attempt" = 3 ]; then exit 1; fi
+            echo "::warning::Tentative $attempt échouée (scraping/LLM indisponible), nouvel essai dans 90 s"
+            sleep 90
+          done
       - name: Validate content and build
         run: |
           python scripts/validate_content.py
