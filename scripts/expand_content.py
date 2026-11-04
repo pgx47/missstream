@@ -23,6 +23,27 @@ ROOT = Path(__file__).resolve().parent.parent
 CATS = ('lumieres','kawaii','rangement','gadgets-y2k')
 
 
+class StageError(RuntimeError):
+    """Message sûr à publier : étape, code HTTP, hôte — jamais d'URL signée."""
+    safe = True
+
+
+def check(response, stage):
+    if response.status_code >= 400:
+        host = urllib.parse.urlsplit(response.url).netloc
+        raise StageError(f'{stage}: HTTP {response.status_code} sur {host}')
+    return response
+
+
+def cf_detail(response):
+    try:
+        errors = response.json().get('errors') or []
+    except ValueError:
+        return ''
+    text = '; '.join(str(e.get('message') or e.get('code')) for e in errors[:2] if isinstance(e, dict))
+    return f' — {text[:160]}' if text else ''
+
+
 def ask(prompt):
     from openai import OpenAI
     client = OpenAI(api_key=os.environ['DEEPSEEK_API_KEY'],
@@ -37,8 +58,8 @@ def ask(prompt):
 
 def search(query):
     response = sget('https://api.scraperapi.com/structured/amazon/search?'+urllib.parse.urlencode({
-        'api_key':os.environ['SCRAPER_API_KEY'],'query':query,'country':'fr'}),timeout=30,retries=2)
-    response.raise_for_status()
+        'api_key':os.environ['SCRAPER_API_KEY'],'query':query,'country':'fr'}),timeout=30)
+    check(response, f'recherche « {query[:40]} »')
     data = response.json()
     if not isinstance(data.get('results'),list):
         raise ValueError('Réponse de recherche invalide')
@@ -57,8 +78,7 @@ def product_image(hit):
     if not path.exists():
         if not hit.get('image'):
             raise ValueError('Image produit absente')
-        response = requests.get(hit['image'],timeout=30)
-        response.raise_for_status()
+        response = check(requests.get(hit['image'],timeout=30), 'image produit')
         image = Image.open(io.BytesIO(response.content)).convert('RGB')
         image.thumbnail((600,600))
         path.parent.mkdir(parents=True,exist_ok=True)
@@ -74,7 +94,8 @@ def cover(theme, slug):
     response = requests.post(f'https://api.cloudflare.com/client/v4/accounts/{account}/ai/run/@cf/black-forest-labs/flux-1-schnell',
         headers={'Authorization':f'Bearer {token}'},
         json={'prompt':f'Photorealistic streaming desk inspiration, {theme}, cozy bright soft light, realistic proportions, no text, no watermark, no people','steps':4},timeout=90)
-    response.raise_for_status()
+    if response.status_code >= 400:
+        raise StageError('image de couverture: refus Cloudflare'+cf_detail(response))
     image = Image.open(io.BytesIO(base64.b64decode(response.json()['result']['image']))).convert('RGB')
     if min(image.size) < 256:
         raise ValueError('Image générée trop petite')
@@ -196,8 +217,9 @@ def main():
             write_json(path,updated)
             results.append(f'{name}: +{len(updated)-len(existing)} entrée(s), anciennes conservées')
         except Exception as error:
-            # Provider exceptions can contain signed URLs/credentials; never print raw exceptions.
-            errors.append(f'{name}: échec ({type(error).__name__}), données conservées')
+            # Provider exceptions can contain signed URLs/credentials; only curated messages are printed.
+            reason = str(error) if getattr(error, 'safe', False) else type(error).__name__
+            errors.append(f'{name}: échec ({reason}), données conservées')
     for line in results+errors:
         print(line)
     if os.environ.get('GITHUB_STEP_SUMMARY'):
