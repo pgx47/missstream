@@ -375,6 +375,76 @@ def enrich_products(products: list[dict]) -> None:
             print(f"  enrich KO '{p.get('nom')}' : {e}")
 
 
+AFFILIATE_RE = re.compile(r"<AffiliateBox\b[^>]*/>")
+
+
+def _norm_name(name: str) -> str:
+    """Normalise un nom produit pour rapprocher frontmatter et encarts du corps."""
+    name = str(name or "").lower()
+    name = re.sub(r"\([^)]*\)", " ", name)
+    name = re.sub(r"[—–-].*$", " ", name)
+    name = re.sub(r"[^a-z0-9]+", " ", name)
+    return " ".join(name.split())
+
+
+def resolve_asin(name: str, known: dict[str, str]) -> str | None:
+    """Retrouve l'ASIN d'un encart : correspondance exacte puis préfixe.
+
+    Le frontmatter et le corps n'utilisent pas toujours le même libellé
+    (« Fifine AM8 blanc » vs « Fifine AM8 »).
+    """
+    key = _norm_name(name)
+    if not key:
+        return None
+    if key in known:
+        return known[key]
+    for candidate, asin in known.items():
+        if candidate.startswith(key + " ") or key.startswith(candidate + " "):
+            return asin
+    return None
+
+
+def enrich_body_boxes(body: str, products: list[dict]) -> str:
+    """Résout l'ASIN des <AffiliateBox> du corps, y compris celles absentes du frontmatter.
+
+    Sans ça, un encart sans `asin` n'a ni image produit ni lien direct : la box
+    retombait sur le logo du site.
+    """
+    extras: list[dict] = []
+    seen = {_norm_name(p.get("nom")) for p in products}
+    for tag in AFFILIATE_RE.findall(body):
+        if "asin=" in tag or "image=" in tag:
+            continue
+        match = re.search(r'nom="([^"]+)"', tag)
+        if not match:
+            continue
+        key = _norm_name(match.group(1))
+        if key and key not in seen:
+            seen.add(key)
+            extras.append({"nom": match.group(1).strip()})
+    if extras:
+        enrich_products(extras)
+
+    known = {
+        _norm_name(p.get("nom")): p["asin"]
+        for p in list(products) + extras
+        if p.get("asin")
+    }
+
+    def repl(tag: str) -> str:
+        if "asin=" in tag or "image=" in tag:
+            return tag
+        match = re.search(r'nom="([^"]+)"', tag)
+        if not match:
+            return tag
+        asin = resolve_asin(match.group(1), known)
+        if not asin:
+            return tag
+        return tag[:-2].rstrip() + f' asin="{asin}" />'
+
+    return AFFILIATE_RE.sub(lambda m: repl(m.group(0)), body)
+
+
 def write_mdx(article: dict, image: str) -> Path:
     GUIDES_DIR.mkdir(parents=True, exist_ok=True)
     for p in article.get("products", []):
@@ -424,6 +494,7 @@ def main() -> int:
     internal = published_guides()
     article = generate_article(topic, internal)
     enrich_products(article.get("products", []))
+    article["body"] = enrich_body_boxes(article["body"], article.get("products", []))
     image = get_image(article["imagePrompt"], article["slug"])
     path = write_mdx(article, image)
 
