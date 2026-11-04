@@ -46,41 +46,47 @@ BOX_RE = re.compile(r"<AffiliateBox\b[^>]*/>")
 FRONTMATTER_RE = re.compile(r"^---\r?\n(.*?)\r?\n-{3,}\r?\n(.*)$", re.S)
 
 
-def guide_warnings(root=ROOT):
-    """Signale les produits de guides sans ASIN ou sans image locale (non bloquant).
+def image_missing(root, asin):
+    return not (root / 'public' / 'images/products' / f'{asin}.webp').is_file()
 
-    Un encart sans ASIN n'affiche ni photo produit ni lien direct : c'est le
-    symptôme d'un enrichissement Amazon raté à la génération.
+
+def guide_errors(root=ROOT):
+    """Bloque un guide dont une carte produit serait cassée.
+
+    Un produit sans ASIN n'a ni photo ni lien direct, et un ASIN mort
+    (page Amazon inexistante) n'a jamais d'image locale : les deux doivent
+    empêcher la mise en ligne plutôt que d'afficher une carte vide.
     """
-    warnings = []
+    errors = []
     for path in sorted((root / 'src/content/guides').glob('*.mdx')):
         match = FRONTMATTER_RE.match(path.read_text(encoding='utf-8'))
         if not match:
-            warnings.append(f'{path.name}: frontmatter illisible')
+            errors.append(f'{path.name}: frontmatter illisible')
             continue
         try:
             frontmatter = yaml.safe_load(match.group(1)) or {}
         except yaml.YAMLError:
-            warnings.append(f'{path.name}: frontmatter YAML invalide')
+            errors.append(f'{path.name}: frontmatter YAML invalide')
             continue
-        body = match.group(2)
         for product in frontmatter.get('products') or []:
-            if not ASIN.fullmatch(str(product.get('asin', ''))):
-                warnings.append(f'{path.name}: produit sans ASIN -> {product.get("nom")}')
-        for tag in BOX_RE.findall(body):
-            if 'asin=' not in tag and 'image=' not in tag:
-                warnings.append(f'{path.name}: encart sans ASIN -> {tag[:80]}')
+            asin = str(product.get('asin', ''))
+            if not ASIN.fullmatch(asin):
+                errors.append(f'{path.name}: produit sans ASIN -> {product.get("nom")}')
+            elif image_missing(root, asin):
+                errors.append(f'{path.name}: image produit absente -> {asin}.webp ({product.get("nom")})')
+        for tag in BOX_RE.findall(match.group(2)):
+            if 'image=' in tag:
                 continue
-            asin = re.search(r'asin="([^"]+)"', tag)
-            if asin and not (root / 'public' / 'images/products' / f'{asin.group(1)}.webp').is_file():
-                warnings.append(f'{path.name}: image produit absente -> {asin.group(1)}.webp')
-    return warnings
+            found = re.search(r'asin="([^"]+)"', tag)
+            if not found:
+                errors.append(f'{path.name}: encart sans ASIN -> {tag[:80]}')
+            elif image_missing(root, found.group(1)):
+                errors.append(f'{path.name}: image produit absente -> {found.group(1)}.webp')
+    return errors
 
 if __name__=='__main__':
-    errors=validate()
+    errors=validate()+guide_errors()
     for error in errors:
         print(error)
-    for warning in guide_warnings():
-        print(f'AVERTISSEMENT: {warning}')
     print(f'Validation : {len(errors)} erreur(s)')
     raise SystemExit(bool(errors))

@@ -430,7 +430,6 @@ def enrich_body_boxes(body: str, products: list[dict]) -> str:
         for p in list(products) + extras
         if p.get("asin")
     }
-
     def repl(tag: str) -> str:
         if "asin=" in tag or "image=" in tag:
             return tag
@@ -443,6 +442,31 @@ def enrich_body_boxes(body: str, products: list[dict]) -> str:
         return tag[:-2].rstrip() + f' asin="{asin}" />'
 
     return AFFILIATE_RE.sub(lambda m: repl(m.group(0)), body)
+
+
+def prune_unlinked(article: dict) -> None:
+    """Retire les produits sans ASIN ou sans image locale.
+
+    Un guide ne doit jamais partir avec une carte produit sans visuel ni lien
+    valide : mieux vaut un article plus court qu'une fiche cassée.
+    """
+    linked = []
+    for p in article.get("products") or []:
+        asin = p.get("asin")
+        if asin and (PRODUCTS_IMG_DIR / f"{asin}.webp").exists():
+            linked.append(p)
+        else:
+            print(f"  produit écarté (ASIN ou image Amazon manquant) : {p.get('nom')}")
+    article["products"] = linked
+
+    def keep(tag: str) -> str:
+        if "asin=" in tag or "image=" in tag:
+            return tag
+        match = re.search(r'nom="([^"]+)"', tag)
+        print(f"  encart écarté (ASIN manquant) : {match.group(1) if match else tag}")
+        return ""
+
+    article["body"] = AFFILIATE_RE.sub(lambda m: keep(m.group(0)), article["body"])
 
 
 def write_mdx(article: dict, image: str) -> Path:
@@ -495,6 +519,7 @@ def main() -> int:
     article = generate_article(topic, internal)
     enrich_products(article.get("products", []))
     article["body"] = enrich_body_boxes(article["body"], article.get("products", []))
+    prune_unlinked(article)
     image = get_image(article["imagePrompt"], article["slug"])
     path = write_mdx(article, image)
 
