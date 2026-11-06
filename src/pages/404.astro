@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const liens = [
+  {
+    href: '/articles/',
+    titre: 'Tous les guides',
+    texte: 'Micros, casques, claviers, lumières : les comparatifs testés, classés par usage.',
+  },
+  {
+    href: '/bons-plans/',
+    titre: 'Bons plans du jour',
+    texte: 'Les promos repérées sur le matériel de streaming pastel, avec le prix et l’économie.',
+  },
+  {
+    href: '/configurateur/',
+    titre: 'Configurateur de setup',
+    texte: 'Un budget en tête ? Le pack complet se compose en trois clics.',
+  },
+  {
+    href: '/outils/panneaux-twitch/',
+    titre: 'Panneaux Twitch',
+    texte: 'Le générateur gratuit pour habiller la chaîne sans passer par un logiciel de design.',
+  },
+];
+---
+
+<BaseLayout
+  title="Page introuvable (404)"
+  description="Cette page n’existe pas ou a été déplacée. Retrouve les guides, bons plans et outils de Miss Stream."
+  noindex
+>
+  <section class="max-w-3xl mx-auto px-4 py-16 md:py-24">
+    <p class="text-xs font-extrabold uppercase tracking-widest text-pink-600">Erreur 404</p>
+    <h1 class="mt-3 text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">
+      Cette page n’existe pas, ou plus.
+    </h1>
+    <p class="mt-4 text-base text-gray-600 leading-relaxed max-w-xl">
+      Le lien est peut-être ancien, ou l’adresse contient une faute de frappe. Pas de panique :
+      les pages qui comptent sont juste en dessous.
+    </p>
+
+    <div class="mt-10 grid sm:grid-cols-2 gap-4">
+      {
+        liens.map((lien) => (
+          <a href={lien.href} class="card-aesthetic p-5 group block">
+            <span class="block text-base font-extrabold text-gray-900 group-hover:text-pink-600 transition-colors">
+              {lien.titre}
+            </span>
+            <span class="mt-1.5 block text-sm text-gray-600 leading-relaxed">{lien.texte}</span>
+            <span class="mt-3 inline-block text-xs font-extrabold text-pink-600 group-hover:underline">
+              Ouvrir →
+            </span>
+          </a>
+        ))
+      }
+    </div>
+
+    <p class="mt-10 text-sm text-gray-500">
+      Tu cherchais un produit précis ?
+      <a href="/" class="font-bold text-pink-600 underline underline-offset-2 hover:text-pink-700">
+        Reviens à l’accueil
+      </a>
+      ou parcours les <a href="/articles/" class="font-bold text-pink-600 underline underline-offset-2 hover:text-pink-700">guides setup</a>.
+    </p>
+  </section>
+</BaseLayout>

@@ -104,14 +104,16 @@ html {
 }
 
 .prose-cozy a {
-  color: var(--color-brand-primary);
+  /* #db2777 (pink-600) : ratio 5:1 sur blanc, le rose clair de marque échouait
+     au contraste AA sur le corps de texte. */
+  color: #be185d;
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
 .prose-cozy a:hover {
-  color: var(--color-brand-accent);
+  color: #be185d;
 }
 
 .prose-cozy strong {
