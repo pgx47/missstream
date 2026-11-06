@@ -52,7 +52,7 @@ jobs:
         run: |
           git config user.name "missstream-bot"
           git config user.email "bot@missstream.xyz"
-          git add src/content/guides public/images/guides scripts/topics.json
+          git add src/content/guides public/images/guides public/images/products scripts/topics.json
           if git diff --cached --quiet; then
             echo "Rien à committer"
           else
