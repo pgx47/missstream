@@ -2,6 +2,7 @@
 import analytics from '../data/analytics.json';
 import { SITE } from '../site.config';
 import Logo from '../components/Logo.astro';
+import SiteSchema from '../components/SiteSchema.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
   image?: string;
   canonical?: string;
   type?: 'website' | 'article';
+  noindex?: boolean;
 }
 
 const {
@@ -18,9 +20,63 @@ const {
   image = '/images/og-default.webp',
   canonical = Astro.url.pathname,
   type = 'website',
+  noindex = false,
 } = Astro.props;
 
-const fullTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;
+const TITLE_MAX = 60;
+const BRAND_SUFFIX = ` | ${SITE.name}`;
+const TITLE_STOPWORDS = new Set([
+  'de', 'des', 'du', 'la', 'le', 'les', 'un', 'une', 'et', 'en', 'à', 'au', 'aux',
+  'sur', 'dans', 'pour', 'avec', 'sans', 'par', 'qui', 'que', 'quoi', 'dont', 'où',
+  'comme', 'mais', 'ou', 'ni', 'car', 'donc', 'or', 'puis', 'si',
+]);
+
+function trimWords(value: string): string {
+  const words = value.split(/\s+/).filter(Boolean);
+  while (words.length > 0 && TITLE_STOPWORDS.has(words[words.length - 1].toLowerCase())) {
+    words.pop();
+  }
+  return words.join(' ');
+}
+
+function cutTo(value: string, room: number): string {
+  let out = '';
+  for (const word of value.split(/\s+/)) {
+    if (`${out} ${word}`.trim().length > room) break;
+    out = `${out} ${word}`.trim();
+  }
+  return out;
+}
+
+/** Titre SERP ≤ 60 c : marque ajoutée seulement si elle tient, sinon coupe
+ *  propre sur un séparateur éditorial puis sur une frontière de mot. */
+function buildSeoTitle(raw: string): string {
+  const clean = raw.replace(new RegExp(`\\s*\\|\\s*${SITE.name}\\s*$`, 'i'), '').trim();
+  if (!clean || clean === SITE.name) return SITE.name;
+  if (`${clean}${BRAND_SUFFIX}`.length <= TITLE_MAX) return `${clean}${BRAND_SUFFIX}`;
+  if (clean.length <= TITLE_MAX) return clean;
+
+  const parts = clean.split(/\s*[—–:|]\s*/).filter(Boolean);
+  let out = parts[0].trim();
+  for (const part of parts.slice(1)) {
+    const sep = ' : ';
+    const room = TITLE_MAX - out.length - sep.length;
+    if (room < 8) break;
+    if (part.length <= room) {
+      out += sep + part;
+      continue;
+    }
+    let add = trimWords(cutTo(part, room));
+    const sub = add.search(/\s(qui|que|dont|où|car|mais|pour|avec|sans)\s/);
+    if (sub > 15) add = add.slice(0, sub).trim();
+    if (add.length >= 8) out += sep + add;
+    break;
+  }
+  if (out.length > TITLE_MAX) out = trimWords(cutTo(out, TITLE_MAX));
+  return out.replace(/[,;:–—-]$/, '').trim();
+}
+
+const fullTitle = buildSeoTitle(title);
 const canonicalUrl = new URL(canonical, SITE.url).href;
 const imageUrl = new URL(image, SITE.url).href;
 
@@ -41,7 +97,7 @@ const nav = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="robots" content={noindex ? 'noindex,nofollow' : 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'} />
     <meta name="theme-color" content="#ec4899" />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -63,6 +119,7 @@ const nav = [
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
     <slot name="head" />
+    <SiteSchema />
     {analytics.token && <script is:inline defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({token: analytics.token})}></script>}
   </head>
 

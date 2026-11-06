@@ -3,8 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../site.config';
 ---
 
-<BaseLayout title="Redirection" description="Redirection vers Amazon">
-  <meta slot="head" name="robots" content="noindex,nofollow" />
+<BaseLayout title="Redirection" description="Redirection vers Amazon" noindex>
   <div class="min-h-[60vh] flex items-center justify-center">
     <p class="text-gray-500 text-sm">Redirection en cours…</p>
   </div>

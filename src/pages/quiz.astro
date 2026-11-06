@@ -13,7 +13,7 @@ const selections = quizSelections(catalog, health.products);
 const resultats = Object.fromEntries(Object.entries(selections).map(([key, products]) => [key, products.map(p => ({nom: p.nom, url: amazonUrl({asin: p.asin})}))]));
 ---
 
-<BaseLayout title="Quiz : ton setup idéal" description="Une sélection de produits pour ton format de stream, actualisée avec nos guides et bons plans.">
+<BaseLayout title="Quiz : ton setup idéal" description="Trois questions pour trouver le setup qui correspond à ton format de stream, avec une sélection de produits actualisée selon nos guides et nos bons plans.">
   <div class="max-w-2xl mx-auto px-4 py-12">
     <h1 class="text-3xl font-extrabold text-gray-900">Ton setup selon ton contenu</h1>
     <p class="mt-3 text-gray-500">Réponds et obtiens ta sélection immédiate.</p>

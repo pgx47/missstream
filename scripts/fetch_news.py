@@ -51,7 +51,6 @@ client = OpenAI(
 )
 MODEL = os.environ.get("LLM_MODEL") or _model or "deepseek-flash"
 
-
 def get_news_image(article_url: str, slug: str) -> str:
     print("Recherche d'une image d'illustration...")
 
@@ -89,6 +88,58 @@ def get_news_image(article_url: str, slug: str) -> str:
 
     pool = sorted(FALLBACK_DIR.glob("*.webp"))
     return f"/images/fallbacks/{random.choice(pool).name}" if pool else "/images/fallbacks/news-fallback-1.webp"
+def build_description(summary: str, body: str) -> str:
+    """Génère une description factuelle unique de 140 à 160 caractères.
+
+    Le résumé RSS sert de base ; s'il est trop court, on complète avec les
+    premières phrases du corps généré, puis on tronque sur une frontière de mot.
+    """
+    from html import unescape
+
+    def clean(value: str) -> str:
+        text = re.sub(r"<[^>]+>", " ", value or "")
+        return re.sub(r"\s+", " ", unescape(text)).strip()
+
+    def truncate(text: str, limit: int = 160) -> str:
+        if len(text) <= limit:
+            return text
+        cut = text.rfind(" ", 0, limit)
+        out = text[: cut if cut > 80 else limit].rstrip(" ,;:—-")
+        return out if out.endswith((".", "!", "?", "…")) else f"{out}…"
+
+    base = clean(summary)
+    if not base:
+        base = clean(body)
+    if not base:
+        return FALLBACK_DESCRIPTION
+
+    sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+", clean(body)) if s.strip()]
+    desc = base
+    for sentence in sentences:
+        if len(desc) >= 140:
+            break
+        if sentence not in desc:
+            desc = f"{desc.rstrip('.')}. {sentence}"
+    if len(desc) < 140:
+        rest = clean(body)
+        if rest and rest not in desc:
+            desc = f"{desc} {rest}"
+
+    return truncate(desc, 160)
+
+
+def slugify(value: str) -> str:
+    """Slug lisible : les accents sont translittérés, pas supprimés."""
+    import unicodedata
+
+    normalized = unicodedata.normalize("NFKD", value)
+    ascii_value = "".join(c for c in normalized if not unicodedata.combining(c))
+    return re.sub(r"[^a-z0-9]+", "-", ascii_value.lower()).strip("-")[:60]
+
+
+FALLBACK_DESCRIPTION = (
+    "Ce que cette nouveauté change pour votre setup de stream et votre création de contenu."
+)
 
 
 def main() -> int:
@@ -97,7 +148,7 @@ def main() -> int:
 
     for entry in feed.entries[:8]:
         title = re.sub(r"\s*-\s*[^-]+$", "", entry.title)  # retire le nom du média
-        slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")[:60]
+        slug = slugify(title)
         filepath = NEWS_DIR / f"{slug}.mdx"
         if filepath.exists():
             continue
@@ -130,9 +181,10 @@ Sors uniquement le corps Markdown de la brève."""
             body = re.sub(r"^```(markdown|mdx)?\n|```$", "", body.strip()).strip()
 
             image = get_news_image(entry.link, slug)
+            description = build_description(entry.summary, body)
             frontmatter = {
                 "title": title.replace('"', "'"),
-                "description": "Ce que cette nouveauté change pour votre setup de stream et votre création de contenu.",
+                "description": description if description else "Ce que cette nouveauté change pour votre setup de stream et votre création de contenu.",
                 "publishDate": datetime.now().strftime("%Y-%m-%d"),
                 "category": "news",
                 "image": image,
@@ -154,7 +206,5 @@ Sors uniquement le corps Markdown de la brève."""
         break  # une seule brève par run
 
     return 0
-
-
 if __name__ == "__main__":
     sys.exit(main())

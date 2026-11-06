@@ -1,0 +1,45 @@
+---
+import { SITE } from '../site.config';
+
+const ORG_ID = `${SITE.url}/#organization`;
+const WEBSITE_ID = `${SITE.url}/#website`;
+const LOGO = new URL('/logo.png', SITE.url).href;
+
+const graph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': WEBSITE_ID,
+      url: `${SITE.url}/`,
+      name: SITE.name,
+      description: SITE.description,
+      inLanguage: 'fr-FR',
+      publisher: { '@id': ORG_ID },
+    },
+    {
+      '@type': 'Organization',
+      '@id': ORG_ID,
+      name: SITE.name,
+      url: `${SITE.url}/`,
+      description: SITE.description,
+      email: SITE.email,
+      logo: {
+        '@type': 'ImageObject',
+        url: LOGO,
+        width: 512,
+        height: 512,
+      },
+      knowsAbout: [
+        'streaming',
+        'setup streaming',
+        'matériel de streaming',
+        'micros USB',
+        'éclairage de bureau',
+      ],
+    },
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(graph)} />

@@ -81,9 +81,13 @@ const breadcrumbs = [
   <SeoSchema slot="head" type="Breadcrumb" breadcrumbs={breadcrumbs} />
   {faq.length > 0 && <SeoSchema slot="head" type="FAQ" faq={faq} />}
   {
-    products.map((p) => (
-      <SeoSchema slot="head" type="Product" productName={p.nom} stars={p.stars} avis={p.avis} />
-    ))
+    products.length > 0 && (
+      <SeoSchema
+        slot="head"
+        type="ItemList"
+        items={products.map((p) => ({ name: p.nom, url: amazonUrl({ asin: p.asin, query: p.nom }) }))}
+      />
+    )
   }
 
   <article class="max-w-3xl mx-auto px-4 py-10">

@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SeoSchema from '../components/SeoSchema.astro';
 import DealCard from '../components/DealCard.astro';
 import AvantApres from '../components/AvantApres.astro';
 import streamers from '../data/streamers.json';
@@ -28,9 +27,10 @@ const dateFmt = (d: Date) =>
   d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
 
-<BaseLayout title={SITE.name} description={SITE.description}>
-  <SeoSchema slot="head" type="WebSite" />
-  <SeoSchema slot="head" type="Organization" />
+<BaseLayout
+  title="Setup streaming pastel : guides, bons plans et outils (2026)"
+  description="Guides testés, comparatifs, dupes et inspirations déco pour créer un setup de streaming pastel et cozy : micros, lumières, bureaux et accessoires."
+>
   <link slot="head" rel="preload" as="image" href="/images/hero-setup.webp" fetchpriority="high" />
 
   <section class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
