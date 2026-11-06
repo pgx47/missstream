@@ -6,6 +6,11 @@ import { SITE } from '../site.config';
 <BaseLayout title="Redirection" description="Redirection vers Amazon" noindex>
   <div class="min-h-[60vh] flex items-center justify-center">
     <p class="text-gray-500 text-sm">Redirection en cours…</p>
+    <noscript>
+      <p class="text-sm text-gray-600 ml-2">
+        Active JavaScript, ou <a class="text-pink-700 underline" href="https://www.amazon.fr/">continue sur Amazon</a>.
+      </p>
+    </noscript>
   </div>
   <script is:inline define:vars={{ TAG: SITE.amazonTag }}>
     const p = new URLSearchParams(location.search);
@@ -14,6 +19,13 @@ import { SITE } from '../site.config';
     const url = asin
       ? `https://www.amazon.fr/dp/${asin}?tag=${TAG}`
       : `https://www.amazon.fr/s?k=${encodeURIComponent(q || 'setup streaming')}&tag=${TAG}`;
-    location.replace(url);
+
+    // Événement prêt pour GTM/GA4 si un conteneur est ajouté plus tard.
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'affiliate_redirect', asin: asin || null, query: q || null });
+
+    // Laisse le beacon Cloudflare Web Analytics partir avant la sortie :
+    // les visites de /go/ deviennent ainsi une mesure des clics affiliés.
+    setTimeout(() => location.replace(url), 250);
   </script>
 </BaseLayout>

@@ -13,7 +13,7 @@ const { s: profile } = Astro.props;
 const s = {...profile, setup: profile.setup.filter(p => health.products[p.asin]?.status !== 'unavailable').map(p => ({...p, dupe: health.products[p.dupe?.asin || '']?.status === 'unavailable' ? null : p.dupe}))};
 const cats = [...new Set(s.setup.map((p) => p.cat))];
 const CAT_GUIDE: Record<string, string> = {
-  Audio: 'meilleur-micro-usb-blanc-pour-streamer',
+  Audio: 'meilleur-micro-usb-blanc-rose-pour-streamer',
   'PC & Image': 'webcam-4k-stream-rendu-net-et-lumineux',
   'Périphériques': 'clavier-mecanique-pastel-blanc-compact',
   'Éclairage': 'ring-light-led-setup-streaming',

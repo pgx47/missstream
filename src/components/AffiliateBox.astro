@@ -100,9 +100,23 @@ const fullStars = stars ? Math.round(stars) : 0;
 
     {avisClient && <p class="text-xs italic text-gray-500 border-l-2 border-pink-200 pl-3 mb-4">« {avisClient} »</p>}
 
-    <div class="mt-auto flex flex-col sm:flex-row gap-3 items-center justify-between">
-      <a href={url} target="_blank" rel="nofollow sponsored noopener" class="!text-white !no-underline font-extrabold text-sm px-6 py-3 rounded-xl bg-gradient-to-r from-pink-500 to-rose-400 hover:from-pink-600 hover:to-rose-500 shadow-md hover:shadow-lg transition-all inline-flex items-center justify-center gap-2 w-full sm:w-auto">Vérifier le prix et la promo ↗</a>
-      <span class="text-[11px] text-gray-600 font-semibold">✓ Prime 24h · retours gratuits</span>
+    <div class="mt-auto flex flex-col gap-3">
+      <div class="flex flex-col sm:flex-row gap-3 items-center justify-between">
+        <a
+          href={url}
+          target="_blank"
+          rel="nofollow sponsored noopener"
+          aria-label={`Vérifier le prix et la promo de ${nom} sur Amazon ↗`}
+          data-affiliate
+          data-asin={asin || ''}
+          data-product={nom}
+          class="!text-white !no-underline font-extrabold text-sm px-6 py-3 rounded-xl bg-gradient-to-r from-pink-500 to-rose-400 hover:from-pink-600 hover:to-rose-500 shadow-md hover:shadow-lg transition-all inline-flex items-center justify-center gap-2 w-full sm:w-auto"
+        >Vérifier le prix et la promo ↗</a>
+        <span class="text-[11px] text-gray-600 font-semibold">Prix et disponibilité affichés par Amazon</span>
+      </div>
+      <a href="/dupes/" class="text-[11px] font-bold text-pink-700 hover:underline underline-offset-2">
+        Budget plus serré ? Voir les alternatives moins chères →
+      </a>
     </div>
   </div>
 </div>

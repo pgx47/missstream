@@ -120,6 +120,23 @@ const nav = [
     <meta name="twitter:image" content={imageUrl} />
     <slot name="head" />
     <SiteSchema />
+    <script is:inline>
+      // Mesure des clics affiliés, prête pour GTM/GA4 (aucun cookie, aucun appel réseau).
+      document.addEventListener(
+        'click',
+        (event) => {
+          const link = event.target.closest('a[data-affiliate]');
+          if (!link) return;
+          (window.dataLayer = window.dataLayer || []).push({
+            event: 'affiliate_click',
+            asin: link.getAttribute('data-asin') || null,
+            product: link.getAttribute('data-product') || null,
+            page: location.pathname,
+          });
+        },
+        { capture: true }
+      );
+    </script>
     {analytics.token && <script is:inline defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({token: analytics.token})}></script>}
   </head>
 
