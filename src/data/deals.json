@@ -70,6 +70,26 @@
     "avis": 3930
   },
   {
+    "asin": "B0G5X3ZSML",
+    "nom": "mini 2 Wireless Lavalier Microphones for iPhone 16/17 & Android, AI Noise Cancellation, App Control, 30H Batte",
+    "categorie": "Micros",
+    "badge": "Promo en cours",
+    "note": null,
+    "image": "/images/deals/products/B0G5X3ZSML.webp",
+    "stars": 4,
+    "avis": 168
+  },
+  {
+    "asin": "B0G5XQVWBP",
+    "nom": "mini 2 Wireless Lavalier Microphones for iPhone 16/17 & Android, AI Noise Cancellation, App Control, 30H Batte",
+    "categorie": "Micros",
+    "badge": "Promo en cours",
+    "note": null,
+    "image": "/images/deals/products/B0G5XQVWBP.webp",
+    "stars": 4,
+    "avis": 168
+  },
+  {
     "asin": "B0D44VDMBQ",
     "nom": "Jimonyer Gaming Headset for PS5 PS4 Xbox Series X|S PC Switch (Pink)",
     "categorie": "Casques",
@@ -176,25 +196,5 @@
     "image": "/images/deals/products/B0FX3MV89W.webp",
     "stars": 4.8,
     "avis": 6
-  },
-  {
-    "asin": "B092LHVB4N",
-    "nom": "Logitech G715 — clavier sans fil blanc",
-    "categorie": "Claviers",
-    "badge": "Repose-poignet nuage",
-    "note": "Design cloud unique, parfait sur bureau blanc.",
-    "image": "/images/deals/products/B092LHVB4N.webp",
-    "stars": 4.6,
-    "avis": 424
-  },
-  {
-    "asin": "B0G5YNF75Q",
-    "nom": "Akko 5075B Plus — thème pastel",
-    "categorie": "Claviers",
-    "badge": "Pastel d'origine",
-    "note": "Thèmes pastel prêts à l'emploi, hot-swap.",
-    "image": "/images/deals/products/B0G5YNF75Q.webp",
-    "stars": 5,
-    "avis": 8
   }
 ]
