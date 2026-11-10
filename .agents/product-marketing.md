@@ -11,7 +11,7 @@ contenu (Twitch, YouTube, TikTok) et les personnes qui débutent.
 
 Ce n'est pas un SaaS ni une boutique : le site ne vend rien. Il publie des guides d'achat
 testés, des comparatifs, des dupes et des outils gratuits, et monétise via le **Programme
-Partenaires Amazon** (tag `streamlibfr0f-21`).
+Partenaires Amazon** (tag `4751233-21`).
 
 - Modèle : affiliation Amazon, liens `rel="sponsored nofollow"` via la redirection interne `/go/`.
 - Pas de compte utilisateur, pas de panier, pas d'email list pour l'instant.
