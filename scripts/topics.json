@@ -85,7 +85,9 @@
       "Logitech Litra Glow",
       "Elgato Key Light Mini"
     ],
-    "status": "pending"
+    "status": "done",
+    "vs_extra": "FORMAT DUEL OBLIGATOIRE : tableau comparatif point par point dès l'intro, sections 'X gagne si...' / 'Y gagne si...', verdict sans compromis final ('lequel acheter selon votre budget').",
+    "slug": "logitech-litra-glow-vs-elgato-key-light-mini"
   },
   {
     "keyword": "panneau LED blanc pour éclairage doux de stream",
