@@ -1,25 +1,5 @@
 [
   {
-    "asin": "B0D9V94H1Z",
-    "nom": "IMYB A36 Pink Gaming Headset with Mic Stereo Headphones for Pc, PS5, Xbox",
-    "categorie": "Casques",
-    "badge": "Promo en cours",
-    "note": null,
-    "image": "/images/deals/products/B0D9V94H1Z.webp",
-    "stars": 4.3,
-    "avis": 3994
-  },
-  {
-    "asin": "B0F94Y5LXJ",
-    "nom": "SteelSeries Arctis Nova 3P Wireless Multi-Platform Gaming Headset - Lavender",
-    "categorie": "Casques",
-    "badge": "Promo en cours",
-    "note": null,
-    "image": "/images/deals/products/B0F94Y5LXJ.webp",
-    "stars": 4.1,
-    "avis": 609
-  },
-  {
     "asin": "B0H7C7KPS4",
     "nom": "EPOMAKER GX1 Wireless Gaming Headset for PS4/PS5/Switch, 70Hr+",
     "categorie": "Casques",
@@ -90,14 +70,34 @@
     "avis": 168
   },
   {
+    "asin": "B0D9V94H1Z",
+    "nom": "IMYB A36 Pink Gaming Headset with Mic Stereo Headphones for Pc, PS5, Xbox",
+    "categorie": "Casques",
+    "badge": "Bien noté",
+    "note": null,
+    "image": "/images/deals/products/B0D9V94H1Z.webp",
+    "stars": 4.3,
+    "avis": 4054
+  },
+  {
+    "asin": "B0F94Y5LXJ",
+    "nom": "SteelSeries Arctis Nova 3P Wireless Multi-Platform Gaming Headset - Lavender",
+    "categorie": "Casques",
+    "badge": "Bien noté",
+    "note": null,
+    "image": "/images/deals/products/B0F94Y5LXJ.webp",
+    "stars": 4.1,
+    "avis": 634
+  },
+  {
     "asin": "B0D44VDMBQ",
     "nom": "Jimonyer Gaming Headset for PS5 PS4 Xbox Series X|S PC Switch (Pink)",
     "categorie": "Casques",
     "badge": "Bien noté",
     "note": null,
     "image": "/images/deals/products/B0D44VDMBQ.webp",
-    "stars": 4.4,
-    "avis": 1287
+    "stars": 4.3,
+    "avis": 1322
   },
   {
     "asin": "B0F9P16LDK",
