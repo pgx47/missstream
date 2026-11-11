@@ -145,5 +145,38 @@
       }
     ],
     "publishedAt": "2026-11-04T16:58:52.396091+00:00"
+  },
+  {
+    "id": "atelier-mediterraneen-chaux-et-terracotta-2026-11-11",
+    "titre": "Atelier méditerranéen chaux et terracotta",
+    "description": "Un bureau baigné d'une lumière sable, aux murs texturés façon chaux crème et aux tons chauds de terre cuite. Les lignes sont douces et arquées, le rotin tressé côtoie la pierre claire et le lin froissé. Quelques poteries artisanales, un tapis écru aux motifs discrets et des feuillages secs composent une atmosphère calme, solaire et légèrement brute",
+    "image": "/images/lookbook/atelier-mediterraneen-chaux-et-terracotta-2026-11-11.webp",
+    "produits": [
+      {
+        "nom": "Travertine Table Lamp, 16\" Dimmable Natural Stone Lamp",
+        "asin": "B0H2XNJ23R",
+        "verifiedAt": "2026-11-11T15:45:50.839399+00:00",
+        "sourceUrl": "https://www.amazon.fr/dp/B0H2XNJ23R"
+      },
+      {
+        "nom": "Modern Faux Leather Office Chair, Armless Desk Chair, Home Office Global Recycled Standard Global Recycled Standard Global Recycled Standard",
+        "asin": "B0H4ZGGBHD",
+        "verifiedAt": "2026-11-11T15:45:50.839399+00:00",
+        "sourceUrl": "https://www.amazon.fr/dp/B0H4ZGGBHD"
+      },
+      {
+        "nom": "Berber rug 150x250 cm cotton linen cream tribal The Moroccan Vibrations",
+        "asin": "B0HP7MTVND",
+        "verifiedAt": "2026-11-11T15:45:50.839399+00:00",
+        "sourceUrl": "https://www.amazon.fr/dp/B0HP7MTVND"
+      },
+      {
+        "nom": "15.4-Inch Rustic Brown Cauldron Terracotta Vase",
+        "asin": "B0HHN3HBGP",
+        "verifiedAt": "2026-11-11T15:45:50.839399+00:00",
+        "sourceUrl": "https://www.amazon.fr/dp/B0HHN3HBGP"
+      }
+    ],
+    "publishedAt": "2026-11-11T15:45:50.839399+00:00"
   }
 ]
