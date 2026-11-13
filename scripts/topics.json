@@ -97,7 +97,9 @@
       "Elgato Key Light Mini",
       "Elgato Key Light Neo"
     ],
-    "status": "pending"
+    "status": "done",
+    "vs_extra": "",
+    "slug": "panneau-led-blanc-eclairage-doux-stream"
   },
   {
     "keyword": "interface audio blanche pour micro de streaming",
