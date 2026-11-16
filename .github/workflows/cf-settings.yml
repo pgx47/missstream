@@ -60,7 +60,7 @@ jobs:
               if not isinstance(result, dict):
                   print(tag, payload.get("errors"))
                   return
-              print(tag, {k: result.get(k) for k in KEYS})
+              print(tag, json.dumps(result, ensure_ascii=False, sort_keys=True))
 
           current = call("GET")
           if not current.get("success"):
