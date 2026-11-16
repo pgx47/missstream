@@ -71,7 +71,7 @@ jobs:
           if os.environ["ACTION"] == "allow-ai-crawlers":
               patch = {"is_robots_txt_managed": False, "ai_search": "disabled",
                        "ai_training": "disabled", "ai_user": "disabled",
-                       "cf_robots_variant": "off"}
+                       "ai_bots_protection": "disabled", "cf_robots_variant": "off"}
               merged = {**current["result"], **patch}
               for method, body in (("PATCH", patch), ("PATCH", merged), ("PUT", merged)):
                   res = call(method, body)
