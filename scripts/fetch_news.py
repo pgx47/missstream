@@ -16,6 +16,7 @@ from pathlib import Path
 import feedparser
 import requests
 from scraper_api import get as scraper_get
+from seo_text import is_article_url, slugify, title_key
 import yaml
 from bs4 import BeautifulSoup
 from openai import OpenAI
@@ -128,13 +129,32 @@ def build_description(summary: str, body: str) -> str:
     return truncate(desc, 160)
 
 
-def slugify(value: str) -> str:
-    """Slug lisible : les accents sont translittérés, pas supprimés."""
-    import unicodedata
-
-    normalized = unicodedata.normalize("NFKD", value)
-    ascii_value = "".join(c for c in normalized if not unicodedata.combining(c))
-    return re.sub(r"[^a-z0-9]+", "-", ascii_value.lower()).strip("-")[:60]
+def existing_news_keys() -> tuple[set[str], set[str]]:
+    """Titres et URLs sources déjà publiés, pour ne jamais doubler une brève."""
+    titles: set[str] = set()
+    sources: set[str] = set()
+    for path in NEWS_DIR.glob("*.mdx"):
+        try:
+            text = path.read_text(encoding="utf-8")
+        except OSError:
+            continue
+        if not text.startswith("---"):
+            continue
+        end = text.find("\n---", 3)
+        if end == -1:
+            continue
+        try:
+            meta = yaml.safe_load(text[3:end])
+        except yaml.YAMLError:
+            continue
+        if not isinstance(meta, dict):
+            continue
+        if meta.get("title"):
+            titles.add(title_key(meta["title"]))
+        url = str(meta.get("sourceUrl") or "").strip()
+        if url and is_article_url(url):
+            sources.add(url.split("?", 1)[0])
+    return titles, sources
 
 
 FALLBACK_DESCRIPTION = (
@@ -145,9 +165,17 @@ FALLBACK_DESCRIPTION = (
 def main() -> int:
     feed = feedparser.parse(RSS_URL)
     NEWS_DIR.mkdir(parents=True, exist_ok=True)
+    known_titles, known_sources = existing_news_keys()
 
     for entry in feed.entries[:8]:
         title = re.sub(r"\s*-\s*[^-]+$", "", entry.title)  # retire le nom du média
+        source_key = (entry.link or "").split("?", 1)[0]
+        if title_key(title) in known_titles:
+            print(f"Déjà publiée (même titre), on passe : {title}")
+            continue
+        if is_article_url(entry.link) and source_key in known_sources:
+            print(f"Déjà publiée (même source), on passe : {title}")
+            continue
         slug = slugify(title)
         filepath = NEWS_DIR / f"{slug}.mdx"
         if filepath.exists():
