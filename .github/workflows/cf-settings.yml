@@ -38,8 +38,9 @@ jobs:
           python3 - <<'PY'
           import json, os, urllib.error, urllib.request
 
-          KEYS = ("is_robots_txt_managed", "ai_search", "ai_training", "ai_user",
-                  "ai_bots_protection", "crawler_protection", "cf_robots_variant")
+          KEYS = ("bot_preference_sync_enabled", "is_robots_txt_managed", "ai_search",
+                  "ai_training", "ai_user", "ai_bots_protection", "crawler_protection",
+                  "cf_robots_variant")
           url = f"https://api.cloudflare.com/client/v4/zones/{os.environ['ZID']}/bot_management"
           headers = {"Authorization": f"Bearer {os.environ['CF_TOKEN']}",
                      "Content-Type": "application/json"}
@@ -69,16 +70,20 @@ jobs:
           show("avant :", current)
 
           if os.environ["ACTION"] == "allow-ai-crawlers":
-              patch = {"is_robots_txt_managed": False, "ai_search": "disabled",
-                       "ai_training": "disabled", "ai_user": "disabled",
-                       "ai_bots_protection": "disabled", "cf_robots_variant": "off"}
-              merged = {**current["result"], **patch}
-              for method, body in (("PATCH", patch), ("PATCH", merged), ("PUT", merged)):
-                  res = call(method, body)
-                  print(method, res.get("success"), res.get("errors") or "")
-                  if res.get("success"):
-                      show("après :", res)
-                      break
-              else:
+              read_only = ("using_latest_model", "ai_bots_migration_opt_out")
+              body = {k: v for k, v in current["result"].items() if k not in read_only}
+              body.update({
+                  "bot_preference_sync_enabled": False,
+                  "is_robots_txt_managed": False,
+                  "ai_training": "disabled",
+                  "ai_bots_protection": "disabled",
+                  "ai_search": "disabled",
+                  "ai_user": "disabled",
+                  "cf_robots_variant": "off",
+              })
+              res = call("PUT", body)
+              print("PUT", res.get("success"), res.get("errors") or "")
+              if not res.get("success"):
                   raise SystemExit(1)
+              show("après :", res)
           PY
