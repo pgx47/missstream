@@ -4,7 +4,7 @@ on:
     inputs:
       action:
         type: choice
-        options: [read, disable-bot-block]
+        options: [read, disable-bot-block, read-bots, allow-ai-crawlers]
         default: read
 permissions:
   contents: read
@@ -28,3 +28,57 @@ jobs:
             curl -s -X PATCH "https://api.cloudflare.com/client/v4/zones/$ZID/settings/security_level" -H "Authorization: Bearer $CF_TOKEN" -H "Content-Type: application/json" -d '{"value":"low"}'
             curl -s -X PATCH "https://api.cloudflare.com/client/v4/zones/$ZID/settings/browser_check" -H "Authorization: Bearer $CF_TOKEN" -H "Content-Type: application/json" -d '{"value":"off"}'
           fi
+      - name: Managed robots.txt
+        if: inputs.action == 'read-bots' || inputs.action == 'allow-ai-crawlers'
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ZID: 972c53b0f759ce08c9b4f1917365fa07
+          ACTION: ${{ inputs.action }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.error, urllib.request
+
+          KEYS = ("is_robots_txt_managed", "ai_search", "ai_training", "ai_user",
+                  "ai_bots_protection", "crawler_protection", "cf_robots_variant")
+          url = f"https://api.cloudflare.com/client/v4/zones/{os.environ['ZID']}/bot_management"
+          headers = {"Authorization": f"Bearer {os.environ['CF_TOKEN']}",
+                     "Content-Type": "application/json"}
+
+          def call(method, body=None):
+              req = urllib.request.Request(
+                  url, method=method,
+                  data=json.dumps(body).encode() if body else None,
+                  headers=headers)
+              try:
+                  with urllib.request.urlopen(req) as r:
+                      return json.load(r)
+              except urllib.error.HTTPError as e:
+                  return json.load(e)
+
+          def show(tag, payload):
+              result = payload.get("result") or {}
+              if not isinstance(result, dict):
+                  print(tag, payload.get("errors"))
+                  return
+              print(tag, {k: result.get(k) for k in KEYS})
+
+          current = call("GET")
+          if not current.get("success"):
+              print("lecture impossible :", current.get("errors"))
+              raise SystemExit(1)
+          show("avant :", current)
+
+          if os.environ["ACTION"] == "allow-ai-crawlers":
+              patch = {"is_robots_txt_managed": False, "ai_search": "disabled",
+                       "ai_training": "disabled", "ai_user": "disabled",
+                       "cf_robots_variant": "off"}
+              merged = {**current["result"], **patch}
+              for method, body in (("PATCH", patch), ("PATCH", merged), ("PUT", merged)):
+                  res = call(method, body)
+                  print(method, res.get("success"), res.get("errors") or "")
+                  if res.get("success"):
+                      show("après :", res)
+                      break
+              else:
+                  raise SystemExit(1)
+          PY
