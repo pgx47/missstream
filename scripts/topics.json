@@ -109,7 +109,9 @@
       "Arturia MiniFuse 2 White",
       "Steinberg UR22C White"
     ],
-    "status": "pending"
+    "status": "done",
+    "vs_extra": "",
+    "slug": "interface-audio-blanche-micro-streaming"
   },
   {
     "keyword": "lampe de bureau pastel pour ambiance de stream",
