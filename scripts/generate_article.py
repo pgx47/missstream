@@ -69,9 +69,74 @@ Conversion (sans jamais mentir) :
 - Toujours : paragraphes courts, concret, comparatifs honnêtes (chaque produit a des défauts)."""
 
 
+KEYWORD_STOPWORDS = {
+    "le", "la", "les", "de", "des", "du", "un", "une", "et", "pour", "sur",
+    "avec", "sans", "son", "sa", "ses", "en", "au", "aux", "a", "d", "l",
+    "quel", "quelle", "quels", "quelles", "meilleur", "meilleure", "meilleurs",
+    "meilleures", "top", "guide", "guides", "comparatif", "comparatifs",
+    "idee", "idees", "conseil", "conseils", "choisir", "offrir", "budget",
+    "pas", "cher", "chere",
+}
+
+KEYWORD_SYNONYMS = {
+    "streaming": "stream",
+    "streamer": "stream",
+    "streamers": "stream",
+    "streameuse": "stream",
+    "streameuses": "stream",
+    "streams": "stream",
+    "cosy": "cozy",
+    "cadeaux": "cadeau",
+    "lumieres": "lumiere",
+    "webcams": "webcam",
+}
+
+
+def keyword_signature(keyword: str) -> set[str]:
+    """Tokens normalisés d'un mot-clé (accents, pluriels, synonymes maison)."""
+    import unicodedata
+
+    text = unicodedata.normalize("NFKD", (keyword or "").lower())
+    text = "".join(c for c in text if not unicodedata.combining(c))
+    tokens: set[str] = set()
+    for token in re.findall(r"[a-z0-9]+", text):
+        token = KEYWORD_SYNONYMS.get(token, token)
+        if len(token) < 3 or token in KEYWORD_STOPWORDS:
+            continue
+        if token.endswith(("s", "x")) and len(token) > 4:
+            token = token[:-1]
+        tokens.add(token)
+    return tokens
+
+
+def keyword_similarity(first: str, second: str) -> tuple[float, float]:
+    """(Jaccard, inclusion) entre les signatures de deux mots-clés."""
+    a, b = keyword_signature(first), keyword_signature(second)
+    if not a or not b:
+        return 0.0, 0.0
+    inter = len(a & b)
+    return inter / len(a | b), inter / min(len(a), len(b))
+
+
+def is_too_similar(first: str, second: str) -> bool:
+    """Vrai quand deux sujets visent la même intention d'achat.
+
+    On combine recouvrement de tokens (Jaccard) et inclusion : un sujet dont
+    les tokens sont presque tous contenus dans l'autre est un doublon, même si
+    l'un ajoute des qualificatifs (« bureau ultra cozy » ⊂ « cozy hiver »).
+    """
+    jaccard, containment = keyword_similarity(first, second)
+    return jaccard >= 0.45 and containment >= 0.65
+
+
+def is_duplicate_topic(first: str, second: str) -> bool:
+    """Quasi-doublon : on peut retirer le sujet du backlog sans relecture."""
+    jaccard, containment = keyword_similarity(first, second)
+    return jaccard >= 0.7 or containment >= 0.85
+
+
 def load_topics() -> list[dict]:
     return json.loads(TOPICS_FILE.read_text(encoding="utf-8"))
-
 
 def save_topics(topics: list[dict]) -> None:
     TOPICS_FILE.write_text(
@@ -109,16 +174,23 @@ Réponds en JSON : {{"topics": [{{"keyword": str, "categorie": str, "produits": 
         temperature=0.6,
     )
     data = json.loads(resp.choices[0].message.content)
-    new_topics = [
-        {
-            "keyword": t["keyword"],
-            "categorie": t.get("categorie", "setup"),
-            "produits": t.get("produits", []),
-            "status": "pending",
-        }
-        for t in data.get("topics", [])
-        if t.get("keyword") and t["keyword"] not in existing
-    ]
+    new_topics = []
+    for t in data.get("topics", []):
+        keyword = (t.get("keyword") or "").strip()
+        if not keyword or keyword in existing:
+            continue
+        if any(is_too_similar(keyword, other) for other in existing):
+            print(f"Topic ignoré (trop proche d'un existant) : {keyword}")
+            continue
+        new_topics.append(
+            {
+                "keyword": keyword,
+                "categorie": t.get("categorie", "setup"),
+                "produits": t.get("produits", []),
+                "status": "pending",
+            }
+        )
+        existing.append(keyword)
     topics.extend(new_topics)
     print(f"+{len(new_topics)} topics ajoutés")
     return topics
@@ -469,6 +541,20 @@ def prune_unlinked(article: dict) -> None:
     article["body"] = AFFILIATE_RE.sub(lambda m: keep(m.group(0)), article["body"])
 
 
+def seo_description(text: str, limit: int = 158) -> str:
+    """Borne une meta description sur une frontière de phrase ou de mot."""
+    text = re.sub(r"\s+", " ", (text or "").replace("**", "").replace("#", " ")).strip()
+    if len(text) <= limit:
+        return text
+    window = text[:limit]
+    for sep in (". ", "! ", "? "):
+        idx = window.rfind(sep)
+        if idx >= 100:
+            return window[: idx + 1].strip()
+    cut = window.rfind(" ")
+    return window[: cut if cut > 100 else limit].rstrip(" ,;:—-.") + "."
+
+
 def write_mdx(article: dict, image: str) -> Path:
     GUIDES_DIR.mkdir(parents=True, exist_ok=True)
     for p in article.get("products", []):
@@ -477,7 +563,7 @@ def write_mdx(article: dict, image: str) -> Path:
 
     frontmatter = {
         "title": article["title"],
-        "description": article["description"],
+        "description": seo_description(article["description"]),
         "publishDate": __import__("datetime").date.today().isoformat(),
         "image": image,
         "category": "guides",
@@ -501,7 +587,36 @@ def main() -> int:
         print("Aucun topic pending malgré le refill.")
         return 0
 
-    topic = pending[0]
+    published = published_guides()
+    done_keywords = [
+        t["keyword"]
+        for t in topics
+        if t.get("status") == "done" and t.get("keyword")
+    ]
+    topic = None
+    for candidate in pending:
+        known = [title for _slug, title in published] + done_keywords
+        clash = next(
+            (k for k in known if k and is_too_similar(candidate["keyword"], k)), None
+        )
+        if clash:
+            candidate["status"] = (
+                "duplicate"
+                if is_duplicate_topic(candidate["keyword"], clash)
+                else "review"
+            )
+            save_topics(topics)
+            print(
+                f"Sujet trop proche de « {clash} » : {candidate['keyword']} "
+                f"({candidate['status']})"
+            )
+            continue
+        topic = candidate
+        break
+    if topic is None:
+        print("Aucun topic pending exploitable (doublons ou backlog vide).")
+        return 0
+
     topic["vs_extra"] = (
         "FORMAT DUEL OBLIGATOIRE : tableau comparatif point par point dès l'intro, sections "
         "'X gagne si...' / 'Y gagne si...', verdict sans compromis final ('lequel acheter selon "

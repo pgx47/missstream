@@ -44,7 +44,7 @@
   {
     "keyword": "setup streaming cosy pour l hiver",
     "type": "guide",
-    "status": "done",
+    "status": "duplicate",
     "vs_extra": "",
     "slug": "setup-streaming-cosy-pour-l-hiver"
   },
@@ -58,7 +58,7 @@
   {
     "keyword": "meilleur cadeau pour une streamer débutante",
     "type": "guide",
-    "status": "done",
+    "status": "duplicate",
     "vs_extra": "",
     "slug": "meilleur-cadeau-streamer-debutante"
   },
@@ -230,7 +230,7 @@
     "type": "vs",
     "silo": "accessoires",
     "categorie": "stream deck",
-    "status": "done",
+    "status": "duplicate",
     "slug": "stream-deck-neo-vs-mk2-lequel-choisir-pour-debuter",
     "note": "doublon — couvert par stream-deck-neo-vs-mk2-lequel-choisir-pour-debuter"
   },
@@ -305,7 +305,7 @@
   {
     "keyword": "les 5 meilleurs casques audio oreilles de chat",
     "type": "guide",
-    "status": "done",
+    "status": "duplicate",
     "slug": "casque-gamer-oreilles-de-chat-comparatif-qualite-audio",
     "note": "doublon — couvert par casque-gamer-oreilles-de-chat-comparatif-qualite-audio"
   },

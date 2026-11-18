@@ -12,6 +12,16 @@ export function getStaticPaths() {
 const { s: profile } = Astro.props;
 const s = {...profile, setup: profile.setup.filter(p => health.products[p.asin]?.status !== 'unavailable').map(p => ({...p, dupe: health.products[p.dupe?.asin || '']?.status === 'unavailable' ? null : p.dupe}))};
 const cats = [...new Set(s.setup.map((p) => p.cat))];
+
+/** Meta description unique par créateur : nom, jeu principal et angle matériel. */
+function buildDescription(profile: typeof s): string {
+  const game = (profile.jeu_principal || '').split(/[(—–/]/)[0].trim();
+  const lead = `Inspiré de ${profile.nom}${game ? ` (${game})` : ''} : `;
+  const tail = `micros, lumière et périphériques pour retrouver ce rendu en caméra, avec des alternatives petit budget.`;
+  return `${lead}${tail}`;
+}
+const description = buildDescription(s);
+const intro = (s.description_longue || '').replace(/\s+/g, ' ').trim();
 const CAT_GUIDE: Record<string, string> = {
   Audio: 'meilleur-micro-usb-blanc-rose-pour-streamer',
   'PC & Image': 'webcam-4k-stream-rendu-net-et-lumineux',
@@ -26,7 +36,7 @@ const faq = [
 
 <BaseLayout
   title={`Inspiration setup ${s.nom} : idées de matériel & alternatives`}
-  description={`Des idées de micros, périphériques et éclairages pour un setup inspiré de ${s.nom}. Une sélection de suggestions, sans attribution de matériel officiel.`}
+  description={description}
 >
   <SeoSchema slot="head" type="FAQ" faq={faq} />
   <div class="max-w-5xl mx-auto px-4 py-12">
@@ -47,7 +57,11 @@ const faq = [
       </div>
     </div>
 
-    <p class="mt-8 max-w-3xl text-sm text-gray-600 leading-relaxed">
+    {intro && (
+      <p class="mt-8 max-w-3xl text-sm text-gray-600 leading-relaxed">{intro}</p>
+    )}
+
+    <p class="mt-4 max-w-3xl text-sm text-gray-500 leading-relaxed">
       Cette sélection est une inspiration éditoriale. Les équipements ci-dessous sont des suggestions et ne sont pas présentés comme le matériel officiel de {s.nom}.
     </p>
 

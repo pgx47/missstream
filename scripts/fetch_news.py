@@ -89,44 +89,65 @@ def get_news_image(article_url: str, slug: str) -> str:
 
     pool = sorted(FALLBACK_DIR.glob("*.webp"))
     return f"/images/fallbacks/{random.choice(pool).name}" if pool else "/images/fallbacks/news-fallback-1.webp"
-def build_description(summary: str, body: str) -> str:
-    """Génère une description factuelle unique de 140 à 160 caractères.
+def _clean_meta(value: str) -> str:
+    """Nettoie un texte scrapé destiné à une meta description.
 
-    Le résumé RSS sert de base ; s'il est trop court, on complète avec les
-    premières phrases du corps généré, puis on tronque sur une frontière de mot.
+    Supprime le HTML, les marqueurs Markdown (#, *, >, `), les noms de médias
+    collés en fin de résumé (ex. « Le Monde.fr. ») et les espaces multiples.
     """
     from html import unescape
 
-    def clean(value: str) -> str:
-        text = re.sub(r"<[^>]+>", " ", value or "")
-        return re.sub(r"\s+", " ", unescape(text)).strip()
+    text = re.sub(r"<[^>]+>", " ", value or "")
+    text = unescape(text)
+    text = re.sub(r"(?m)^\s*#{1,6}\s*", " ", text)
+    text = text.replace("**", "").replace("__", "")
+    text = re.sub(r"[#>*`]", " ", text)
+    text = re.sub(r"(?:^|\s)[|•·]\s*", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    previous = None
+    while previous != text:
+        previous = text
+        text = re.sub(r"\s*[\w-]+\.(?:fr|com|be|ch|net|org)\.?\s*$", "", text, flags=re.I).strip()
+    return text
+
+
+def build_description(summary: str, body: str) -> str:
+    """Génère une description factuelle unique de 140 à 160 caractères.
+
+    Le résumé RSS sert de base s'il est complet ; un résumé tronqué (ou absent)
+    est ignoré au profit des premières phrases du corps généré. Le résultat est
+    toujours nettoyé des marqueurs Markdown et des noms de médias scrapés.
+    """
 
     def truncate(text: str, limit: int = 160) -> str:
         if len(text) <= limit:
             return text
+        window = text[:limit]
+        for sep in (". ", "! ", "? "):
+            idx = window.rfind(sep)
+            if idx >= 100:
+                return window[: idx + 1].strip()
         cut = text.rfind(" ", 0, limit)
         out = text[: cut if cut > 80 else limit].rstrip(" ,;:—-")
         return out if out.endswith((".", "!", "?", "…")) else f"{out}…"
 
-    base = clean(summary)
-    if not base:
-        base = clean(body)
+    clean_summary = _clean_meta(summary)
+    if "…" in clean_summary or "..." in clean_summary:
+        clean_summary = ""
+    base = clean_summary or _clean_meta(body)
     if not base:
         return FALLBACK_DESCRIPTION
 
-    sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+", clean(body)) if s.strip()]
+    sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+", _clean_meta(body)) if s.strip()]
     desc = base
     for sentence in sentences:
         if len(desc) >= 140:
             break
         if sentence not in desc:
             desc = f"{desc.rstrip('.')}. {sentence}"
-    if len(desc) < 140:
-        rest = clean(body)
-        if rest and rest not in desc:
-            desc = f"{desc} {rest}"
 
-    return truncate(desc, 160)
+    result = _clean_meta(truncate(desc, 160))
+    return result or FALLBACK_DESCRIPTION
 
 
 def existing_news_keys() -> tuple[set[str], set[str]]:
