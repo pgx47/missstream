@@ -178,5 +178,38 @@
       }
     ],
     "publishedAt": "2026-11-11T15:45:50.839399+00:00"
+  },
+  {
+    "id": "cabinet-d-explorateur-bois-patine-laiton-et-cartes-anciennes-2026-11-18",
+    "titre": "Cabinet d'explorateur : bois patiné, laiton et cartes anciennes",
+    "description": "Un bureau aux tons ambre et acajou, enveloppé d'un papier peint texturé façon bibliothèque. Le plan de travail en noyer massif accueille un sous-main en cuir patiné, un globe ancien légèrement incliné et une lampe banquier à abat-jour vert. Au mur, des cartes du monde jaunies et des cadres en laiton patiné se superposent, encadrés de rayons chargés",
+    "image": "/images/lookbook/cabinet-d-explorateur-bois-patine-laiton-et-cartes-anciennes-2026-11-18.webp",
+    "produits": [
+      {
+        "nom": "Globe Electric 62000010 32\" Multi-Joint Desk Lamp with Metal Clamp, Matte Brass, White Accents, On/Off Rotary Switch on Shade, Partially Adjustable Swing Arm, H",
+        "asin": "B0CKTSW6ZJ",
+        "verifiedAt": "2026-11-18T16:52:32.296462+00:00",
+        "sourceUrl": "https://www.amazon.fr/dp/B0CKTSW6ZJ"
+      },
+      {
+        "nom": "Antique Sepia Palace River Landscape Wallpaper Peel and Stick",
+        "asin": "B0HB93KXJ8",
+        "verifiedAt": "2026-11-18T16:52:32.296462+00:00",
+        "sourceUrl": "https://www.amazon.fr/dp/B0HB93KXJ8"
+      },
+      {
+        "nom": "Real Leather Desk Mat Set (32x16) Large Desk Cover Desk Blotter Protector Computer Gaming Mouse Pad Table Laptop Office Desktop Accessories - Antique",
+        "asin": "B0BKTZGQ41",
+        "verifiedAt": "2026-11-18T16:52:32.296462+00:00",
+        "sourceUrl": "https://www.amazon.fr/dp/B0BKTZGQ41"
+      },
+      {
+        "nom": "5 Tier Bookcase, Solid Wood Bookshelf Rustic Vintage Industrial Etagere Bookcase, Metal and Wood Free Vintage Bookshelf, Retro Brown (5-Tiers)",
+        "asin": "B0D5VHJKLB",
+        "verifiedAt": "2026-11-18T16:52:32.296462+00:00",
+        "sourceUrl": "https://www.amazon.fr/dp/B0D5VHJKLB"
+      }
+    ],
+    "publishedAt": "2026-11-18T16:52:32.296462+00:00"
   }
 ]
