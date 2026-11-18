@@ -591,7 +591,7 @@ def main() -> int:
     done_keywords = [
         t["keyword"]
         for t in topics
-        if t.get("status") == "done" and t.get("keyword")
+        if t.get("status") in ("done", "duplicate") and t.get("keyword")
     ]
     topic = None
     for candidate in pending:

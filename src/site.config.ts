@@ -10,7 +10,7 @@ export const SITE = {
   lang: 'fr',
   email: 'contact@missstream.xyz',
   affiliationDisclosure:
-    "Miss Stream participe au Programme Partenaires d'Amazon EU. En tant que Partenaire Amazon, nous percevons une commission sur les achats qualifiés, sans surcoût pour vous.",
+    "Miss Stream participe au Programme Partenaires d'Amazon EU. En tant que Partenaire Amazon, nous percevons une commission sur les achats qualifiés, sans surcoût pour toi.",
 } as const;
 
 export function amazonUrl({ asin, query }: { asin?: string; query?: string }): string {
