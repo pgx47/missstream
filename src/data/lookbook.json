@@ -211,5 +211,38 @@
       }
     ],
     "publishedAt": "2026-11-18T16:52:32.296462+00:00"
+  },
+  {
+    "id": "studio-radio-nocturne-seventies-noyer-vinyle-et-orange-brule-2026-11-25",
+    "titre": "Studio radio nocturne seventies : noyer, vinyle et orange brûlé",
+    "description": "Un bureau aux pieds compas en noyer chaud, des murs d'un brun fumé presque moka, et un grand tapis en laine chinée aux tons caramel. Sur le plateau, une lampe de bureau en laiton patiné à abat-jour orange brûlé projette une lumière basse et dorée ; en fond, des pochettes de vinyle alignées comme une frise graphique, un fauteuil en velours côtelé or",
+    "image": "/images/lookbook/studio-radio-nocturne-seventies-noyer-vinyle-et-orange-brule-2026-11-25.webp",
+    "produits": [
+      {
+        "nom": "Meridian Furniture AdagioNatural-CH Adagio Collection Modern | Contemporary Chest with Rich Finish, Solid Wood Veneer, Soft Close Drawers, 38\" W x 20\" D x 50\" H",
+        "asin": "B0GK2S6SH6",
+        "verifiedAt": "2026-11-25T18:19:26.405558+00:00",
+        "sourceUrl": "https://www.amazon.fr/dp/B0GK2S6SH6"
+      },
+      {
+        "nom": "ZYER 8.6 in Orange Table Lamp, Touch Control Lamp, Small Vintage Lamp",
+        "asin": "B0H7C6VNXD",
+        "verifiedAt": "2026-11-25T18:19:26.405558+00:00",
+        "sourceUrl": "https://www.amazon.fr/dp/B0H7C6VNXD"
+      },
+      {
+        "nom": "Mid Century Accent Chair with Wood Arms and Metal Legs, Orange",
+        "asin": "B09TYM2CCP",
+        "verifiedAt": "2026-11-25T18:19:26.405558+00:00",
+        "sourceUrl": "https://www.amazon.fr/dp/B09TYM2CCP"
+      },
+      {
+        "nom": "8x10 Brown Area Rugs Washable Vintage Large Rug for Living Room OEKO-TEX STANDARD 100",
+        "asin": "B0GJZBRSF2",
+        "verifiedAt": "2026-11-25T18:19:26.405558+00:00",
+        "sourceUrl": "https://www.amazon.fr/dp/B0GJZBRSF2"
+      }
+    ],
+    "publishedAt": "2026-11-25T18:19:26.405558+00:00"
   }
 ]
