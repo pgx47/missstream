@@ -157,7 +157,7 @@
       "VIVO Dual Monitor Stand White",
       "Ergotron LX Dual Monitor Arm White"
     ],
-    "status": "pending"
+    "status": "review"
   },
   {
     "keyword": "souris blanche légère pour jouer et streamer",
@@ -167,7 +167,9 @@
       "Razer DeathAdder V3 Pro White",
       "Glorious Model O Wireless White"
     ],
-    "status": "pending"
+    "status": "done",
+    "vs_extra": "",
+    "slug": "souris-blanche-legere-jouer-streamer"
   },
   {
     "keyword": "softbox blanc pour éclairage de visage en stream",
