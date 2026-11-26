@@ -4,7 +4,7 @@ on:
     inputs:
       action:
         type: choice
-        options: [read, disable-bot-block, read-bots, allow-ai-crawlers]
+        options: [read, disable-bot-block, read-bots, allow-ai-crawlers, early-hints-off, block-junk-bots, cleanup]
         default: read
 permissions:
   contents: read
@@ -87,3 +87,18 @@ jobs:
                   raise SystemExit(1)
               show("après :", res)
           PY
+      - name: Zone guard (Early Hints, WAF anti-bots 504)
+        if: inputs.action == 'early-hints-off' || inputs.action == 'block-junk-bots' || inputs.action == 'cleanup' || inputs.action == 'read'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          case "${{ inputs.action }}" in
+            cleanup)
+              python3 scripts/cf_zone_guard.py early-hints-off
+              python3 scripts/cf_zone_guard.py block-junk-bots
+              python3 scripts/cf_zone_guard.py read
+              ;;
+            *)
+              python3 scripts/cf_zone_guard.py "${{ inputs.action }}"
+              ;;
+          esac
