@@ -1,4 +1,6 @@
 ---
+import fs from 'node:fs';
+import path from 'node:path';
 import { amazonUrl } from '../site.config';
 import health from '../data/product-health.json';
 
@@ -16,6 +18,13 @@ interface Props {
 const { asin, nom, categorie = 'Setup', badge = 'Promo en cours', note, image, stars, avis } = Astro.props;
 const fullStars = stars ? Math.round(stars) : 0;
 const url = amazonUrl({ asin, query: nom });
+
+// Certaines images produit du flux bons plans ne sont pas téléchargées :
+// on évite de référencer un fichier absent (404 + flash d'image cassée).
+const localImage =
+  image && fs.existsSync(path.join(process.cwd(), 'public', image)) ? image : undefined;
+const amazonWidget = `https://ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&Format=_SL400_&ASIN=${asin}&MarketPlace=FR&ID=AsinImage`;
+const imageSrc = localImage || amazonWidget;
 ---
 
 {
@@ -27,8 +36,8 @@ const url = amazonUrl({ asin, query: nom });
     asin && (
       <div class="relative w-full aspect-[4/3] bg-pink-50/40 overflow-hidden p-4 flex items-center justify-center">
         <img
-          src={image || `https://ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&Format=_SL400_&ASIN=${asin}&MarketPlace=FR&ID=AsinImage`}
-          onerror={`this.onerror=null;this.src='https://ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&Format=_SL400_&ASIN=${asin}&MarketPlace=FR&ID=AsinImage'`}
+          src={imageSrc}
+          onerror={`this.onerror=null;this.src='${amazonWidget}'`}
           alt={nom}
           loading="lazy"
           decoding="async"
