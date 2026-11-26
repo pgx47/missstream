@@ -96,9 +96,10 @@ Actions concrètes, par ordre de rendement :
 3. **Échanges éditoriaux** : 3 à 5 blogs streaming français acceptent des
    contributions invitées contre un lien.
 4. **Presse niche** : un communiqué sur l'outil panneaux Twitch gratuit.
-5. **Bloquer le bot 504** côté Cloudflare (WAF : User-Agent
-   `nginx-ssl early hints` → block) et désactiver Early Hints si le flood
-   persiste.
+5. **Bot 504** : fait le 26/11 via `.github/workflows/cf-settings.yml`
+   (action `cleanup`) — Early Hints désactivé, règle WAF bloquant les
+   User-Agents `nginx-ssl early hints` et `fl2 early hints`. Vérifié : 403
+   pour ces UAs, 200 pour Googlebot et les navigateurs.
 
 ## Ce qu'il reste à fournir (propriétaire)
 
