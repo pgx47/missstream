@@ -87,7 +87,7 @@
     "note": null,
     "image": "/images/deals/products/B0D9V94H1Z.webp",
     "stars": 4.3,
-    "avis": 4106
+    "avis": 4110
   },
   {
     "asin": "B0F94Y5LXJ",
@@ -107,7 +107,7 @@
     "note": null,
     "image": "/images/deals/products/B0D44VDMBQ.webp",
     "stars": 4.3,
-    "avis": 1345
+    "avis": 1347
   },
   {
     "asin": "B0F9P16LDK",
@@ -117,7 +117,7 @@
     "note": null,
     "image": "/images/deals/products/B0F9P16LDK.webp",
     "stars": 4.3,
-    "avis": 1345
+    "avis": 1347
   },
   {
     "asin": "B0BMFQP2ZZ",
@@ -143,9 +143,11 @@
     "asin": "B0CTJ7PVN1",
     "nom": "Shure MV7 — micro dynamique blanc",
     "categorie": "Micros",
-    "badge": "Qualité studio",
+    "badge": "Bien noté",
     "note": "USB + XLR, le choix long terme.",
-    "image": "/images/deals/products/B0CTJ7PVN1.webp"
+    "image": "/images/deals/products/B0CTJ7PVN1.webp",
+    "stars": 4.6,
+    "avis": 1198
   },
   {
     "asin": "B0CMTQPWQ8",
